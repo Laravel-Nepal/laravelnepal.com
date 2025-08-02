@@ -7,9 +7,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "awcodes/filament-gravatar": "^3.0@beta",
+        "barryvdh/laravel-debugbar": "^3.16",
+        "driftingly/rector-laravel": "^2.0",
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/pulse": "^1.4",
+        "laravel/tinker": "^2.10.1",
+        "pxlrbt/filament-environment-indicator": "^3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -56,6 +61,10 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "lint": [
+            "rector",
+            "pint"
         ]
     },
     "extra": {
