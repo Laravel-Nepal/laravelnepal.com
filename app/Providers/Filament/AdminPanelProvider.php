@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use Awcodes\Gravatar\GravatarPlugin;
+use Awcodes\Gravatar\GravatarProvider;
 use Exception;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -13,6 +15,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -66,6 +69,16 @@ final class AdminPanelProvider extends PanelProvider
                 EnvironmentIndicatorPlugin::make()
                     ->showGitBranch()
                     ->showDebugModeWarning(),
-            ]);
+                GravatarPlugin::make()
+                    ->default('initials')
+                    ->size(200)
+            ])
+            ->defaultAvatarProvider(GravatarProvider::class)
+            ->maxContentWidth(Width::Full)
+            ->globalSearch(false)
+            ->sidebarCollapsibleOnDesktop()
+            ->databaseTransactions()
+            ->unsavedChangesAlerts()
+            ->spa();
     }
 }
