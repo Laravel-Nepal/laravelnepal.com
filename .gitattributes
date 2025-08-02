@@ -5,6 +5,9 @@
 *.html diff=html
 *.md diff=markdown
 *.php diff=php
+*.tsx diff=tsx
+*.ts diff=typescript
+*.js diff=javascript
 
 /.github export-ignore
 CHANGELOG.md export-ignore
