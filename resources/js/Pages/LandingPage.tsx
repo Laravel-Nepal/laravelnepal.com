@@ -1,7 +1,3 @@
-"use client";
-
-import {ReactNode} from "react";
-
 const LandingPage = () => {
     const appName = import.meta.env.VITE_APP_NAME || "Laravel Nepal";
 
