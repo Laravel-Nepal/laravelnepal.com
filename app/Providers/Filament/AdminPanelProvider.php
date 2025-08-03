@@ -37,6 +37,8 @@ final class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
+            ->emailVerification(isRequired: app()->environment('production'))
             ->colors([
                 'primary' => Color::hex('#DC143C'),
             ])
