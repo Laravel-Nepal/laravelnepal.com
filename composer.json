@@ -11,10 +11,12 @@
         "barryvdh/laravel-debugbar": "^3.16",
         "driftingly/rector-laravel": "^2.0",
         "filament/filament": "^4.0",
+        "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/pulse": "^1.4",
         "laravel/tinker": "^2.10.1",
-        "pxlrbt/filament-environment-indicator": "^3.1"
+        "pxlrbt/filament-environment-indicator": "^3.1",
+        "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

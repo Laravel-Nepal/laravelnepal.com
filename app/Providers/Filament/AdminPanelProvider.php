@@ -17,7 +17,6 @@ use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -25,7 +24,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
-use Illuminate\Support\Traits\Conditionable;
 
 final class AdminPanelProvider extends PanelProvider
 {
@@ -39,6 +37,8 @@ final class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
+            ->emailVerification(isRequired: app()->environment('production'))
             ->colors([
                 'primary' => Color::hex('#DC143C'),
             ])
@@ -71,7 +71,7 @@ final class AdminPanelProvider extends PanelProvider
                     ->showDebugModeWarning(),
                 GravatarPlugin::make()
                     ->default('initials')
-                    ->size(200)
+                    ->size(200),
             ])
             ->defaultAvatarProvider(GravatarProvider::class)
             ->maxContentWidth(Width::Full)
