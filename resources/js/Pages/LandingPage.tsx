@@ -4,8 +4,8 @@ import { ReactNode } from "react";
 const LandingPage = () => {
     return (
         <>
-            <div className="min-h-screen w-full flex items-center justify-center">
-                <h2 className="bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-3xl lg:text-7xl font-bold text-transparent py-20">
+            <div className="flex min-h-screen w-full items-center justify-center">
+                <h2 className="bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text py-20 text-3xl font-bold text-transparent lg:text-7xl">
                     Something is cooking
                 </h2>
             </div>
