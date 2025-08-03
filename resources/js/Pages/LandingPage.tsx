@@ -5,7 +5,7 @@ const LandingPage = () => {
     return (
         <>
             <div className="flex min-h-screen w-full items-center justify-center">
-                <h2 className="bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text py-20 text-3xl font-bold text-transparent lg:text-7xl">
+                <h2 className="bg-gradient-to-b from-neutral-400 dark:from-neutral-300 to-neutral-800 dark:to-neutral-500 bg-clip-text py-20 text-3xl font-bold text-transparent lg:text-7xl">
                     Something is cooking
                 </h2>
             </div>
