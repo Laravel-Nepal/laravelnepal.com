@@ -22,9 +22,7 @@ const FrontWrapper: FC<LayoutProps> = (props) => {
                 theme="dark"
                 transition={Bounce}
             />
-            <div>
-                {children}
-            </div>
+            <div>{children}</div>
         </>
     );
 };

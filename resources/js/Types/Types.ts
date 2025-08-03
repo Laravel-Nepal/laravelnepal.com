@@ -1,4 +1,4 @@
-import { ComponentProps, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 export interface LayoutProps {
     children: ReactNode;
