@@ -1,8 +1,25 @@
 import useTheme from "@/Hooks/useTheme";
 import { cn } from "@/Lib/Utils";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import { Sun } from "lucide-react";
+import {Moon, Sun, LaptopMinimal} from "lucide-react";
 import { motion } from "motion/react";
+import {Theme} from "@/Types/Enums";
+import {FC} from "react";
+
+const ThemeToggler = () => {
+    const { setTheme, theme } = useTheme();
+    console.log(theme);
+
+    switch(theme) {
+        case Theme.Light:
+            return <Sun className="cursor-pointer text-yellow-400" onClick={() => setTheme(Theme.Dark)} />;
+        case Theme.Dark:
+            return <Moon className="cursor-pointer text-blue-400" onClick={() => setTheme(Theme.System)} />;
+        default:
+            return <LaptopMinimal className="cursor-pointer text-gray-400" onClick={() => setTheme(Theme.Light)} />;
+
+    }
+}
 
 const Navbar = () => {
     const appName = import.meta.env.VITE_APP_NAME || "Laravel Nepal";
@@ -20,7 +37,7 @@ const Navbar = () => {
             <h1 className="relative bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-3xl font-bold text-transparent">{appName}</h1>
             <div className="flex flex-row items-center justify-end gap-3">
                 <SiGithub className="text-neutral-300" />
-                <Sun className="text-neutral-300" onClick={toggleTheme} />
+                <ThemeToggler />
             </div>
         </motion.div>
     );
