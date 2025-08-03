@@ -31,7 +31,7 @@ const LaravelPath = () => {
             viewBox="0 0 584 600"
             initial="hidden"
             animate="visible"
-            className="text-laravel-red p-2 w-full h-full md:w-[584px] md:h-[600px] max-w-full max-h-full"
+            className="text-laravel-red p-2 w-full h-full md:w-[450px] md:h-[462px] max-w-full max-h-full"
         >
             {/* top rect left-top */}
             <motion.line
