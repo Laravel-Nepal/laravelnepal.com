@@ -1,6 +1,7 @@
 import {cn} from "@/Lib/Utils";
 import LaravelPath from "@/Components/Sections/LaravelPath";
 import InputField from "@/Components/Input/InputField";
+import SubscribeToNewsLetter from "@/Components/Forms/SubscribeToNewsLetter";
 
 const HeroSection = () => {
     return (
@@ -16,13 +17,7 @@ const HeroSection = () => {
                 <div className="text-neutral-500 dark:text-neutral-400 text-3xl">
                     Join a vibrant hub of <span className="text-flag-blue">Nepali</span> <span className="text-laravel-red">Laravel</span> developers.
                 </div>
-                <InputField
-                    name="url"
-                    placeholder="Paste the image URL"
-                    value={"Hello"}
-                    onChange={(e) => console.log(e.target.value)}
-                    errorMessage={"Hello"}
-                />
+                <SubscribeToNewsLetter />
             </div>
             <div className="flex-col gap-4 hidden lg:flex">
                 <LaravelPath />
