@@ -1,16 +1,17 @@
 import Navbar from "@/Components/Shared/Navbar";
-import { cn } from "@/Lib/Utils";
-import { LayoutProps } from "@/Types/Types";
-import { Head } from "@inertiajs/react";
-import { FC } from "react";
-import { Bounce, ToastContainer } from "react-toastify";
+import {cn} from "@/Lib/Utils";
+import {LayoutProps} from "@/Types/Types";
+import {Head} from "@inertiajs/react";
+import {FC} from "react";
+import {Bounce, ToastContainer} from "react-toastify";
+import ThemeWrapper from "@/Wrappers/ThemeWrapper";
 
 const FrontWrapper: FC<LayoutProps> = (props) => {
-    const { children, title } = props;
+    const {children, title} = props;
 
     return (
-        <>
-            <Head title={title} />
+        <ThemeWrapper>
+            <Head title={title}/>
             <ToastContainer
                 position="bottom-center"
                 autoClose={2000}
@@ -24,17 +25,20 @@ const FrontWrapper: FC<LayoutProps> = (props) => {
                 theme="dark"
                 transition={Bounce}
             />
-            <Navbar />
+            <Navbar/>
             <div
                 className={cn(
+                    "w-screen",
                     "[background-size:60px_60px]",
                     "[background-image:linear-gradient(to_right,#f1f1f1_1px,transparent_1px),linear-gradient(to_bottom,#f1f1f1_1px,transparent_1px)]",
                     "dark:[background-image:linear-gradient(to_right,#181818_1px,transparent_1px),linear-gradient(to_bottom,#181818_1px,transparent_1px)]",
                 )}
             >
-                {children}
+                <div className="max-w-7xl mx-auto">
+                    {children}
+                </div>
             </div>
-        </>
+        </ThemeWrapper>
     );
 };
 
