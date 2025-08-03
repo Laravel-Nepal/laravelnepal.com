@@ -4,7 +4,6 @@ import {SiGithub} from "@icons-pack/react-simple-icons";
 import {Moon, Sun, LaptopMinimal} from "lucide-react";
 import {motion} from "motion/react";
 import {Theme} from "@/Types/Enums";
-import {FC} from "react";
 
 const ThemeToggler = (props: {
     className?: string;
@@ -30,6 +29,7 @@ const Navbar = () => {
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.Dark : Theme.Light;
 
     const isDarkMode = theme === Theme.Dark || (theme === Theme.System && systemTheme === Theme.Dark);
+    const githubLink = "https://github.com/Laravel-Nepal/laravelnepal.com";
 
     return (
         <motion.div
@@ -60,7 +60,9 @@ const Navbar = () => {
         >
             <h1 className="relative bg-gradient-to-b from-neutral-400 dark:from-neutral-300 to-neutral-800 dark:to-neutral-500 bg-clip-text text-3xl font-bold text-transparent">{appName}</h1>
             <div className="flex flex-row items-center justify-end gap-3">
-                <SiGithub className={iconClass}/>
+                <a href={githubLink} target="_blank" rel="noopener noreferrer">
+                    <SiGithub className={iconClass}/>
+                </a>
                 <ThemeToggler className={iconClass}/>
             </div>
         </motion.div>
