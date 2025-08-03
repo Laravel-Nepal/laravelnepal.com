@@ -14,7 +14,7 @@
     @vite(['resources/js/App.tsx', "resources/js/Pages/{$page['component']}.tsx", "resources/css/app.css"])
     @inertiaHead
 </head>
-<body class="text-white font-sans">
+<body class="text-white font-laravel-nepal">
 @routes
 @inertia
 </body>
