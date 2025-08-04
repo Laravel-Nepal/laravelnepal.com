@@ -25,7 +25,8 @@ class SubscribeToNewsletterRequest extends FormRequest
         return [
             'email' => [
                 'required',
-                'email:rfc,dns,spoof',
+                'email',
+                Rule::unique('subscribers', 'email')->whereNull('unsubscribed_at')
             ],
         ];
     }

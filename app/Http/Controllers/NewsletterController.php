@@ -24,6 +24,6 @@ class NewsletterController extends Controller
                 ]
             );
 
-        return to_route("landing-page");
+        return to_route("page.landingPage");
     }
 }
