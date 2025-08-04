@@ -1,18 +1,17 @@
 import InputField from "@/Components/Input/InputField";
 import {useForm} from '@inertiajs/react';
 import Button from "@/Components/Input/Button";
+import {FormEvent} from "react";
 
 const SubscribeToNewsLetter = () => {
     const {errors, data, setData,  hasErrors, wasSuccessful, processing} = useForm({
         email: '',
     });
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        // Here you would typically send the email to your backend for processing
-        // For example:
-        // await axios.post('/subscribe', { email: data.email });
-        console.log("Subscribed with email:", data.email);
+
+        alert(data);
     }
 
     return (
