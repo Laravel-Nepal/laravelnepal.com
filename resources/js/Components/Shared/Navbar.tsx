@@ -57,7 +57,15 @@ const Navbar = () => {
             }
             transition={{ duration: 0.5 }}
         >
-            <h1 className="relative bg-gradient-to-b from-neutral-400 to-neutral-800 bg-clip-text text-3xl font-bold text-transparent dark:from-neutral-300 dark:to-neutral-500">
+            <h1
+                className={cn(
+                    "relative bg-gradient-to-r font-bold text-transparent",
+                    "select-none",
+                    "text-3xl lg:text-4xl",
+                    "from-laravel-red to-flag-blue bg-clip-text",
+                    "dark:from-laravel-red dark:to-flag-blue",
+                )}
+            >
                 {appName}
             </h1>
             <div className="flex flex-row items-center justify-end gap-3">
