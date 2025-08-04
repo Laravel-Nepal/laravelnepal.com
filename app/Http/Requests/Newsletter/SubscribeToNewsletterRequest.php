@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Newsletter;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -26,7 +26,6 @@ class SubscribeToNewsletterRequest extends FormRequest
             'email' => [
                 'required',
                 'email:rfc,dns,spoof',
-                Rule::unique('subscribers', 'email')->whereNull('unsubscribed_at')
             ],
         ];
     }

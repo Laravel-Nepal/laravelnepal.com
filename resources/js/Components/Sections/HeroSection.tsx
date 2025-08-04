@@ -8,9 +8,9 @@ const HeroSection = () => {
         <div className="flex flex-col-reverse lg:flex-row gap-24 max-h-screen h-[50vh] lg:h-screen w-full items-center justify-center px-8 lg:px-0 py-48 lg:py-0">
             <div className="flex flex-col gap-4">
                 <h2 className={cn(
-                    "bg-gradient-to-b bg-clip-text text-3xl font-bold text-transparent lg:text-7xl",
-                    "from-neutral-400 to-neutral-800",
-                    "dark:from-neutral-300 dark:to-neutral-500"
+                    "bg-clip-text text-3xl font-bold text-transparent lg:text-7xl",
+                    "from-laravel-red to-flag-blue",
+                    "bg-gradient-to-b dark:bg-gradient-to-r"
                 )}>
                     Connect. Build. Grow.
                 </h2>

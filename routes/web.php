@@ -7,11 +7,12 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('LandingPage');
-});
+})->name('landing-page');
 
 Route::group([
-    'prefix' => '/',
+    'prefix' => '/newsletter',
     'as' => 'newsletter.',
+    'controller' => \App\Http\Controllers\NewsletterController::class
 ], function () {
-    Route::post('/subscribe', \App\Http\Controllers\Newsletter\SubscriberToNewsletter::class)->name('subscribe');
+    Route::post('/subscribe', 'subscribe')->name('subscribe');
 });

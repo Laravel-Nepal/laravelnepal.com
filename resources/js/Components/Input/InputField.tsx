@@ -8,7 +8,7 @@ const InputField = (props: InputFieldProps) => {
             <div className="flex flex-row gap-2">
                 <label className={cn(
                     'text-neutral-800 dark:text-neutral-400',
-                    errorMessage && 'text-red-600',
+                    errorMessage && 'text-laravel-red dark:text-laravel-red',
                     className
                 )} htmlFor={id}>
                     {label}
@@ -44,8 +44,10 @@ const InputField = (props: InputFieldProps) => {
                 'text-base',
                 'text-neutral-800 dark:text-neutral-400',
                 errorMessage && 'hidden'
-            )}>{helperText}</p>
-            <p id={`error-${id}`} className={cn('text-[0.8rem] font-medium text-red-600', className)}>
+            )}>
+                {helperText}
+            </p>
+            <p id={`error-${id}`} className={cn('text-laravel-red', className)}>
                 {errorMessage}
             </p>
         </div>
