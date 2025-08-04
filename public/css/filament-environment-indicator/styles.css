@@ -1,5 +1,4 @@
-.environment-indicator,
-.debug-mode-indicator {
+.environment-indicator, .debug-mode-indicator {
     display: none;
     height: 2.25rem;
 
