@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: "Check PR title"
         uses: amannn/action-semantic-pull-request@v5

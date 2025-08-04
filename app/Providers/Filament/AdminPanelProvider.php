@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use AchyutN\FilamentLogViewer\FilamentLogViewer;
 use Awcodes\Gravatar\GravatarPlugin;
 use Awcodes\Gravatar\GravatarProvider;
 use Exception;
@@ -72,6 +73,7 @@ final class AdminPanelProvider extends PanelProvider
                 GravatarPlugin::make()
                     ->default('initials')
                     ->size(200),
+                FilamentLogViewer::make(),
             ])
             ->defaultAvatarProvider(GravatarProvider::class)
             ->maxContentWidth(Width::Full)
