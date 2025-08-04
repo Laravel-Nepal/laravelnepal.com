@@ -4,14 +4,16 @@ import { cn } from "@/Lib/Utils";
 
 const HeroSection = () => {
     return (
-        <div className={cn(
-            "max-h-screen h-full lg:h-screen",
-            "w-full",
-            "flex flex-col-reverse lg:flex-row",
-            "items-center justify-center",
-            "gap-24",
-            "px-8 py-48 lg:px-0 lg:py-0"
-        )}>
+        <div
+            className={cn(
+                "h-full max-h-screen lg:h-screen",
+                "w-full",
+                "flex flex-col-reverse lg:flex-row",
+                "items-center justify-center",
+                "gap-24",
+                "px-8 py-48 lg:px-0 lg:py-0",
+            )}
+        >
             <div className="flex flex-col gap-4">
                 <h2
                     className={cn(
@@ -27,7 +29,7 @@ const HeroSection = () => {
                 </div>
                 <SubscribeToNewsLetter />
             </div>
-            <div className="flex-col gap-4 flex">
+            <div className="flex flex-col gap-4">
                 <LaravelPath />
             </div>
         </div>
