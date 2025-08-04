@@ -14,20 +14,34 @@ jobs:
   main:
     name: Pint & Rector
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.3]
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: "Check PR title"
         uses: amannn/action-semantic-pull-request@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Run Rector Dry-run"
-        uses: zingimmick/rector-action@0.0.3
+
+      - name: "Setup PHP"
+        uses: shivammathur/setup-php@v2
         with:
-          args: --dry-run --config=rector.php
+          php-version: ${{ matrix.php }}
+          extensions: json, dom, curl, libxml, mbstring
+          coverage: none
+
+      - name: "Install Composer Dependencies"
+        run: |
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: "Run Rector"
+        run: |
+          ./vendor/bin/rector process --dry-run --config=rector.php
+
       - name: "Run Pint"
-        uses: aglipanci/laravel-pint-action@latest
-        with:
-          configPath: "pint.json"
-          testMode: true
-          verboseMode: true
-          onlyDirty: true
+        run: |
+          ./vendor/bin/pint --config=pint.json --test --verbose --dirty
