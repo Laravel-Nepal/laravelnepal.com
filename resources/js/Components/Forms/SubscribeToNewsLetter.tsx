@@ -1,25 +1,25 @@
-import InputField from "@/Components/Input/InputField";
-import {useForm} from '@inertiajs/react';
 import Button from "@/Components/Input/Button";
-import {FormEvent} from "react";
-import {route} from "ziggy-js";
-import {toast} from "react-toastify";
+import InputField from "@/Components/Input/InputField";
+import { useForm } from "@inertiajs/react";
+import { FormEvent } from "react";
+import { toast } from "react-toastify";
+import { route } from "ziggy-js";
 
 const SubscribeToNewsLetter = () => {
-    const {errors, data, setData,  hasErrors, wasSuccessful, processing, post, reset} = useForm({
-        email: '',
+    const { errors, data, setData, hasErrors, wasSuccessful, processing, post, reset } = useForm({
+        email: "",
     });
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        post(route('newsletter.subscribe'), {
+        post(route("newsletter.subscribe"), {
             preserveScroll: true,
             onSuccess: () => {
                 reset();
                 toast.success("Subscribed successfully! Thank you for joining our newsletter.");
             },
         });
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit} className="mt-8">
@@ -29,7 +29,7 @@ const SubscribeToNewsLetter = () => {
                 placeholder="Enter your email address"
                 helperText="The website is still under development. You can still subscribe."
                 value={data.email}
-                onChange={(e) => setData('email', e.target.value)}
+                onChange={(e) => setData("email", e.target.value)}
                 errorMessage={errors.email}
             />
             <Button
@@ -44,6 +44,6 @@ const SubscribeToNewsLetter = () => {
             </Button>
         </form>
     );
-}
+};
 
 export default SubscribeToNewsLetter;

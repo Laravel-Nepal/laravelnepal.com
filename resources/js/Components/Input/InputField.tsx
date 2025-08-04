@@ -1,19 +1,18 @@
-import { cn } from '@/Lib/Utils';
-import { InputFieldProps } from '@/Types/Inputs';
+import { cn } from "@/Lib/Utils";
+import { InputFieldProps } from "@/Types/Inputs";
 
 const InputField = (props: InputFieldProps) => {
     const { className, type, label, coloredLabel, errorMessage, id, helperText, ...rest } = props;
     return (
         <div className="flex w-full flex-col gap-1">
             <div className="flex flex-row gap-2">
-                <label className={cn(
-                    'text-neutral-800 dark:text-neutral-400',
-                    errorMessage && 'text-laravel-red dark:text-laravel-red',
-                    className
-                )} htmlFor={id}>
+                <label
+                    className={cn("text-neutral-800 dark:text-neutral-400", errorMessage && "text-laravel-red dark:text-laravel-red", className)}
+                    htmlFor={id}
+                >
                     {label}
                 </label>
-                <span className={'text-primary'}>{coloredLabel}</span>
+                <span className={"text-primary"}>{coloredLabel}</span>
             </div>
             <div className="flex flex-row items-center justify-start gap-2">
                 <div className="relative w-full">
@@ -40,19 +39,13 @@ const InputField = (props: InputFieldProps) => {
                     />
                 </div>
             </div>
-            <p className={cn(
-                'text-base',
-                'text-neutral-800 dark:text-neutral-400',
-                errorMessage && 'hidden'
-            )}>
-                {helperText}
-            </p>
-            <p id={`error-${id}`} className={cn('text-laravel-red', className)}>
+            <p className={cn("text-base", "text-neutral-800 dark:text-neutral-400", errorMessage && "hidden")}>{helperText}</p>
+            <p id={`error-${id}`} className={cn("text-laravel-red", className)}>
                 {errorMessage}
             </p>
         </div>
     );
 };
-InputField.displayName = 'Input';
+InputField.displayName = "Input";
 
 export default InputField;

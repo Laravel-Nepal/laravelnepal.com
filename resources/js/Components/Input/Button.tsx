@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { cn } from '@/Lib/Utils';
-import { motion, useAnimate } from 'motion/react';
-import React, { useEffect } from 'react';
+import { cn } from "@/Lib/Utils";
+import { motion, useAnimate } from "motion/react";
+import React, { useEffect } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
@@ -17,11 +17,11 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
 
     const animateLoading = async () => {
         await animate(
-            '.loader',
+            ".loader",
             {
-                width: '20px',
+                width: "20px",
                 scale: 1,
-                display: 'block',
+                display: "block",
             },
             {
                 duration: 0.2,
@@ -31,22 +31,22 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
 
     const animateSuccess = async () => {
         await animate(
-            '.loader',
+            ".loader",
             {
-                width: '0px',
+                width: "0px",
                 scale: 0,
-                display: 'none',
+                display: "none",
             },
             {
                 duration: 0.2,
             },
         );
         await animate(
-            '.check',
+            ".check",
             {
-                width: '20px',
+                width: "20px",
                 scale: 1,
-                display: 'block',
+                display: "block",
             },
             {
                 duration: 0.2,
@@ -54,11 +54,11 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
         );
 
         await animate(
-            '.check',
+            ".check",
             {
-                width: '0px',
+                width: "0px",
                 scale: 0,
-                display: 'none',
+                display: "none",
             },
             {
                 delay: 2,
@@ -69,22 +69,22 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
 
     const animateError = async () => {
         await animate(
-            '.loader',
+            ".loader",
             {
-                width: '0px',
+                width: "0px",
                 scale: 0,
-                display: 'none',
+                display: "none",
             },
             {
                 duration: 0.2,
             },
         );
         await animate(
-            '.cross',
+            ".cross",
             {
-                width: '20px',
+                width: "20px",
                 scale: 1,
-                display: 'block',
+                display: "block",
             },
             {
                 duration: 0.2,
@@ -92,11 +92,11 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
         );
 
         await animate(
-            '.cross',
+            ".cross",
             {
-                width: '0px',
+                width: "0px",
                 scale: 0,
-                display: 'none',
+                display: "none",
             },
             {
                 delay: 2,
@@ -128,7 +128,11 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
             className={cn(
                 "ring-offset-white dark:ring-offset-black",
                 "flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-2 font-medium text-white ring-offset-2 transition duration-200 hover:ring-2",
-                isError ? "bg-laravel-red hover:ring-laravel-red" : isSuccess ? "bg-green-600 hover:ring-green-500" : "bg-flag-blue hover:ring-flag-blue",
+                isError
+                    ? "bg-laravel-red hover:ring-laravel-red"
+                    : isSuccess
+                      ? "bg-green-600 hover:ring-green-500"
+                      : "bg-flag-blue hover:ring-flag-blue",
                 className,
             )}
             {...buttonProps}
@@ -153,16 +157,16 @@ const Loader = () => {
             initial={{
                 scale: 0,
                 width: 0,
-                display: 'none',
+                display: "none",
             }}
             style={{
                 scale: 0.5,
-                display: 'none',
+                display: "none",
             }}
             transition={{
                 duration: 0.3,
                 repeat: Infinity,
-                ease: 'linear',
+                ease: "linear",
             }}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -187,11 +191,11 @@ const CheckIcon = () => {
             initial={{
                 scale: 0,
                 width: 0,
-                display: 'none',
+                display: "none",
             }}
             style={{
                 scale: 0.5,
-                display: 'none',
+                display: "none",
             }}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -217,11 +221,11 @@ const CrossIcon = () => {
             initial={{
                 scale: 0,
                 width: 0,
-                display: 'none',
+                display: "none",
             }}
             style={{
                 scale: 0.5,
-                display: 'none',
+                display: "none",
             }}
             xmlns="http://www.w3.org/2000/svg"
             width="24"

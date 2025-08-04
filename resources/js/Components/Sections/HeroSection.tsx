@@ -1,25 +1,26 @@
-import {cn} from "@/Lib/Utils";
-import LaravelPath from "@/Components/Sections/LaravelPath";
-import InputField from "@/Components/Input/InputField";
 import SubscribeToNewsLetter from "@/Components/Forms/SubscribeToNewsLetter";
+import LaravelPath from "@/Components/Sections/LaravelPath";
+import { cn } from "@/Lib/Utils";
 
 const HeroSection = () => {
     return (
-        <div className="flex flex-col-reverse lg:flex-row gap-24 max-h-screen h-[50vh] lg:h-screen w-full items-center justify-center px-8 lg:px-0 py-48 lg:py-0">
+        <div className="flex h-[50vh] max-h-screen w-full flex-col-reverse items-center justify-center gap-24 px-8 py-48 lg:h-screen lg:flex-row lg:px-0 lg:py-0">
             <div className="flex flex-col gap-4">
-                <h2 className={cn(
-                    "bg-clip-text text-3xl font-bold text-transparent lg:text-7xl",
-                    "from-laravel-red to-flag-blue",
-                    "bg-gradient-to-b dark:bg-gradient-to-r"
-                )}>
+                <h2
+                    className={cn(
+                        "bg-clip-text text-3xl font-bold text-transparent lg:text-7xl",
+                        "from-laravel-red to-flag-blue",
+                        "bg-gradient-to-b dark:bg-gradient-to-r",
+                    )}
+                >
                     Connect. Build. Grow.
                 </h2>
-                <div className="text-neutral-500 dark:text-neutral-400 text-3xl">
+                <div className="text-3xl text-neutral-500 dark:text-neutral-400">
                     Join a vibrant hub of <span className="text-flag-blue">Nepali</span> <span className="text-laravel-red">Laravel</span> developers.
                 </div>
                 <SubscribeToNewsLetter />
             </div>
-            <div className="flex-col gap-4 hidden lg:flex">
+            <div className="hidden flex-col gap-4 lg:flex">
                 <LaravelPath />
             </div>
         </div>

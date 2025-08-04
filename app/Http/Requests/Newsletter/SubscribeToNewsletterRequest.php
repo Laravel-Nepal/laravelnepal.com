@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Newsletter;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class SubscribeToNewsletterRequest extends FormRequest
+final class SubscribeToNewsletterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,7 +21,7 @@ class SubscribeToNewsletterRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -26,7 +29,7 @@ class SubscribeToNewsletterRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('subscribers', 'email')->whereNull('unsubscribed_at')
+                Rule::unique('subscribers', 'email')->whereNull('unsubscribed_at'),
             ],
         ];
     }

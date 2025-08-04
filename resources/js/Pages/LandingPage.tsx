@@ -1,6 +1,6 @@
+import HeroSection from "@/Components/Sections/HeroSection";
 import FrontWrapper from "@/Wrappers/FrontWrapper";
 import { ReactNode } from "react";
-import HeroSection from "@/Components/Sections/HeroSection";
 
 const LandingPage = () => {
     return (

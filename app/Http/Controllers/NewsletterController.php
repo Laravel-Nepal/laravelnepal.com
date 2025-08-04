@@ -1,29 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Newsletter\SubscribeToNewsletterRequest;
+use App\Models\Subscriber;
 use Illuminate\Http\RedirectResponse;
 
-class NewsletterController extends Controller
+final class NewsletterController extends Controller
 {
-    /**
-     * @param SubscribeToNewsletterRequest $request
-     * @return RedirectResponse
-     */
-    public function subscribe(SubscribeToNewsletterRequest $request): RedirectResponse
+    public function subscribe(SubscribeToNewsletterRequest $subscribeToNewsletterRequest): RedirectResponse
     {
-        \App\Models\Subscriber::query()
+        Subscriber::query()
             ->updateOrCreate(
                 [
-                    'email' => $request->get('email')
+                    'email' => $subscribeToNewsletterRequest->get('email'),
                 ], [
                     'unsubscribed_at' => null,
-                    'ip_address' => $request->ip(),
-                    'user_agent' => $request->userAgent(),
+                    'ip_address' => $subscribeToNewsletterRequest->ip(),
+                    'user_agent' => $subscribeToNewsletterRequest->userAgent(),
                 ]
             );
 
-        return to_route("page.landingPage");
+        return to_route('page.landingPage');
     }
 }

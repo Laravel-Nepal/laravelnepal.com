@@ -2,22 +2,23 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => '/',
-], function () {
+], function (): void {
     Route::group([
         'as' => 'page.',
-    ], function () {
+    ], function (): void {
         Route::inertia('/', 'LandingPage')->name('landingPage');
     });
 
     Route::group([
         'prefix' => '/newsletter',
         'as' => 'newsletter.',
-        'controller' => \App\Http\Controllers\NewsletterController::class
-    ], function () {
+        'controller' => NewsletterController::class,
+    ], function (): void {
         Route::post('/subscribe', 'subscribe')->name('subscribe');
     });
 });
