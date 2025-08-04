@@ -73,7 +73,7 @@ final class AdminPanelProvider extends PanelProvider
                 GravatarPlugin::make()
                     ->default('initials')
                     ->size(200),
-                FilamentLogViewer::make()
+                FilamentLogViewer::make(),
             ])
             ->defaultAvatarProvider(GravatarProvider::class)
             ->maxContentWidth(Width::Full)
