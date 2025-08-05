@@ -45,7 +45,7 @@ const LaravelPath = () => {
             {/*second line*/}
             <motion.line x1="121" y1="137" x2="121" y2="397" stroke="currentColor" variants={draw} custom={3} style={shape} />
             {/*third line*/}
-            <motion.line x1="225" y1="75" x2="225" y2="335" stroke="currentColor" variants={draw} custom={3} style={shape} />
+            <motion.line x1="225" y1="75" x2="225" y2="338" stroke="currentColor" variants={draw} custom={3} style={shape} />
             {/* second rect left-top */}
             <motion.line x1="351" y1="139" x2="460" y2="76" stroke="currentColor" variants={draw} custom={1} style={shape} />
             {/* second rect top-right */}
