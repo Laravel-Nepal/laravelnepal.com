@@ -1,12 +1,12 @@
 import SubscribeToNewsLetter from "@/Components/Forms/SubscribeToNewsLetter";
-import LaravelPath from "@/Components/Sections/LaravelPath";
+import LaravelPath from "@/Components/Reusables/LaravelPath";
 import { cn } from "@/Lib/Utils";
 
 const HeroSection = () => {
     return (
         <div
             className={cn(
-                "h-full max-h-screen lg:h-screen",
+                "h-full min-h-screen lg:h-screen",
                 "w-full",
                 "flex flex-col-reverse lg:flex-row",
                 "items-center justify-center",
