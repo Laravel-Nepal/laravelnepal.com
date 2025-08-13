@@ -7,7 +7,7 @@ const LandingPage = () => {
     return (
         <>
             <HeroSection />
-            <AboutUsSection />
+            {/*<AboutUsSection />*/}
         </>
     );
 };
