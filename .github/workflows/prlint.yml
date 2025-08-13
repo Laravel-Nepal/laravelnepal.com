@@ -1,4 +1,4 @@
-name: "Lint PR"
+name: "Lint & Test PR"
 
 on:
   pull_request_target:
@@ -35,11 +35,11 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: json, dom, curl, libxml, mbstring
-          coverage: none
+          coverage: xdebug
 
       - name: "Install Composer Dependencies"
         run: |
-          composer install --no-interaction --prefer-dist --optimize-autoloader
+          composer install --no-interaction --prefer-dist --optimize-autoloader --no-ansi --no-progress
 
       - name: "Run Rector"
         run: |
@@ -48,3 +48,12 @@ jobs:
       - name: "Run Pint"
         run: |
           ./vendor/bin/pint --config=pint.json --test --verbose --dirty
+
+      - name: "Run Tests"
+        run: |
+          ./vendor/bin/pest --colors=always --stop-on-failure --coverage
+
+      - name: "SonarQube Scan"
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
