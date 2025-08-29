@@ -1,5 +1,6 @@
 import { cn } from "@/Lib/Utils";
 import { type SidebarItemProps } from "@/Types/Types";
+import { Link } from "@inertiajs/react";
 import { HomeIcon } from "lucide-react";
 import { route } from "ziggy-js";
 
@@ -23,7 +24,7 @@ const Sidebar = (props: {
             "w-1/5",
             className
         )}>
-            <div className="px-3 text-xl uppercase font-bold mb-2">
+            <div className="px-4 text-xl uppercase font-bold mb-2">
                 Main Menu
             </div>
             {sidebarItems.map((item) => {
@@ -31,7 +32,7 @@ const Sidebar = (props: {
                 const routeIsActive = route().current(href);
 
                 return (
-                    <a
+                    <Link
                         key={title}
                         href={route(href)}
                         className={cn(
@@ -44,16 +45,17 @@ const Sidebar = (props: {
                             "hover:text-laravel-red/90",
                             routeIsActive && cn(
                                 "font-medium",
+                                "rounded-full",
                                 "bg-laravel-red/10 dark:bg-laravel-red/40",
                                 "text-laravel-red/80 dark:text-gray-300",
                                 "hover:text-laravel-red dark:hover:text-white"
                             ),
-                            "py-2 px-3",
+                            "py-2 px-4",
                         )}
                     >
                         <Icon size={20} />
                         <div>{title}</div>
-                    </a>
+                    </Link>
                 );
             })}
         </div>
