@@ -21,6 +21,7 @@ const FrontWrapper: FC<LayoutProps> = (props) => {
             <div
                 className={cn(
                     "w-screen",
+                    "min-h-screen",
                     "pt-[90px]",
                     "text-black dark:text-white",
                     "[background-size:60px_60px]",
