@@ -5,6 +5,7 @@ import { SharedData } from "@/Types/Types";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { usePage } from "@inertiajs/react";
 import { motion } from "motion/react";
+import NavbarHamburger from "@/Components/Shared/NavbarHamburger";
 
 const Navbar = () => {
     const { siteSettings } = usePage<SharedData>().props;
@@ -67,6 +68,7 @@ const Navbar = () => {
                     <SiGithub className={iconClass} />
                 </a>
                 <ThemeToggler className={iconClass} />
+                <NavbarHamburger />
             </div>
         </motion.div>
     );

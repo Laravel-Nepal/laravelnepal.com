@@ -16,9 +16,9 @@ const LandingPage = () => {
                 "mt-12",
                 "pb-24"
             )}>
-                <Sidebar />
+                <Sidebar className={cn("hidden lg:flex")} />
                 <div className="flex flex-col gap-4 w-4/5">
-                    {/*Content*/}
+                    Content
                 </div>
             </div>
         </>

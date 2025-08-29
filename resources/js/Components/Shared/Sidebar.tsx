@@ -1,25 +1,16 @@
 import { cn } from "@/Lib/Utils";
-import { type SidebarItemProps } from "@/Types/Types";
 import { Link } from "@inertiajs/react";
-import { HomeIcon } from "lucide-react";
 import { route } from "ziggy-js";
+import { sidebarItems } from "@/Lib/variables";
 
 const Sidebar = (props: {
     className?: string;
 }) => {
     const { className } = props;
 
-    const sidebarItems: SidebarItemProps[] = [
-        {
-            title: "Home",
-            href: 'page.landingPage',
-            icon: HomeIcon,
-        },
-    ];
-
     return (
         <div className={cn(
-            "flex flex-col",
+            "flex-col",
             "justify-start items-start",
             "w-1/5",
             className
