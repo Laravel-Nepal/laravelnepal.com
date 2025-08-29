@@ -8,6 +8,33 @@ import { FC } from "react";
 import { Bounce, ToastContainer } from "react-toastify";
 import useTheme from "@/Hooks/useTheme";
 import { Theme } from "@/Types/Enums";
+import Sidebar from "@/Components/Shared/Sidebar";
+
+const FrontWrapper: FC<LayoutProps> = (props) => {
+    const { children, title } = props;
+
+    return (
+        <ThemeWrapper>
+            <Head title={title} />
+            <ToastWithTheme />
+            <Navbar />
+            <div
+                className={cn(
+                    "w-screen",
+                    "pt-[90px]",
+                    "text-black dark:text-white",
+                    "[background-size:60px_60px]",
+                    "[background-image:linear-gradient(to_right,#f1f1f1_1px,transparent_1px),linear-gradient(to_bottom,#f1f1f1_1px,transparent_1px)]",
+                    "dark:[background-image:linear-gradient(to_right,#181818_1px,transparent_1px),linear-gradient(to_bottom,#181818_1px,transparent_1px)]",
+                )}
+            >
+                <div className="container">
+                    <div className="mx-auto">{children}</div>
+                </div>
+            </div>
+        </ThemeWrapper>
+    );
+};
 
 const ToastWithTheme = () => {
     const { isDarkMode } = useTheme();
@@ -27,29 +54,6 @@ const ToastWithTheme = () => {
             theme={defaultTheme}
             transition={Bounce}
         />
-    );
-};
-
-const FrontWrapper: FC<LayoutProps> = (props) => {
-    const { children, title } = props;
-
-    return (
-        <ThemeWrapper>
-            <Head title={title} />
-            <ToastWithTheme />
-            <Navbar />
-            <div
-                className={cn(
-                    "w-screen",
-                    "[background-size:60px_60px]",
-                    "[background-image:linear-gradient(to_right,#f1f1f1_1px,transparent_1px),linear-gradient(to_bottom,#f1f1f1_1px,transparent_1px)]",
-                    "dark:[background-image:linear-gradient(to_right,#181818_1px,transparent_1px),linear-gradient(to_bottom,#181818_1px,transparent_1px)]",
-                )}
-            >
-                <div className="mx-auto">{children}</div>
-                <Footer />
-            </div>
-        </ThemeWrapper>
     );
 };
 

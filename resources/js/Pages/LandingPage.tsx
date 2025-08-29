@@ -1,4 +1,3 @@
-import AboutUsSection from "@/Components/Sections/AboutUsSection";
 import HeroSection from "@/Components/Sections/HeroSection";
 import FrontWrapper from "@/Wrappers/FrontWrapper";
 import { ReactNode } from "react";
@@ -7,7 +6,8 @@ const LandingPage = () => {
     return (
         <>
             <HeroSection />
-            <AboutUsSection />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 pb-24">
+            </div>
         </>
     );
 };
