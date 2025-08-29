@@ -3,3 +3,7 @@ resources/js/ziggy.js
 resources/views/mail/*
 storage/debugbar/*
 public/*
+*.yml
+composer.json
+composer.lock
+.husky

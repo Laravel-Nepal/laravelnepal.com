@@ -1,38 +1,27 @@
+import ThemeToggler from "@/Components/Components/ThemeToggler";
 import useTheme from "@/Hooks/useTheme";
 import { cn } from "@/Lib/Utils";
-import { Theme } from "@/Types/Enums";
+import { SharedData } from "@/Types/Types";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import { LaptopMinimal, Moon, Sun } from "lucide-react";
+import { usePage } from "@inertiajs/react";
 import { motion } from "motion/react";
 
-const ThemeToggler = (props: { className?: string }) => {
-    const { className } = props;
-    const { setTheme, theme } = useTheme();
-
-    switch (theme) {
-        case Theme.Light:
-            return <Sun className={className} onClick={() => setTheme(Theme.Dark)} />;
-        case Theme.Dark:
-            return <Moon className={className} onClick={() => setTheme(Theme.System)} />;
-        default:
-            return <LaptopMinimal className={className} onClick={() => setTheme(Theme.Light)} />;
-    }
-};
-
 const Navbar = () => {
-    const appName = import.meta.env.VITE_APP_NAME || "Laravel Nepal";
-    const iconClass = "cursor-pointer text-neutral-800 dark:text-neutral-300";
-    const { theme } = useTheme();
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.Dark : Theme.Light;
+    const { siteSettings } = usePage<SharedData>().props;
+    const appName = import.meta.env.VITE_APP_NAME || "Filament & Inertia Kit";
+    const { isDarkMode } = useTheme();
 
-    const isDarkMode = theme === Theme.Dark || (theme === Theme.System && systemTheme === Theme.Dark);
+    const iconClass = "cursor-pointer text-neutral-800 dark:text-neutral-300";
     const githubLink = "https://github.com/Laravel-Nepal/laravelnepal.com";
+
+    const hasLogo = siteSettings.logo && siteSettings.logo !== "";
 
     return (
         <motion.div
             className={cn(
                 "shadow-input fixed inset-x-0 top-4 z-50 mx-auto max-w-7xl rounded-full lg:top-12",
                 "flex items-center justify-between space-x-4 bg-black/50 px-12 py-6",
+                "border-2 border-neutral-300/30 dark:border-neutral-700/60",
             )}
             initial={{
                 y: -20,
@@ -57,17 +46,21 @@ const Navbar = () => {
             }
             transition={{ duration: 0.5 }}
         >
-            <h1
-                className={cn(
-                    "relative bg-gradient-to-r font-bold text-transparent",
-                    "select-none",
-                    "text-3xl lg:text-4xl",
-                    "from-laravel-red to-flag-blue bg-clip-text",
-                    "dark:from-laravel-red dark:to-flag-blue",
-                )}
-            >
-                {appName}
-            </h1>
+            {hasLogo ? (
+                <img src={siteSettings.logo} alt={siteSettings.name ?? appName} className="max-h-16 max-w-full object-cover" />
+            ) : (
+                <h1
+                    className={cn(
+                        "relative bg-gradient-to-r font-bold text-transparent",
+                        "select-none",
+                        "text-3xl lg:text-4xl",
+                        "from-laravel-red to-flag-blue bg-clip-text",
+                        "dark:from-laravel-red dark:to-flag-blue",
+                    )}
+                >
+                    {siteSettings.name ?? appName}
+                </h1>
+            )}
             <div className="flex flex-row items-center justify-end gap-3">
                 <a href={githubLink} target="_blank" rel="noopener noreferrer">
                     <SiGithub className={iconClass} />

@@ -1,18 +1,13 @@
 "use client";
 
 import { cn } from "@/Lib/Utils";
+import { ButtonProps } from "@/Types/Inputs";
 import { motion, useAnimate } from "motion/react";
 import React, { useEffect } from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    className?: string;
-    children: React.ReactNode;
-    loading: boolean;
-    isSuccess?: boolean;
-    isError?: boolean;
-}
+const Button = (props: ButtonProps) => {
+    const { className, children, isSuccess, loading, isError, onClick, ...buttonProps } = props;
 
-const Button = ({ className, children, isSuccess, loading, isError, ...props }: ButtonProps) => {
     const [scope, animate] = useAnimate();
 
     const animateLoading = async () => {
@@ -107,7 +102,7 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
 
     const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         await animateLoading();
-        await props.onClick?.(event);
+        onClick?.(event);
     };
 
     useEffect(() => {
@@ -118,7 +113,19 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
         }
     }, [isSuccess, isError, loading]);
 
-    const { onClick, onDrag, onDragStart, onDragEnd, onAnimationStart, onAnimationEnd, ...buttonProps } = props;
+    function getButtonColor(isError?: boolean, isSuccess?: boolean): string {
+        if (isError) {
+            return "bg-laravel-red hover:ring-laravel-red";
+        }
+
+        if (isSuccess) {
+            return "bg-green-600 hover:ring-green-500";
+        }
+
+        return "bg-flag-blue hover:ring-flag-blue";
+    }
+
+    const buttonColor = getButtonColor(isError, isSuccess);
 
     return (
         <motion.button
@@ -128,11 +135,7 @@ const Button = ({ className, children, isSuccess, loading, isError, ...props }: 
             className={cn(
                 "ring-offset-white dark:ring-offset-black",
                 "flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-2 font-medium text-white ring-offset-2 transition duration-200 hover:ring-2",
-                isError
-                    ? "bg-laravel-red hover:ring-laravel-red"
-                    : isSuccess
-                      ? "bg-green-600 hover:ring-green-500"
-                      : "bg-flag-blue hover:ring-flag-blue",
+                buttonColor,
                 className,
             )}
             {...buttonProps}

@@ -1,9 +1,9 @@
-import Button from "@/Components/Input/Button";
-import InputField from "@/Components/Input/InputField";
 import { useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
 import { toast } from "react-toastify";
 import { route } from "ziggy-js";
+import Input from "@/Components/Inputs/Input";
+import Button from "@/Components/Inputs/Button";
 
 const SubscribeToNewsLetter = () => {
     const { errors, data, setData, hasErrors, wasSuccessful, processing, post, reset } = useForm({
@@ -23,7 +23,7 @@ const SubscribeToNewsLetter = () => {
 
     return (
         <form onSubmit={handleSubmit} className="mt-8">
-            <InputField
+            <Input
                 name="email"
                 label="Email Address"
                 placeholder="Enter your email address"
