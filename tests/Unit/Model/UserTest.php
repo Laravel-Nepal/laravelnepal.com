@@ -7,35 +7,35 @@ use App\Models\User;
 
 use function Pest\Laravel\actingAs;
 
-it('returns correct lowerRoles for Developer', function (): void {
-    /** @var User $developer */
-    $developer = User::factory()->make(['role' => UserRole::Maintainer]);
-    actingAs($developer);
+it('returns correct lowerRoles for Admin', function (): void {
+    /** @var User $admin */
+    $admin = User::factory()->make(['role' => UserRole::Admin]);
+    actingAs($admin);
 
-    expect($developer->lowerRoles())->toBe([
-        UserRole::Maintainer,
+    expect($admin->lowerRoles())->toBe([
         UserRole::Admin,
+        UserRole::Maintainer,
         UserRole::User,
     ]);
 });
 
-test('developer can see another developer as lower in role', function (): void {
-    /** @var User $developer1 */
-    $developer1 = User::factory()->make(['role' => UserRole::Maintainer]);
-    actingAs($developer1);
+test('admin can see another admins as lower in role', function (): void {
+    /** @var User $admin1 */
+    $admin1 = User::factory()->make(['role' => UserRole::Admin]);
+    actingAs($admin1);
 
-    /** @var User $developer2 */
-    $developer2 = User::factory()->make(['role' => UserRole::Maintainer]);
+    /** @var User $admin2 */
+    $admin2 = User::factory()->make(['role' => UserRole::Admin]);
 
-    expect($developer2->isLowerInRole())->toBeTrue();
+    expect($admin2->isLowerInRole())->toBeTrue();
 });
 
-test('admin and user does not see developer as lower in role', function (): void {
-    $target = User::factory()->make(['role' => UserRole::Maintainer]);
+test('maintainer and user does not see admin as lower in role', function (): void {
+    $target = User::factory()->make(['role' => UserRole::Admin]);
 
-    /** @var User $admin */
-    $admin = User::factory()->make(['role' => UserRole::Admin]);
-    actingAs($admin);
+    /** @var User $maintainer */
+    $maintainer = User::factory()->make(['role' => UserRole::Maintainer]);
+    actingAs($maintainer);
 
     expect($target->isLowerInRole())->toBeFalse();
 
