@@ -16,7 +16,6 @@ const AboutUsSection = () => {
             whileInView={{ opacity: 1, y: -200 }}
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: false }}
         >
             <h2 className="text-4xl lg:text-7xl text-neutral-800 dark:text-neutral-400 font-extrabold">
                 Who are we?
