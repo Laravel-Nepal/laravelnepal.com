@@ -6,6 +6,7 @@ const HeroSection = () => {
     return (
         <div
             className={cn(
+                "container",
                 "h-full min-h-screen lg:h-screen",
                 "w-full",
                 "flex flex-col-reverse lg:flex-row",

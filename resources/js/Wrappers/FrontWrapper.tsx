@@ -1,4 +1,3 @@
-import FloatingSocialMedia from "@/Components/Shared/FloatingSocialMedia";
 import Navbar from "@/Components/Shared/Navbar";
 import { cn } from "@/Lib/Utils";
 import { LayoutProps } from "@/Types/Types";
@@ -35,9 +34,8 @@ const FrontWrapper: FC<LayoutProps> = (props) => {
                     "dark:[background-image:linear-gradient(to_right,#181818_1px,transparent_1px),linear-gradient(to_bottom,#181818_1px,transparent_1px)]",
                 )}
             >
-                <div className="mx-auto max-w-7xl">{children}</div>
+                <div className="mx-auto">{children}</div>
             </div>
-            <FloatingSocialMedia />
         </ThemeWrapper>
     );
 };
