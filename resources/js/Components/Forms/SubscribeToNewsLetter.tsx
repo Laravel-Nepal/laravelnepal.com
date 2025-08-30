@@ -1,9 +1,9 @@
+import Button from "@/Components/Inputs/Button";
+import Input from "@/Components/Inputs/Input";
 import { useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
 import { toast } from "react-toastify";
 import { route } from "ziggy-js";
-import Input from "@/Components/Inputs/Input";
-import Button from "@/Components/Inputs/Button";
 
 const SubscribeToNewsLetter = () => {
     const { errors, data, setData, hasErrors, wasSuccessful, processing, post, reset } = useForm({

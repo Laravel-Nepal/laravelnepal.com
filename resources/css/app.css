@@ -14,8 +14,13 @@
 }
 
 @layer components {
+    * {
+        @apply transition-colors duration-300 ease-in-out;
+    }
+
     .container {
         @apply mx-auto;
         @apply max-w-lg;
+        @apply px-4 lg:px-0;
     }
 }

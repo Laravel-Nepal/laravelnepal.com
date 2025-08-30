@@ -6,10 +6,11 @@ const HeroSection = () => {
     return (
         <div
             className={cn(
+                "container",
                 "h-full min-h-screen lg:h-screen",
                 "w-full",
                 "flex flex-col-reverse lg:flex-row",
-                "items-center justify-center",
+                "items-center justify-between",
                 "gap-24",
                 "px-8 py-48 lg:px-0 lg:py-0",
             )}
