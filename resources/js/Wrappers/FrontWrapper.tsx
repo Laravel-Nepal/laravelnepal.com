@@ -1,3 +1,4 @@
+import Footer from "@/Components/Shared/Footer";
 import Navbar from "@/Components/Shared/Navbar";
 import { cn } from "@/Lib/Utils";
 import { LayoutProps } from "@/Types/Types";
@@ -35,6 +36,7 @@ const FrontWrapper: FC<LayoutProps> = (props) => {
                 )}
             >
                 <div className="mx-auto">{children}</div>
+                <Footer />
             </div>
         </ThemeWrapper>
     );
