@@ -1,35 +1,41 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "achyutn/flirt-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "The skeleton application for the Laravel framework with RILT stack and Filament v4 as Admin Panel.",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "filament",
+        "flirt-kit",
+        "starter-kit",
+        "rilt"
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "achyutn/filament-log-viewer": "^1",
-        "awcodes/filament-gravatar": "^3.0@beta",
-        "barryvdh/laravel-debugbar": "^3.16",
-        "driftingly/rector-laravel": "^2.0",
-        "filament/filament": "^4.0",
+        "awcodes/filament-gravatar": "^3.0",
+        "filament/filament": "^4",
+        "filament/spatie-laravel-media-library-plugin": "^3.3",
+        "filament/spatie-laravel-settings-plugin": "^4.0",
         "inertiajs/inertia-laravel": "^2.0",
-        "laravel/framework": "^12.0",
+        "joaopaulolndev/filament-edit-profile": "^2.0",
+        "laravel/framework": "^12.22",
         "laravel/pulse": "^1.4",
         "laravel/tinker": "^2.10.1",
-        "pxlrbt/filament-environment-indicator": "^3.1",
         "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.16",
+        "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.41",
+        "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "pestphp/pest": "^3.8",
+        "pestphp/pest-plugin-laravel": "^3.2",
+        "pxlrbt/filament-environment-indicator": "^3.1"
     },
     "autoload": {
         "psr-4": {
@@ -71,7 +77,7 @@
         "lint": [
             "rector",
             "pint",
-            "prettier --write ."
+            "@test"
         ]
     },
     "extra": {
@@ -88,6 +94,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

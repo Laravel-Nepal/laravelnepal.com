@@ -1,8 +1,8 @@
 import { cn } from "@/Lib/Utils";
-import { InputFieldProps } from "@/Types/Inputs";
+import { type InputFieldProps } from "@/Types/Inputs";
 
-const InputField = (props: InputFieldProps) => {
-    const { className, type, label, coloredLabel, errorMessage, id, helperText, ...rest } = props;
+const Input = (props: InputFieldProps) => {
+    const { className, type, label, errorMessage, id, helperText, ...rest } = props;
     return (
         <div className="flex w-full flex-col gap-1">
             <div className="flex flex-row gap-2">
@@ -12,7 +12,6 @@ const InputField = (props: InputFieldProps) => {
                 >
                     {label}
                 </label>
-                <span className={"text-primary"}>{coloredLabel}</span>
             </div>
             <div className="flex flex-row items-center justify-start gap-2">
                 <div className="relative w-full">
@@ -39,13 +38,13 @@ const InputField = (props: InputFieldProps) => {
                     />
                 </div>
             </div>
-            <p className={cn("text-base", "text-neutral-800 dark:text-neutral-400", errorMessage && "hidden")}>{helperText}</p>
+            <p className={cn("text-sm", "text-neutral-800 dark:text-neutral-400", errorMessage && "hidden")}>{helperText}</p>
             <p id={`error-${id}`} className={cn("text-laravel-red", className)}>
                 {errorMessage}
             </p>
         </div>
     );
 };
-InputField.displayName = "Input";
+Input.displayName = "Input";
 
-export default InputField;
+export default Input;
