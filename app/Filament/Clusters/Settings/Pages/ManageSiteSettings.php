@@ -8,6 +8,8 @@ use App\Filament\Clusters\Settings\SettingsCluster;
 use App\Settings\SiteSettings;
 use BackedEnum;
 use Exception;
+use Filament\Forms\Components\CodeEditor;
+use Filament\Forms\Components\CodeEditor\Enums\Language;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
@@ -72,6 +74,19 @@ final class ManageSiteSettings extends SettingsPage
                             ->nullable()
                             ->helperText('The Open Graph image is used when sharing links on social media. Recommended size: 1200x630 pixels.'),
                     ]),
+                Section::make('Custom Scripts')
+                    ->description('Add custom scripts to the header or footer of your site')
+                    ->schema([
+                        CodeEditor::make('header_scripts')
+                            ->language(Language::Html)
+                            ->label('Header Scripts')
+                            ->helperText('Scripts added here will be included in the <head> section of your site.'),
+                        CodeEditor::make('footer_scripts')
+                            ->language(Language::Html)
+                            ->label('Footer Scripts')
+                            ->helperText('Scripts added here will be included before the closing </body> tag of your site.'),
+                    ])
+                    ->aside(),
             ]);
     }
 }
