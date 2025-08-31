@@ -1,13 +1,26 @@
-import AboutUsSection from "@/Components/Sections/AboutUsSection";
 import HeroSection from "@/Components/Sections/HeroSection";
 import FrontWrapper from "@/Wrappers/FrontWrapper";
 import { ReactNode } from "react";
+import Sidebar from "@/Components/Shared/Sidebar";
+import { cn } from "@/Lib/Utils";
 
 const LandingPage = () => {
     return (
         <>
             <HeroSection />
-            <AboutUsSection />
+            <div className={cn(
+                "flex flex-row",
+                "justify-between",
+                "items-start",
+                "gap-8",
+                "mt-12",
+                "pb-24"
+            )}>
+                <Sidebar className={cn("hidden lg:flex")} />
+                <div className="flex flex-col gap-4 w-4/5">
+                    Content
+                </div>
+            </div>
         </>
     );
 };

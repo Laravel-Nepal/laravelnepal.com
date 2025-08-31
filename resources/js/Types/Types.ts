@@ -31,3 +31,9 @@ export interface FloatingDockItem {
     icon: IconType;
     href: string;
 }
+
+export interface SidebarItemProps {
+    title: string;
+    href: string;
+    icon: IconType;
+}

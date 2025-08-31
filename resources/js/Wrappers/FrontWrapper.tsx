@@ -6,6 +6,9 @@ import ThemeWrapper from "@/Wrappers/ThemeWrapper";
 import { Head } from "@inertiajs/react";
 import { FC } from "react";
 import { Bounce, ToastContainer } from "react-toastify";
+import useTheme from "@/Hooks/useTheme";
+import { Theme } from "@/Types/Enums";
+import Sidebar from "@/Components/Shared/Sidebar";
 
 const FrontWrapper: FC<LayoutProps> = (props) => {
     const { children, title } = props;
@@ -13,32 +16,45 @@ const FrontWrapper: FC<LayoutProps> = (props) => {
     return (
         <ThemeWrapper>
             <Head title={title} />
-            <ToastContainer
-                position="bottom-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable={false}
-                pauseOnHover
-                theme="dark"
-                transition={Bounce}
-            />
+            <ToastWithTheme />
             <Navbar />
             <div
                 className={cn(
                     "w-screen",
+                    "min-h-screen",
+                    "pt-[90px]",
+                    "text-black dark:text-white",
                     "[background-size:60px_60px]",
                     "[background-image:linear-gradient(to_right,#f1f1f1_1px,transparent_1px),linear-gradient(to_bottom,#f1f1f1_1px,transparent_1px)]",
                     "dark:[background-image:linear-gradient(to_right,#181818_1px,transparent_1px),linear-gradient(to_bottom,#181818_1px,transparent_1px)]",
                 )}
             >
-                <div className="mx-auto">{children}</div>
-                <Footer />
+                <div className="container">
+                    <div className="mx-auto">{children}</div>
+                </div>
             </div>
         </ThemeWrapper>
+    );
+};
+
+const ToastWithTheme = () => {
+    const { isDarkMode } = useTheme();
+    const defaultTheme = isDarkMode ? Theme.Dark : Theme.Light;
+
+    return (
+        <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable={false}
+            pauseOnHover
+            theme={defaultTheme}
+            transition={Bounce}
+        />
     );
 };
 

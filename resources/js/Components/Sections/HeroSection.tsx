@@ -7,12 +7,12 @@ const HeroSection = () => {
         <div
             className={cn(
                 "container",
-                "h-full min-h-screen lg:h-screen",
+                "h-full",
                 "w-full",
                 "flex flex-col-reverse lg:flex-row",
                 "items-center justify-between",
                 "gap-24",
-                "px-8 py-48 lg:px-0 lg:py-0",
+                "px-8 py-24 lg:px-0 lg:py-24",
             )}
         >
             <div className="flex flex-col gap-4">
