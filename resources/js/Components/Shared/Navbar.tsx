@@ -19,10 +19,10 @@ const Navbar = () => {
     return (
         <motion.div
             className={cn(
-                "container",
-                "shadow-input fixed inset-x-0 top-4 z-50 rounded-full lg:top-12",
+                "fixed",
+                "inset-x-0 z-50",
                 "flex items-center justify-between space-x-4 bg-black/50 px-12 py-6",
-                "border-2 border-neutral-300/30 dark:border-neutral-700/60",
+                "border-b-2 border-neutral-300/30 dark:border-neutral-700/60",
             )}
             initial={{
                 y: -20,
