@@ -11,6 +11,7 @@ use Exception;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 
@@ -30,48 +31,46 @@ final class ManageSiteSettings extends SettingsPage
     public function form(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
-                TextInput::make('name'),
-                TextInput::make('description'),
-                FileUpload::make('logo')
-                    ->image()
-                    ->disk('public')
-                    ->imageEditor()
-                    ->openable()
-                    ->preserveFilenames()
-                    ->previewable()
-                    ->downloadable()
-                    ->deletable(),
-                FileUpload::make('favicon')
-                    ->image()
-                    ->disk('public')
-                    ->imageEditor()
-                    ->imageCropAspectRatio('1:1')
-                    ->maxWidth('50')
-                    ->openable()
-                    ->preserveFilenames()
-                    ->previewable()
-                    ->downloadable()
-                    ->imageResizeTargetWidth('50')
-                    ->imageResizeTargetHeight('50')
-                    ->imagePreviewHeight('250')
-                    ->deletable()
-                    ->rules([
-                        'dimensions:ratio=1:1',
-                        'dimensions:max_width=50,max_height=50',
+                Section::make('Site Details')
+                    ->description('These details are used in various places throughout the application, such as the site title and meta tags.')
+                    ->aside()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Site Name')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('description')
+                            ->label('Site Description')
+                            ->required()
+                            ->maxLength(500),
                     ]),
-                FileUpload::make('og_image')
-                    ->image()
-                    ->disk('public')
-                    ->imageEditor()
-                    ->imageCropAspectRatio('40:21')
-                    ->openable()
-                    ->preserveFilenames()
-                    ->previewable()
-                    ->downloadable()
-                    ->deletable()
-                    ->rules([
-                        'dimensions:ratio=40/21',
+                Section::make('Site Images')
+                    ->description('Images used for branding and social media sharing.')
+                    ->aside()
+                    ->schema([
+                        FileUpload::make('logo')
+                            ->label('Site Logo')
+                            ->image()
+                            ->directory('site')
+                            ->maxSize(1024)
+                            ->nullable()
+                            ->helperText('The site logo is displayed in the top-left corner of the admin panel. Recommended size: 64x64 pixels.'),
+                        FileUpload::make('favicon')
+                            ->label('Favicon')
+                            ->image()
+                            ->directory('site')
+                            ->maxSize(512)
+                            ->nullable()
+                            ->helperText('The favicon is displayed in the browser tab. Recommended size: 32x32 pixels.'),
+                        FileUpload::make('og_image')
+                            ->label('Open Graph Image')
+                            ->image()
+                            ->directory('site')
+                            ->maxSize(2048)
+                            ->nullable()
+                            ->helperText('The Open Graph image is used when sharing links on social media. Recommended size: 1200x630 pixels.'),
                     ]),
             ]);
     }
