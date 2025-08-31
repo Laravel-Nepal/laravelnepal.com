@@ -46,9 +46,13 @@
     @viteReactRefresh
     @vite(['resources/js/App.tsx', "resources/js/Pages/{$page['component']}.tsx", "resources/css/app.css"])
     @inertiaHead
+
+    {!! $siteSettings->header_scripts !!}
 </head>
 <body class="text-white font-laravel-nepal">
 @routes
 @inertia
+
+{!! $siteSettings->footer_scripts !!}
 </body>
 </html>

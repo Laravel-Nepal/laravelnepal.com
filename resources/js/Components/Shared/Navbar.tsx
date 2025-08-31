@@ -13,6 +13,8 @@ const Navbar = () => {
     const { isDarkMode } = useTheme();
 
     const iconClass = "cursor-pointer text-neutral-800 dark:text-neutral-300";
+
+    const contributeLink = "https://github.com/Laravel-Nepal/contents";
     const githubLink = "https://github.com/Laravel-Nepal/laravelnepal.com";
 
     const hasLogo = siteSettings.logo && siteSettings.logo !== "";
@@ -64,7 +66,10 @@ const Navbar = () => {
                 </h1>
             )}
             <div className="flex flex-row items-center justify-end gap-3">
-                <a href={githubLink} target="_blank" rel="noopener noreferrer">
+                <a href={contributeLink} target="_blank" rel="noopener noreferrer" className="text-black dark:text-white">
+                    Contribute
+                </a>
+                <a href={githubLink} target="_blank" rel="noopener noreferrer" className="ml-8">
                     <SiGithub className={iconClass} />
                 </a>
                 <ThemeToggler className={iconClass} />
