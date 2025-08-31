@@ -65,7 +65,7 @@ const Navbar = () => {
                 </h1>
             )}
             <div className="flex flex-row items-center justify-end gap-3">
-                <a href={contributeLink} target="_blank" rel="noopener noreferrer">
+                <a href={contributeLink} target="_blank" rel="noopener noreferrer" className="text-black dark:text-white">
                     Contribute
                 </a>
                 <a href={githubLink} target="_blank" rel="noopener noreferrer" className="ml-8">
