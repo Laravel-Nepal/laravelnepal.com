@@ -53,26 +53,45 @@ final class ManageSiteSettings extends SettingsPage
                     ->aside()
                     ->schema([
                         FileUpload::make('logo')
-                            ->label('Site Logo')
                             ->image()
-                            ->directory('site')
-                            ->maxSize(1024)
-                            ->nullable()
-                            ->helperText('The site logo is displayed in the top-left corner of the admin panel. Recommended size: 64x64 pixels.'),
+                            ->disk('public')
+                            ->imageEditor()
+                            ->openable()
+                            ->preserveFilenames()
+                            ->previewable()
+                            ->downloadable()
+                            ->deletable(),
                         FileUpload::make('favicon')
-                            ->label('Favicon')
                             ->image()
-                            ->directory('site')
-                            ->maxSize(512)
-                            ->nullable()
-                            ->helperText('The favicon is displayed in the browser tab. Recommended size: 32x32 pixels.'),
+                            ->disk('public')
+                            ->imageEditor()
+                            ->imageCropAspectRatio('1:1')
+                            ->maxWidth('50')
+                            ->openable()
+                            ->preserveFilenames()
+                            ->previewable()
+                            ->downloadable()
+                            ->imageResizeTargetWidth('50')
+                            ->imageResizeTargetHeight('50')
+                            ->imagePreviewHeight('250')
+                            ->deletable()
+                            ->rules([
+                                'dimensions:ratio=1:1',
+                                'dimensions:max_width=50,max_height=50',
+                            ]),
                         FileUpload::make('og_image')
-                            ->label('Open Graph Image')
                             ->image()
-                            ->directory('site')
-                            ->maxSize(2048)
-                            ->nullable()
-                            ->helperText('The Open Graph image is used when sharing links on social media. Recommended size: 1200x630 pixels.'),
+                            ->disk('public')
+                            ->imageEditor()
+                            ->imageCropAspectRatio('40:21')
+                            ->openable()
+                            ->preserveFilenames()
+                            ->previewable()
+                            ->downloadable()
+                            ->deletable()
+                            ->rules([
+                                'dimensions:ratio=40/21',
+                            ]),
                     ]),
                 Section::make('Custom Scripts')
                     ->description('Add custom scripts to the header or footer of your site')
