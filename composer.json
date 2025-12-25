@@ -76,10 +76,14 @@
             "@php artisan test"
         ],
         "lint": [
-            "rector",
             "pint",
+            "rector",
             "phpstan",
             "@test"
+        ],
+        "rint": [
+            "pint",
+            "rector"
         ]
     },
     "extra": {
