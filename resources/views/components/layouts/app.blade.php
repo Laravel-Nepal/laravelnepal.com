@@ -21,14 +21,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     {!! $siteSettings->header_scripts !!}
 
     @vite(["resources/js/app.js", "resources/css/app.css"])
     @stack('styles')
 </head>
-<body class="container-xl">
+<body class="container-xl antialiased scroll-smooth bg-[#050505] text-white overflow-x-hidden">
+    <x-shared.navbar />
+    <div class="bg"></div>
     {{ $slot }}
+    <x-shared.footer />
 
     @stack('scripts')
     {!! $siteSettings->footer_scripts !!}
