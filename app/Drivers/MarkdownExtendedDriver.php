@@ -29,6 +29,7 @@ final class MarkdownExtendedDriver extends Markdown
     {
         /** @var array<string, mixed> $parent */
         $parent = parent::parseContent($file);
+
         return array_merge(
             $parent,
             ['excluded' => $file->getFilename() === 'README.md']
