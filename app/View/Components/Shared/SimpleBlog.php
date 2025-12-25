@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\View\Components\Shared;
 
-use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\View\Factory;
 
 final class SimpleBlog extends Component
 {
@@ -21,7 +21,7 @@ final class SimpleBlog extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render(): View|Factory
     {
         return view('components.shared.simple-blog');
     }
