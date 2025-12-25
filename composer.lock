@@ -6068,6 +6068,77 @@
             "time": "2025-02-25T09:09:36+00:00"
         },
         {
+            "name": "ryangjchandler/orbit",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ryangjchandler/orbit.git",
+                "reference": "2a4274d31ed4f4b6824cdda91e84e964ea9a4745"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ryangjchandler/orbit/zipball/2a4274d31ed4f4b6824cdda91e84e964ea9a4745",
+                "reference": "2a4274d31ed4f4b6824cdda91e84e964ea9a4745",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/console": "^11.0 | ^12.0",
+                "illuminate/database": "^11.0 | ^12.0",
+                "illuminate/events": "^11.0 | ^12.0",
+                "illuminate/support": "^11.0 | ^12.0",
+                "php": "^8.0",
+                "spatie/yaml-front-matter": "^2.0",
+                "symfony/yaml": "^6.0 | ^7.0"
+            },
+            "require-dev": {
+                "laravel/scout": "^9.4 | ^10.0",
+                "nunomaduro/larastan": "^2.0",
+                "orchestra/testbench": "^9.0 | ^10.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0 | ^2.0",
+                "phpstan/phpstan-phpunit": "^1.0 | ^2.0",
+                "phpunit/phpunit": "^10.0 | ^11.5.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Orbit\\OrbitServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Orbit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Chandler",
+                    "email": "support@ryangjchandler.co.uk",
+                    "homepage": "https://ryangjchandler.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A flat-file database driver for Eloquent.",
+            "support": {
+                "issues": "https://github.com/ryangjchandler/orbit/issues",
+                "source": "https://github.com/ryangjchandler/orbit/tree/v1.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ryangjchandler",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-07-23T09:16:23+00:00"
+        },
+        {
             "name": "scrivo/highlight.php",
             "version": "v9.18.1.10",
             "source": {
@@ -6713,6 +6784,68 @@
                 }
             ],
             "time": "2025-01-13T13:04:43+00:00"
+        },
+        {
+            "name": "spatie/yaml-front-matter",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/yaml-front-matter.git",
+                "reference": "5d0009289dd19a23e5f6cbb72c959a9fc1881e32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/yaml-front-matter/zipball/5d0009289dd19a23e5f6cbb72c959a9fc1881e32",
+                "reference": "5d0009289dd19a23e5f6cbb72c959a9fc1881e32",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/yaml": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\YamlFrontMatter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A to the point yaml front matter parser",
+            "homepage": "https://github.com/sebastiandedeyne/yaml-front-matter",
+            "keywords": [
+                "front matter",
+                "jekyll",
+                "spatie",
+                "yaml"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/yaml-front-matter/tree/2.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-02T08:40:45+00:00"
         },
         {
             "name": "symfony/clock",
@@ -13282,7 +13415,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "ext-gd": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
