@@ -49,9 +49,9 @@ final class Author extends Model
 {
     use Orbital;
 
-    public string $name;
+    public string $name = '';
 
-    public string $email;
+    public string $email = '';
 
     public static function schema(Blueprint $blueprint): void
     {
