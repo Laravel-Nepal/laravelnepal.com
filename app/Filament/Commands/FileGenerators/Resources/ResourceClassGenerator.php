@@ -56,7 +56,9 @@ final class ResourceClassGenerator extends BaseResourceClassGenerator
 
         $this->namespace->addUse(Page::class);
 
+        /** @var string $viewPage */
         $viewPage = array_key_exists('view', $this->getPageRoutes()) ? $this->getPageRoutes()['view']['class'] : null;
+        /** @var string $editPage */
         $editPage = array_key_exists('edit', $this->getPageRoutes()) ? $this->getPageRoutes()['edit']['class'] : null;
 
         $this->namespace->addUse($viewPage);

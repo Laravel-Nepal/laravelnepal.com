@@ -14,7 +14,7 @@ enum UserRole: string implements HasColor, HasLabel
     case Maintainer = 'maintainer';
     case User = 'user';
 
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return match ($this) {
             self::Admin => 'Admin',
@@ -23,7 +23,7 @@ enum UserRole: string implements HasColor, HasLabel
         };
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): array
     {
         return match ($this) {
             self::Admin => Color::Red,
