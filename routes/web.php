@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => '/',
 ], function (): void {
-//    Route::group([
-//        'as' => 'page.',
-//    ], function (): void {
-//        Route::inertia('/', 'LandingPage')->name('landingPage');
-//    });
+    Route::group([
+        'as' => 'page.',
+    ], function (): void {
+        Route::view('/', 'components.page.landing-page')
+            ->name('landingPage');
+    });
 
     Route::group([
         'prefix' => '/newsletter',

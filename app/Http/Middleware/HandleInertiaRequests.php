@@ -29,8 +29,8 @@ final class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $siteSettings = app(SiteSettings::class);
-        $socialMediaSettings = app(SocialMediaSettings::class);
+        $siteSettings = resolve(SiteSettings::class);
+        $socialMediaSettings = resolve(SocialMediaSettings::class);
 
         return array_merge(parent::share($request),
             compact(
