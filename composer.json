@@ -21,7 +21,7 @@
         "filament/spatie-laravel-settings-plugin": "^4.0",
         "joaopaulolndev/filament-edit-profile": "^2.0",
         "laravel/framework": "^12.44",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
         "ryangjchandler/orbit": "^1.4",
         "ext-gd": "*"
     },
