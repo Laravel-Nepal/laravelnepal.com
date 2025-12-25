@@ -6,7 +6,7 @@
     <div class="dock rounded-full px-4 py-3 flex items-center gap-2">
         <a href="{{ route('page.landingPage') }}">
             @if($siteSettings->logo)
-                <img src="{{ asset('/storage/'.$siteSettings->logo) }}" alt="Laravel Nepal Logo" class="h-10 w-10 object-contain rounded-full">
+                <img src="{{ asset('/storage/'.$siteSettings->logo) }}" alt="{{ $siteSettings->name }} Logo" class="h-10 w-10 object-contain rounded-full">
             @else
                 <span class="w-10 h-10 bg-laravel-red rounded-full flex items-center justify-center font-black text-xs hover:scale-110 transition">
                     LN
