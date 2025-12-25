@@ -11,7 +11,8 @@ Route::group([
     Route::group([
         'as' => 'page.',
     ], function (): void {
-        Route::inertia('/', 'LandingPage')->name('landingPage');
+        Route::view('/', 'components.page.landing-page')
+            ->name('landingPage');
     });
 
     Route::group([

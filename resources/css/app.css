@@ -10,7 +10,6 @@
 @theme {
     --font-laravel-nepal: "Josefin Sans", sans-serif;
     --color-laravel-red: #f53003;
-    --color-flag-blue: #003893;
 }
 
 @layer components {
@@ -19,8 +18,17 @@
     }
 
     .container {
+        @apply w-full;
         @apply mx-auto;
-        @apply max-w-lg;
+        @apply max-w-7xl;
         @apply px-4 lg:px-0;
+    }
+}
+
+@layer utilities {
+    .format {
+        :where(a):not(:where([class~="not-format"] *)) {
+            @apply text-laravel-red;
+        }
     }
 }
