@@ -6,6 +6,7 @@ namespace App\Filament\Resources\Users\Schemas;
 
 use Exception;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 final class UserInfolist
@@ -17,11 +18,16 @@ final class UserInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
-                TextEntry::make('email')
-                    ->label('Email address'),
-                TextEntry::make('role')
-                    ->badge(),
+                Section::make()
+                    ->columns()
+                    ->columnSpanFull()
+                    ->components([
+                        TextEntry::make('name'),
+                        TextEntry::make('email')
+                            ->label('Email address'),
+                        TextEntry::make('role')
+                            ->badge(),
+                    ]),
             ]);
     }
 }

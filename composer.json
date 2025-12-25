@@ -1,41 +1,39 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "achyutn/flirt-kit",
+    "name": "achyutn/filament-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework with RILT stack and Filament v4 as Admin Panel.",
+    "description": "The starter kit for the Laravel framework with Filament v4 as Admin Panel.",
     "keywords": [
         "laravel",
         "framework",
         "filament",
-        "flirt-kit",
-        "starter-kit",
-        "rilt"
+        "filament-kit",
+        "starter-kit"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.3",
         "achyutn/filament-log-viewer": "^1",
         "awcodes/filament-gravatar": "^3.0",
-        "filament/filament": "^4",
+        "dutchcodingcompany/filament-developer-logins": "^2.0",
+        "filament/filament": "^4.3.1",
         "filament/spatie-laravel-media-library-plugin": "^3.3",
         "filament/spatie-laravel-settings-plugin": "^4.0",
-        "inertiajs/inertia-laravel": "^2.0",
         "joaopaulolndev/filament-edit-profile": "^2.0",
-        "laravel/framework": "^12.22",
-        "laravel/pulse": "^1.4",
-        "laravel/tinker": "^2.10.1",
-        "tightenco/ziggy": "^2.5"
+        "laravel/framework": "^12.44",
+        "laravel/tinker": "^2.10.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
+        "barryvdh/laravel-ide-helper": "^3.6",
         "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "pestphp/pest": "^3.8",
-        "pestphp/pest-plugin-laravel": "^3.2",
-        "pxlrbt/filament-environment-indicator": "^3.1"
+        "pestphp/pest": "^4.2",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "pxlrbt/filament-environment-indicator": "^3.3"
     },
     "autoload": {
         "psr-4": {
