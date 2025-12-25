@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\UserRole;
+use App\Models\Scopes\LowerRoleOnly;
 use Awcodes\Gravatar\Gravatar;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
 
+#[ScopedBy(LowerRoleOnly::class)]
 /**
  * @property int $id
  * @property string $name
@@ -56,7 +55,9 @@ use Illuminate\Support\Carbon;
  */
 final class User extends Authenticatable implements FilamentUser
 {
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use Notifiable;
     use SoftDeletes;
 
@@ -80,19 +81,27 @@ final class User extends Authenticatable implements FilamentUser
         ]);
     }
 
-    /** @returns array<int, UserRole> */
+    /** @return array<int, UserRole> */
     public function lowerRoles(): array
     {
+        if (! auth()->user() instanceof self) {
+            return [];
+        }
+
         return match (auth()->user()->role) {
             UserRole::Admin => [UserRole::Admin, UserRole::Maintainer, UserRole::User],
             UserRole::Maintainer => [UserRole::Maintainer, UserRole::User],
             UserRole::User => [UserRole::User],
+            default => [],
         };
     }
 
-    /** @returns bool */
     public function isLowerInRole(): bool
     {
+        if (! auth()->user() instanceof self) {
+            return false;
+        }
+
         if (auth()->user()->role === UserRole::Admin) {
             return true;
         }
@@ -114,6 +123,9 @@ final class User extends Authenticatable implements FilamentUser
         ];
     }
 
+    /**
+     * @return Attribute<string, null>
+     */
     protected function avatar(): Attribute
     {
         $gravatar = Gravatar::get(

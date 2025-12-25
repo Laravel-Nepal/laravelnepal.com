@@ -18,8 +18,8 @@ final class LowerRoleOnly implements Scope
     {
         if (auth()->hasUser()) {
             $user = auth()->user();
-            $lowerRoles = $user->lowerRoles();
             if ($user instanceof User) {
+                $lowerRoles = $user->lowerRoles();
                 $builder->whereIn('role', $lowerRoles);
             }
         }

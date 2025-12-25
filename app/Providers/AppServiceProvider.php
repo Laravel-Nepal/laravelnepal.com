@@ -27,7 +27,10 @@ final class AppServiceProvider extends ServiceProvider
         Model::automaticallyEagerLoadRelationships();
 
         if (app()->environment('production')) {
-            URL::useOrigin(config('app.url'));
+            /** @var string $url */
+            $url = config('app.url');
+
+            URL::useOrigin($url);
             URL::forceScheme('https');
         }
     }

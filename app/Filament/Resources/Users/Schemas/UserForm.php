@@ -31,13 +31,7 @@ final class UserForm
                             ->email()
                             ->required(),
                         Select::make('role')
-                            ->options(
-                                collect(auth()->user()->lowerRoles())
-                                    ->mapWithKeys(fn (UserRole $userRole): array => [
-                                        $userRole->value => $userRole->getLabel(),
-                                    ])
-                                    ->all()
-                            )
+                            ->options(self::roleOptions())
                             ->default('user')
                             ->required(),
                         TextInput::make('password')
@@ -45,5 +39,24 @@ final class UserForm
                             ->required(),
                     ]),
             ]);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function roleOptions(): array
+    {
+        if (auth()->user() === null) {
+            return [];
+        }
+
+        return collect(auth()->user()->lowerRoles())
+            ->mapWithKeys(
+                /** @return array<UserRole, string> */
+                fn (UserRole $userRole): array => [
+                    $userRole->value => $userRole->getLabel(),
+                ]
+            )
+            ->all();
     }
 }

@@ -6,6 +6,7 @@ namespace App\Filament\Clusters\Settings\Pages;
 
 use App\Enums\UserRole;
 use App\Filament\Clusters\Settings\SettingsCluster;
+use App\Models\User;
 use App\Settings\SocialMediaSettings;
 use BackedEnum;
 use Exception;
@@ -26,7 +27,14 @@ final class ManageSocialMedia extends SettingsPage
 
     public static function canAccess(): bool
     {
-        return auth()->user()->role !== UserRole::User;
+        if (! auth()->user() instanceof User) {
+            return false;
+        }
+
+        return in_array(
+            auth()->user()->role,
+            [UserRole::Admin, UserRole::Maintainer]
+        );
     }
 
     /**

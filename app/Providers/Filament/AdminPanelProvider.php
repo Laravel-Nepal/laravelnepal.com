@@ -49,11 +49,10 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
-use Spatie\LaravelSettings\Settings;
 
 final class AdminPanelProvider extends PanelProvider
 {
-    protected Settings $settings;
+    protected SiteSettings $settings;
 
     public function __construct($app)
     {
@@ -71,7 +70,7 @@ final class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName(fn () => $this->settings->name)
+            ->brandName(fn (): ?string => $this->settings->name)
             ->brandLogo(fn () => $this->settings->logo ? '/storage/'.$this->settings->logo : null)
             ->brandLogoHeight('3rem')
             ->favicon(fn () => $this->settings->favicon ? '/storage/'.$this->settings->favicon : null)
