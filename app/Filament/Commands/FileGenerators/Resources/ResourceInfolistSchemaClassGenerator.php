@@ -16,7 +16,7 @@ final class ResourceInfolistSchemaClassGenerator extends BaseResourceInfolistSch
      * @param  ?class-string<Model>  $model
      * @param  array<string>  $exceptColumns
      */
-    public function outputInfolistComponents(?string $model = null, array $exceptColumns = []): Literal
+    public function outputInfolistComponents(?string $model = null, array $exceptColumns = []): string
     {
         $components = $this->getInfolistComponents($model, $exceptColumns);
         $this->importUnlessPartial(Section::class);
@@ -34,7 +34,7 @@ final class ResourceInfolistSchemaClassGenerator extends BaseResourceInfolistSch
             $recordTitleAttribute = $this->getRecordTitleAttribute();
 
             if (blank($recordTitleAttribute)) {
-                return new Literal('//');
+                return '//';
             }
 
             $this->importUnlessPartial(TextEntry::class);
@@ -46,7 +46,7 @@ final class ResourceInfolistSchemaClassGenerator extends BaseResourceInfolistSch
             $componentsString = implode(PHP_EOL.'        ', $components);
         }
 
-        return new Literal(<<<PHP
+        return (string) new Literal(<<<PHP
             {$this->simplifyFqn(Section::class)}::make()
                         ->columns()
                         ->columnSpanFull()
