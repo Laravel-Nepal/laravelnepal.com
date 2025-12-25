@@ -47,7 +47,7 @@
                 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-laravel-red blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
             </div>
 
-            <div class="absolute -top-10 -right-5 w-20 h-20 glass rounded-2xl animate-float rotate-12 flex items-center justify-center text-5xl shadow-2xl">
+            <div class="absolute -top-10 -right-5 w-20 h-20 glass rounded-2xl animate-float rotate-12 flex items-center justify-center text-5xl shadow-2xl select-none">
                 🇳🇵
             </div>
         </div>
