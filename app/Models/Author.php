@@ -52,6 +52,7 @@ final class Author extends Model
     public string $name = '';
 
     public string $email = '';
+    protected $primaryKey = 'username';
 
     public static function schema(Blueprint $blueprint): void
     {

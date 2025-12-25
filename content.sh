@@ -24,6 +24,9 @@ echo "⬇️ Pulling latest $BRANCH from content repo..."
 git reset --hard
 git pull origin $BRANCH
 
+echo "🧹 Cleaning up README.md files..."
+find . -name "README.md" -type f -delete
+
 cd ..
 
 echo "🔧 Optimizing images..."
