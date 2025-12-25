@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use Exception;
+use GdImage;
 use Illuminate\Console\Command;
 
 final class OptimizeImages extends Command
@@ -66,13 +67,15 @@ final class OptimizeImages extends Command
         }
 
         try {
-            $image = imagecreatefromstring(file_get_contents($filePath));
-            if ($image === false) {
+            $fileContent = file_get_contents($filePath);
+            if ($fileContent === false) {
                 $this->error('Failed to create image from '.$fileName);
 
                 return;
             }
 
+            /** @var GdImage $image */
+            $image = imagecreatefromstring($fileContent);
             $resizedImage = imagescale($image, $width, $height);
             if ($resizedImage === false) {
                 $this->error('Failed to resize image '.$fileName);

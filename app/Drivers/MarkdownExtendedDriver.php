@@ -21,11 +21,16 @@ final class MarkdownExtendedDriver extends Markdown
         }
     }
 
+    /**
+     * @return array<string, mixed|bool>
+     */
     #[Override]
     protected function parseContent(SplFileInfo $file): array
     {
+        /** @var array<string, mixed> $parent */
+        $parent = parent::parseContent($file);
         return array_merge(
-            parent::parseContent($file),
+            $parent,
             ['excluded' => $file->getFilename() === 'README.md']
         );
     }

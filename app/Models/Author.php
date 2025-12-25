@@ -71,6 +71,9 @@ final class Author extends Model
         return false;
     }
 
+    /**
+     * @return Attribute<string, null>
+     */
     protected function avatar(): Attribute
     {
         return Attribute::make(
@@ -81,13 +84,17 @@ final class Author extends Model
                     return asset($imageDirectory);
                 }
 
-                if (filled($this->email)) {
-                    $emailHash = md5(mb_strtolower(trim($this->email)));
+                /** @var string $email */
+                $email = $this->email;
+                $name = $this->name;
+
+                if (filled($email)) {
+                    $emailHash = md5(mb_strtolower(trim($email)));
 
                     return sprintf('https://www.gravatar.com/avatar/%s?s=128&d=identicon', $emailHash);
                 }
 
-                return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&size=128';
+                return 'https://ui-avatars.com/api/?name='.urlencode($name).'&size=128';
             },
         );
     }
