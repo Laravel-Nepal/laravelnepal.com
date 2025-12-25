@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ namespace }};
+
+use Filament\Support\Colors\Color;
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+use Illuminate\Contracts\Support\Htmlable;
+
+enum {{ class }}: {{ type }} implements HasColor, HasLabel
+{
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            default => Color::Gray,
+        };
+    }
+
+    public function getLabel(): string|Htmlable|null
+    {
+        return match ($this) {
+            default => null,
+        };
+    }
+}
