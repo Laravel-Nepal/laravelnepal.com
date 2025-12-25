@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-./vendor/bin/pest
-composer lint
-git add .
