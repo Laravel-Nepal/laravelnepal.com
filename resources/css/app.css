@@ -113,4 +113,22 @@
         @apply hover:bg-white/5;
         @apply transition-all duration-200 ease-in-out;
     }
+
+    .section-title {
+        @apply text-sm;
+        @apply font-extrabold;
+        @apply uppercase;
+        @apply tracking-widest;
+        @apply text-neutral-400;
+        @apply mb-6;
+        @apply flex items-center;
+        @apply gap-4;
+    }
+
+    .section-title::after {
+        content: '';
+        @apply h-px;
+        @apply grow;
+        @apply bg-linear-to-r from-white/10 to-transparent;
+    }
 }
