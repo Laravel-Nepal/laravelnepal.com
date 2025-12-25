@@ -119,16 +119,15 @@
         @apply font-extrabold;
         @apply uppercase;
         @apply tracking-widest;
-        @apply text-neutral-400;
-        @apply mb-6;
+        @apply text-neutral-100;
         @apply flex items-center;
         @apply gap-4;
     }
 
     .section-title::after {
         content: '';
-        @apply h-px;
+        @apply h-0.5;
         @apply grow;
-        @apply bg-linear-to-r from-white/10 to-transparent;
+        @apply bg-linear-to-r from-white/20 to-transparent;
     }
 }
