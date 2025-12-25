@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components\Shared;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SimpleBlog extends Component
+final class SimpleBlog extends Component
 {
     /**
      * Create a new component instance.

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components\Section\LandingPage;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class HeroSection extends Component
+final class HeroSection extends Component
 {
     /**
      * Create a new component instance.
