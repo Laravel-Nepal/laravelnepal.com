@@ -67,12 +67,13 @@
         @apply bottom-8;
         @apply w-auto;
         @apply transition-[bottom,opacity];
-        @apply duration-300 ease-in-out;
+        @apply duration-1000 ease-in-out;
         @apply opacity-100;
+        @apply z-100;
     }
 
     .dock-container.is-docked {
-        @apply -bottom-[100px];
+        @apply -bottom-25;
         @apply opacity-0;
     }
 
