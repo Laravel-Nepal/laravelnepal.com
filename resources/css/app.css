@@ -42,7 +42,7 @@
 }
 
 @utility glass {
-    @apply bg-[rgba(255,255,255,0.03)];
+    @apply bg-white/3;
     @apply backdrop-blur-[30px];
     @apply border border-[rgba(255,255,255,0.1)];
     @apply shadow-[0_8px_32px_rgba(0,0,0,0.5)];
@@ -107,11 +107,16 @@
 
     .button-outlined {
         @apply glass;
+        @apply bg-[rgba(255,255,255,0.1)];
+        @apply text-white;
+        @apply backdrop-blur-[20px];
         @apply px-8 py-4;
         @apply rounded-xl;
         @apply font-bold;
-        @apply hover:bg-white/5;
         @apply transition-all duration-200 ease-in-out;
+        @apply hover:bg-[rgba(245,48,3,0.07)] hover:border-laravel-red;
+        @apply hover:translate-y-[-5px];
+        @apply shadow-[0_8px_8px_rgba(0,0,0,0.1)];
     }
 
     .section-title {

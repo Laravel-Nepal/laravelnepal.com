@@ -32,6 +32,7 @@
     <x-shared.navbar />
     <div class="bg"></div>
     {{ $slot }}
+    <x-shared.footer />
 
     @stack('scripts')
     {!! $siteSettings->footer_scripts !!}
