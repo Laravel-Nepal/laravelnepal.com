@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
-use Str;
 
 #[ScopedBy(SkipExcluded::class)]
 final class Package extends Model
