@@ -50,10 +50,6 @@ final class Author extends Model
 {
     use Orbital;
 
-    public string $name = '';
-
-    public string $email = '';
-
     public static function schema(Blueprint $blueprint): void
     {
         $blueprint->string('name');
@@ -114,7 +110,7 @@ final class Author extends Model
 
                 /** @var string $email */
                 $email = $this->email;
-                $name = $this->name;
+                $name = $this->name ?? 'Laravel Nepal';
 
                 if (filled($email)) {
                     $emailHash = md5(mb_strtolower(trim($email)));
@@ -124,6 +120,6 @@ final class Author extends Model
 
                 return 'https://ui-avatars.com/api/?name='.urlencode($name).'&size=128';
             },
-        );
+        )->withoutObjectCaching();
     }
 }
