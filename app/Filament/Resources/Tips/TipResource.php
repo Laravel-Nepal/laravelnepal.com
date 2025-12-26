@@ -21,9 +21,9 @@ final class TipResource extends Resource
 {
     protected static ?string $model = Tip::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::LightBulb;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedLightBulb;
 
     protected static string|UnitEnum|null $navigationGroup = 'Content';
 
