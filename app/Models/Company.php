@@ -47,10 +47,6 @@ final class Company extends Model
 {
     use Orbital;
 
-    public string $name = '';
-
-    public string $email = '';
-
     public static function schema(Blueprint $blueprint): void
     {
         $blueprint->string('name');
@@ -98,14 +94,19 @@ final class Company extends Model
                 }
 
                 /** @var string $email */
-                $email = $this->email;
-                $name = $this->name;
+                $email = $this->getAttribute('email');
+                /** @var string $email */
+                $name = $this->getAttribute('name');
 
                 if (filled($email)) {
                     $emailHash = md5(mb_strtolower(trim($email)));
 
                     return sprintf('https://www.gravatar.com/avatar/%s?s=128&d=identicon', $emailHash);
                 }
+
+                $nameIsValid = filled($name) && is_string($name);
+                /** @phpstan-var string $name */
+                $name = $nameIsValid ? $name : 'Laravel Nepal';
 
                 return 'https://ui-avatars.com/api/?name='.urlencode($name).'&size=128';
             },

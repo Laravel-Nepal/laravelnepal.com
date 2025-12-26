@@ -13,39 +13,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
-/**
- * @property string $name
- * @property string $username
- * @property string|null $email
- * @property string|null $linkedin
- * @property string|null $github
- * @property string|null $x
- * @property string|null $website
- * @property string|null $bio
- * @property string|null $content
- * @property int $excluded
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read string $avatar
- *
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereBio($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereExcluded($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereGithub($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereLinkedin($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereUsername($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereWebsite($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereX($value)
- *
- * @mixin \Eloquent
- */
 final class Author extends Model
 {
     use Orbital;
@@ -109,14 +76,19 @@ final class Author extends Model
                 }
 
                 /** @var string $email */
-                $email = $this->email;
-                $name = $this->name ?? 'Laravel Nepal';
+                $email = $this->getAttribute('email');
+                /** @var string $email */
+                $name = $this->getAttribute('name');
 
                 if (filled($email)) {
                     $emailHash = md5(mb_strtolower(trim($email)));
 
                     return sprintf('https://www.gravatar.com/avatar/%s?s=128&d=identicon', $emailHash);
                 }
+
+                $nameIsValid = filled($name) && is_string($name);
+                /** @phpstan-var string $name */
+                $name = $nameIsValid ? $name : 'Laravel Nepal';
 
                 return 'https://ui-avatars.com/api/?name='.urlencode($name).'&size=128';
             },
