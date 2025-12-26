@@ -21,8 +21,6 @@ final class PostsTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
-                TextColumn::make('author_username')
-                    ->searchable(),
                 TextColumn::make('date')
                     ->date()
                     ->sortable(),
