@@ -8,6 +8,7 @@ use App\Models\Scopes\SkipExcluded;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
 
@@ -52,7 +53,6 @@ final class Author extends Model
     public string $name = '';
 
     public string $email = '';
-    protected $primaryKey = 'username';
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -66,14 +66,25 @@ final class Author extends Model
         $blueprint->string('bio')->nullable();
     }
 
-    public function getKeyName(): string
+    public function getKeyName()
     {
         return 'username';
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
     }
 
     public function getIncrementing(): bool
     {
         return false;
+    }
+
+    /** @return HasMany<Tip> */
+    public function tips(): HasMany
+    {
+        return $this->hasMany(Tip::class, 'author_username', 'username');
     }
 
     /**

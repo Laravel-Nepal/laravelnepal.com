@@ -8,6 +8,7 @@ use App\Models\Scopes\SkipExcluded;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Carbon;
 use Orbit\Concerns\Orbital;
@@ -42,25 +43,35 @@ use Orbit\Concerns\Orbital;
 final class Tip extends Model
 {
     use Orbital;
-    protected $primaryKey = 'slug';
 
     public static function schema(Blueprint $blueprint): void
     {
         $blueprint->string('title');
         $blueprint->string('slug');
-        $blueprint->string('author');
+        $blueprint->string('author_username');
         $blueprint->date('date');
         $blueprint->json('tags');
     }
 
-    public function getKeyName(): string
+    public function getKeyName()
     {
         return 'slug';
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
     }
 
     public function getIncrementing(): bool
     {
         return false;
+    }
+
+    /** @return BelongsTo<Author> */
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class, 'author_username', 'username');
     }
 
     protected function casts(): array

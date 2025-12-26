@@ -21,11 +21,14 @@ final class TipInfolist
                     ->aside()
                     ->components([
                         TextEntry::make('title'),
-                        TextEntry::make('slug'),
+                        TextEntry::make('author_username')
+                            ->label('Username'),
+                        TextEntry::make('author.name'),
                         TextEntry::make('date')
                             ->label('Published at')
                             ->date(),
                         TextEntry::make('tags')
+                            ->columnSpanFull()
                             ->badge(),
                     ]),
                 Section::make('Content')
