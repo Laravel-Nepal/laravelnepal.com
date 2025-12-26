@@ -20,22 +20,14 @@ class PackagesTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
-                TextColumn::make('author_username')
-                    ->searchable(),
                 TextColumn::make('github')
+                    ->url(fn (string $state): string => 'https://github.com/'.$state)
+                    ->openUrlInNewTab()
                     ->searchable(),
                 TextColumn::make('packagist')
+                    ->url(fn (string $state): string => 'https://packagist.org/packages/'.$state)
+                    ->openUrlInNewTab()
                     ->searchable(),
-                IconColumn::make('excluded')
-                    ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
