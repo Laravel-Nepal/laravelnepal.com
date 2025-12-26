@@ -12,6 +12,35 @@ use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
+/**
+ * @property string $title
+ * @property string|null $slug
+ * @property string $author_username
+ * @property string $github
+ * @property string|null $website
+ * @property array<array-key, mixed> $tags
+ * @property string|null $content
+ * @property int $excluded
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Author|null $author
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereAuthorUsername($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereExcluded($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereGithub($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereWebsite($value)
+ *
+ * @mixin \Eloquent
+ */
 final class Project extends Model
 {
     use Orbital;

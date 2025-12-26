@@ -15,26 +15,27 @@ use Orbit\Concerns\Orbital;
 /**
  * @property string $title
  * @property string $slug
- * @property string $author
+ * @property string $author_username
  * @property string $date
  * @property array<array-key, mixed> $tags
  * @property string|null $content
  * @property int $excluded
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Author|null $author
  *
- * @method static Builder<static>|Tip newModelQuery()
- * @method static Builder<static>|Tip newQuery()
- * @method static Builder<static>|Tip query()
- * @method static Builder<static>|Tip whereAuthor($value)
- * @method static Builder<static>|Tip whereContent($value)
- * @method static Builder<static>|Tip whereCreatedAt($value)
- * @method static Builder<static>|Tip whereDate($value)
- * @method static Builder<static>|Tip whereExcluded($value)
- * @method static Builder<static>|Tip whereSlug($value)
- * @method static Builder<static>|Tip whereTags($value)
- * @method static Builder<static>|Tip whereTitle($value)
- * @method static Builder<static>|Tip whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereAuthorUsername($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereExcluded($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip whereUpdatedAt($value)
  *
  * @mixin \Eloquent
  */
