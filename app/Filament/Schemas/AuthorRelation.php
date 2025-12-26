@@ -12,13 +12,12 @@ use Filament\Schemas\Components\Section;
 use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\TextSize;
 use Illuminate\Contracts\Support\Htmlable;
-use Override;
 
 final class AuthorRelation
 {
     public static function make(
-        string|array|Htmlable|Closure|null $heading = 'Author',
-        string|array|Htmlable|Closure|null $description = 'Details about the author',
+        string|Htmlable|Closure|null $heading = 'Author',
+        string|Htmlable|Closure|null $description = 'Details about the author',
         string $relationship = 'author',
         bool $aside = true,
     ): Section {

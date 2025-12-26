@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Tips\Schemas;
 
-use App\Filament\Resources\Authors\AuthorResource;
 use App\Filament\Schemas\AuthorRelation;
-use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Support\Enums\FontWeight;
-use Filament\Support\Enums\TextSize;
 
 final class TipInfolist
 {
