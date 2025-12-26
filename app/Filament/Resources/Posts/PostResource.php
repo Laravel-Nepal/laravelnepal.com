@@ -20,9 +20,9 @@ final class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentDuplicate;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedDocumentDuplicate;
 
     protected static string|UnitEnum|null $navigationGroup = 'Content';
 
