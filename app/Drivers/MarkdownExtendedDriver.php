@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Drivers;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Str;
 use Orbit\Drivers\Markdown;
 use Override;
 use SplFileInfo;
@@ -29,10 +30,17 @@ final class MarkdownExtendedDriver extends Markdown
     {
         /** @var array<string, mixed> $parent */
         $parent = parent::parseContent($file);
+        $fileName = Str::of($file->getPathname())
+            ->afterLast('/')
+            ->beforeLast('.')
+            ->value();
 
         return array_merge(
             $parent,
-            ['excluded' => $file->getFilename() === 'README.md']
+            [
+                'slug' => array_key_exists('slug', $parent) ? $parent['slug'] : $fileName,
+                'excluded' => $file->getFilename() === 'README.md',
+            ]
         );
     }
 }

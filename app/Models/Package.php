@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use AchyutN\LaravelHelpers\Traits\HasTheSlug;
+use App\Models\Scopes\SkipExcluded;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
+use Str;
 
+#[ScopedBy(SkipExcluded::class)]
 final class Package extends Model
 {
     use Orbital;
-    use HasTheSlug;
-
-    protected string $sluggableColumn = 'name';
 
     public static function schema(Blueprint $blueprint): void
     {
