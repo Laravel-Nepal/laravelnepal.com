@@ -6,28 +6,10 @@ BRANCH="master"
 
 echo "🔄 Updating content repo..."
 
-if [ ! -d "$CONTENT_DIR/.git" ]; then
-    echo "📦 Initializing submodule..."
-    git submodule update --init --recursive
-fi
-
-cd "$CONTENT_DIR"
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-if [ "$CURRENT_BRANCH" != "$BRANCH" ]; then
-    echo "🌿 Switching submodule to $BRANCH branch..."
-    git fetch origin $BRANCH
-    git checkout $BRANCH
-fi
-
-echo "⬇️ Pulling latest $BRANCH from content repo..."
-git reset --hard
-git pull origin $BRANCH
+git submodule update --init --recursive --remote --checkout
 
 echo "🧹 Cleaning up README.md files..."
-find . -name "README.md" -type f -delete
-
-cd ..
+find "$CONTENT_DIR" -name "README.md" -type f -delete
 
 echo "🔧 Optimizing images..."
 php artisan ln:optimize-images
