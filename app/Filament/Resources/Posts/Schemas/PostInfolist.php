@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use App\Filament\Schemas\AuthorRelation;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -15,32 +16,38 @@ final class PostInfolist
     {
         return $schema
             ->components([
-                Section::make()
+                Section::make('About')
+                    ->description('Basic package information')
                     ->columns()
                     ->columnSpanFull()
+                    ->aside()
                     ->components([
                         TextEntry::make('title'),
-                        TextEntry::make('slug')
-                            ->placeholder('-'),
-                        TextEntry::make('author_username'),
                         TextEntry::make('date')
                             ->date(),
                         TextEntry::make('canonical_url')
+                            ->label('Canonical URL')
+                            ->url(fn (string $state): string => $state)
+                            ->openUrlInNewTab()
+                            ->columnSpanFull()
                             ->placeholder('-'),
                         TextEntry::make('tags')
-                            ->columnSpanFull(),
-                        TextEntry::make('content')
-                            ->placeholder('-')
-                            ->columnSpanFull(),
-                        IconEntry::make('excluded')
-                            ->boolean(),
-                        TextEntry::make('created_at')
-                            ->dateTime()
-                            ->placeholder('-'),
-                        TextEntry::make('updated_at')
-                            ->dateTime()
-                            ->placeholder('-'),
+                            ->columnSpanFull()
+                            ->badge(),
                     ]),
+                Section::make('Content')
+                    ->description('The package content')
+                    ->columns()
+                    ->columnSpanFull()
+                    ->aside()
+                    ->components([
+                        TextEntry::make('content')
+                            ->hiddenLabel()
+                            ->placeholder('-')
+                            ->markdown()
+                            ->columnSpanFull(),
+                    ]),
+                AuthorRelation::make(),
             ]);
     }
 }

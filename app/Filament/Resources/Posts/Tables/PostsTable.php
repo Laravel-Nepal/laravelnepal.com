@@ -27,18 +27,6 @@ final class PostsTable
                 TextColumn::make('date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('canonical_url')
-                    ->searchable(),
-                IconColumn::make('excluded')
-                    ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
