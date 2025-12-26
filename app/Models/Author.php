@@ -29,6 +29,8 @@ use Orbit\Concerns\Orbital;
  * @property-read string $avatar
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Package> $packages
  * @property-read int|null $packages_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Post> $posts
+ * @property-read int|null $posts_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Project> $projects
  * @property-read int|null $projects_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
