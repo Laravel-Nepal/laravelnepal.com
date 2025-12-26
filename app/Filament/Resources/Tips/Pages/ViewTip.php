@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Tips\Pages;
 
 use App\Filament\Resources\Tips\TipResource;
-use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewTip extends ViewRecord
+final class ViewTip extends ViewRecord
 {
     protected static string $resource = TipResource::class;
 

@@ -50,6 +50,7 @@ final class Company extends Model
     public string $name = '';
 
     public string $email = '';
+
     protected $primaryKey = 'slug';
 
     public static function schema(Blueprint $blueprint): void
