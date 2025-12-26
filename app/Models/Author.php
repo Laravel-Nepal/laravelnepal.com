@@ -81,7 +81,7 @@ final class Author extends Model
         return false;
     }
 
-    /** @return HasMany<Tip> */
+    /** @return HasMany<Tip, $this> */
     public function tips(): HasMany
     {
         return $this->hasMany(Tip::class, 'author_username', 'username');

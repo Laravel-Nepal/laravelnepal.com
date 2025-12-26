@@ -66,7 +66,7 @@ final class Tip extends Model
         return false;
     }
 
-    /** @return BelongsTo<Author> */
+    /** @return BelongsTo<Author, $this> */
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
