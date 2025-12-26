@@ -51,8 +51,6 @@ final class Company extends Model
 
     public string $email = '';
 
-    protected $primaryKey = 'slug';
-
     public static function schema(Blueprint $blueprint): void
     {
         $blueprint->string('name');
@@ -67,6 +65,11 @@ final class Company extends Model
     public function getKeyName(): string
     {
         return 'slug';
+    }
+
+    public function getKeyType(): string
+    {
+        return 'string';
     }
 
     public function getIncrementing(): bool

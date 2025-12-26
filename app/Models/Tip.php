@@ -51,12 +51,12 @@ final class Tip extends Model
         $blueprint->json('tags');
     }
 
-    public function getKeyName()
+    public function getKeyName(): string
     {
         return 'slug';
     }
 
-    public function getKeyType()
+    public function getKeyType(): string
     {
         return 'string';
     }

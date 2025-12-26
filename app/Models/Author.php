@@ -66,12 +66,12 @@ final class Author extends Model
         $blueprint->string('bio')->nullable();
     }
 
-    public function getKeyName()
+    public function getKeyName(): string
     {
         return 'username';
     }
 
-    public function getKeyType()
+    public function getKeyType(): string
     {
         return 'string';
     }
@@ -85,6 +85,12 @@ final class Author extends Model
     public function tips(): HasMany
     {
         return $this->hasMany(Tip::class, 'author_username', 'username');
+    }
+
+    /** @return HasMany<Package, $this> */
+    public function packages(): HasMany
+    {
+        return $this->hasMany(Package::class, 'author_username', 'username');
     }
 
     /**
