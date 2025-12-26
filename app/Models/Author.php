@@ -101,6 +101,12 @@ final class Author extends Model
         return $this->hasMany(Project::class, 'author_username', 'username');
     }
 
+    /** @return HasMany<Post, $this> */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_username', 'username');
+    }
+
     /**
      * @return Attribute<string, null>
      */
