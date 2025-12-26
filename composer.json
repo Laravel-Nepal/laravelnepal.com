@@ -13,7 +13,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "ext-gd": "*",
         "achyutn/filament-log-viewer": "^1",
+        "achyutn/laravel-helpers": "^0.10.0",
         "awcodes/filament-gravatar": "^3.0",
         "dutchcodingcompany/filament-developer-logins": "^2.0",
         "filament/filament": "^4.3.1",
@@ -22,8 +24,7 @@
         "joaopaulolndev/filament-edit-profile": "^2.0",
         "laravel/framework": "^12.44",
         "laravel/tinker": "^2.10.1",
-        "ryangjchandler/orbit": "^1.4",
-        "ext-gd": "*"
+        "ryangjchandler/orbit": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",

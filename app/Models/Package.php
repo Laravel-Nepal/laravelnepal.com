@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use AchyutN\LaravelHelpers\Traits\HasTheSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
@@ -10,6 +11,9 @@ use Orbit\Concerns\Orbital;
 final class Package extends Model
 {
     use Orbital;
+    use HasTheSlug;
+
+    protected string $sluggableColumn = 'name';
 
     public static function schema(Blueprint $blueprint): void
     {
