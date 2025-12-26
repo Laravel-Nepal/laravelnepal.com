@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Tips\Schemas;
 
 use App\Filament\Resources\Authors\AuthorResource;
+use App\Filament\Schemas\AuthorRelation;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -17,7 +18,7 @@ final class TipInfolist
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
+            ->schema([
                 Section::make('About')
                     ->description('Basic tip information')
                     ->columns()
@@ -44,33 +45,7 @@ final class TipInfolist
                             ->markdown()
                             ->columnSpanFull(),
                     ]),
-                Section::make('Author')
-                    ->description('Details about the author')
-                    ->relationship('author')
-                    ->schema([
-                        ImageEntry::make('avatar')
-                            ->columnSpanFull()
-                            ->circular()
-                            ->placeholder('N/A')
-                            ->hiddenLabel(),
-                        TextEntry::make('bio')
-                            ->columnSpanFull()
-                            ->weight(FontWeight::Bold)
-                            ->size(TextSize::Large)
-                            ->placeholder('N/A')
-                            ->hiddenLabel(),
-                        TextEntry::make('name')
-                            ->placeholder('N/A'),
-                        TextEntry::make('username')
-                            ->url(fn (string $state): string => AuthorResource::getUrl('view', ['record' => $state]))
-                            ->placeholder('N/A'),
-                        TextEntry::make('email')
-                            ->url(fn (string $state): string => 'mailto:'.$state)
-                            ->placeholder('N/A'),
-                    ])
-                    ->columns()
-                    ->columnSpanFull()
-                    ->aside(),
+                AuthorRelation::make(),
             ]);
     }
 }
