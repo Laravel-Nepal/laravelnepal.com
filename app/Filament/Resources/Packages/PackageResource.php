@@ -20,9 +20,9 @@ final class PackageResource extends Resource
 {
     protected static ?string $model = Package::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Square3Stack3d;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedSquare3Stack3d;
 
     protected static string|UnitEnum|null $navigationGroup = 'Content';
 
