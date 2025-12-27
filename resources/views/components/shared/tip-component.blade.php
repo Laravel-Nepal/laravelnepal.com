@@ -1,4 +1,4 @@
-<div class="glass p-6 rounded-4xl flex flex-col justify-between group/tip cursor-pointer hover:border-laravel-red/50 transition-all duration-500 h-full w-full">
+<div class="glass p-6 rounded-4xl flex flex-col justify-between group/tip cursor-pointer hover:border-laravel-red/50 transition-all hover:-translate-y-2 h-full w-full">
     <div class="flex flex-wrap justify-between items-center mb-6 w-full gap-y-4">
         <div class="text-zinc-500 text-xs font-mono uppercase tracking-widest">
             {{ $tip->date->format('M d, Y') }}
