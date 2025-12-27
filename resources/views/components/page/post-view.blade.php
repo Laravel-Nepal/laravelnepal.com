@@ -1,12 +1,6 @@
 <x-layouts.app>
     <div class="container relative min-h-screen pt-20 pb-40">
-        <div class="mb-12">
-            <a href="{{ route('page.landingPage') }}" class="group flex items-center gap-2 text-zinc-500 hover:text-laravel-red transition-all">
-                <span class="group-hover:-translate-x-1 transition-transform">←</span>
-                <span class="text-[10px] font-black uppercase tracking-widest">Back to Landing Page</span>
-            </a>
-        </div>
-
+        <x-shared.back-to-landing-page />
         <article>
             <header class="mb-16 space-y-8">
                 <x-shared.bread-crumb :$breadCrumb />
