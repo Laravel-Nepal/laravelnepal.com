@@ -41,6 +41,27 @@
     @apply shadow-[0_8px_32px_rgba(0,0,0,0.5)];
 }
 
+@layer utilities {
+    pre {
+        @apply bg-black/60! rounded-2xl my-8 p-6 overflow-x-auto leading-relaxed!;
+    }
+
+    pre code {
+        @apply font-mono text-sm antialiased;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    pre::-webkit-scrollbar {
+        @apply h-1;
+    }
+    pre::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+    pre::-webkit-scrollbar-thumb {
+        @apply bg-white/10 rounded-full hover:bg-laravel-red/40 transition-colors;
+    }
+}
+
 @layer components {
     * {
         @apply transition-colors duration-300 ease-in-out;

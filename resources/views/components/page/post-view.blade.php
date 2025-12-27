@@ -64,7 +64,7 @@
                         <div class="absolute -top-24 -left-24 w-64 h-64 bg-laravel-red/5 blur-[100px] pointer-events-none"></div>
 
                         <div class="prose prose-invert max-w-none prose-a:text-laravel-red prose-a:font-bold">
-                            {!! Str::markdown($post->content) !!}
+                            @markdown($post->content)
                         </div>
                     </div>
                 </div>
