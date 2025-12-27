@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Scopes\SkipExcluded;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
@@ -74,6 +75,24 @@ final class Post extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
+    }
+
+
+
+    protected function minutesRead(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): int => max(1, (int) ceil(str_word_count(strip_tags($this->content ?? '')) / 200)),
+        );
+    }
+
+    protected function minutesReadText(): Attribute
+    {
+        $singular = $this->minutes_read <= 1;
+
+        return Attribute::make(
+            get: fn (): string => $this->minutes_read.' min'.($singular ? '' : 's').' read',
+        );
     }
 
     protected function casts(): array
