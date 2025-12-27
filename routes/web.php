@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderTipView;
@@ -37,6 +38,14 @@ Route::group([
             'as' => 'project.',
         ], function (): void {
             Route::get('/{project}', RenderProjectView::class)
+                ->name('view');
+        });
+
+        Route::group([
+            'prefix' => '/package',
+            'as' => 'package.',
+        ], function (): void {
+            Route::get('/{package}', RenderPackageView::class)
                 ->name('view');
         });
     });

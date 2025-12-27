@@ -71,7 +71,7 @@
             >
                 Packagist
             </a>
-            <a href="#"
+            <a href="{{ route('page.package.view', $package) }}"
                class="button-outlined small">
                 Explore
             </a>
