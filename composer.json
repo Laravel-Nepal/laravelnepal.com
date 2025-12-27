@@ -17,6 +17,7 @@
         "achyutn/filament-log-viewer": "^1",
         "achyutn/laravel-helpers": "^0.10.0",
         "awcodes/filament-gravatar": "^3.0",
+        "dipesh79/laravel-share": "^1.1",
         "dutchcodingcompany/filament-developer-logins": "^2.0",
         "filament/filament": "^4.3.1",
         "filament/spatie-laravel-media-library-plugin": "^3.3",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "516e1c6359db7dc5b4e4537d39451e2f",
+    "content-hash": "59f07f3de28c96425c926c9f63cde10d",
     "packages": [
         {
             "name": "achyutn/filament-log-viewer",
@@ -1144,6 +1144,52 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
             "time": "2024-07-08T12:26:09+00:00"
+        },
+        {
+            "name": "dipesh79/laravel-share",
+            "version": "1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dipesh79/LaravelShare.git",
+                "reference": "58e5a80a8c80aabafd8046650d34f084719b78e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dipesh79/LaravelShare/zipball/58e5a80a8c80aabafd8046650d34f084719b78e6",
+                "reference": "58e5a80a8c80aabafd8046650d34f084719b78e6",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dipesh79\\LaravelShare\\LaravelShareServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dipesh79\\LaravelShare\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dipesh79",
+                    "email": "dipeshkhanal79@gmail.com",
+                    "homepage": "https://www.khanaldipesh.com.np",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Share - A simple laravel package to add share to social media link.",
+            "support": {
+                "issues": "https://github.com/Dipesh79/LaravelShare/issues",
+                "source": "https://github.com/Dipesh79/LaravelShare/tree/1.1.7"
+            },
+            "time": "2023-09-26T09:25:27+00:00"
         },
         {
             "name": "doctrine/deprecations",
