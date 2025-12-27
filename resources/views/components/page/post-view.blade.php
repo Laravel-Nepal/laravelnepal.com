@@ -72,6 +72,7 @@
                     <div class="sticky top-12 flex flex-col gap-4">
                         <x-shared.tags-glass :tags="$post->tags" />
                         <x-shared.share-glass />
+                        <x-shared.subscribe-glass />
                     </div>
                 </aside>
             </div>
