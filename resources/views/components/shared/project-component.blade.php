@@ -1,5 +1,5 @@
 <div
-    class="glass p-8 rounded-4xl flex flex-col justify-between group/project hover:border-laravel-red/50 transition-all duration-500 h-full w-full relative overflow-hidden">
+    class="glass p-8 rounded-4xl flex flex-col justify-between group/project hover:border-laravel-red/50 transition-all duration-500 w-full relative overflow-hidden">
     <div
         class="absolute -top-6 -right-6 opacity-[0.03] group-hover/project:opacity-[0.1] transition-opacity">
         <svg class="w-32 h-32 fill-white" viewBox="0 0 24 24">
@@ -49,11 +49,11 @@
                     target="_blank"
                     class="button-red small"
                 >
-                    Live Demo
+                    Visit Website
                 </a>
                 <a href="#"
                    class="button-outlined small">
-                    Details
+                    Explore
                 </a>
             </div>
         </div>
