@@ -24,6 +24,7 @@
         "joaopaulolndev/filament-edit-profile": "^2.0",
         "laravel/framework": "^12.44",
         "laravel/tinker": "^2.10.1",
+        "owenvoke/blade-fontawesome": "^2.9",
         "ryangjchandler/orbit": "^1.4"
     },
     "require-dev": {
