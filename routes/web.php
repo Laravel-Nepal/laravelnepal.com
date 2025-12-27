@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\RenderPostView;
+use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderTipView;
 
 Route::group([
@@ -19,14 +20,24 @@ Route::group([
             'prefix' => '/post',
             'as' => 'post.',
         ], function (): void {
-            Route::get('/{post}', RenderPostView::class)->name('view');
+            Route::get('/{post}', RenderPostView::class)
+                ->name('view');
         });
 
         Route::group([
             'prefix' => '/tip',
             'as' => 'tips.',
         ], function (): void {
-            Route::get('/{tip}', RenderTipView::class)->name('view');
+            Route::get('/{tip}', RenderTipView::class)
+                ->name('view');
+        });
+
+        Route::group([
+            'prefix' => '/project',
+            'as' => 'project.',
+        ], function (): void {
+            Route::get('/{project}', RenderProjectView::class)
+                ->name('view');
         });
     });
 

@@ -51,7 +51,7 @@
                 >
                     Visit Website
                 </a>
-                <a href="#"
+                <a href="{{ route('page.project.view', $project) }}"
                    class="button-outlined small">
                     Explore
                 </a>
