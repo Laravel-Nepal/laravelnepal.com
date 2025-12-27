@@ -30,7 +30,7 @@ final class PostsAndNews extends Component
             ->get();
 
         $this->news = Post::query()
-//            ->whereJsonContains('tags', 'news')
+            ->whereJsonContains('tags', 'news')
             ->latest()
             ->take(5)
             ->get();

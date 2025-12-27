@@ -15,9 +15,11 @@
             link-label="View All"
         >
             <div class="glass rounded-4xl w-full p-6 flex-1 flex flex-col gap-6">
-                @foreach($news as $newsItem)
+                @forelse($news as $newsItem)
                     <x-shared.simple-blog :post="$newsItem" />
-                @endforeach
+                @empty
+                    <p class="text-center text-neutral-500 col-span-full">No news available.</p>
+                @endforelse
             </div>
         </x-layouts.section>
     </div>
