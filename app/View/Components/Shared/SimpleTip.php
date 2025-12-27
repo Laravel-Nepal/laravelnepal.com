@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\View\Components\Shared;
 
-use App\Models\Post;
+use App\Models\Tip;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\View\Factory;
 
-final class SimpleBlog extends Component
+final class SimpleTip extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public Post $post,
-        public string $class = ''
+        public Tip $tip,
+        public ?string $class
     ) {
         //
     }
@@ -26,6 +26,6 @@ final class SimpleBlog extends Component
      */
     public function render(): View|Factory
     {
-        return view('components.shared.simple-blog');
+        return view('components.shared.simple-tip');
     }
 }
