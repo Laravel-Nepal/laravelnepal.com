@@ -21,6 +21,7 @@ final class RenderPostIndex extends Controller
 
         $posts = Post::query()
             ->latest()
+            ->take(0)
             ->get();
 
         $tags = Post::query()

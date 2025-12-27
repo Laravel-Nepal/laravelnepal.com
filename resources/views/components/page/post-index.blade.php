@@ -78,13 +78,7 @@
                     @forelse($posts as $post)
                         <x-shared.single-blog :$post />
                     @empty
-                        <div class="col-span-full glass p-20 rounded-4xl text-center">
-                            <div class="text-zinc-300 mb-4">
-                                @svg('fas-copy', 'w-16 h-16 mx-auto opacity-20')
-                            </div>
-                            <h3 class="text-xl font-bold text-zinc-400 uppercase tracking-widest">No posts found</h3>
-                            <p class="text-sm text-zinc-500 mt-2">Try adjusting your filters or search terms.</p>
-                        </div>
+                        <x-shared.empty-state icon="copy" label="posts" />
                     @endforelse
                 </div>
             </main>
