@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\NewsletterController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RenderPostView;
 
 Route::group([
     'prefix' => '/',
@@ -13,6 +13,13 @@ Route::group([
     ], function (): void {
         Route::view('/', 'components.page.landing-page')
             ->name('landingPage');
+
+        Route::group([
+            'prefix' => '/post',
+            'as' => 'post.',
+        ], function (): void {
+            Route::get('/{post}', RenderPostView::class)->name('view');
+        });
     });
 
     Route::group([

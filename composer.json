@@ -13,15 +13,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "ext-gd": "*",
         "achyutn/filament-log-viewer": "^1",
+        "achyutn/laravel-helpers": "^0.10.0",
         "awcodes/filament-gravatar": "^3.0",
+        "dipesh79/laravel-share": "^1.1",
         "dutchcodingcompany/filament-developer-logins": "^2.0",
         "filament/filament": "^4.3.1",
         "filament/spatie-laravel-media-library-plugin": "^3.3",
         "filament/spatie-laravel-settings-plugin": "^4.0",
         "joaopaulolndev/filament-edit-profile": "^2.0",
         "laravel/framework": "^12.44",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "owenvoke/blade-fontawesome": "^2.9",
+        "ryangjchandler/orbit": "^1.4",
+        "spatie/laravel-markdown": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
@@ -74,10 +80,14 @@
             "@php artisan test"
         ],
         "lint": [
-            "rector",
             "pint",
+            "rector",
             "phpstan",
             "@test"
+        ],
+        "rint": [
+            "pint",
+            "rector"
         ]
     },
     "extra": {

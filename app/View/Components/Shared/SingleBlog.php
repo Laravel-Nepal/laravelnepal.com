@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\View\Components\Shared;
 
+use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\View\Factory;
@@ -13,8 +14,9 @@ final class SingleBlog extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public Post $post
+    ) {
         //
     }
 

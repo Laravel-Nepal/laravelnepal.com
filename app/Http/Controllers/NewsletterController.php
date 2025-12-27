@@ -23,6 +23,6 @@ final class NewsletterController extends Controller
                 ]
             );
 
-        return to_route('page.landingPage');
+        return back()->with('subscribed', true);
     }
 }

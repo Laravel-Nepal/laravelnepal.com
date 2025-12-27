@@ -1,12 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "dev": "vite"
-  },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.2",
     "concurrently": "^9.2.1",
@@ -14,5 +8,14 @@
     "tailwindcss": "^4.1.18",
     "vite": "^7.3.0"
   },
-  "dependencies": {}
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "type": "module",
+  "dependencies": {
+    "shiki": "^3.20.0"
+  }
 }
