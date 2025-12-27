@@ -79,13 +79,22 @@ final class Post extends Model
         return $this->belongsTo(Author::class, 'author_username', 'username');
     }
 
+    /**
+     * @return Attribute<int, null>
+     */
     protected function minutesRead(): Attribute
     {
+        /** @phpstan-var string $content */
+        $content = $this->getAttribute('content');
+
         return Attribute::make(
-            get: fn (): int => max(1, (int) ceil(str_word_count(strip_tags($this->content ?? '')) / 200)),
+            get: fn (): int => max(1, (int) ceil(str_word_count(strip_tags($content ?? '')) / 200)),
         );
     }
 
+    /**
+     * @return Attribute<string, null>
+     */
     protected function minutesReadText(): Attribute
     {
         $singular = $this->minutes_read <= 1;

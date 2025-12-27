@@ -12,10 +12,10 @@ use Illuminate\View\Factory;
 
 final class PostsAndNews extends Component
 {
-    /** @var Collection<Post> */
+    /** @var Collection<int, Post> */
     public Collection $posts;
 
-    /** @var Collection<Post> */
+    /** @var Collection<int, Post> */
     public Collection $news;
 
     /**
