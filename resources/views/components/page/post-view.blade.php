@@ -78,6 +78,7 @@
                 <aside class="lg:col-span-4 space-y-8">
                     <div class="sticky top-12 flex flex-col gap-4">
                         <x-shared.tags-glass :tags="$post->tags" />
+                        <x-shared.share-glass />
                     </div>
                 </aside>
             </div>
