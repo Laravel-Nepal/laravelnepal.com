@@ -132,7 +132,7 @@
         @apply font-bold;
         @apply transition-all duration-200 ease-in-out;
         @apply hover:bg-[rgba(245,48,3,0.07)] hover:border-laravel-red;
-        @apply hover:translate-y-[-5px];
+        @apply hover:-translate-y-1.25;
         @apply shadow-[0_8px_8px_rgba(0,0,0,0.1)];
     }
 
@@ -151,5 +151,16 @@
         @apply h-0.5;
         @apply grow;
         @apply bg-linear-to-r from-white/20 to-transparent;
+    }
+
+    .badge {
+        @apply bg-laravel-red;
+        @apply text-white;
+        @apply text-[10px];
+        @apply font-bold;
+        @apply px-2 py-1;
+        @apply rounded;
+        @apply mb-4;
+        @apply inline-block;
     }
 }

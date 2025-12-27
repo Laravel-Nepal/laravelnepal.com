@@ -80,6 +80,7 @@ final class Post extends Model
     {
         return [
             'tags' => 'array',
+            'date' => 'date',
         ];
     }
 }
