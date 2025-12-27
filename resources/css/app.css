@@ -120,6 +120,12 @@
         @apply hover:scale-105;
         @apply transition-all duration-200 ease-in-out;
         @apply hover:shadow-[0_15px_40px_rgba(245,48,3,0.4)];
+
+        &:where(.small) {
+            @apply rounded-md;
+            @apply px-4 py-2;
+            @apply text-sm;
+        }
     }
 
     .button-outlined {
@@ -134,6 +140,12 @@
         @apply hover:bg-[rgba(245,48,3,0.07)] hover:border-laravel-red;
         @apply hover:-translate-y-1.25;
         @apply shadow-[0_8px_8px_rgba(0,0,0,0.1)];
+
+        &:where(.small) {
+            @apply rounded-md;
+            @apply px-4 py-2;
+            @apply text-sm;
+        }
     }
 
     .section-title {
