@@ -14,23 +14,17 @@
             </a>
         </div>
 
-        <nav class="flex mb-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500" aria-label="Breadcrumb">
-            <ol class="flex items-center space-x-2">
-                <li><a href="/" class="hover:text-laravel-red">Home</a></li>
-                <li><span class="px-2">/</span></li>
-                <li><a href="#feed" class="hover:text-laravel-red">Blog</a></li>
-                <li><span class="px-2">/</span></li>
-                <li class="text-zinc-300" aria-current="page">Technical Insight</li>
-            </ol>
-        </nav>
-
         <article>
             <header class="mb-16 space-y-8">
-                <div class="flex flex-wrap gap-4">
-                    @foreach($post->tags as $tag)
-                        <span class="badge">{{ ucwords($tag) }}</span>
-                    @endforeach
-                </div>
+                <nav class="flex mb-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500" aria-label="Breadcrumb">
+                    <ol class="flex items-center space-x-2">
+                        <li><a href="/" class="hover:text-laravel-red">Home</a></li>
+                        <li><span class="px-2">/</span></li>
+                        <li><a href="#feed" class="hover:text-laravel-red">Blog</a></li>
+                        <li><span class="px-2">/</span></li>
+                        <li class="text-zinc-300" aria-current="page">Technical Insight</li>
+                    </ol>
+                </nav>
 
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tighter">
                     {{ $post->title }}
@@ -59,6 +53,15 @@
                             {{ $post->date->format('M d, Y') }}
                         </p>
                     </div>
+
+                    <div class="h-8 w-px bg-white/5"></div>
+
+                    <div>
+                        <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Estimated</p>
+                        <p class="text-sm font-bold mt-1 text-zinc-300">
+                            {{ $post->minutes_read_text }}
+                        </p>
+                    </div>
                 </div>
             </header>
 
@@ -74,15 +77,13 @@
                 </div>
 
                 <aside class="lg:col-span-4 space-y-8 hidden lg:block">
-                    <div class="glass p-8 rounded-4xl sticky top-12">
-                        <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-6">Article Utility</h4>
-
-                        <div class="space-y-6">
-                            <div class="flex justify-between items-center">
-                                <span class="text-zinc-400 text-xs">Estimated Read</span>
-                                <span class="text-white text-xs font-bold">
-                                    {{ $post->minutes_read_text }}
-                                </span>
+                    <div class="sticky top-12 flex flex-col gap-4">
+                        <div class="glass p-8 rounded-4xl space-y-8">
+                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-6">Tags</h4>
+                            <div class="flex flex-wrap gap-4">
+                                @foreach($post->tags as $tag)
+                                    <span class="badge">{{ ucwords($tag) }}</span>
+                                @endforeach
                             </div>
                         </div>
                     </div>
