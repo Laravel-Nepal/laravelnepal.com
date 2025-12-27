@@ -1,4 +1,7 @@
-<div class="glass p-6 rounded-4xl flex flex-col justify-between group/tip cursor-pointer hover:border-laravel-red/50 transition-all h-full w-full">
+<a
+    class="glass p-6 rounded-4xl flex flex-col justify-between group/tip cursor-pointer hover:border-laravel-red/50 transition-all h-full w-full"
+    href="{{ route('page.tips.view', $tip) }}"
+>
     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-laravel-red blur-[80px] opacity-0 group-hover/tip:opacity-30 transition-opacity"></div>
     <div class="flex flex-wrap justify-between items-center mb-6 w-full gap-y-4">
         <div class="text-zinc-500 text-xs font-mono uppercase tracking-widest">
@@ -25,8 +28,8 @@
                 {{ $tip->author->name }}
             </span>
         </div>
-        <a href="{{ route('page.tips.view', $tip) }}" class="text-[10px] font-black uppercase text-laravel-red group-hover/tip:translate-x-2 transition-transform flex items-center gap-1">
+        <div class="text-[10px] font-black uppercase text-laravel-red group-hover/tip:translate-x-2 transition-transform flex items-center gap-1">
             Read <span>→</span>
-        </a>
+        </div>
     </div>
-</div>
+</a>
