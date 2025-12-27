@@ -13,10 +13,13 @@
             @endforeach
         </div>
     </div>
+    <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest mb-2">
+        {{ $post->date->format('M d, Y') }}
+    </div>
     <h4 class="font-bold text-xl mb-2 group-hover:text-laravel-red transition">
         {{ $post->title }}
     </h4>
-    <p class="text-zinc-300 max-w-xl text-sm md:text-base">
-        {{ $post->author->name }} &middot; {{ $post->date->format('M d, Y') }} &middot; {{ $post->minutes_read_text }}
+    <p class="text-zinc-400 text-xs font-bold">
+        {{ $post->author->name }} &middot; {{ $post->minutes_read_text }}
     </p>
 </a>
