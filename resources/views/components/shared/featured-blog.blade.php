@@ -1,4 +1,7 @@
-<a href="#" class="block group relative rounded-4xl overflow-hidden aspect-video glass w-full">
+<a
+    href="{{ route('page.post.view', $post) }}"
+    class="block group relative rounded-4xl overflow-hidden aspect-video glass w-full"
+>
     <div class="absolute inset-0 bg-linear-to-tr from-laravel-red/10 group-hover:from-laravel-red/20 to-transparent"></div>
     <div class="absolute bottom-0 left-0 p-8 md:p-12">
         <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest mb-4">

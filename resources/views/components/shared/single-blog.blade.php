@@ -1,4 +1,4 @@
-<a href="#" class="glass p-6 rounded-4xl hover:-translate-y-2 transition-transform group">
+<a href="{{ route('page.post.view', $post) }}" class="glass p-6 rounded-4xl hover:-translate-y-2 transition-transform group">
     <div class="h-40 bg-zinc-900 rounded-2xl mb-4 overflow-hidden relative">
         <div
             @class([
