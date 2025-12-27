@@ -13,7 +13,7 @@
             @endforeach
         </div>
     </div>
-    <h4 class="font-bold text-xl mb-2">
+    <h4 class="font-bold text-xl mb-2 group-hover:text-laravel-red transition">
         {{ $post->title }}
     </h4>
     <p class="text-zinc-300 max-w-xl text-sm md:text-base">
