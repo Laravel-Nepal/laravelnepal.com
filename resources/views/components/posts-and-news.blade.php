@@ -14,7 +14,11 @@
             link-url="#"
             link-label="View All"
         >
-            These are my news
+            <div class="glass rounded-4xl w-full p-6 flex-1 flex flex-col gap-6">
+                @foreach($news as $newsItem)
+                    <x-shared.simple-blog :post="$newsItem" />
+                @endforeach
+            </div>
         </x-layouts.section>
     </div>
     <div class="col-span-full grid grid-cols-1 lg:grid-cols-3 order-2 lg:order-3 gap-4 lg:gap-6">
