@@ -37,6 +37,7 @@
     .format {
         :where(a):not(:where([class~="not-format"] *)) {
             @apply text-laravel-red;
+            @apply font-bold;
         }
     }
 }

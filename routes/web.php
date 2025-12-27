@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\NewsletterController;
 
 Route::group([
@@ -17,8 +18,7 @@ Route::group([
             'prefix' => '/post',
             'as' => 'post.',
         ], function (): void {
-            Route::view('/{post}', 'components.page.post-view')
-                ->name('view');
+            Route::get('/{post}', RenderPostView::class)->name('view');
         });
     });
 
