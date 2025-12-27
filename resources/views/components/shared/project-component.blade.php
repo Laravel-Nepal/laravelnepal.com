@@ -21,7 +21,7 @@
                     </span>
                 @endforeach
             </div>
-            <a href="{{ $project->github_url }}" target="_blank"
+            <a href="https://github.com/{{ $project->github }}" target="_blank"
                class="text-zinc-500 hover:text-white group-hover/project:scale-125 transition-all duration-300 pointer-events-auto relative z-30">
                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path
@@ -33,9 +33,6 @@
         <h3 class="text-2xl font-black mb-3 group-hover/project:text-laravel-red transition-colors">
             {{ $project->title }}
         </h3>
-        <p class="text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-6">
-            {{ $project->description }}
-        </p>
     </div>
     <hr class="border-white/5 mb-4 relative z-20">
     <div class="mt-auto space-y-6 relative z-20 pointer-events-none">
