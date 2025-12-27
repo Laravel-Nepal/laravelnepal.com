@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\View\Components;
+namespace App\View\Components\Section\LandingPage;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
@@ -41,6 +41,6 @@ final class PostsAndNews extends Component
      */
     public function render(): View|Factory
     {
-        return view('components.posts-and-news');
+        return view('components.section.landing-page.posts-and-news');
     }
 }

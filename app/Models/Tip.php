@@ -77,6 +77,7 @@ final class Tip extends Model
     {
         return [
             'tags' => 'array',
+            'date' => 'date',
         ];
     }
 }
