@@ -156,11 +156,10 @@
     .badge {
         @apply bg-laravel-red;
         @apply text-white;
-        @apply text-[10px];
+        @apply text-sm;
         @apply font-bold;
         @apply px-2 py-1;
         @apply rounded;
-        @apply mb-4;
         @apply inline-block;
     }
 }

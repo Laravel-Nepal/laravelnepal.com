@@ -18,8 +18,8 @@
         </x-layouts.section>
     </div>
     <div class="col-span-full grid grid-cols-1 lg:grid-cols-3 order-2 lg:order-3 gap-4 lg:gap-6">
-        @for($i = 0; $i < 3; $i++)
-            <x-shared.single-blog />
-        @endfor
+        @foreach($posts->slice(1) as $post)
+            <x-shared.single-blog :$post />
+        @endforeach
     </div>
 </div>
