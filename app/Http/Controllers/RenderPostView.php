@@ -17,7 +17,7 @@ final class RenderPostView extends Controller
     {
         $breadCrumb = [
             ['label' => 'Home', 'url' => route('page.landingPage')],
-            ['label' => 'Posts', 'url' => '#'],
+            ['label' => 'Posts', 'url' => route('page.post.index')],
             ['label' => $post->getAttribute('title'), 'url' => route('page.post.view', $post)],
         ];
 
