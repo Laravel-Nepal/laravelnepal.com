@@ -1,5 +1,5 @@
 <a
-    href="#"
+    href="{{ route('page.tips.view', $tip) }}"
     @class([
         $class,
         "group/item border-b border-white/20 last:border-0 last:pb-0",
