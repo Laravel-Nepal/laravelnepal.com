@@ -27,7 +27,7 @@ final class FilterPosts extends Component
     public function render(): View
     {
         $this->posts = Post::query()
-            ->when($this->query !== '', function ($query) {
+            ->when(filled($this->query), function ($query) {
                 $query->where('title', 'like', '%'.$this->query.'%');
             })
             ->when(count($this->selectedTags) > 0, function ($query) {
