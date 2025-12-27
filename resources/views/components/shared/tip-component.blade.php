@@ -25,7 +25,7 @@
                 {{ $tip->author->name }}
             </span>
         </div>
-        <a href="#" class="text-[10px] font-black uppercase text-laravel-red group-hover/tip:translate-x-2 transition-transform flex items-center gap-1">
+        <a href="{{ route('page.tips.view', $tip) }}" class="text-[10px] font-black uppercase text-laravel-red group-hover/tip:translate-x-2 transition-transform flex items-center gap-1">
             Read <span>→</span>
         </a>
     </div>
