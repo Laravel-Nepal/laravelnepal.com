@@ -23,6 +23,6 @@ final class NewsletterController extends Controller
                 ]
             );
 
-        return redirect()->back()->with('subscribed', true);
+        return back()->with('subscribed', true);
     }
 }
