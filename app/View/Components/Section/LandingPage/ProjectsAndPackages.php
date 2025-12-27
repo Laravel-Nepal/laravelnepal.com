@@ -6,7 +6,6 @@ namespace App\View\Components\Section\LandingPage;
 
 use App\Models\Package;
 use App\Models\Project;
-use App\Models\Tip;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
