@@ -10,7 +10,7 @@
             {{ $post->title }}
         </h2>
         <p class="text-zinc-300 max-w-xl text-sm md:text-base">
-            {{ $post->author->name }} &middot; {{ $post->date->format('M d, Y') }}
+            {{ $post->author->name }} &middot; {{ $post->date->format('M d, Y') }} &middot; {{ $post->minutes_read_text }}
         </p>
     </div>
 </a>

@@ -17,7 +17,7 @@ use Orbit\Concerns\Orbital;
  * @property string $title
  * @property string|null $slug
  * @property string $author_username
- * @property string $date
+ * @property \Illuminate\Support\Carbon $date
  * @property string|null $canonical_url
  * @property array<array-key, mixed> $tags
  * @property string|null $content
@@ -25,6 +25,8 @@ use Orbit\Concerns\Orbital;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read int $minutes_read
+ * @property-read string $minutes_read_text
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
@@ -76,8 +78,6 @@ final class Post extends Model
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
     }
-
-
 
     protected function minutesRead(): Attribute
     {
