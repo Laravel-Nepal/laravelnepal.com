@@ -65,7 +65,7 @@
                 </div>
             </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-4">
                 <div class="lg:col-span-8">
                     <div class="glass p-8 md:p-12 rounded-[3rem] relative overflow-hidden">
                         <div class="absolute -top-24 -left-24 w-64 h-64 bg-laravel-red/5 blur-[100px] pointer-events-none"></div>
@@ -75,11 +75,10 @@
                         </div>
                     </div>
                 </div>
-
-                <aside class="lg:col-span-4 space-y-8 hidden lg:block">
+                <aside class="lg:col-span-4 space-y-8">
                     <div class="sticky top-12 flex flex-col gap-4">
                         <div class="glass p-8 rounded-4xl space-y-8">
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-6">Tags</h4>
+                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-6">Tags</h4>
                             <div class="flex flex-wrap gap-4">
                                 @foreach($post->tags as $tag)
                                     <span class="badge">{{ ucwords($tag) }}</span>

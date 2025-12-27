@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\RenderPostView;
 
 Route::group([
     'prefix' => '/',
