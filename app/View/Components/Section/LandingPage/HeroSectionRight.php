@@ -12,8 +12,9 @@ use Illuminate\View\Factory;
 
 final class HeroSectionRight extends Component
 {
-    public Post $post;
-    public Tip $tip;
+    public ?Post $post;
+
+    public ?Tip $tip;
 
     /**
      * Create a new component instance.
