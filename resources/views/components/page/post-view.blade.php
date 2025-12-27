@@ -77,14 +77,7 @@
                 </div>
                 <aside class="lg:col-span-4 space-y-8">
                     <div class="sticky top-12 flex flex-col gap-4">
-                        <div class="glass p-8 rounded-4xl space-y-8">
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-6">Tags</h4>
-                            <div class="flex flex-wrap gap-4">
-                                @foreach($post->tags as $tag)
-                                    <span class="badge">{{ ucwords($tag) }}</span>
-                                @endforeach
-                            </div>
-                        </div>
+                        <x-shared.tags-glass :tags="$post->tags" />
                     </div>
                 </aside>
             </div>
