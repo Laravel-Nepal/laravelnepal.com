@@ -21,11 +21,21 @@ final class FilterPosts extends Component
     #[Url(as: 'q', except: '')]
     public string $query = '';
 
+    #[Url(as: 'tag', except: [])]
+    public array $selectedTags = [];
+
     public function render(): View
     {
         $this->posts = Post::query()
             ->when($this->query !== '', function ($query) {
                 $query->where('title', 'like', '%'.$this->query.'%');
+            })
+            ->when(count($this->selectedTags) > 0, function ($query) {
+                $query->where(function ($query) {
+                    foreach ($this->selectedTags as $tag) {
+                        $query->orWhereJsonContains('tags', $tag);
+                    }
+                });
             })
             ->latest()
             ->get();
