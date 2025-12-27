@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class RenderPackageView extends Controller
+final class RenderPackageView extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,7 +18,7 @@ class RenderPackageView extends Controller
         $breadCrumb = [
             ['label' => 'Home', 'url' => route('page.landingPage')],
             ['label' => 'Packages', 'url' => '#'],
-            ['label' => $package->name, 'url' => route('page.package.view', $package)],
+            ['label' => $package->getAttribute('name'), 'url' => route('page.package.view', $package)],
         ];
 
         return view('components.page.package-view', compact('package', 'breadCrumb'));

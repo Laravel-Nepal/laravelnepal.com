@@ -18,7 +18,7 @@ final class RenderTipView extends Controller
         $breadCrumb = [
             ['label' => 'Home', 'url' => route('page.landingPage')],
             ['label' => 'Tips', 'url' => '#'],
-            ['label' => $tip->title, 'url' => route('page.tips.view', $tip)],
+            ['label' => $tip->getAttribute('title'), 'url' => route('page.tips.view', $tip)],
         ];
 
         return view('components.page.tip-view', compact('tip', 'breadCrumb'));
