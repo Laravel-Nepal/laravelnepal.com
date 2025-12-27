@@ -8,9 +8,12 @@ use App\Http\Requests\Newsletter\SubscribeToNewsletterRequest;
 use App\Models\Subscriber;
 use Illuminate\Http\RedirectResponse;
 
-final class NewsletterController extends Controller
+final class SubscribeToNewsletter extends Controller
 {
-    public function subscribe(SubscribeToNewsletterRequest $subscribeToNewsletterRequest): RedirectResponse
+    /**
+     * Handle the incoming request.
+     */
+    public function __invoke(SubscribeToNewsletterRequest $subscribeToNewsletterRequest): RedirectResponse
     {
         Subscriber::query()
             ->updateOrCreate(

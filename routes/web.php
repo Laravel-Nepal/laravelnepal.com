@@ -7,6 +7,7 @@ use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderTipView;
+use App\Http\Controllers\SubscribeToNewsletter;
 
 Route::group([
     'prefix' => '/',
@@ -53,8 +54,8 @@ Route::group([
     Route::group([
         'prefix' => '/newsletter',
         'as' => 'newsletter.',
-        'controller' => NewsletterController::class,
     ], function (): void {
-        Route::post('/subscribe', 'subscribe')->name('subscribe');
+        Route::post('/subscribe', SubscribeToNewsletter::class)
+            ->name('subscribe');
     });
 });
