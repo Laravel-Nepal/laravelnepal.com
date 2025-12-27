@@ -9,15 +9,7 @@
 
         <article>
             <header class="mb-16 space-y-8">
-                <nav class="flex mb-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500" aria-label="Breadcrumb">
-                    <ol class="flex items-center space-x-2">
-                        <li><a href="/" class="hover:text-laravel-red">Home</a></li>
-                        <li><span class="px-2">/</span></li>
-                        <li><a href="#feed" class="hover:text-laravel-red">Blog</a></li>
-                        <li><span class="px-2">/</span></li>
-                        <li class="text-zinc-300" aria-current="page">Technical Insight</li>
-                    </ol>
-                </nav>
+                <x-shared.bread-crumb :$breadCrumb />
 
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tighter">
                     {{ $post->title }}

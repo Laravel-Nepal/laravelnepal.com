@@ -15,6 +15,11 @@ final class RenderPostView extends Controller
      */
     public function __invoke(Request $request, Post $post): View
     {
-        return view('components.page.post-view', compact('post'));
+        $breadCrumb = [
+            ['label' => 'Home', 'url' => route('page.landingPage')],
+            ['label' => 'Posts', 'url' => '#'],
+            ['label' => $post->title, 'url' => route('page.post.view', $post)],
+        ];
+        return view('components.page.post-view', compact('post', 'breadCrumb'));
     }
 }
