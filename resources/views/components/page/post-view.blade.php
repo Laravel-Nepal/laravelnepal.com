@@ -1,11 +1,4 @@
 <x-layouts.app>
-    <div
-        x-data="{ percent: 0 }"
-        @scroll.window="percent = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100"
-        class="fixed top-0 left-0 w-full h-1 z-[110]"
-    >
-        <div class="h-full bg-laravel-red transition-all duration-150" :style="`width: ${percent}%`"></div >
-    </div>
     <div class="container relative min-h-screen pt-20 pb-40">
         <div class="mb-12">
             <a href="{{ route('page.landingPage') }}" class="group flex items-center gap-2 text-zinc-500 hover:text-laravel-red transition-all">
@@ -70,7 +63,7 @@
                     <div class="glass p-8 md:p-12 rounded-[3rem] relative overflow-hidden">
                         <div class="absolute -top-24 -left-24 w-64 h-64 bg-laravel-red/5 blur-[100px] pointer-events-none"></div>
 
-                        <div class="format max-w-none">
+                        <div class="prose prose-invert max-w-none prose-a:text-laravel-red prose-a:font-bold">
                             {!! Str::markdown($post->content) !!}
                         </div>
                     </div>
@@ -84,9 +77,5 @@
             </div>
         </article>
     </div>
-
-    @push('scripts')
-        <script defer src="//cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    @endpush
 </x-layouts.app>
 
