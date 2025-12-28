@@ -11,12 +11,17 @@ use Livewire\Component;
 final class CheckboxGlass extends Component
 {
     #[Modelable]
+    /** @var array<int, string> */
     public array $value = [];
 
     public string $label = 'Tags';
 
+    /** @var array<int, array{value: string, bracketValue: int}> */
     public array $arrayValues = [];
 
+    /**
+     * @param  array<int, array{value: string, bracketValue: int}>  $arrayValues
+     */
     public function mount(string $label, array $arrayValues): void
     {
         $this->label = $label;

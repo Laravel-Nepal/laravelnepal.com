@@ -8,7 +8,7 @@
                         <input
                             type="checkbox"
                             wire:model="value"
-                            value="{{ $arrayValue }}"
+                            value="{{ $arrayValue['value'] }}"
                             class="peer appearance-none w-5 h-5 rounded-md border border-white/10 bg-white/5 checked:bg-laravel-red checked:border-laravel-red transition-all cursor-pointer"
                         >
                         <svg class="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 left-1 transition-opacity pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -16,10 +16,10 @@
                         </svg>
                     </div>
                     <span class="ml-3 text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors uppercase font-bold tracking-tight">
-                        {{ $arrayValue }}
+                        {{ $arrayValue['value'] }}
                     </span>
                     <span class="ml-auto text-xs font-mono text-zinc-500 group-hover:text-laravel-red transition-colors">
-                        ({{ $arrayValue }})
+                        ({{ $arrayValue['bracketValue'] }})
                     </span>
                 </label>
             @endforeach

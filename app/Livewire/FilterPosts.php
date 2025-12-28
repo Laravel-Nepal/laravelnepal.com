@@ -15,12 +15,13 @@ final class FilterPosts extends Component
     /** @var Collection<int, Post> */
     public Collection $posts;
 
-    /** @var array<int, string> */
+    /** @var array<int, array{value: string, bracketValue: int}> */
     public array $tags;
 
     #[Url(as: 'q', except: '')]
     public string $query = '';
 
+    /** @var array<int, string> */
     #[Url(as: 'tag', except: [])]
     public array $selectedTags = [];
 
@@ -42,9 +43,15 @@ final class FilterPosts extends Component
 
         $this->tags = Post::query()
             ->select('tags')
-            ->pluck('tags')
-            ->flatten()
-            ->unique()
+            ->get()
+            ->flatMap(function ($post) {
+                return $post->tags;
+            })
+            ->groupBy(fn ($tag): mixed => $tag)
+            ->map(fn ($tags, $tag): array => [
+                'value' => $tag,
+                'bracketValue' => count($tags),
+            ])
             ->values()
             ->all();
 
