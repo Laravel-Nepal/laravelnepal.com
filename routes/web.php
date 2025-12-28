@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\RenderPackageIndex;
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostIndex;
 use App\Http\Controllers\RenderPostView;
@@ -54,6 +55,8 @@ Route::group([
             'prefix' => '/package',
             'as' => 'package.',
         ], function (): void {
+            Route::get('/', RenderPackageIndex::class)
+                ->name('index');
             Route::get('/{package}', RenderPackageView::class)
                 ->name('view');
         });
