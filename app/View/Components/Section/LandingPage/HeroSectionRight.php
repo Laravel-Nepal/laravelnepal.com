@@ -14,6 +14,7 @@ use Illuminate\View\Factory;
 final class HeroSectionRight extends Component
 {
     public int $authors;
+
     public ?Post $post;
 
     public ?Tip $tip;
