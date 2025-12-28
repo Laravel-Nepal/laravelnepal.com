@@ -14,9 +14,10 @@ final class CheckboxGlass extends Component
     public array $value = [];
 
     public string $label = 'Tags';
+
     public array $arrayValues = [];
 
-    public function mount($label, $arrayValues): void
+    public function mount(string $label, array $arrayValues): void
     {
         $this->label = $label;
         $this->arrayValues = $arrayValues;

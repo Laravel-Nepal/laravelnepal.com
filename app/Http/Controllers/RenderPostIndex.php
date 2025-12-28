@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ final class RenderPostIndex extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Factory|View
     {
         $breadCrumb = [
             ['label' => 'Home', 'url' => route('page.landingPage')],

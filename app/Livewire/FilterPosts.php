@@ -27,13 +27,13 @@ final class FilterPosts extends Component
     public function render(): View
     {
         $this->posts = Post::query()
-            ->when(filled($this->query), function ($query) {
+            ->when(filled($this->query), function ($query): void {
                 $query->where('title', 'like', '%'.$this->query.'%');
             })
-            ->when(count($this->selectedTags) > 0, function ($query) {
-                $query->where(function ($query) {
-                    foreach ($this->selectedTags as $tag) {
-                        $query->orWhereJsonContains('tags', $tag);
+            ->when($this->selectedTags !== [], function ($query): void {
+                $query->where(function ($query): void {
+                    foreach ($this->selectedTags as $selectedTag) {
+                        $query->orWhereJsonContains('tags', $selectedTag);
                     }
                 });
             })
