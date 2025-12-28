@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Livewire\Shared;
+
+use Illuminate\View\View;
+use Livewire\Attributes\Modelable;
+use Livewire\Component;
+
+final class CheckboxGlass extends Component
+{
+    #[Modelable]
+    public array $value = [];
+
+    public string $label = 'Tags';
+    public array $arrayValues = [];
+
+    public function mount($label, $arrayValues): void
+    {
+        $this->label = $label;
+        $this->arrayValues = $arrayValues;
+    }
+
+    public function render(): View
+    {
+        return view('livewire.shared.checkbox-glass');
+    }
+}

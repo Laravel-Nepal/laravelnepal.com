@@ -15,8 +15,8 @@ final class FilterPosts extends Component
     /** @var Collection<int, Post> */
     public Collection $posts;
 
-    /** @var Collection<int, string> */
-    public Collection $tags;
+    /** @var array<int, string> */
+    public array $tags;
 
     #[Url(as: 'q', except: '')]
     public string $query = '';
@@ -45,7 +45,8 @@ final class FilterPosts extends Component
             ->pluck('tags')
             ->flatten()
             ->unique()
-            ->values();
+            ->values()
+            ->all();
 
         return view('livewire.filter-posts');
     }
