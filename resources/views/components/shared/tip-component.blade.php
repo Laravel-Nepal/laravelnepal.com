@@ -10,7 +10,7 @@
         <div class="flex flex-wrap justify-end gap-2">
             @foreach($tip->tags as $tag)
                 <span class="badge">
-                    {{ strtoupper($tag) }}
+                    {{ ucwords($tag) }}
                 </span>
             @endforeach
         </div>
