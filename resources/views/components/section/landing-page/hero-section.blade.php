@@ -12,12 +12,12 @@
             </p>
 
             <div class="flex flex-wrap gap-4 pt-4">
-                <button class="button-red">
+                <a class="button-red" href="https://github.com/Laravel-Nepal/contents" target="_blank" rel="noopener">
                     Join Community
-                </button>
-                <button class="button-outlined">
+                </a>
+                <a class="button-outlined" href="#explore">
                     Explore
-                </button>
+                </a>
             </div>
         </div>
         <x-section.landing-page.hero-section-right />

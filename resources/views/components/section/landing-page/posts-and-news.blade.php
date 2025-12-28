@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-y-6 lg:gap-x-12 container">
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-y-6 lg:gap-x-12 container scroll-mt-24" id="explore">
     <div class="col-span-1 lg:col-span-3 order-1 lg:order-1">
         <x-layouts.section
             title="Blogs"

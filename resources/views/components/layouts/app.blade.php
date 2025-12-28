@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
     @php
         use App\Settings\SiteSettings;
@@ -27,7 +27,7 @@
     @vite(["resources/js/app.js", "resources/css/app.css"])
     @stack('styles')
 </head>
-<body class="container-xl antialiased scroll-smooth bg-[#050505] text-white overflow-x-hidden">
+<body class="container-xl antialiased bg-[#050505] text-white overflow-x-hidden">
     <x-shared.navbar />
     <div class="bg"></div>
     {{ $slot }}
