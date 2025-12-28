@@ -44,14 +44,17 @@ final class FilterPosts extends Component
         $this->tags = Post::query()
             ->select('tags')
             ->get()
-            ->flatMap(function ($post) {
-                return $post->tags;
-            })
-            ->groupBy(fn ($tag): mixed => $tag)
-            ->map(fn ($tags, $tag): array => [
-                'value' => $tag,
-                'bracketValue' => count($tags),
-            ])
+            ->flatMap(
+                /** @phpstan-return array<int, string> */
+                fn (Post $post): array => (array) $post->getAttribute('tags')
+            )
+            ->countBy()
+            ->map(
+                fn (int $count, string $tag): array => [
+                    'value' => $tag,
+                    'bracketValue' => $count,
+                ]
+            )
             ->values()
             ->all();
 

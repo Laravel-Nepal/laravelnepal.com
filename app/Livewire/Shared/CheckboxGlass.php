@@ -10,8 +10,8 @@ use Livewire\Component;
 
 final class CheckboxGlass extends Component
 {
-    #[Modelable]
     /** @var array<int, string> */
+    #[Modelable]
     public array $value = [];
 
     public string $label = 'Tags';
