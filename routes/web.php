@@ -6,6 +6,7 @@ use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostIndex;
 use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectView;
+use App\Http\Controllers\RenderTipIndex;
 use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
 
@@ -32,6 +33,8 @@ Route::group([
             'prefix' => '/tip',
             'as' => 'tips.',
         ], function (): void {
+            Route::get('/', RenderTipIndex::class)
+                ->name('index');
             Route::get('/{tip}', RenderTipView::class)
                 ->name('view');
         });
