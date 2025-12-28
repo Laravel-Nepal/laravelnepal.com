@@ -1,6 +1,6 @@
 <div x-data="{ sidebarOpen: false }">
     <div class="flex gap-4 mb-8">
-        <livewire:shared.filter-input wire:model.live.debounce.500ms="query" label="tip" />
+        <livewire:shared.filter-input wire:model.live.debounce.500ms="query" label="project" />
         <x-shared.filter-toggle />
     </div>
 
@@ -15,10 +15,10 @@
 
         <main class="lg:col-span-9">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                @forelse($tips as $tip)
-                    <x-shared.tip-component :$tip />
+                @forelse($projects as $project)
+                    <x-shared.project-component :$project />
                 @empty
-                    <x-shared.empty-state icon="lightbulb" label="tips" />
+                    <x-shared.empty-state icon="layer-group" label="projects" />
                 @endforelse
             </div>
         </main>

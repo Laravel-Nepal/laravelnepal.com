@@ -8,19 +8,18 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class RenderProjectView extends Controller
+final class RenderProjectIndex extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, Project $project): View
+    public function __invoke(Request $request): View
     {
         $breadCrumb = [
             ['label' => 'Home', 'url' => route('page.landingPage')],
             ['label' => 'Projects', 'url' => route('page.project.index')],
-            ['label' => $project->getAttribute('title'), 'url' => route('page.project.view', $project)],
         ];
 
-        return view('components.page.project-view', compact('project', 'breadCrumb'));
+        return view('components.page.project-index', compact('breadCrumb'));
     }
 }

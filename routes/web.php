@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostIndex;
 use App\Http\Controllers\RenderPostView;
+use App\Http\Controllers\RenderProjectIndex;
 use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderTipIndex;
 use App\Http\Controllers\RenderTipView;
@@ -43,6 +44,8 @@ Route::group([
             'prefix' => '/project',
             'as' => 'project.',
         ], function (): void {
+            Route::get('/', RenderProjectIndex::class)
+                ->name('index');
             Route::get('/{project}', RenderProjectView::class)
                 ->name('view');
         });

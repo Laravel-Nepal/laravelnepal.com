@@ -10,7 +10,7 @@
             x-transition
             :class="sidebarOpen ? 'block' : 'hidden lg:block'"
         >
-            <livewire:shared.checkbox-glass :array-values="$tags" wire:model.live="selectedTags" label="Tags" />
+            <livewire:shared.checkbox-glass :array-values="$tags" wire:model.live="selectedTags" />
         </aside>
 
         <main class="lg:col-span-9">

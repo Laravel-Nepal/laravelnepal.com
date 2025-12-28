@@ -14,7 +14,7 @@ final class CheckboxGlass extends Component
     #[Modelable]
     public array $value = [];
 
-    public string $label = 'Tags';
+    public ?string $label;
 
     /** @var array<int, array{value: string, bracketValue: int}> */
     public array $arrayValues = [];
@@ -22,9 +22,9 @@ final class CheckboxGlass extends Component
     /**
      * @param  array<int, array{value: string, bracketValue: int}>  $arrayValues
      */
-    public function mount(string $label, array $arrayValues): void
+    public function mount(array $arrayValues, ?string $label = null): void
     {
-        $this->label = $label;
+        $this->label = $label ?? 'Tags';
         $this->arrayValues = $arrayValues;
     }
 
