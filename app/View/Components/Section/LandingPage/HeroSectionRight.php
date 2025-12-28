@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\View\Components\Section\LandingPage;
 
+use App\Models\Author;
 use App\Models\Post;
 use App\Models\Tip;
 use Illuminate\Contracts\View\View;
@@ -12,6 +13,7 @@ use Illuminate\View\Factory;
 
 final class HeroSectionRight extends Component
 {
+    public int $authors;
     public ?Post $post;
 
     public ?Tip $tip;
@@ -21,6 +23,9 @@ final class HeroSectionRight extends Component
      */
     public function __construct()
     {
+        $this->authors = Author::query()
+            ->count();
+
         $this->post = Post::query()
             ->latest()
             ->first();

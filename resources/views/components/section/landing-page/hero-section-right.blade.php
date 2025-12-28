@@ -2,12 +2,14 @@
     <div class="glass p-8 rounded-[2.5rem] relative z-10 overflow-hidden group">
         <div class="flex justify-between mb-8">
             <div>
-                <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Active Members</p>
-                <h4 class="text-3xl font-black mt-1">1.2k+</h4>
+                <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Members</p>
+                <h4 class="text-3xl font-black mt-1">
+                    {{ $authors }}+
+                </h4>
             </div>
             <div class="text-right">
-                <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Location</p>
-                <h4 class="text-3xl font-black mt-1 text-laravel-red">NP</h4>
+                <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Current Time</p>
+                <x-section.landing-page.time-block />
             </div>
         </div>
 
