@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -33,19 +34,32 @@
     }
 }
 
-@layer utilities {
-    .format {
-        :where(a):not(:where([class~="not-format"] *)) {
-            @apply text-laravel-red;
-        }
-    }
-}
-
 @utility glass {
     @apply bg-white/3;
     @apply backdrop-blur-[30px];
     @apply border border-[rgba(255,255,255,0.1)];
     @apply shadow-[0_8px_32px_rgba(0,0,0,0.5)];
+}
+
+@layer utilities {
+    pre {
+        @apply bg-black/60! rounded-2xl my-8 p-6 overflow-x-auto leading-relaxed!;
+    }
+
+    pre code {
+        @apply font-mono text-sm antialiased;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    pre::-webkit-scrollbar {
+        @apply h-1;
+    }
+    pre::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+    pre::-webkit-scrollbar-thumb {
+        @apply bg-white/10 rounded-full hover:bg-laravel-red/40 transition-colors;
+    }
 }
 
 @layer components {
@@ -94,7 +108,7 @@
     }
 
     .nav-item {
-        @apply px-4 py-2;
+        @apply px-2 py-2;
         @apply hover:bg-white/5;
         @apply rounded-full;
         @apply text-[10px] hover:text-[12px];
@@ -120,6 +134,12 @@
         @apply hover:scale-105;
         @apply transition-all duration-200 ease-in-out;
         @apply hover:shadow-[0_15px_40px_rgba(245,48,3,0.4)];
+
+        &:where(.small) {
+            @apply rounded-md;
+            @apply px-4 py-2;
+            @apply text-sm;
+        }
     }
 
     .button-outlined {
@@ -132,8 +152,14 @@
         @apply font-bold;
         @apply transition-all duration-200 ease-in-out;
         @apply hover:bg-[rgba(245,48,3,0.07)] hover:border-laravel-red;
-        @apply hover:translate-y-[-5px];
+        @apply hover:-translate-y-1.25;
         @apply shadow-[0_8px_8px_rgba(0,0,0,0.1)];
+
+        &:where(.small) {
+            @apply rounded-md;
+            @apply px-4 py-2;
+            @apply text-sm;
+        }
     }
 
     .section-title {
@@ -151,5 +177,15 @@
         @apply h-0.5;
         @apply grow;
         @apply bg-linear-to-r from-white/20 to-transparent;
+    }
+
+    .badge {
+        @apply bg-laravel-red;
+        @apply text-white;
+        @apply text-sm;
+        @apply font-bold;
+        @apply px-2 py-1;
+        @apply rounded;
+        @apply inline-block;
     }
 }

@@ -4,21 +4,57 @@
 @endphp
 <nav class="dock-container" id="dock">
     <div class="dock rounded-full px-4 py-3 flex items-center gap-2">
-        <a href="{{ route('page.landingPage') }}">
+        <a href="{{ route('page.landingPage') }}" class="block group w-10 h-10 shrink-0">
             @if($siteSettings->logo)
-                <img src="{{ asset('/storage/'.$siteSettings->logo) }}" alt="{{ $siteSettings->name }} Logo" class="h-10 w-10 object-contain rounded-full">
+                <img
+                    src="{{ asset('/storage/'.$siteSettings->logo) }}"
+                    alt="{{ $siteSettings->name }} Logo"
+                    class="h-10 w-10 object-cover rounded-full"
+                />
             @else
-                <span class="w-10 h-10 bg-laravel-red rounded-full flex items-center justify-center font-black text-xs hover:scale-110 transition">
+                <span class="w-10 h-10 bg-laravel-red rounded-xl flex items-center justify-center font-black text-xs group-hover:scale-110 transition">
                     LN
                 </span>
             @endif
         </a>
         <div class="h-6 w-px bg-white/10 mx-2"></div>
-        <div class="flex gap-1">
-            <a href="#feed" class="nav-item active">Feed</a>
-            <a href="#blogs" class="nav-item">Blogs</a>
-            <a href="#authors" class="nav-item">Authors</a>
-            <a href="#projects" class="nav-item">Explore</a>
+        <div class="flex gap-2 w-full">
+            <a
+                href="{{ route('page.post.index') }}"
+                @class([
+                    "nav-item",
+                    "active" => request()->routeIs('page.post.index')
+                ])
+            >
+                Blogs
+            </a>
+            <a
+                href="{{ route('page.tips.index') }}"
+                @class([
+                    "nav-item",
+                    "active" => request()->routeIs('page.tips.index')
+                ])
+            >
+                Tips
+            </a>
+            <a
+                href="{{ route('page.project.index') }}"
+                @class([
+                    "nav-item",
+                    "active" => request()->routeIs('page.project.index')
+                ])
+            >
+                Projects
+            </a>
+            <a
+                href="{{ route('page.package.index') }}"
+                @class([
+                    "nav-item",
+                    "active" => request()->routeIs('page.package.index')
+                ])
+            >
+                Packages
+            </a>
         </div>
     </div>
 </nav>

@@ -106,9 +106,9 @@ final class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentLogViewer::make()
-                    ->authorize(fn (): bool => auth()->user()?->role === UserRole::Maintainer),
+                    ->authorize(fn (): bool => auth()->user()?->role === UserRole::Admin),
                 EnvironmentIndicatorPlugin::make()
-                    ->visible(fn (): bool => auth()->user()?->role === UserRole::Maintainer)
+                    ->visible(fn (): bool => auth()->user()?->role === UserRole::Admin)
                     ->showDebugModeWarning()
                     ->showGitBranch(),
                 GravatarPlugin::make()
