@@ -18,7 +18,7 @@
             @endif
         </a>
         <div class="h-6 w-px bg-white/10 mx-2"></div>
-        <div class="flex gap-1 w-full">
+        <div class="flex gap-2 w-full">
             <a
                 href="{{ route('page.post.index') }}"
                 @class([
