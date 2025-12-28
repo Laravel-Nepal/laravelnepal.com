@@ -108,7 +108,7 @@
     }
 
     .nav-item {
-        @apply px-4 py-2;
+        @apply px-2 py-2;
         @apply hover:bg-white/5;
         @apply rounded-full;
         @apply text-[10px] hover:text-[12px];
