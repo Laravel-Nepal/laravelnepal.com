@@ -12,17 +12,22 @@
                 <hr class="border-white/5" />
 
                 <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-3">
-                        <img
-                            alt="{{ $post->author->name }}"
-                            class="w-10 h-10 rounded-full border border-laravel-red/20"
-                            src="{{ $post->author->avatar }}"
-                        />
-                        <div>
-                            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Author</p>
-                            <p class="text-sm font-bold mt-1">{{ $post->author->name }}</p>
+                    <a href="{{ route('page.artisan.view', $post->author) }}" class="flex items-center gap-3 group/artisan">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-laravel-red/20 blur-md rounded-full opacity-0 group-hover/artisan:opacity-100 transition-opacity"></div>
+                            <img
+                                alt="{{ $post->author->name }}"
+                                class="relative w-10 h-10 rounded-full border border-laravel-red/20 group-hover:border-laravel-red/50 transition-colors object-cover"
+                                src="{{ $post->author->avatar }}"
+                            />
                         </div>
-                    </div>
+                        <div>
+                            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Artisan</p>
+                            <p class="text-sm font-bold mt-1 group-hover/artisan:text-laravel-red transition-colors">
+                                {{ $post->author->name }}
+                            </p>
+                        </div>
+                    </a>
 
                     <div class="h-8 w-px bg-white/5"></div>
 

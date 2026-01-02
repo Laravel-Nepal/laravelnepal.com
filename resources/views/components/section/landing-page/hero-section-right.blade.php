@@ -2,7 +2,7 @@
     <div class="glass p-8 rounded-[2.5rem] relative z-10 overflow-hidden group">
         <div class="flex justify-between mb-8">
             <div>
-                <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Members</p>
+                <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Artisans</p>
                 <h4 class="text-3xl font-black mt-1">
                     {{ Number::abbreviate($authors) }}@if($authors > 1000)+@endif
                 </h4>

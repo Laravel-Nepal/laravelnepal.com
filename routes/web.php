@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\RenderArtisanIndex;
+use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderPackageIndex;
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostIndex;
@@ -58,6 +60,16 @@ Route::group([
             Route::get('/', RenderPackageIndex::class)
                 ->name('index');
             Route::get('/{package}', RenderPackageView::class)
+                ->name('view');
+        });
+
+        Route::group([
+            'prefix' => '/artisan',
+            'as' => 'artisan.',
+        ], function (): void {
+            Route::get('/', RenderArtisanIndex::class)
+                ->name('index');
+            Route::get('/{author}', RenderArtisanView::class)
                 ->name('view');
         });
     });
