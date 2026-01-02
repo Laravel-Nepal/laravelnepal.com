@@ -25,7 +25,7 @@
     <div class="flex items-center justify-between mt-8 pt-4 border-t border-white/5 group-hover/tip:border-laravel-red/10">
         <div class="flex items-center gap-2">
             <span class="text-zinc-400 text-xs font-bold">
-                {{ $tip->author->name }}
+                {{ $tip->author->name }} &middot; {{ $tip->minutes_read_text }}
             </span>
         </div>
         <div class="text-[10px] font-black uppercase text-laravel-red group-hover/tip:translate-x-2 transition-transform flex items-center gap-1">

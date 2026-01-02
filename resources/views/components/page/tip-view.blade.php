@@ -32,6 +32,15 @@
                             {{ $tip->date->format('M d, Y') }}
                         </p>
                     </div>
+
+                    <div class="h-8 w-px bg-white/5"></div>
+
+                    <div>
+                        <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Estimated</p>
+                        <p class="text-sm font-bold mt-1 text-zinc-300">
+                            {{ $tip->minutes_read_text }}
+                        </p>
+                    </div>
                 </div>
             </header>
 
