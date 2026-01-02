@@ -36,28 +36,28 @@
                 </span>
             </button>
         </div>
-        <a href="{{ $share->gmail() }}" alt="Share via Gmail">
+        <a href="{{ $share->gmail() }}" target="_blank" alt="Share via Gmail">
             {{ svg('fab-google', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->linkedin() }}" alt="Share via LinkedIn">
+        <a href="{{ $share->linkedin() }}" target="_blank" alt="Share via LinkedIn">
             {{ svg('fab-linkedin', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->facebook() }}" alt="Share via Facebook">
+        <a href="{{ $share->facebook() }}" target="_blank" alt="Share via Facebook">
             {{ svg('fab-facebook-f', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->twitter() }}" alt="Share via X (Twitter)">
+        <a href="{{ $share->twitter() }}" target="_blank" alt="Share via X (Twitter)">
             {{ svg('fab-x-twitter', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->whatsapp() }}" alt="Share via WhatsApp">
+        <a href="{{ $share->whatsapp() }}" target="_blank" alt="Share via WhatsApp">
             {{ svg('fab-whatsapp', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->viber() }}" alt="Share via Viber">
+        <a href="{{ $share->viber() }}" target="_blank" alt="Share via Viber">
             {{ svg('fab-viber', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->reddit() }}" alt="Share via Reddit">
+        <a href="{{ $share->reddit() }}" target="_blank" alt="Share via Reddit">
             {{ svg('fab-reddit', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
-        <a href="{{ $share->telegram() }}" alt="Share via Telegram">
+        <a href="{{ $share->telegram() }}" target="_blank" alt="Share via Telegram">
             {{ svg('fab-telegram', 'text-white hover:text-laravel-red w-6 h-6') }}
         </a>
     </div>
