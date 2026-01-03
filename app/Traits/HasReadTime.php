@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 /**
  * @property string $contentColumn
  * @property-read int $minutes_read
+ * @property-read string $minutes_read_text
  *
  * @method string|null contentValue()
  */
