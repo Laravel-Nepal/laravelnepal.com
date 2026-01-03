@@ -64,13 +64,17 @@ Route::group([
         });
 
         Route::group([
-            'prefix' => '/artisan',
             'as' => 'artisan.',
         ], function (): void {
-            Route::get('/', RenderArtisanIndex::class)
-                ->name('index');
-            Route::get('/{author}', RenderArtisanView::class)
+            Route::get('/@{author}', RenderArtisanView::class)
                 ->name('view');
+
+            Route::group([
+                'prefix' => '/artisan',
+            ], function (): void {
+                Route::get('/', RenderArtisanIndex::class)
+                    ->name('index');
+            });
         });
     });
 
