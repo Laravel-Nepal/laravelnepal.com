@@ -54,6 +54,16 @@
                         <div class="h-8 w-px bg-white/5 hidden md:block"></div>
                     @endif
 
+                    @if($author->x)
+                        <div>
+                            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">X</p>
+                            <a href="https://x.com/{{ $author->x }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white flex items-center gap-1 transition-colors">
+                                {{ $author->x }}
+                            </a>
+                        </div>
+                        <div class="h-8 w-px bg-white/5 hidden md:block"></div>
+                    @endif
+
                     @if($author->linkedin)
                         <div>
                             <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">LinkedIn</p>
