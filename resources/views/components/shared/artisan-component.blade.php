@@ -1,8 +1,8 @@
 <div
     class="glass p-8 rounded-4xl flex flex-col justify-between group/artisan hover:border-laravel-red/50 transition-all duration-500 w-full relative overflow-hidden"
 >
-    <div class="absolute -top-6 -right-6 opacity-[0.03] group-hover/artisan:opacity-[0.1] transition-opacity pointer-events-none select-none">
-        <span class="text-7xl font-black italic uppercase tracking-tighter text-white">
+    <div class="absolute -top-6 -right-6 opacity-[0.03] group-hover/artisan:opacity-[0.1] transition-opacity pointer-events-none select-none overflow-x-hidden">
+        <span class="text-7xl font-black italic uppercase tracking-tighter text-nowrap text-white">
             {{ $author->username }}
         </span>
     </div>
