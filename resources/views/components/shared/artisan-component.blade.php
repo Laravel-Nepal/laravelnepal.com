@@ -47,7 +47,7 @@
         <h3 class="text-2xl font-black mb-1 group-hover/artisan:text-laravel-red transition-colors">
             {{ $author->name }}
         </h3>
-        <p class="text-laravel-red/60 text-[10px] font-mono font-bold uppercase tracking-widest mb-4 italic">
+        <p class="text-laravel-red text-xs font-mono font-bold uppercase tracking-widest mb-4 italic">
             @<span></span>{{ $author->username }}
         </p>
 
