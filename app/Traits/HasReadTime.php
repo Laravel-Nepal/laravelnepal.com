@@ -54,6 +54,6 @@ trait HasReadTime
     {
         return property_exists($this, 'contentColumn')
             ? $this->contentColumn
-            : 'image';
+            : 'content';
     }
 }
