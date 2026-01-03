@@ -50,10 +50,11 @@
         <p class="text-laravel-red text-xs font-mono font-bold uppercase tracking-widest mb-4 italic">
             @<span></span>{{ $author->username }}
         </p>
-
-        <p class="text-zinc-400 text-sm leading-relaxed line-clamp-2 mb-6">
-            {{ $author->bio ?? 'Artisan contributor at Laravel Nepal.' }}
-        </p>
+        @if($author->bio)
+            <p class="text-zinc-400 text-sm leading-relaxed line-clamp-2 mb-6">
+                {{ $author->bio }}
+            </p>
+        @endif
     </div>
 
     <hr class="border-white/5 mb-4 relative z-20">

@@ -6,7 +6,7 @@
             <header class="mb-16 space-y-8">
                 <x-shared.bread-crumb :$breadCrumb />
 
-                <div class="flex flex-col md:flex-row md:items-end gap-6 md:gap-10">
+                <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
                     <div class="relative group w-32 h-32 md:w-40 md:h-40">
                         <div class="absolute inset-0 bg-laravel-red/20 blur-2xl rounded-full group-hover:bg-laravel-red/30 transition-all"></div>
                         <img
@@ -23,6 +23,11 @@
                         <p class="text-laravel-red font-mono font-bold text-lg uppercase tracking-[0.2em]">
                             @<span></span>{{ $author->username }}
                         </p>
+                        @if($author->bio)
+                            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-3xl">
+                                {{ $author->bio }}
+                            </p>
+                        @endif
                     </div>
                 </div>
 
