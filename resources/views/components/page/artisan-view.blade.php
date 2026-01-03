@@ -92,65 +92,104 @@
 
                     <div class="mt-20 space-y-24">
                         @if($author->posts->isNotEmpty())
-                            <section class="space-y-8">
-                                <div class="flex items-center gap-4">
+                            <x-layouts.section class="space-y-8">
+                                <x-slot:title>
                                     <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">
-                                        Published <span class="text-laravel-red">Articles</span>
+                                        Published <span class="ml-2 text-laravel-red">Articles</span>
                                     </h3>
-                                    <div class="h-px flex-1 bg-white/5"></div>
-                                </div>
+                                </x-slot:title>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     @foreach($author->posts as $post)
                                         <x-shared.single-blog :$post />
                                     @endforeach
                                 </div>
-                            </section>
+                            </x-layouts.section>
                         @endif
 
+{{--                        @if($author->tips->isNotEmpty())--}}
+{{--                            <section class="space-y-8">--}}
+{{--                                <div class="flex items-center gap-4">--}}
+{{--                                    <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">--}}
+{{--                                        Code <span class="text-laravel-red">Tips</span>--}}
+{{--                                    </h3>--}}
+{{--                                    <div class="h-px flex-1 bg-white/5"></div>--}}
+{{--                                </div>--}}
+{{--                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">--}}
+{{--                                    @foreach($author->tips as $tip)--}}
+{{--                                        <x-shared.tip-component :$tip />--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </section>--}}
+{{--                        @endif--}}
+
+{{--                        @if($author->projects->isNotEmpty())--}}
+{{--                            <section class="space-y-8">--}}
+{{--                                <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">--}}
+{{--                                    Featured <span class="text-laravel-red">Projects</span>--}}
+{{--                                </h3>--}}
+{{--                                <div class="flex flex-col gap-6">--}}
+{{--                                    @foreach($author->projects as $project)--}}
+{{--                                        <x-shared.project-component :$project />--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </section>--}}
+{{--                        @endif--}}
+
+{{--                        @if($author->packages->isNotEmpty())--}}
+{{--                            <section class="space-y-8">--}}
+{{--                                <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">--}}
+{{--                                    OSS <span class="text-laravel-red">Packages</span>--}}
+{{--                                </h3>--}}
+{{--                                <div class="flex flex-col gap-6">--}}
+{{--                                    @foreach($author->packages as $package)--}}
+{{--                                        <x-shared.package-component :$package />--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </section>--}}
+{{--                        @endif--}}
                         @if($author->tips->isNotEmpty())
-                            <section class="space-y-8">
-                                <div class="flex items-center gap-4">
+                            <x-layouts.section class="space-y-8">
+                                <x-slot:title>
                                     <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">
-                                        Code <span class="text-laravel-red">Tips</span>
+                                        Code <span class="ml-2 text-laravel-red">Tips</span>
                                     </h3>
-                                    <div class="h-px flex-1 bg-white/5"></div>
-                                </div>
+                                </x-slot:title>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     @foreach($author->tips as $tip)
                                         <x-shared.tip-component :$tip />
                                     @endforeach
                                 </div>
-                            </section>
+                            </x-layouts.section>
                         @endif
 
-                        @if($author->projects->isNotEmpty() || $author->packages->isNotEmpty())
-                            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
-                                @if($author->projects->isNotEmpty())
-                                    <section class="space-y-8">
-                                        <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">
-                                            Featured <span class="text-laravel-red">Projects</span>
-                                        </h3>
-                                        <div class="flex flex-col gap-6">
-                                            @foreach($author->projects as $project)
-                                                <x-shared.project-component :$project />
-                                            @endforeach
-                                        </div>
-                                    </section>
-                                @endif
+                        @if($author->projects->isNotEmpty())
+                            <x-layouts.section class="space-y-8">
+                                <x-slot:title>
+                                    <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">
+                                        Featured <span class="ml-2 text-laravel-red">Projects</span>
+                                    </h3>
+                                </x-slot:title>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    @foreach($author->projects as $project)
+                                        <x-shared.project-component :$project />
+                                    @endforeach
+                                </div>
+                            </x-layouts.section>
+                        @endif
 
-                                @if($author->packages->isNotEmpty())
-                                    <section class="space-y-8">
-                                        <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">
-                                            OSS <span class="text-laravel-red">Packages</span>
-                                        </h3>
-                                        <div class="flex flex-col gap-6">
-                                            @foreach($author->packages as $package)
-                                                <x-shared.package-component :$package />
-                                            @endforeach
-                                        </div>
-                                    </section>
-                                @endif
-                            </div>
+                        @if($author->packages->isNotEmpty())
+                            <x-layouts.section class="space-y-8">
+                                <x-slot:title>
+                                    <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">
+                                        OSS <span class="ml-2 text-laravel-red">Packages</span>
+                                    </h3>
+                                </x-slot:title>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    @foreach($author->packages as $package)
+                                        <x-shared.package-component :$package />
+                                    @endforeach
+                                </div>
+                            </x-layouts.section>
                         @endif
                     </div>
                 </div>
