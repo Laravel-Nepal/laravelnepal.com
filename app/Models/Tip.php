@@ -17,13 +17,15 @@ use Orbit\Concerns\Orbital;
  * @property string $title
  * @property string $slug
  * @property string $author_username
- * @property string $date
+ * @property \Illuminate\Support\Carbon $date
  * @property array<array-key, mixed> $tags
  * @property string|null $content
  * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read int $minutes_read
+ * @property-read string $minutes_read_text
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newQuery()

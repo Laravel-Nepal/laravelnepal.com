@@ -14,12 +14,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  */
 trait HasReadTime
 {
-    public function getContent(): string
+    public function getContent(): ?string
     {
         if (method_exists($this, 'contentValue') && $this->contentValue() !== null) {
             return $this->contentValue();
         }
 
+        /** @phpstan-var string */
         return data_get($this, $this->contentColumn());
     }
 
@@ -29,7 +30,7 @@ trait HasReadTime
     protected function minutesRead(): Attribute
     {
         /** @phpstan-var string $content */
-        $content = $this->getContent();
+        $content = $this->getContent() ?? '';
 
         return Attribute::make(
             get: fn (): int => max(1, (int) ceil(str_word_count(strip_tags($content ?? '')) / 200)),
