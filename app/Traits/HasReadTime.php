@@ -16,6 +16,7 @@ trait HasReadTime
 {
     public function getContent(): ?string
     {
+        /** @phpstan-ignore function.alreadyNarrowedType */
         if (method_exists($this, 'contentValue') && $this->contentValue() !== null) {
             return $this->contentValue();
         }
