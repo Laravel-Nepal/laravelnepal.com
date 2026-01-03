@@ -5,7 +5,7 @@
     $class ?? '',
 ])>
     <div class="flex flex-row gap-4 w-full items-between justify-center mb-6">
-        <div class="section-title w-full">{{ $title }}</div>
+        <div class="section-title w-full">{!! $title !!}</div>
         @if(isset($linkUrl) && isset($linkLabel))
             <a
                 href="{{ $linkUrl }}"

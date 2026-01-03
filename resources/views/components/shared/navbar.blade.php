@@ -23,7 +23,7 @@
                 href="{{ route('page.post.index') }}"
                 @class([
                     "nav-item",
-                    "active" => request()->routeIs('page.post.index')
+                    "active" => request()->routeIs('page.post.index') || request()->routeIs('page.post.view')
                 ])
             >
                 Blogs
@@ -32,7 +32,7 @@
                 href="{{ route('page.tips.index') }}"
                 @class([
                     "nav-item",
-                    "active" => request()->routeIs('page.tips.index')
+                    "active" => request()->routeIs('page.tips.index') || request()->routeIs('page.tips.view')
                 ])
             >
                 Tips
@@ -41,7 +41,7 @@
                 href="{{ route('page.project.index') }}"
                 @class([
                     "nav-item",
-                    "active" => request()->routeIs('page.project.index')
+                    "active" => request()->routeIs('page.project.index') || request()->routeIs('page.project.view')
                 ])
             >
                 Projects
@@ -50,10 +50,19 @@
                 href="{{ route('page.package.index') }}"
                 @class([
                     "nav-item",
-                    "active" => request()->routeIs('page.package.index')
+                    "active" => request()->routeIs('page.package.index') || request()->routeIs('page.package.view')
                 ])
             >
                 Packages
+            </a>
+            <a
+                href="{{ route('page.artisan.index') }}"
+                @class([
+                    "nav-item",
+                    "active" => request()->routeIs('page.artisan.index') || request()->routeIs('page.artisan.view')
+                ])
+            >
+                Artisans
             </a>
         </div>
     </div>
