@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Scopes\SkipExcluded;
+use App\Traits\HasReadTime;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,13 +17,15 @@ use Orbit\Concerns\Orbital;
  * @property string $title
  * @property string $slug
  * @property string $author_username
- * @property string $date
+ * @property \Illuminate\Support\Carbon $date
  * @property array<array-key, mixed> $tags
  * @property string|null $content
  * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read int $minutes_read
+ * @property-read string $minutes_read_text
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newQuery()
@@ -42,6 +44,7 @@ use Orbit\Concerns\Orbital;
  */
 final class Tip extends Model
 {
+    use HasReadTime;
     use Orbital;
 
     public static function schema(Blueprint $blueprint): void
@@ -72,31 +75,6 @@ final class Tip extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
-    }
-
-    /**
-     * @return Attribute<int, null>
-     */
-    protected function minutesRead(): Attribute
-    {
-        /** @phpstan-var string $content */
-        $content = $this->getAttribute('content');
-
-        return Attribute::make(
-            get: fn (): int => max(1, (int) ceil(str_word_count(strip_tags($content ?? '')) / 200)),
-        );
-    }
-
-    /**
-     * @return Attribute<string, null>
-     */
-    protected function minutesReadText(): Attribute
-    {
-        $singular = $this->minutes_read <= 1;
-
-        return Attribute::make(
-            get: fn (): string => $this->minutes_read.' min'.($singular ? '' : 's').' read',
-        );
     }
 
     protected function casts(): array
