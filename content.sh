@@ -20,4 +20,7 @@ find "$CONTENT_DIR" -name "README.md" -type f -delete
 echo "🔧 Optimizing images..."
 php artisan ln:optimize-images
 
+echo "🔍 Generating SEO for missing entries..."
+php artisan seo:generate
+
 echo "✅ Content repo synced!"
