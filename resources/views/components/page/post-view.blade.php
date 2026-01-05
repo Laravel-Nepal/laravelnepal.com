@@ -69,5 +69,8 @@
             </div>
         </article>
     </div>
+    @push('seo')
+        {!! seo($post) !!}
+    @endpush
 </x-layouts.app>
 

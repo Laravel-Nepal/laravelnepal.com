@@ -97,6 +97,11 @@ final class Post extends Model
         return config('app.name');
     }
 
+    public function urlValue(): ?string
+    {
+        return route('page.post.view', $this);
+    }
+
     protected function casts(): array
     {
         return [
