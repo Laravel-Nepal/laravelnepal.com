@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -56,7 +58,11 @@ use Orbit\Concerns\Orbital;
  */
 final class Author extends Model
 {
+    use InteractsWithSEO;
     use Orbital;
+
+    public $titleColumn = 'name';
+    public $descriptionColumn = 'bio';
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -107,6 +113,40 @@ final class Author extends Model
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_username', 'username');
+    }
+
+    public function authorValue(): ?string
+    {
+        return config('app.name');
+    }
+
+    public function authorUrlValue(): ?string
+    {
+        return route('page.landingPage');
+    }
+
+    public function publisherValue(): ?string
+    {
+        return $this->getAuthorValue();
+    }
+
+    public function publisherUrlValue(): ?string
+    {
+        return $this->getAuthorUrlValue();
+    }
+
+    public function urlValue(): ?string
+    {
+        return route('page.artisan.view', $this);
+    }
+
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Artisans', route('page.artisan.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
     }
 
     /**
