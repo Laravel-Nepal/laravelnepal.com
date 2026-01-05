@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Traits\HasReadTime;
@@ -100,6 +101,15 @@ final class Post extends Model
     public function urlValue(): ?string
     {
         return route('page.post.view', $this);
+    }
+
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Posts', route('page.post.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
     }
 
     protected function casts(): array
