@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Schemas\BlogSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Traits\HasReadTime;
@@ -46,8 +48,9 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Post extends Model
+final class Post extends Model implements HasMarkup
 {
+    use BlogSchema;
     use HasReadTime;
     use InteractsWithSEO;
     use Orbital;
@@ -96,6 +99,11 @@ final class Post extends Model
     public function publisherValue(): ?string
     {
         return config('app.name');
+    }
+
+    public function publisherUrlValue(): ?string
+    {
+        return route('page.landingPage');
     }
 
     public function urlValue(): ?string
