@@ -63,6 +63,7 @@ final class Author extends Model
 
     public $titleColumn = 'name';
     public $descriptionColumn = 'bio';
+    public $imageColumn = 'avatar';
 
     public static function schema(Blueprint $blueprint): void
     {
