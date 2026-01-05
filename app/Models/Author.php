@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
+use App\Schemas\AuthorSchema;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -56,13 +58,16 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Author extends Model
+final class Author extends Model implements HasMarkup
 {
+    use AuthorSchema;
     use InteractsWithSEO;
     use Orbital;
 
     public $titleColumn = 'name';
+
     public $descriptionColumn = 'bio';
+
     public $imageColumn = 'avatar';
 
     public static function schema(Blueprint $blueprint): void
@@ -180,6 +185,29 @@ final class Author extends Model
 
                 return 'https://ui-avatars.com/api/?name='.urlencode($name).'&size=128';
             },
-        )->withoutObjectCaching();
+        );
+    }
+
+    protected function socialLinks(): Attribute
+    {
+        $links = [];
+        if (filled($this->getAttribute('linkedin'))) {
+            $links[] = 'https://www.linkedin.com/in/'.$this->getAttribute('linkedin');
+        }
+        if (filled($this->getAttribute('github'))) {
+            $links[] = 'https://www.github.com/'.$this->getAttribute('github');
+        }
+        if (filled($this->getAttribute('x'))) {
+            $links[] = 'https://www.x.com/'.$this->getAttribute('x');
+        }
+        if (filled($this->getAttribute('website'))) {
+            $links[] = $this->getAttribute('website');
+        }
+
+        return Attribute::make(
+            get: function () use ($links): array {
+                return $links;
+            },
+        );
     }
 }
