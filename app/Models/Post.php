@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Traits\HasReadTime;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -47,6 +48,7 @@ use Orbit\Concerns\Orbital;
 final class Post extends Model
 {
     use HasReadTime;
+    use InteractsWithSEO;
     use Orbital;
 
     public static function schema(Blueprint $blueprint): void
@@ -78,6 +80,21 @@ final class Post extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
+    }
+
+    public function authorValue(): ?string
+    {
+        return $this->author?->name;
+    }
+
+    public function authorUrlValue(): ?string
+    {
+        return route('page.artisan.view', $this->author);
+    }
+
+    public function publisherValue(): ?string
+    {
+        return config('app.name');
     }
 
     protected function casts(): array
