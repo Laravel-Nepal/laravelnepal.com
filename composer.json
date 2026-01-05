@@ -16,6 +16,7 @@
         "ext-gd": "*",
         "achyutn/filament-log-viewer": "^1",
         "achyutn/laravel-helpers": "^0.10.0",
+        "achyutn/laravel-seo": "^1.3",
         "awcodes/filament-gravatar": "^3.0",
         "dipesh79/laravel-share": "^1.1",
         "dutchcodingcompany/filament-developer-logins": "^2.0",
