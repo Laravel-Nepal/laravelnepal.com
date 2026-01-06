@@ -5,8 +5,8 @@ declare(strict_types=1);
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Services\SEOService;
 
-beforeEach(function () {
-    $seoService = app(SEOService::class);
+beforeEach(function (): void {
+    $seoService = resolve(SEOService::class);
 
     $classes = collect($seoService->seoModels());
 
@@ -15,7 +15,7 @@ beforeEach(function () {
     })->flatten();
 });
 
-it('should render all pages without error', function () {
+it('should render all pages without error', function (): void {
     foreach ($this->testObjects as $object) {
         $url = $object->getURLValue();
 
