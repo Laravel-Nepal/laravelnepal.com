@@ -23,7 +23,8 @@ trait AuthorSchema
                 'name' => $resolvedSEO->title,
                 'description' => $resolvedSEO->description,
                 'url' => $resolvedSEO->url,
-                'email' => $model->email,
+                /** @phpstan-var string|null $email */
+                'email' => $model->getAttribute('email'),
                 'image' => $resolvedSEO->image,
                 'sameAs' => $model->social_links,
             ]);

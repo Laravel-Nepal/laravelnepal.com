@@ -30,6 +30,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read SEO|null $seo
  *
+ * @method static Builder<static>|Page findSimilarSlugs(string $attribute, array<string,string> $config, string $slug)
  * @method static Builder<static>|Page newModelQuery()
  * @method static Builder<static>|Page newQuery()
  * @method static Builder<static>|Page onlyTrashed()
@@ -46,7 +47,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|Page whereType($value)
  * @method static Builder<static>|Page whereUpdatedAt($value)
  * @method static Builder<static>|Page withTrashed(bool $withTrashed = true)
- * @method static Builder<static>|Page withUniqueSlugConstraints(Model $model, string $attribute, array $config, string $slug)
+ * @method static Builder<static>|Page withUniqueSlugConstraints(Model $model, string $attribute, array<string,string> $config, string $slug)
  * @method static Builder<static>|Page withoutTrashed()
  *
  * @mixin \Eloquent
@@ -63,7 +64,7 @@ final class Page extends Model implements HasMarkup
         return 'slug';
     }
 
-    public function categoryValue(): ?string
+    public function categoryValue(): string
     {
         return $this->type->getLabel();
     }

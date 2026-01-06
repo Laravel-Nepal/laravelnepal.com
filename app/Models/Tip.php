@@ -86,6 +86,7 @@ final class Tip extends Model implements HasMarkup
 
     public function authorValue(): ?string
     {
+        /** @phpstan-var string|null */
         return $this->author?->getAttribute('name');
     }
 
