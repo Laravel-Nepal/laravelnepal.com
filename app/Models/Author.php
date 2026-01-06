@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
-use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 #[ScopedBy(SkipExcluded::class)]
 /**

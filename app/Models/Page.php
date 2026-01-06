@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
-use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 /**
  * @property int $id
@@ -25,6 +24,7 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
  * @property string|null $content
  * @property string|null $name
  * @property PageType $type
+ * @property array<array-key, mixed>|null $tags
  * @property Carbon|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -42,6 +42,7 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
  * @method static Builder<static>|Page whereId($value)
  * @method static Builder<static>|Page whereName($value)
  * @method static Builder<static>|Page whereSlug($value)
+ * @method static Builder<static>|Page whereTags($value)
  * @method static Builder<static>|Page whereTitle($value)
  * @method static Builder<static>|Page whereType($value)
  * @method static Builder<static>|Page whereUpdatedAt($value)
