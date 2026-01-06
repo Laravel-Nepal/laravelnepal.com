@@ -11,4 +11,10 @@ parameters:
         - database/factories
         - routes
 
+    ignoreErrors:
+        -
+            message: '#Class App\\Models\\[A-Za-z0-9]+ implements generic interface AchyutN\\LaravelSEO\\Contracts\\HasMarkup but does not specify its types: TKey#'
+            paths:
+                - app/Models/*
+
     treatPhpDocTypesAsCertain: false
