@@ -29,6 +29,8 @@ use Orbit\Concerns\Orbital;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
+ * @property-read array $social_links
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package newQuery()
@@ -85,7 +87,7 @@ final class Package extends Model implements HasMarkup
         return $this->belongsTo(Author::class, 'author_username', 'username');
     }
 
-    public function categoryValue(): ?string
+    public function categoryValue(): string
     {
         return 'Package';
     }
