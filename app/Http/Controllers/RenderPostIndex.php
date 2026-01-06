@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\PageType;
+use App\Models\Page;
 use App\Models\Post;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -21,18 +23,11 @@ final class RenderPostIndex extends Controller
             ['label' => 'Posts', 'url' => route('page.post.index')],
         ];
 
-        $posts = Post::query()
-            ->latest()
-            ->take(0)
-            ->get();
+        $page = Page::query()
+            ->whereType(PageType::IndexPage)
+            ->whereName('post')
+            ->first();
 
-        $tags = Post::query()
-            ->select('tags')
-            ->pluck('tags')
-            ->flatten()
-            ->unique()
-            ->values();
-
-        return view('components.page.post-index', compact('breadCrumb', 'posts', 'tags'));
+        return view('components.page.post-index', compact('breadCrumb', 'page'));
     }
 }

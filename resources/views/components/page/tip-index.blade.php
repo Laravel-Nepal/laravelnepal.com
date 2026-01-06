@@ -14,4 +14,7 @@
 
         <livewire:filter-tips />
     </div>
+    @push('seo')
+        {!! seo($page) !!}
+    @endpush
 </x-layouts.app>
