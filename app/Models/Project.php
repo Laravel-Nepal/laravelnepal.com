@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
+use App\Schemas\ProjectSchema;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
@@ -43,10 +46,11 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Project extends Model
+final class Project extends Model implements HasMarkup
 {
     use InteractsWithSEO;
     use Orbital;
+    use ProjectSchema;
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -77,6 +81,11 @@ final class Project extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
+    }
+
+    public function categoryValue(): ?string
+    {
+        return 'Project';
     }
 
     public function authorValue(): ?string
@@ -118,5 +127,24 @@ final class Project extends Model
         return [
             'tags' => 'array',
         ];
+    }
+
+    protected function socialLinks(): Attribute
+    {
+        $links = [];
+
+        if (filled($this->getAttribute('github'))) {
+            $links[] = 'https://www.github.com/'.$this->getAttribute('github');
+        }
+
+        if (filled($this->getAttribute('website'))) {
+            $links[] = $this->getAttribute('website');
+        }
+
+        return Attribute::make(
+            get: function () use ($links): array {
+                return $links;
+            },
+        );
     }
 }
