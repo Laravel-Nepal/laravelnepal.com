@@ -92,7 +92,7 @@ final class Project extends Model implements HasMarkup
 
     public function authorValue(): ?string
     {
-        return $this->author?->name;
+        return $this->author?->getAttribute('name');
     }
 
     public function authorUrlValue(): string
@@ -133,6 +133,7 @@ final class Project extends Model implements HasMarkup
         ];
     }
 
+    /** @return Attribute<array<string|null>, null> */
     protected function socialLinks(): Attribute
     {
         $links = [];

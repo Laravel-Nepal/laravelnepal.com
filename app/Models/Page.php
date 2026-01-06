@@ -30,7 +30,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read SEO|null $seo
  *
- * @method static Builder<static>|Page findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static Builder<static>|Page newModelQuery()
  * @method static Builder<static>|Page newQuery()
  * @method static Builder<static>|Page onlyTrashed()

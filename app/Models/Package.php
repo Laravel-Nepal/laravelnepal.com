@@ -94,7 +94,8 @@ final class Package extends Model implements HasMarkup
 
     public function authorValue(): ?string
     {
-        return $this->author?->name;
+        /** @phpstan-var string|null */
+        return $this->author?->getAttribute('name');
     }
 
     public function authorUrlValue(): string
@@ -135,6 +136,7 @@ final class Package extends Model implements HasMarkup
         ];
     }
 
+    /** @return Attribute<array<string|null>, null> */
     protected function socialLinks(): Attribute
     {
         $links = [];

@@ -192,6 +192,7 @@ final class Author extends Model implements HasMarkup
         );
     }
 
+    /** @return Attribute<array<string|null>, null> */
     protected function socialLinks(): Attribute
     {
         $links = [];

@@ -86,7 +86,7 @@ final class Tip extends Model implements HasMarkup
 
     public function authorValue(): ?string
     {
-        return $this->author?->name;
+        return $this->author?->getAttribute('name');
     }
 
     public function authorUrlValue(): string
