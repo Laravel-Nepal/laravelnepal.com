@@ -14,4 +14,7 @@
 
         <livewire:filter-artisans />
     </div>
+    @push('seo')
+        {!! seo($page) !!}
+    @endpush
 </x-layouts.app>
