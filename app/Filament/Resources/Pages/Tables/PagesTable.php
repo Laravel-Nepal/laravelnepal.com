@@ -38,6 +38,7 @@ class PagesTable
                 Action::make('preview')
                     ->label('Preview')
                     ->color(Color::Green)
+                    ->visible(fn (Page $page) => $page->getURLValue() !== null)
                     ->icon(Heroicon::ArrowTopRightOnSquare)
                     ->url(fn (Page $page) => $page->getURLValue())
                     ->openUrlInNewTab(),
