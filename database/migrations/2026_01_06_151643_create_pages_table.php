@@ -22,6 +22,7 @@ return new class extends Migration
             $blueprint->longText('content')->nullable();
             $blueprint->string('name')->nullable();
             $blueprint->string('type')->default(PageType::ContentPage);
+            $blueprint->json('tags')->nullable();
             $blueprint->softDeletes();
             $blueprint->timestamps();
         });

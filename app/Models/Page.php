@@ -115,6 +115,7 @@ final class Page extends Model
     {
         return [
             'type' => PageType::class,
+            'tags' => 'array',
         ];
     }
 }

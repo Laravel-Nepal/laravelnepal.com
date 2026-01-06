@@ -15,11 +15,15 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Achyut Neupane',
-            'email' => 'achyutkneupane@gmail.com',
-            'role' => UserRole::Admin,
-            'password' => bcrypt('Achyut@123'),
-        ]);
+        User::query()
+            ->firstOrCreate([
+                'email' => 'achyutkneupane@gmail.com',
+                'role' => UserRole::Admin,
+            ], [
+                'name' => 'Achyut Neupane',
+                'password' => bcrypt('Achyut@123'),
+            ]);
+
+        $this->call(PageSeeder::class);
     }
 }
