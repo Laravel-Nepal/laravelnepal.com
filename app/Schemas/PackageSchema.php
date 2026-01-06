@@ -24,7 +24,8 @@ trait PackageSchema
                 'description' => $resolvedSEO->description,
                 'url' => $resolvedSEO->url,
                 'image' => $resolvedSEO->image,
-                'codeRepository' => 'https://github.com/'.$model->getAttribute('packagist'),
+                /** @phpstan-var string|null $codeRepository */
+                'codeRepository' => $model->getAttribute('github_url'),
                 'author' => $resolvedSEO->authorArray(),
                 'sameAs' => $model->social_links,
             ]);

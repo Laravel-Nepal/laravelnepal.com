@@ -136,22 +136,47 @@ final class Package extends Model implements HasMarkup
         ];
     }
 
+    /** @return Attribute<string|null, null> */
+    protected function githubUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $github */
+                $github = $this->getAttribute('github');
+                if (filled($github)) {
+                    return 'https://www.github.com/'.$github;
+                }
+
+                return null;
+            },
+        );
+    }
+
+    /** @return Attribute<string|null, null> */
+    protected function packagistUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $packagist */
+                $packagist = $this->getAttribute('packagist');
+                if (filled($packagist)) {
+                    return 'https://packagist.org/packages/'.$packagist;
+                }
+
+                return null;
+            },
+        );
+    }
+
     /** @return Attribute<array<string|null>, null> */
     protected function socialLinks(): Attribute
     {
-        $links = [];
-
-        if (filled($this->getAttribute('github'))) {
-            $links[] = 'https://www.github.com/'.$this->getAttribute('github');
-        }
-
-        if (filled($this->getAttribute('packagist'))) {
-            $links[] = 'https://packagist.org/packages/'.$this->getAttribute('packagist');
-        }
-
         return Attribute::make(
-            get: function () use ($links): array {
-                return $links;
+            get: function (): array {
+                return array_filter([
+                    'GitHub' => $this->github_url,
+                    'Packagist' => $this->packagist_url,
+                ]);
             },
         );
     }

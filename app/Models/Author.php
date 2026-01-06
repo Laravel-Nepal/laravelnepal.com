@@ -192,33 +192,6 @@ final class Author extends Model implements HasMarkup
         );
     }
 
-    /** @return Attribute<array<string|null>, null> */
-    protected function socialLinks(): Attribute
-    {
-        $links = [];
-        if (filled($this->getAttribute('linkedin'))) {
-            $links[] = 'https://www.linkedin.com/in/'.$this->getAttribute('linkedin');
-        }
-
-        if (filled($this->getAttribute('github'))) {
-            $links[] = 'https://www.github.com/'.$this->getAttribute('github');
-        }
-
-        if (filled($this->getAttribute('x'))) {
-            $links[] = 'https://www.x.com/'.$this->getAttribute('x');
-        }
-
-        if (filled($this->getAttribute('website'))) {
-            $links[] = $this->getAttribute('website');
-        }
-
-        return Attribute::make(
-            get: function () use ($links): array {
-                return $links;
-            },
-        );
-    }
-
     /** @return Attribute<string|null, null> */
     protected function linkedinUrl(): Attribute
     {
@@ -263,6 +236,24 @@ final class Author extends Model implements HasMarkup
                 }
 
                 return null;
+            },
+        );
+    }
+
+    /** @return Attribute<array<string|null>, null> */
+    protected function socialLinks(): Attribute
+    {
+        return Attribute::make(
+            get: function (): array {
+                /** @var string $website */
+                $website = $this->getAttribute('website');
+
+                return array_filter([
+                    'LinkedIn' => $this->linkedin_url,
+                    'GitHub' => $this->github_url,
+                    'X' => $this->x_url,
+                    'Website' => filled($website) ? $website : null,
+                ]);
             },
         );
     }

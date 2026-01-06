@@ -134,22 +134,34 @@ final class Project extends Model implements HasMarkup
         ];
     }
 
+    /** @return Attribute<string|null, null> */
+    protected function githubUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $github */
+                $github = $this->getAttribute('github');
+                if (filled($github)) {
+                    return 'https://www.github.com/'.$github;
+                }
+
+                return null;
+            },
+        );
+    }
+
     /** @return Attribute<array<string|null>, null> */
     protected function socialLinks(): Attribute
     {
-        $links = [];
-
-        if (filled($this->getAttribute('github'))) {
-            $links[] = 'https://www.github.com/'.$this->getAttribute('github');
-        }
-
-        if (filled($this->getAttribute('website'))) {
-            $links[] = $this->getAttribute('website');
-        }
-
         return Attribute::make(
-            get: function () use ($links): array {
-                return $links;
+            get: function (): array {
+                /** @var string $website */
+                $website = $this->getAttribute('website');
+
+                return array_filter([
+                    'GitHub' => $this->github_url,
+                    'Website' => filled($website) ? $website : null,
+                ]);
             },
         );
     }
