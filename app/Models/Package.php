@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
@@ -43,7 +46,10 @@ use Orbit\Concerns\Orbital;
  */
 final class Package extends Model
 {
+    use InteractsWithSEO;
     use Orbital;
+
+    public $titleColumn = 'name';
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -76,10 +82,68 @@ final class Package extends Model
         return $this->belongsTo(Author::class, 'author_username', 'username');
     }
 
+    public function categoryValue(): ?string
+    {
+        return 'Package';
+    }
+
+    public function authorValue(): ?string
+    {
+        return $this->author?->name;
+    }
+
+    public function authorUrlValue(): string
+    {
+        return route('page.artisan.view', $this->author);
+    }
+
+    public function publisherValue(): ?string
+    {
+        return config('app.name');
+    }
+
+    public function publisherUrlValue(): string
+    {
+        return route('page.landingPage');
+    }
+
+    public function urlValue(): string
+    {
+        return route('page.package.view', $this);
+    }
+
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Packages', route('page.package.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
+    }
+
     protected function casts(): array
     {
         return [
             'tags' => 'array',
         ];
+    }
+
+    protected function socialLinks(): Attribute
+    {
+        $links = [];
+
+        if (filled($this->getAttribute('github'))) {
+            $links[] = 'https://www.github.com/'.$this->getAttribute('github');
+        }
+
+        if (filled($this->getAttribute('packagist'))) {
+            $links[] = 'https://packagist.org/packages/'.$this->getAttribute('packagist');
+        }
+
+        return Attribute::make(
+            get: function () use ($links): array {
+                return $links;
+            },
+        );
     }
 }
