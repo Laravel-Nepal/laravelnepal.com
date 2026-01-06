@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
+use App\Schemas\PackageSchema;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -44,10 +46,11 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Package extends Model
+final class Package extends Model implements HasMarkup
 {
     use InteractsWithSEO;
     use Orbital;
+    use PackageSchema;
 
     public $titleColumn = 'name';
 

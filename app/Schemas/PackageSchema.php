@@ -21,11 +21,10 @@ trait PackageSchema
                 '@type' => $this->blogSchemaType(),
                 '@id' => $resolvedSEO->url,
                 'name' => $resolvedSEO->title,
-                'applicationCategory' => $resolvedSEO->category,
                 'description' => $resolvedSEO->description,
                 'url' => $resolvedSEO->url,
                 'image' => $resolvedSEO->image,
-                'soureCodeRepository' => 'https://packagist.org/packages/'.$model->getAttribute('packagist'),
+                'codeRepository' => 'https://github.com/'.$model->getAttribute('packagist'),
                 'author' => $resolvedSEO->authorArray(),
                 'sameAs' => $model->social_links,
             ]);
