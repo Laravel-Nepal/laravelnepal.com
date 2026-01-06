@@ -69,4 +69,7 @@
             </div>
         </article>
     </div>
+    @push('seo')
+        {!! seo($package) !!}
+    @endpush
 </x-layouts.app>

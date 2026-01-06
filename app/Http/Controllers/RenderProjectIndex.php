@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\PageType;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -19,6 +21,11 @@ final class RenderProjectIndex extends Controller
             ['label' => 'Projects', 'url' => route('page.project.index')],
         ];
 
-        return view('components.page.project-index', compact('breadCrumb'));
+        $page = Page::query()
+            ->whereType(PageType::IndexPage)
+            ->whereName('project')
+            ->first();
+
+        return view('components.page.project-index', compact('breadCrumb', 'page'));
     }
 }

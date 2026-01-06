@@ -184,4 +184,7 @@
             </div>
         </article>
     </div>
+    @push('seo')
+        {!! seo($author) !!}
+    @endpush
 </x-layouts.app>

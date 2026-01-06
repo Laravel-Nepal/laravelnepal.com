@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
+use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Schemas\BlogSchema;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Traits\HasReadTime;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -27,6 +31,7 @@ use Orbit\Concerns\Orbital;
  * @property-read Author|null $author
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
+ * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
@@ -44,9 +49,11 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Post extends Model
+final class Post extends Model implements HasMarkup
 {
+    use BlogSchema;
     use HasReadTime;
+    use InteractsWithSEO;
     use Orbital;
 
     public static function schema(Blueprint $blueprint): void
@@ -78,6 +85,43 @@ final class Post extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
+    }
+
+    public function authorValue(): ?string
+    {
+        /** @phpstan-var string|null */
+        return $this->author?->getAttribute('name');
+    }
+
+    public function authorUrlValue(): string
+    {
+        return route('page.artisan.view', $this->author);
+    }
+
+    public function publisherValue(): ?string
+    {
+        /** @phpstan-var string|null */
+        return config('app.name');
+    }
+
+    public function publisherUrlValue(): string
+    {
+        return route('page.landingPage');
+    }
+
+    public function urlValue(): string
+    {
+        return route('page.post.view', $this);
+    }
+
+    /** @return array<Breadcrumb> */
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Posts', route('page.post.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
     }
 
     protected function casts(): array

@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
+use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
+use App\Schemas\AuthorSchema;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +37,8 @@ use Orbit\Concerns\Orbital;
  * @property-read int|null $posts_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Project> $projects
  * @property-read int|null $projects_count
+ * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
+ * @property-read array $social_links
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
  * @property-read int|null $tips_count
  *
@@ -54,9 +60,17 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Author extends Model
+final class Author extends Model implements HasMarkup
 {
+    use AuthorSchema;
+    use InteractsWithSEO;
     use Orbital;
+
+    public string $titleColumn = 'name';
+
+    public string $descriptionColumn = 'bio';
+
+    public string $imageColumn = 'avatar';
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -109,6 +123,42 @@ final class Author extends Model
         return $this->hasMany(Post::class, 'author_username', 'username');
     }
 
+    public function authorValue(): ?string
+    {
+        /** @phpstan-var string|null */
+        return config('app.name');
+    }
+
+    public function authorUrlValue(): string
+    {
+        return route('page.landingPage');
+    }
+
+    public function publisherValue(): ?string
+    {
+        return $this->getAuthorValue();
+    }
+
+    public function publisherUrlValue(): ?string
+    {
+        return $this->getAuthorUrlValue();
+    }
+
+    public function urlValue(): string
+    {
+        return route('page.artisan.view', $this);
+    }
+
+    /** @return array<Breadcrumb> */
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Artisans', route('page.artisan.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
+    }
+
     /**
      * @return Attribute<string, null>
      */
@@ -139,6 +189,72 @@ final class Author extends Model
 
                 return 'https://ui-avatars.com/api/?name='.urlencode($name).'&size=128';
             },
-        )->withoutObjectCaching();
+        );
+    }
+
+    /** @return Attribute<string|null, null> */
+    protected function linkedinUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $linkedin */
+                $linkedin = $this->getAttribute('linkedin');
+                if (filled($linkedin)) {
+                    return 'https://linkedin.com/in/'.$linkedin;
+                }
+
+                return null;
+            },
+        );
+    }
+
+    /** @return Attribute<string|null, null> */
+    protected function githubUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $github */
+                $github = $this->getAttribute('github');
+                if (filled($github)) {
+                    return 'https://www.github.com/'.$github;
+                }
+
+                return null;
+            },
+        );
+    }
+
+    /** @return Attribute<string|null, null> */
+    protected function xUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $x */
+                $x = $this->getAttribute('x');
+                if (filled($x)) {
+                    return 'https://www.x.com/'.$x;
+                }
+
+                return null;
+            },
+        );
+    }
+
+    /** @return Attribute<array<string|null>, null> */
+    protected function socialLinks(): Attribute
+    {
+        return Attribute::make(
+            get: function (): array {
+                /** @var string $website */
+                $website = $this->getAttribute('website');
+
+                return array_filter([
+                    'LinkedIn' => $this->linkedin_url,
+                    'GitHub' => $this->github_url,
+                    'X' => $this->x_url,
+                    'Website' => filled($website) ? $website : null,
+                ]);
+            },
+        );
     }
 }

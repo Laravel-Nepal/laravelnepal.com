@@ -69,5 +69,8 @@
             </div>
         </article>
     </div>
+    @push('seo')
+        {!! seo($tip) !!}
+    @endpush
 </x-layouts.app>
 

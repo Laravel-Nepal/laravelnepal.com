@@ -15,74 +15,58 @@ use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
 
 Route::group([
-    'prefix' => '/',
+    'as' => 'page.',
 ], function (): void {
+    Route::view('/', 'components.page.landing-page')->name('landingPage');
+
     Route::group([
-        'as' => 'page.',
+        'prefix' => '/post',
+        'as' => 'post.',
     ], function (): void {
-        Route::view('/', 'components.page.landing-page')
-            ->name('landingPage');
-
-        Route::group([
-            'prefix' => '/post',
-            'as' => 'post.',
-        ], function (): void {
-            Route::get('/', RenderPostIndex::class)
-                ->name('index');
-            Route::get('/{post}', RenderPostView::class)
-                ->name('view');
-        });
-
-        Route::group([
-            'prefix' => '/tip',
-            'as' => 'tips.',
-        ], function (): void {
-            Route::get('/', RenderTipIndex::class)
-                ->name('index');
-            Route::get('/{tip}', RenderTipView::class)
-                ->name('view');
-        });
-
-        Route::group([
-            'prefix' => '/project',
-            'as' => 'project.',
-        ], function (): void {
-            Route::get('/', RenderProjectIndex::class)
-                ->name('index');
-            Route::get('/{project}', RenderProjectView::class)
-                ->name('view');
-        });
-
-        Route::group([
-            'prefix' => '/package',
-            'as' => 'package.',
-        ], function (): void {
-            Route::get('/', RenderPackageIndex::class)
-                ->name('index');
-            Route::get('/{package}', RenderPackageView::class)
-                ->name('view');
-        });
-
-        Route::group([
-            'as' => 'artisan.',
-        ], function (): void {
-            Route::get('/@{author}', RenderArtisanView::class)
-                ->name('view');
-
-            Route::group([
-                'prefix' => '/artisan',
-            ], function (): void {
-                Route::get('/', RenderArtisanIndex::class)
-                    ->name('index');
-            });
-        });
+        Route::get('/', RenderPostIndex::class)->name('index');
+        Route::get('/{post}', RenderPostView::class)->name('view');
     });
 
     Route::group([
-        'prefix' => '/newsletter',
-        'as' => 'newsletter.',
+        'prefix' => '/tip',
+        'as' => 'tips.',
     ], function (): void {
-        Route::post('/subscribe', SubscribeToNewsletter::class)
-            ->name('subscribe');
+        Route::get('/', RenderTipIndex::class)->name('index');
+        Route::get('/{tip}', RenderTipView::class)->name('view');
     });
+
+    Route::group([
+        'prefix' => '/project',
+        'as' => 'project.',
+    ], function (): void {
+        Route::get('/', RenderProjectIndex::class)->name('index');
+        Route::get('/{project}', RenderProjectView::class)->name('view');
+    });
+
+    Route::group([
+        'prefix' => '/package',
+        'as' => 'package.',
+    ], function (): void {
+        Route::get('/', RenderPackageIndex::class)->name('index');
+        Route::get('/{package}', RenderPackageView::class)->name('view');
+    });
+
+    Route::group([
+        'as' => 'artisan.',
+    ], function (): void {
+        Route::get('/@{author}', RenderArtisanView::class)->name('view');
+
+        Route::group([
+            'prefix' => '/artisan',
+        ], function (): void {
+            Route::get('/', RenderArtisanIndex::class)->name('index');
+        });
+    });
+});
+
+Route::group([
+    'prefix' => '/newsletter',
+    'as' => 'newsletter.',
+], function (): void {
+    Route::post('/subscribe', SubscribeToNewsletter::class)->name('subscribe');
 });

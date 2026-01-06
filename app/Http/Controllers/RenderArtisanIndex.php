@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\PageType;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -19,6 +21,11 @@ final class RenderArtisanIndex extends Controller
             ['label' => 'Artisans', 'url' => route('page.artisan.index')],
         ];
 
-        return view('components.page.artisan-index', compact('breadCrumb'));
+        $page = Page::query()
+            ->whereType(PageType::IndexPage)
+            ->whereName('artisan')
+            ->first();
+
+        return view('components.page.artisan-index', compact('breadCrumb', 'page'));
     }
 }
