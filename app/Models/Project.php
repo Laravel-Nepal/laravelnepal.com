@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +45,7 @@ use Orbit\Concerns\Orbital;
  */
 final class Project extends Model
 {
+    use InteractsWithSEO;
     use Orbital;
 
     public static function schema(Blueprint $blueprint): void
@@ -74,6 +77,40 @@ final class Project extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'author_username', 'username');
+    }
+
+    public function authorValue(): ?string
+    {
+        return $this->author?->name;
+    }
+
+    public function authorUrlValue(): string
+    {
+        return route('page.artisan.view', $this->author);
+    }
+
+    public function publisherValue(): ?string
+    {
+        return config('app.name');
+    }
+
+    public function publisherUrlValue(): string
+    {
+        return route('page.landingPage');
+    }
+
+    public function urlValue(): string
+    {
+        return route('page.project.view', $this);
+    }
+
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Projects', route('page.project.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
     }
 
     protected function casts(): array
