@@ -37,6 +37,8 @@ use Orbit\Concerns\Orbital;
  * @property-read int|null $posts_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Project> $projects
  * @property-read int|null $projects_count
+ * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
+ * @property-read array $social_links
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
  * @property-read int|null $tips_count
  *
@@ -126,7 +128,7 @@ final class Author extends Model implements HasMarkup
         return config('app.name');
     }
 
-    public function authorUrlValue(): ?string
+    public function authorUrlValue(): string
     {
         return route('page.landingPage');
     }
@@ -141,7 +143,7 @@ final class Author extends Model implements HasMarkup
         return $this->getAuthorUrlValue();
     }
 
-    public function urlValue(): ?string
+    public function urlValue(): string
     {
         return route('page.artisan.view', $this);
     }
@@ -194,12 +196,15 @@ final class Author extends Model implements HasMarkup
         if (filled($this->getAttribute('linkedin'))) {
             $links[] = 'https://www.linkedin.com/in/'.$this->getAttribute('linkedin');
         }
+
         if (filled($this->getAttribute('github'))) {
             $links[] = 'https://www.github.com/'.$this->getAttribute('github');
         }
+
         if (filled($this->getAttribute('x'))) {
             $links[] = 'https://www.x.com/'.$this->getAttribute('x');
         }
+
         if (filled($this->getAttribute('website'))) {
             $links[] = $this->getAttribute('website');
         }

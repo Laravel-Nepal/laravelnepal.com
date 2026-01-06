@@ -30,6 +30,7 @@ use Orbit\Concerns\Orbital;
  * @property-read Author|null $author
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
+ * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newQuery()
@@ -88,7 +89,7 @@ final class Tip extends Model implements HasMarkup
         return $this->author?->name;
     }
 
-    public function authorUrlValue(): ?string
+    public function authorUrlValue(): string
     {
         return route('page.artisan.view', $this->author);
     }
@@ -98,12 +99,12 @@ final class Tip extends Model implements HasMarkup
         return config('app.name');
     }
 
-    public function publisherUrlValue(): ?string
+    public function publisherUrlValue(): string
     {
         return route('page.landingPage');
     }
 
-    public function urlValue(): ?string
+    public function urlValue(): string
     {
         return route('page.tips.view', $this);
     }
