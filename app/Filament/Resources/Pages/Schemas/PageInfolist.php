@@ -28,8 +28,11 @@ class PageInfolist
                                     ->visible(fn (Page $page) => $page->getURLValue() !== null)
                                     ->icon(Heroicon::ArrowTopRightOnSquare)
                                     ->url(fn (Page $page) => $page->getURLValue())
+                                    ->openUrlInNewTab()
                             ),
                         TextEntry::make('type')
+                            ->badge(),
+                        TextEntry::make('tags')
                             ->badge(),
                         TextEntry::make('name')
                             ->columnSpanFull()
