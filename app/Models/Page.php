@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Support\Carbon;
-use AchyutN\LaravelSEO\Models\SEO;
-use Illuminate\Database\Eloquent\Builder;
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Models\SEO;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Enums\PageType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -84,8 +84,27 @@ final class Page extends Model
         return $this->getAuthorUrlValue();
     }
 
+    public function urlValue(): ?string
+    {
+        if ($this->type === PageType::LandingPage) {
+            return route('page.landingPage');
+        }
+
+        if ($this->type === PageType::IndexPage) {
+            return route(sprintf('page.%s.index', $this->name));
+        }
+
+        return null;
+    }
+
     public function breadcrumbs(): array
     {
+        if ($this->type === PageType::LandingPage) {
+            return [
+                new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+            ];
+        }
+
         return [
             new Breadcrumb('Home', route('page.landingPage')),
             new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
