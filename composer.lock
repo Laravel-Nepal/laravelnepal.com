@@ -173,16 +173,16 @@
         },
         {
             "name": "achyutn/laravel-seo",
-            "version": "v1.3.1",
+            "version": "v1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/achyutkneupane/laravel-seo.git",
-                "reference": "b759fed0fd3609ca0e99793707c816a6ea78cd2b"
+                "reference": "5f3a43a3a1afb6df5b250cba44cae0ff840f15ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/achyutkneupane/laravel-seo/zipball/b759fed0fd3609ca0e99793707c816a6ea78cd2b",
-                "reference": "b759fed0fd3609ca0e99793707c816a6ea78cd2b",
+                "url": "https://api.github.com/repos/achyutkneupane/laravel-seo/zipball/5f3a43a3a1afb6df5b250cba44cae0ff840f15ff",
+                "reference": "5f3a43a3a1afb6df5b250cba44cae0ff840f15ff",
                 "shasum": ""
             },
             "require": {
@@ -233,7 +233,7 @@
             ],
             "support": {
                 "issues": "https://github.com/achyutkneupane/laravel-seo/issues",
-                "source": "https://github.com/achyutkneupane/laravel-seo/tree/v1.3.1"
+                "source": "https://github.com/achyutkneupane/laravel-seo/tree/v1.3.3"
             },
             "funding": [
                 {
@@ -253,7 +253,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-01-05T09:52:56+00:00"
+            "time": "2026-01-06T12:51:40+00:00"
         },
         {
             "name": "anourvalar/eloquent-serialize",

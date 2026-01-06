@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Enums\PageType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +21,7 @@ return new class extends Migration
             $blueprint->text('description')->nullable();
             $blueprint->longText('content')->nullable();
             $blueprint->string('name')->nullable();
-            $blueprint->string('type')->default('page');
+            $blueprint->string('type')->default(PageType::ContentPage);
             $blueprint->softDeletes();
             $blueprint->timestamps();
         });

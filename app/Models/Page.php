@@ -1,18 +1,101 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
+use AchyutN\LaravelSEO\Models\SEO;
+use Illuminate\Database\Eloquent\Builder;
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
+use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
+use App\Enums\PageType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property int $id
+ * @property string $title
+ * @property string $slug
+ * @property string|null $description
+ * @property string|null $content
+ * @property string|null $name
+ * @property PageType $type
+ * @property Carbon|null $deleted_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read SEO|null $seo
+ *
+ * @method static Builder<static>|Page findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static Builder<static>|Page newModelQuery()
+ * @method static Builder<static>|Page newQuery()
+ * @method static Builder<static>|Page onlyTrashed()
+ * @method static Builder<static>|Page query()
+ * @method static Builder<static>|Page whereContent($value)
+ * @method static Builder<static>|Page whereCreatedAt($value)
+ * @method static Builder<static>|Page whereDeletedAt($value)
+ * @method static Builder<static>|Page whereDescription($value)
+ * @method static Builder<static>|Page whereId($value)
+ * @method static Builder<static>|Page whereName($value)
+ * @method static Builder<static>|Page whereSlug($value)
+ * @method static Builder<static>|Page whereTitle($value)
+ * @method static Builder<static>|Page whereType($value)
+ * @method static Builder<static>|Page whereUpdatedAt($value)
+ * @method static Builder<static>|Page withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|Page withUniqueSlugConstraints(Model $model, string $attribute, array $config, string $slug)
+ * @method static Builder<static>|Page withoutTrashed()
+ *
+ * @mixin \Eloquent
+ */
 final class Page extends Model
 {
     use HasTheSlug;
+    use InteractsWithSEO;
     use SoftDeletes;
 
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function categoryValue(): ?string
+    {
+        return $this->type->label();
+    }
+
+    public function authorValue(): ?string
+    {
+        return config('app.name');
+    }
+
+    public function authorUrlValue(): string
+    {
+        return route('page.landingPage');
+    }
+
+    public function publisherValue(): ?string
+    {
+        return $this->getAuthorValue();
+    }
+
+    public function publisherUrlValue(): ?string
+    {
+        return $this->getAuthorUrlValue();
+    }
+
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'type' => PageType::class,
+        ];
     }
 }
