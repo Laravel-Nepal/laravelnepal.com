@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Pages\Tables;
 
+use App\Models\Page;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -11,6 +13,8 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -31,18 +35,17 @@ class PagesTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                Action::make('preview')
+                    ->label('Preview')
+                    ->color(Color::Green)
+                    ->icon(Heroicon::ArrowTopRightOnSquare)
+                    ->url(fn (Page $page) => $page->getURLValue())
+                    ->openUrlInNewTab(),
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
                 ForceDeleteAction::make(),
                 RestoreAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
             ]);
     }
 }
