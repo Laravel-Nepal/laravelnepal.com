@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
+use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Models\SEO;
+use AchyutN\LaravelSEO\Schemas\PageSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Enums\PageType;
 use Illuminate\Database\Eloquent\Builder;
@@ -48,10 +50,11 @@ use Illuminate\Support\Carbon;
  *
  * @mixin \Eloquent
  */
-final class Page extends Model
+final class Page extends Model implements HasMarkup
 {
     use HasTheSlug;
     use InteractsWithSEO;
+    use PageSchema;
     use SoftDeletes;
 
     public function getRouteKeyName(): string
