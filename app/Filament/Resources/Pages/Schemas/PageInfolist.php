@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Pages\Schemas;
 
 use App\Enums\PageType;
@@ -11,7 +13,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
 
-class PageInfolist
+final class PageInfolist
 {
     public static function configure(Schema $schema): Schema
     {
@@ -25,9 +27,9 @@ class PageInfolist
                             ->prefixAction(
                                 Action::make('preview')
                                     ->color(Color::Green)
-                                    ->visible(fn (Page $page) => $page->getURLValue() !== null)
+                                    ->visible(fn (Page $page): bool => $page->getURLValue() !== null)
                                     ->icon(Heroicon::ArrowTopRightOnSquare)
-                                    ->url(fn (Page $page) => $page->getURLValue())
+                                    ->url(fn (Page $page): ?string => $page->getURLValue())
                                     ->openUrlInNewTab()
                             ),
                         TextEntry::make('type')
@@ -36,14 +38,14 @@ class PageInfolist
                             ->badge(),
                         TextEntry::make('name')
                             ->columnSpanFull()
-                            ->visible(fn (Page $page) => in_array($page->type, [PageType::IndexPage, PageType::PageWithForm]))
+                            ->visible(fn (Page $page): bool => in_array($page->type, [PageType::IndexPage, PageType::PageWithForm]))
                             ->label('Route Name'),
                         TextEntry::make('description')
                             ->placeholder('-')
                             ->columnSpanFull(),
                         TextEntry::make('content')
                             ->markdown()
-                            ->visible(fn (Page $page) => $page->type === PageType::ContentPage)
+                            ->visible(fn (Page $page): bool => $page->type === PageType::ContentPage)
                             ->columnSpanFull(),
                     ]),
             ]);

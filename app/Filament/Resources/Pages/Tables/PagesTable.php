@@ -1,17 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Pages\Tables;
 
 use App\Models\Page;
 use Filament\Actions\Action;
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteAction;
-use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
@@ -19,7 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class PagesTable
+final class PagesTable
 {
     public static function configure(Table $table): Table
     {
@@ -38,9 +36,9 @@ class PagesTable
                 Action::make('preview')
                     ->label('Preview')
                     ->color(Color::Green)
-                    ->visible(fn (Page $page) => $page->getURLValue() !== null)
+                    ->visible(fn (Page $page): bool => $page->getURLValue() !== null)
                     ->icon(Heroicon::ArrowTopRightOnSquare)
-                    ->url(fn (Page $page) => $page->getURLValue())
+                    ->url(fn (Page $page): ?string => $page->getURLValue())
                     ->openUrlInNewTab(),
                 ViewAction::make(),
                 EditAction::make(),

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Pages;
 
 use App\Filament\Resources\Pages\Pages\ManagePages;
@@ -15,7 +17,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PageResource extends Resource
+final class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 

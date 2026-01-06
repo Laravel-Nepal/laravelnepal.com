@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Pages\Schemas;
 
 use App\Enums\PageType;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
-class PageForm
+final class PageForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -24,13 +26,13 @@ class PageForm
                     ->live()
                     ->required(),
                 TextInput::make('name')
-                    ->visible(fn (Get $get) => in_array($get('type'), [PageType::IndexPage, PageType::PageWithForm]))
+                    ->visible(fn (Get $get): bool => in_array($get('type'), [PageType::IndexPage, PageType::PageWithForm]))
                     ->columnSpanFull()
                     ->label('Route Name'),
                 Textarea::make('description')
                     ->columnSpanFull(),
                 MarkdownEditor::make('content')
-                    ->visible(fn (Get $get) => $get('type') === PageType::ContentPage)
+                    ->visible(fn (Get $get): bool => $get('type') === PageType::ContentPage)
                     ->columnSpanFull(),
             ]);
     }
