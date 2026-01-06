@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 /**
  * @property int $id
@@ -69,6 +70,7 @@ final class Page extends Model implements HasMarkup
 
     public function authorValue(): ?string
     {
+        /** @phpstan-var string|null */
         return config('app.name');
     }
 
@@ -100,6 +102,7 @@ final class Page extends Model implements HasMarkup
         return null;
     }
 
+    /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {
         if ($this->type === PageType::LandingPage) {

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -66,11 +67,11 @@ final class Author extends Model implements HasMarkup
     use InteractsWithSEO;
     use Orbital;
 
-    public $titleColumn = 'name';
+    public string $titleColumn = 'name';
 
-    public $descriptionColumn = 'bio';
+    public string $descriptionColumn = 'bio';
 
-    public $imageColumn = 'avatar';
+    public string $imageColumn = 'avatar';
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -125,6 +126,7 @@ final class Author extends Model implements HasMarkup
 
     public function authorValue(): ?string
     {
+        /** @phpstan-var string|null */
         return config('app.name');
     }
 
@@ -148,6 +150,7 @@ final class Author extends Model implements HasMarkup
         return route('page.artisan.view', $this);
     }
 
+    /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {
         return [

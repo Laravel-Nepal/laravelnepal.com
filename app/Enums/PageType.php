@@ -7,7 +7,6 @@ namespace App\Enums;
 use Filament\Support\Colors\Color;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
-use Illuminate\Contracts\Support\Htmlable;
 
 enum PageType: string implements HasColor, HasLabel
 {
@@ -16,7 +15,7 @@ enum PageType: string implements HasColor, HasLabel
     case ContentPage = 'content_page';
     case PageWithForm = 'page_with_form';
 
-    public function getColor(): string|array|null
+    public function getColor(): array
     {
         return match ($this) {
             self::LandingPage => Color::Green,
@@ -26,7 +25,7 @@ enum PageType: string implements HasColor, HasLabel
         };
     }
 
-    public function getLabel(): string|Htmlable|null
+    public function getLabel(): string
     {
         return match ($this) {
             self::LandingPage => 'Landing Page',

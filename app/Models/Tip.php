@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -96,6 +97,7 @@ final class Tip extends Model implements HasMarkup
 
     public function publisherValue(): ?string
     {
+        /** @phpstan-var string|null */
         return config('app.name');
     }
 
@@ -109,6 +111,7 @@ final class Tip extends Model implements HasMarkup
         return route('page.tips.view', $this);
     }
 
+    /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {
         return [

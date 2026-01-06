@@ -8,13 +8,10 @@ use App\Models\Page;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteAction;
-use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 final class PagesTable
@@ -29,9 +26,6 @@ final class PagesTable
                     ->badge()
                     ->searchable(),
             ])
-            ->filters([
-                TrashedFilter::make(),
-            ])
             ->recordActions([
                 Action::make('preview')
                     ->label('Preview')
@@ -43,8 +37,6 @@ final class PagesTable
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
-                ForceDeleteAction::make(),
-                RestoreAction::make(),
             ]);
     }
 }

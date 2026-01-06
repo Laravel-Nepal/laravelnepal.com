@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -54,7 +55,7 @@ final class Package extends Model implements HasMarkup
     use Orbital;
     use PackageSchema;
 
-    public $titleColumn = 'name';
+    public string $titleColumn = 'name';
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -104,6 +105,7 @@ final class Package extends Model implements HasMarkup
 
     public function publisherValue(): ?string
     {
+        /** @phpstan-var string|null */
         return config('app.name');
     }
 
@@ -117,6 +119,7 @@ final class Package extends Model implements HasMarkup
         return route('page.package.view', $this);
     }
 
+    /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {
         return [
