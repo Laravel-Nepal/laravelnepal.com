@@ -28,7 +28,7 @@ final class PageSeeder extends Seeder
                 'type' => PageType::IndexPage,
                 'name' => 'post',
             ], [
-                'title' => 'Posts',
+                'title' => 'Blogs',
                 'description' => sprintf('Explore all blogs published in %s', $siteSettings->name),
                 'tags' => ['blogs', 'articles', 'posts'],
             ]);
