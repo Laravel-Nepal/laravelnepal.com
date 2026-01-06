@@ -218,4 +218,52 @@ final class Author extends Model implements HasMarkup
             },
         );
     }
+
+    /** @return Attribute<string|null, null> */
+    protected function linkedinUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $linkedin */
+                $linkedin = $this->getAttribute('linkedin');
+                if (filled($linkedin)) {
+                    return 'https://linkedin.com/in/'.$linkedin;
+                }
+
+                return null;
+            },
+        );
+    }
+
+    /** @return Attribute<string|null, null> */
+    protected function githubUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $github */
+                $github = $this->getAttribute('github');
+                if (filled($github)) {
+                    return 'https://www.github.com/'.$github;
+                }
+
+                return null;
+            },
+        );
+    }
+
+    /** @return Attribute<string|null, null> */
+    protected function xUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (): ?string {
+                /** @var string $x */
+                $x = $this->getAttribute('x');
+                if (filled($x)) {
+                    return 'https://www.x.com/'.$x;
+                }
+
+                return null;
+            },
+        );
+    }
 }
