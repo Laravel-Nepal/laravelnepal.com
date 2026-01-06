@@ -61,7 +61,7 @@ final class Page extends Model
 
     public function categoryValue(): ?string
     {
-        return $this->type->label();
+        return $this->type->getLabel();
     }
 
     public function authorValue(): ?string
