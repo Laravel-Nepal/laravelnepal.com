@@ -4,9 +4,12 @@ namespace App\Filament\Resources\Pages\Schemas;
 
 use App\Enums\PageType;
 use App\Models\Page;
+use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 
 class PageInfolist
 {
@@ -18,7 +21,14 @@ class PageInfolist
                     ->columns()
                     ->columnSpanFull()
                     ->components([
-                        TextEntry::make('title'),
+                        TextEntry::make('title')
+                            ->prefixAction(
+                                Action::make('preview')
+                                    ->color(Color::Green)
+                                    ->visible(fn (Page $page) => $page->getURLValue() !== null)
+                                    ->icon(Heroicon::ArrowTopRightOnSquare)
+                                    ->url(fn (Page $page) => $page->getURLValue())
+                            ),
                         TextEntry::make('type')
                             ->badge(),
                         TextEntry::make('name')
