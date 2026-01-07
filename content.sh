@@ -17,6 +17,9 @@ fi
 echo "🧹 Cleaning up README.md files..."
 find "$CONTENT_DIR" -name "README.md" -type f -delete
 
+echo "💾 Caching content..."
+php artisan orbit:cache
+
 echo "🔧 Optimizing images..."
 php artisan ln:optimize-images
 
