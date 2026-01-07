@@ -166,7 +166,7 @@ final class Author extends Model implements HasMarkup
     {
         return Attribute::make(
             get: function (): string {
-                $imageDirectory = sprintf('storage/images/profile/%s.avif', $this->username);
+                $imageDirectory = sprintf('storage/images/profile/%s.webp', $this->username);
 
                 if (file_exists(public_path($imageDirectory))) {
                     return asset($imageDirectory);
