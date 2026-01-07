@@ -9,6 +9,7 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Schemas\BlogSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
+use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -107,6 +108,12 @@ final class Post extends Model implements HasMarkup
     public function publisherUrlValue(): string
     {
         return route('page.landingPage');
+    }
+
+    public function imageValue(): string
+    {
+        $siteSettings = app(SiteSettings::class);
+        return $siteSettings->og_image;
     }
 
     public function urlValue(): string

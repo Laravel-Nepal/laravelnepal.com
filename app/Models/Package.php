@@ -9,6 +9,7 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PackageSchema;
+use App\Settings\SiteSettings;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -90,6 +91,12 @@ final class Package extends Model implements HasMarkup
     public function categoryValue(): string
     {
         return 'Package';
+    }
+
+    public function imageValue(): string
+    {
+        $siteSettings = app(SiteSettings::class);
+        return $siteSettings->og_image;
     }
 
     public function authorValue(): ?string

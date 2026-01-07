@@ -9,6 +9,7 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\ProjectSchema;
+use App\Settings\SiteSettings;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -115,6 +116,12 @@ final class Project extends Model implements HasMarkup
     public function urlValue(): string
     {
         return route('page.project.view', $this);
+    }
+
+    public function imageValue(): string
+    {
+        $siteSettings = app(SiteSettings::class);
+        return $siteSettings->og_image;
     }
 
     /** @return array<Breadcrumb> */

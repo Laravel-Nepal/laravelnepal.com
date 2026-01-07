@@ -9,6 +9,7 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Schemas\BlogSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
+use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -109,6 +110,12 @@ final class Tip extends Model implements HasMarkup
     public function urlValue(): string
     {
         return route('page.tips.view', $this);
+    }
+
+    public function imageValue(): string
+    {
+        $siteSettings = app(SiteSettings::class);
+        return $siteSettings->og_image;
     }
 
     /** @return array<Breadcrumb> */
