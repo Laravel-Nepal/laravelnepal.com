@@ -5,17 +5,22 @@
 <nav class="dock-container" id="dock">
     <div class="dock rounded-full px-4 py-3 flex items-center gap-2">
         <a href="{{ route('page.landingPage') }}" class="block group w-10 h-10 shrink-0">
-            @if($siteSettings->logo)
-                <img
-                    src="{{ asset('/storage/'.$siteSettings->logo) }}"
-                    alt="{{ $siteSettings->name }} Logo"
-                    class="h-10 w-10 object-cover rounded-full"
-                />
-            @else
-                <span class="w-10 h-10 bg-laravel-red rounded-xl flex items-center justify-center font-black text-xs group-hover:scale-110 transition">
+            <span
+                @class([
+                    "w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs group-hover:scale-110 transition",
+                    $siteSettings->logo ? 'bg-[#faf9fe]' : 'bg-laravel-red'
+                ])
+            >
+                @if($siteSettings->logo)
+                    <img
+                        src="{{ asset('/storage/'.$siteSettings->logo) }}"
+                        alt="{{ $siteSettings->name }} Logo"
+                        class="p-1 object-cover rounded-full"
+                    />
+                @else
                     LN
-                </span>
-            @endif
+                @endif
+            </span>
         </a>
         <div class="h-6 w-px bg-white/10 mx-2"></div>
         <div class="flex gap-2 w-full">
