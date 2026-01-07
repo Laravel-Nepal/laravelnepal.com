@@ -72,7 +72,8 @@ final class Page extends Model implements HasMarkup
 
     public function imageValue(): string
     {
-        $siteSettings = app(SiteSettings::class);
+        $siteSettings = resolve(SiteSettings::class);
+
         return $siteSettings->og_image;
     }
 
