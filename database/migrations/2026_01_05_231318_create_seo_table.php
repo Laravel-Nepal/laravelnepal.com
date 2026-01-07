@@ -40,11 +40,14 @@ return new class extends Migration
 
     public function morphs(Blueprint $blueprint, string $name): void
     {
-        $blueprint->string($name . '_id');
-        $blueprint->string($name . '_type');
+        $idColumn = sprintf('%s_id', $name);
+        $typeColumn = sprintf('%s_type', $name);
+
+        $blueprint->string($idColumn);
+        $blueprint->string($typeColumn);
         $blueprint->unique(
-            [$name . '_type', $name . '_id'],
-            $name . '_morph_index'
+            [$idColumn, $typeColumn],
+            sprintf('%s_morphs_unique', $name)
         );
     }
 
