@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('seo', function (Blueprint $blueprint): void {
             $blueprint->id();
 
-            $blueprint->morphs('model');
+            $this->morphs($blueprint, 'model');
 
             $blueprint->string('meta_title')->nullable();
             $blueprint->text('meta_description')->nullable();
@@ -36,6 +36,16 @@ return new class extends Migration
             $blueprint->string('publisher')->nullable();
             $blueprint->timestamps();
         });
+    }
+
+    public function morphs(Blueprint $blueprint, string $name): void
+    {
+        $blueprint->string($name . '_id');
+        $blueprint->string($name . '_type');
+        $blueprint->unique(
+            [$name . '_type', $name . '_id'],
+            $name . '_morph_index'
+        );
     }
 
     /**
