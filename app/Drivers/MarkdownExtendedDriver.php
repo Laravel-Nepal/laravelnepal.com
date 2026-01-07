@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Drivers;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Orbit\Drivers\Markdown;
 use Override;
@@ -25,6 +26,7 @@ final class MarkdownExtendedDriver extends Markdown
             ->beforeLast('.')
             ->value();
 
+        /** @var array<string, Carbon> $timestamps */
         $timestamps = $this->getTimestamps($file);
 
         return array_merge(
@@ -36,11 +38,12 @@ final class MarkdownExtendedDriver extends Markdown
         );
     }
 
+    /** @return array{'created_at': Carbon, 'updated_at': Carbon} */
     protected function getTimestamps(SplFileInfo $file): array
     {
         return [
-            'created_at' => Carbon::parse($file->getCTime()),
-            'updated_at' => Carbon::parse($file->getMTime()),
+            'created_at' => Date::parse($file->getCTime()),
+            'updated_at' => Date::parse($file->getMTime()),
         ];
     }
 }
