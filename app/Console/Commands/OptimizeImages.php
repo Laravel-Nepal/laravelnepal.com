@@ -42,15 +42,15 @@ final class OptimizeImages extends Command
             $images = array_diff($files, ['.', '..', '.gitkeep', '.DS_Store']);
 
             foreach ($images as $image) {
-                $this->convertToAVIF($image, $folder, $dimensions['width'], $dimensions['height']);
+                $this->convertImage($image, $folder, $dimensions['width'], $dimensions['height']);
             }
         }
     }
 
     /**
-     * Converts to AVIV
+     * Convert image to different formats.
      */
-    private function convertToAVIF(string $fileName, string $folderPrefix, int $width, int $height): void
+    private function convertImage(string $fileName, string $folderPrefix, int $width, int $height, string $type = 'webp'): void
     {
         $filePath = base_path(sprintf('content/images/%s/%s', $folderPrefix, $fileName));
         $fileInfo = pathinfo($filePath);
@@ -60,9 +60,8 @@ final class OptimizeImages extends Command
             mkdir($destinationDirectory, 0755, true);
         }
 
-        $avifFilePath = sprintf('%s/%s.avif', $destinationDirectory, $fileInfo['filename']);
-
-        if (file_exists($avifFilePath)) {
+        $webpFilePath = sprintf('%s/%s.webp', $destinationDirectory, $fileInfo['filename']);
+        if (file_exists($webpFilePath)) {
             return;
         }
 
@@ -84,11 +83,14 @@ final class OptimizeImages extends Command
                 return;
             }
 
-            if (function_exists('imageavif')) {
-                imageavif($resizedImage, $avifFilePath, 80);
+            if ($type === 'avif' && function_exists('imageavif')) {
+                imageavif($resizedImage, $webpFilePath, 80);
                 $this->info(sprintf('Converted %s to AVIF format.', $fileName));
+            } elseif ($type === 'webp' && function_exists('imagewebp')) {
+                imagewebp($resizedImage, $webpFilePath, 80);
+                $this->info(sprintf('Converted %s to WebP format.', $fileName));
             } else {
-                $this->error('AVIF conversion not supported on this server.');
+                $this->error(ucfirst($type).' conversion not supported on this server.');
             }
 
             imagedestroy($image);
