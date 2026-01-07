@@ -11,6 +11,7 @@ use AchyutN\LaravelSEO\Models\SEO;
 use AchyutN\LaravelSEO\Schemas\PageSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Enums\PageType;
+use App\Settings\SiteSettings;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -67,6 +68,13 @@ final class Page extends Model implements HasMarkup
     public function categoryValue(): string
     {
         return $this->type->getLabel();
+    }
+
+    public function imageValue(): ?string
+    {
+        $siteSettings = resolve(SiteSettings::class);
+
+        return $siteSettings->og_image;
     }
 
     public function authorValue(): ?string
