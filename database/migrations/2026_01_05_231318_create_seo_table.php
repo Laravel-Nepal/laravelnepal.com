@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,7 +17,7 @@ return new class extends Migration
         Schema::create('seo', function (Blueprint $blueprint): void {
             $blueprint->id();
 
-            $blueprint->morphs('model');
+            $this->morphs($blueprint, 'model');
 
             $blueprint->string('meta_title')->nullable();
             $blueprint->text('meta_description')->nullable();
@@ -36,6 +37,16 @@ return new class extends Migration
             $blueprint->string('publisher')->nullable();
             $blueprint->timestamps();
         });
+    }
+
+    public function morphs(Blueprint $blueprint, $name): void
+    {
+        $blueprint->string("{$name}_id");
+        $blueprint->string("{$name}_type");
+        $blueprint->unique(
+            ["{$name}_type", "{$name}_id"],
+            "{$name}_morph_index"
+        );
     }
 
     /**
