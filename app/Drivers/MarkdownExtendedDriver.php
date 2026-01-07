@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Drivers;
 
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Orbit\Drivers\Markdown;
 use Override;
@@ -12,16 +12,6 @@ use SplFileInfo;
 
 final class MarkdownExtendedDriver extends Markdown
 {
-    #[Override]
-    public function schema(Blueprint $blueprint): void
-    {
-        parent::schema($blueprint);
-
-        if (! $blueprint->hasColumn('excluded')) {
-            $blueprint->boolean('excluded');
-        }
-    }
-
     /**
      * @return array<string, mixed|bool>
      */
@@ -35,12 +25,22 @@ final class MarkdownExtendedDriver extends Markdown
             ->beforeLast('.')
             ->value();
 
+        $timestamps = $this->getTimestamps($file);
+
         return array_merge(
             $parent,
             [
                 'slug' => array_key_exists('slug', $parent) ? $parent['slug'] : $fileName,
-                'excluded' => $file->getFilename() === 'README.md',
-            ]
+            ],
+            $timestamps
         );
+    }
+
+    protected function getTimestamps(SplFileInfo $file): array
+    {
+        return [
+            'created_at' => Carbon::parse($file->getCTime()),
+            'updated_at' => Carbon::parse($file->getMTime()),
+        ];
     }
 }
