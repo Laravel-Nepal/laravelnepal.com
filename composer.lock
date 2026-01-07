@@ -173,16 +173,16 @@
         },
         {
             "name": "achyutn/laravel-seo",
-            "version": "v1.3.3",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/achyutkneupane/laravel-seo.git",
-                "reference": "5f3a43a3a1afb6df5b250cba44cae0ff840f15ff"
+                "reference": "690416cc6cb715ecb96c6ff3b7af48f9d03ca2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/achyutkneupane/laravel-seo/zipball/5f3a43a3a1afb6df5b250cba44cae0ff840f15ff",
-                "reference": "5f3a43a3a1afb6df5b250cba44cae0ff840f15ff",
+                "url": "https://api.github.com/repos/achyutkneupane/laravel-seo/zipball/690416cc6cb715ecb96c6ff3b7af48f9d03ca2b1",
+                "reference": "690416cc6cb715ecb96c6ff3b7af48f9d03ca2b1",
                 "shasum": ""
             },
             "require": {
@@ -233,7 +233,7 @@
             ],
             "support": {
                 "issues": "https://github.com/achyutkneupane/laravel-seo/issues",
-                "source": "https://github.com/achyutkneupane/laravel-seo/tree/v1.3.3"
+                "source": "https://github.com/achyutkneupane/laravel-seo/tree/v1.3.4"
             },
             "funding": [
                 {
@@ -253,7 +253,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-01-06T12:51:40+00:00"
+            "time": "2026-01-07T11:38:40+00:00"
         },
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3073,16 +3073,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.45.0",
+            "version": "v12.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9dfd2afc48f2519bfdbe6862dfb9849491c673ad"
+                "reference": "1ca7e2a2ee17ae5bc435af7cb52d2f130148e2fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9dfd2afc48f2519bfdbe6862dfb9849491c673ad",
-                "reference": "9dfd2afc48f2519bfdbe6862dfb9849491c673ad",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1ca7e2a2ee17ae5bc435af7cb52d2f130148e2fa",
+                "reference": "1ca7e2a2ee17ae5bc435af7cb52d2f130148e2fa",
                 "shasum": ""
             },
             "require": {
@@ -3291,7 +3291,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-01-06T15:24:52+00:00"
+            "time": "2026-01-07T00:50:24+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -6850,16 +6850,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "3.8.7",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "4d35db207c4b317bc221d02ab7ba94aa78b44c24"
+                "reference": "01ad7779580c4075758505e594445805e587d7da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/4d35db207c4b317bc221d02ab7ba94aa78b44c24",
-                "reference": "4d35db207c4b317bc221d02ab7ba94aa78b44c24",
+                "url": "https://api.github.com/repos/spatie/image/zipball/01ad7779580c4075758505e594445805e587d7da",
+                "reference": "01ad7779580c4075758505e594445805e587d7da",
                 "shasum": ""
             },
             "require": {
@@ -6907,7 +6907,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/image/tree/3.8.7"
+                "source": "https://github.com/spatie/image/tree/3.9.0"
             },
             "funding": [
                 {
@@ -6919,7 +6919,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-24T15:10:50+00:00"
+            "time": "2026-01-07T11:16:22+00:00"
         },
         {
             "name": "spatie/image-optimizer",
