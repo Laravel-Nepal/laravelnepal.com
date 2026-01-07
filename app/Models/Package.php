@@ -93,7 +93,7 @@ final class Package extends Model implements HasMarkup
         return 'Package';
     }
 
-    public function imageValue(): string
+    public function imageValue(): ?string
     {
         $siteSettings = resolve(SiteSettings::class);
 

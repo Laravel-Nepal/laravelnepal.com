@@ -110,7 +110,7 @@ final class Post extends Model implements HasMarkup
         return route('page.landingPage');
     }
 
-    public function imageValue(): string
+    public function imageValue(): ?string
     {
         $siteSettings = resolve(SiteSettings::class);
 

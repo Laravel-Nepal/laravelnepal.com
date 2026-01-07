@@ -118,7 +118,7 @@ final class Project extends Model implements HasMarkup
         return route('page.project.view', $this);
     }
 
-    public function imageValue(): string
+    public function imageValue(): ?string
     {
         $siteSettings = resolve(SiteSettings::class);
 

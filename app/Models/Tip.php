@@ -112,7 +112,7 @@ final class Tip extends Model implements HasMarkup
         return route('page.tips.view', $this);
     }
 
-    public function imageValue(): string
+    public function imageValue(): ?string
     {
         $siteSettings = resolve(SiteSettings::class);
 

@@ -70,7 +70,7 @@ final class Page extends Model implements HasMarkup
         return $this->type->getLabel();
     }
 
-    public function imageValue(): string
+    public function imageValue(): ?string
     {
         $siteSettings = resolve(SiteSettings::class);
 
