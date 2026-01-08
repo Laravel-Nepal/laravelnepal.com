@@ -8,6 +8,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -24,6 +25,12 @@ final class PostsTable
                 TextColumn::make('date')
                     ->date()
                     ->sortable(),
+                TextColumn::make('total_views')
+                    ->label('Views')
+                    ->color(
+                        fn (int $state): array => $state > 0 ? Color::Green : Color::Neutral
+                    )
+                    ->badge(),
             ])
             ->filters([
                 //
