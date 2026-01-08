@@ -12,6 +12,8 @@ use AchyutN\LaravelSEO\Schemas\PageSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Enums\PageType;
 use App\Settings\SiteSettings;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -53,10 +55,11 @@ use Illuminate\Support\Carbon;
  *
  * @mixin \Eloquent
  */
-final class Page extends Model implements HasMarkup
+final class Page extends Model implements HasMarkup, Viewable
 {
     use HasTheSlug;
     use InteractsWithSEO;
+    use InteractsWithViews;
     use PageSchema;
     use SoftDeletes;
 

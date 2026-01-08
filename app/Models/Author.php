@@ -9,6 +9,8 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -60,10 +62,11 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Author extends Model implements HasMarkup
+final class Author extends Model implements HasMarkup, Viewable
 {
     use AuthorSchema;
     use InteractsWithSEO;
+    use InteractsWithViews;
     use Orbital;
 
     public string $titleColumn = 'name';

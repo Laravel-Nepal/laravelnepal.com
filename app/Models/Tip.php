@@ -11,6 +11,8 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -48,11 +50,12 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Tip extends Model implements HasMarkup
+final class Tip extends Model implements HasMarkup, Viewable
 {
     use BlogSchema;
     use HasReadTime;
     use InteractsWithSEO;
+    use InteractsWithViews;
     use Orbital;
 
     public static function schema(Blueprint $blueprint): void

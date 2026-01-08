@@ -10,6 +10,8 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PackageSchema;
 use App\Settings\SiteSettings;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -49,9 +51,10 @@ use Orbit\Concerns\Orbital;
  *
  * @mixin \Eloquent
  */
-final class Package extends Model implements HasMarkup
+final class Package extends Model implements HasMarkup, Viewable
 {
     use InteractsWithSEO;
+    use InteractsWithViews;
     use Orbital;
     use PackageSchema;
 
