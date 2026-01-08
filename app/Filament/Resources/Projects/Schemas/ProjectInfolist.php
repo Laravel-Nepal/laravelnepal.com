@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Projects\Schemas;
 
 use App\Filament\Schemas\AuthorRelation;
+use App\Models\Project;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -25,7 +26,8 @@ final class ProjectInfolist
                         TextEntry::make('tags')
                             ->badge(),
                         TextEntry::make('github')
-                            ->url(fn (string $state): string => 'https://github.com/'.$state)
+                            ->url(fn (Project $project): ?string => $project->github_url)
+                            ->badge()
                             ->openUrlInNewTab()
                             ->placeholder('-'),
                         TextEntry::make('website')

@@ -9,12 +9,14 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
+use App\Traits\IsOrbital;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Schema\Blueprint;
-use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -27,10 +29,11 @@ use Orbit\Concerns\Orbital;
  * @property string|null $website
  * @property string|null $bio
  * @property string|null $content
- * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $avatar
+ * @property-read string|null $github_url
+ * @property-read string|null $linkedin_url
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Package> $packages
  * @property-read int|null $packages_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Post> $posts
@@ -41,15 +44,20 @@ use Orbit\Concerns\Orbital;
  * @property-read array $social_links
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
  * @property-read int|null $tips_count
+ * @property-read mixed $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, View> $views
+ * @property-read int|null $views_count
+ * @property-read string|null $x_url
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Author orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Author orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereExcluded($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereGithub($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereLinkedin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereName($value)
@@ -57,14 +65,16 @@ use Orbit\Concerns\Orbital;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereWebsite($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Author withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  *
  * @mixin \Eloquent
  */
-final class Author extends Model implements HasMarkup
+final class Author extends Model implements HasMarkup, Viewable
 {
     use AuthorSchema;
     use InteractsWithSEO;
-    use Orbital;
+    use InteractsWithViews;
+    use IsOrbital;
 
     public string $titleColumn = 'name';
 
@@ -87,16 +97,6 @@ final class Author extends Model implements HasMarkup
     public function getKeyName(): string
     {
         return 'username';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     /** @return HasMany<Tip, $this> */

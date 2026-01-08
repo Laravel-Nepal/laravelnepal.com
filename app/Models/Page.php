@@ -12,7 +12,12 @@ use AchyutN\LaravelSEO\Schemas\PageSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Enums\PageType;
 use App\Settings\SiteSettings;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Support\Period;
+use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -30,11 +35,15 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read SEO|null $seo
+ * @property-read Collection<int, View> $views
+ * @property-read int|null $views_count
  *
- * @method static Builder<static>|Page findSimilarSlugs(string $attribute, array<string,string> $config, string $slug)
+ * @method static Builder<static>|Page findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static Builder<static>|Page newModelQuery()
  * @method static Builder<static>|Page newQuery()
  * @method static Builder<static>|Page onlyTrashed()
+ * @method static Builder<static>|Page orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static Builder<static>|Page orderByViews(string $direction = 'desc', ?Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static Builder<static>|Page query()
  * @method static Builder<static>|Page whereContent($value)
  * @method static Builder<static>|Page whereCreatedAt($value)
@@ -48,15 +57,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|Page whereType($value)
  * @method static Builder<static>|Page whereUpdatedAt($value)
  * @method static Builder<static>|Page withTrashed(bool $withTrashed = true)
- * @method static Builder<static>|Page withUniqueSlugConstraints(Model $model, string $attribute, array<string,string> $config, string $slug)
+ * @method static Builder<static>|Page withUniqueSlugConstraints(Model $model, string $attribute, array $config, string $slug)
+ * @method static Builder<static>|Page withViewsCount(?Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static Builder<static>|Page withoutTrashed()
  *
  * @mixin \Eloquent
  */
-final class Page extends Model implements HasMarkup
+final class Page extends Model implements HasMarkup, Viewable
 {
     use HasTheSlug;
     use InteractsWithSEO;
+    use InteractsWithViews;
     use PageSchema;
     use SoftDeletes;
 

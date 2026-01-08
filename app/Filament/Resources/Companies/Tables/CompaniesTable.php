@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Companies\Tables;
 
 use Filament\Actions\ViewAction;
+use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -27,14 +28,12 @@ final class CompaniesTable
                     ->searchable(),
                 TextColumn::make('linkedin')
                     ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('total_views')
+                    ->label('Views')
+                    ->color(
+                        fn (int $state): array => $state > 0 ? Color::Green : Color::Neutral
+                    )
+                    ->badge(),
             ])
             ->filters([
                 //

@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Scopes\SkipExcluded;
+use App\Traits\IsOrbital;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
-use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -21,31 +23,36 @@ use Orbit\Concerns\Orbital;
  * @property string|null $linkedin
  * @property array<array-key, mixed>|null $tech_stack
  * @property string|null $content
- * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $avatar
+ * @property-read mixed $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
+ * @property-read int|null $views_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereExcluded($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereLinkedin($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereTechStack($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereWebsite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  *
  * @mixin \Eloquent
  */
-final class Company extends Model
+final class Company extends Model implements Viewable
 {
-    use Orbital;
+    use InteractsWithViews;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -61,16 +68,6 @@ final class Company extends Model
     public function getKeyName(): string
     {
         return 'slug';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     protected function casts(): array

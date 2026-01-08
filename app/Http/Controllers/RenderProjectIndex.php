@@ -25,6 +25,7 @@ final class RenderProjectIndex extends Controller
             ->whereType(PageType::IndexPage)
             ->whereName('project')
             ->first();
+        views($page)->record();
 
         return view('components.page.project-index', compact('breadCrumb', 'page'));
     }

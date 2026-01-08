@@ -21,6 +21,8 @@ final class RenderProjectView extends Controller
             ['label' => $project->getAttribute('title'), 'url' => route('page.project.view', $project)],
         ];
 
+        views($project)->record();
+
         return view('components.page.project-view', compact('project', 'breadCrumb'));
     }
 }

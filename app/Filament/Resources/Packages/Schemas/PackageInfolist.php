@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Packages\Schemas;
 
 use App\Filament\Schemas\AuthorRelation;
+use App\Models\Package;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -25,11 +26,13 @@ final class PackageInfolist
                         TextEntry::make('tags')
                             ->badge(),
                         TextEntry::make('github')
-                            ->url(fn (string $state): string => 'https://github.com/'.$state)
+                            ->url(fn (Package $package): ?string => $package->github_url)
+                            ->badge()
                             ->openUrlInNewTab()
                             ->placeholder('-'),
                         TextEntry::make('packagist')
-                            ->url(fn (string $state): string => 'https://packagist.org/packages/'.$state)
+                            ->url(fn (Package $package): ?string => $package->packagist_url)
+                            ->badge()
                             ->openUrlInNewTab()
                             ->placeholder('-'),
                     ]),

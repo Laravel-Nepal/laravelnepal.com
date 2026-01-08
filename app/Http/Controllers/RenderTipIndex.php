@@ -25,6 +25,7 @@ final class RenderTipIndex extends Controller
             ->whereType(PageType::IndexPage)
             ->whereName('tips')
             ->first();
+        views($page)->record();
 
         return view('components.page.tip-index', compact('breadCrumb', 'page'));
     }

@@ -21,6 +21,8 @@ final class RenderPostView extends Controller
             ['label' => $post->getAttribute('title'), 'url' => route('page.post.view', $post)],
         ];
 
+        views($post)->record();
+
         return view('components.page.post-view', compact('post', 'breadCrumb'));
     }
 }

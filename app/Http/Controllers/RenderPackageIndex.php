@@ -25,6 +25,7 @@ final class RenderPackageIndex extends Controller
             ->whereType(PageType::IndexPage)
             ->whereName('package')
             ->first();
+        views($page)->record();
 
         return view('components.page.package-index', compact('breadCrumb', 'page'));
     }

@@ -11,11 +11,13 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
+use App\Traits\IsOrbital;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
-use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -26,36 +28,41 @@ use Orbit\Concerns\Orbital;
  * @property string|null $canonical_url
  * @property array<array-key, mixed> $tags
  * @property string|null $content
- * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
+ * @property-read mixed $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
+ * @property-read int|null $views_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereAuthorUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereCanonicalUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereExcluded($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  *
  * @mixin \Eloquent
  */
-final class Post extends Model implements HasMarkup
+final class Post extends Model implements HasMarkup, Viewable
 {
     use BlogSchema;
     use HasReadTime;
     use InteractsWithSEO;
-    use Orbital;
+    use InteractsWithViews;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -70,16 +77,6 @@ final class Post extends Model implements HasMarkup
     public function getKeyName(): string
     {
         return 'slug';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     /** @return BelongsTo<Author, $this> */

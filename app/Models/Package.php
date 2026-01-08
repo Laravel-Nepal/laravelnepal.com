@@ -10,12 +10,14 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PackageSchema;
 use App\Settings\SiteSettings;
+use App\Traits\IsOrbital;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
-use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -26,33 +28,40 @@ use Orbit\Concerns\Orbital;
  * @property string|null $packagist
  * @property array<array-key, mixed> $tags
  * @property string|null $content
- * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read string|null $github_url
+ * @property-read string|null $packagist_url
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
+ * @property-read mixed $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
+ * @property-read int|null $views_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Package orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Package orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereAuthorUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereExcluded($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereGithub($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package wherePackagist($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Package withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  *
  * @mixin \Eloquent
  */
-final class Package extends Model implements HasMarkup
+final class Package extends Model implements HasMarkup, Viewable
 {
     use InteractsWithSEO;
-    use Orbital;
+    use InteractsWithViews;
+    use IsOrbital;
     use PackageSchema;
 
     public string $titleColumn = 'name';
@@ -70,16 +79,6 @@ final class Package extends Model implements HasMarkup
     public function getKeyName(): string
     {
         return 'slug';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     /** @return BelongsTo<Author, $this> */
