@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
-use Orbit\Concerns\Orbital;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -29,26 +28,31 @@ use Orbit\Concerns\Orbital;
  * @property string|null $website
  * @property array<array-key, mixed> $tags
  * @property string|null $content
- * @property int $excluded
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read string|null $github_url
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
+ * @property-read mixed $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
+ * @property-read int|null $views_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereAuthorUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereExcluded($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereGithub($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereWebsite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  *
  * @mixin \Eloquent
  */
