@@ -24,7 +24,7 @@ final class AuthorsTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('username')
-                    ->url(fn (Author $author): string => $author->getURLValue())
+                    ->url(fn (Author $author): ?string => $author->getURLValue())
                     ->badge()
                     ->searchable(),
                 TextColumn::make('bio')

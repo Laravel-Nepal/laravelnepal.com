@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
-use CyrildeWit\EloquentViewable\View;
-use CyrildeWit\EloquentViewable\Support\Period;
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
 use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
@@ -17,7 +14,10 @@ use App\Enums\PageType;
 use App\Settings\SiteSettings;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Support\Period;
+use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
