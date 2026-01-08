@@ -1,15 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+declare(strict_types=1);
 
-class CreateViewsTable extends Migration
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
 {
     /**
      * The database schema.
      *
-     * @var \Illuminate\Support\Facades\Schema
+     * @var Schema
      */
     protected $schema;
 
@@ -36,20 +38,18 @@ class CreateViewsTable extends Migration
 
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        $this->schema->create($this->table, function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('viewable_id');
-            $table->string('viewable_type');
-            $table->text('visitor')->nullable();
-            $table->string('collection')->nullable();
-            $table->timestamp('viewed_at')->useCurrent();
+        $this->schema->create($this->table, function (Blueprint $blueprint): void {
+            $blueprint->bigIncrements('id');
+            $blueprint->string('viewable_id');
+            $blueprint->string('viewable_type');
+            $blueprint->text('visitor')->nullable();
+            $blueprint->string('collection')->nullable();
+            $blueprint->timestamp('viewed_at')->useCurrent();
 
-            $table->unique(
+            $blueprint->unique(
                 ['viewable_id', 'viewable_type'],
                 'view_unique'
             );
@@ -58,11 +58,9 @@ class CreateViewsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists($this->table);
     }
-}
+};
