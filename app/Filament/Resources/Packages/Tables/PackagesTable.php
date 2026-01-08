@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Packages\Tables;
 
+use App\Models\Package;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\TextColumn;
@@ -20,11 +21,13 @@ final class PackagesTable
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('github')
-                    ->url(fn (string $state): string => 'https://github.com/'.$state)
+                    ->url(fn (Package $package): ?string => $package->github_url)
+                    ->badge()
                     ->openUrlInNewTab()
                     ->searchable(),
                 TextColumn::make('packagist')
-                    ->url(fn (string $state): string => 'https://packagist.org/packages/'.$state)
+                    ->url(fn (Package $package): ?string => $package->packagist_url)
+                    ->badge()
                     ->openUrlInNewTab()
                     ->searchable(),
                 TextColumn::make('total_views')

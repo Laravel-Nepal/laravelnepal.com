@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Projects\Tables;
 
+use App\Models\Project;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -23,11 +24,13 @@ final class ProjectsTable
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('github')
-                    ->url(fn (string $state): string => 'https://github.com/'.$state)
+                    ->url(fn (Project $project): ?string => $project->github_url)
+                    ->badge()
                     ->openUrlInNewTab()
                     ->searchable(),
                 TextColumn::make('website')
                     ->url(fn (string $state): string => $state)
+                    ->badge()
                     ->openUrlInNewTab()
                     ->searchable(),
                 TextColumn::make('total_views')
