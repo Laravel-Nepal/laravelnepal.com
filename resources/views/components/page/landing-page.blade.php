@@ -4,7 +4,11 @@
     <x-section.landing-page.tips-list />
     <x-section.landing-page.projects-and-packages />
     @push('seo')
-        @php($page = \App\Models\Page::whereType(\App\Enums\PageType::LandingPage)->first())
+        @php
+            $page = \App\Models\Page::whereType(\App\Enums\PageType::LandingPage)->first();
+            views($page)->record();
+        @endphp
+
         {!! seo($page) !!}
     @endpush
 </x-layouts.app>

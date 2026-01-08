@@ -22,6 +22,8 @@ final class RenderArtisanView extends Controller
             ['label' => $author->getAttribute('name'), 'url' => route('page.artisan.view', $author)],
         ];
 
+        views($author)->record();
+
         return view('components.page.artisan-view', compact('author', 'breadCrumb'));
     }
 }

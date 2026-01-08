@@ -21,6 +21,8 @@ final class RenderPackageView extends Controller
             ['label' => $package->getAttribute('name'), 'url' => route('page.package.view', $package)],
         ];
 
+        views($package)->record();
+
         return view('components.page.package-view', compact('package', 'breadCrumb'));
     }
 }

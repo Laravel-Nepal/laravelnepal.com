@@ -25,6 +25,7 @@ final class RenderArtisanIndex extends Controller
             ->whereType(PageType::IndexPage)
             ->whereName('artisan')
             ->first();
+        views($page)->record();
 
         return view('components.page.artisan-index', compact('breadCrumb', 'page'));
     }

@@ -26,6 +26,7 @@ final class RenderPostIndex extends Controller
             ->whereType(PageType::IndexPage)
             ->whereName('post')
             ->first();
+        views($page)->record();
 
         return view('components.page.post-index', compact('breadCrumb', 'page'));
     }
