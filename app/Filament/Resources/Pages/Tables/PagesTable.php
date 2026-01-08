@@ -25,6 +25,13 @@ final class PagesTable
                 TextColumn::make('type')
                     ->badge()
                     ->searchable(),
+                TextColumn::make('views_count')
+                    ->label('Views')
+                    ->counts('views')
+                    ->color(
+                        fn (int $state): array => $state > 0 ? Color::Green : Color::Neutral
+                    )
+                    ->badge(),
             ])
             ->recordActions([
                 Action::make('preview')

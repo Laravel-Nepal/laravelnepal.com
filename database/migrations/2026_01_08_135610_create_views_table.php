@@ -49,7 +49,7 @@ return new class extends Migration
             $blueprint->string('collection')->nullable();
             $blueprint->timestamp('viewed_at')->useCurrent();
 
-            $blueprint->unique(
+            $blueprint->index(
                 ['viewable_id', 'viewable_type'],
                 'view_unique'
             );

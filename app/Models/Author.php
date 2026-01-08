@@ -9,8 +9,10 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -67,7 +69,7 @@ final class Author extends Model implements HasMarkup, Viewable
     use AuthorSchema;
     use InteractsWithSEO;
     use InteractsWithViews;
-    use Orbital;
+    use IsOrbital;
 
     public string $titleColumn = 'name';
 
@@ -90,16 +92,6 @@ final class Author extends Model implements HasMarkup, Viewable
     public function getKeyName(): string
     {
         return 'username';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     /** @return HasMany<Tip, $this> */
