@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Authors\Schemas;
 
+use App\Models\Author;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -46,17 +47,20 @@ final class AuthorInfolist
                     ->description('Author social media links')
                     ->schema([
                         TextEntry::make('linkedin')
-                            ->url(fn (string $state): string => 'https://linkedin.com/in/'.$state)
+                            ->url(fn (Author $author): ?string => $author->linkedin_url)
+                            ->badge()
                             ->openUrlInNewTab()
                             ->placeholder('N/A')
                             ->label('LinkedIn'),
                         TextEntry::make('github')
-                            ->url(fn (string $state): string => 'https://github.com/'.$state)
+                            ->url(fn (Author $author): ?string => $author->github_url)
+                            ->badge()
                             ->openUrlInNewTab()
                             ->placeholder('N/A')
                             ->label('GitHub'),
                         TextEntry::make('x')
-                            ->url(fn (string $state): string => 'https://x.com/'.$state)
+                            ->url(fn (Author $author): ?string => $author->x_url)
+                            ->badge()
                             ->openUrlInNewTab()
                             ->placeholder('N/A')
                             ->label('X (formerly Twitter)'),
