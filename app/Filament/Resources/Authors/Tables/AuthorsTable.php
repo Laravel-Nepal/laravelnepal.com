@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Authors\Tables;
 
+use App\Models\Author;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\ImageColumn;
@@ -23,11 +24,8 @@ final class AuthorsTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('username')
+                    ->url(fn (Author $author): string => $author->getURLValue())
                     ->badge()
-                    ->searchable(),
-                TextColumn::make('website')
-                    ->url(fn (string $state): string => str_starts_with($state, 'http') ? $state : 'https://'.$state)
-                    ->openUrlInNewTab()
                     ->searchable(),
                 TextColumn::make('bio')
                     ->wrap()

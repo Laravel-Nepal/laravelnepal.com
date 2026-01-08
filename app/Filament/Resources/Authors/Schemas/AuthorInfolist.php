@@ -36,6 +36,8 @@ final class AuthorInfolist
                         TextEntry::make('name')
                             ->placeholder('N/A'),
                         TextEntry::make('username')
+                            ->url(fn (Author $author): string => $author->getURLValue())
+                            ->badge()
                             ->placeholder('N/A'),
                         TextEntry::make('email')
                             ->url(fn (string $state): string => 'mailto:'.$state)
