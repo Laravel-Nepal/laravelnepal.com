@@ -16,5 +16,9 @@ parameters:
             message: '#Class App\\Models\\[A-Za-z0-9]+ implements generic interface AchyutN\\LaravelSEO\\Contracts\\HasMarkup but does not specify its types: TKey#'
             paths:
                 - app/Models/*
+        -
+            message: '#Class App\\Models\\[A-Za-z0-9]+ has PHPDoc tag @method for method (findSimilarSlugs|withUniqueSlugConstraints)\(\) parameter \#\d+ \$config with no value type specified in iterable type array#'
+            paths:
+                - app/Models/*
 
     treatPhpDocTypesAsCertain: false

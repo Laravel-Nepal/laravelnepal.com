@@ -22,16 +22,20 @@ trait IsOrbital
         return false;
     }
 
+    /** @return Attribute<int, null> */
     protected function totalViews(): Attribute
     {
+        /** @var string $modelkey */
+        $modelkey = $this->getKey();
+
         return Attribute::make(
-            get: fn () => cache()
+            get: fn (): int => cache()
                 ->remember(
-                    sprintf('views:%s:%s', self::class, $this->getKey()),
+                    sprintf('views:%s:%s', self::class, $modelkey),
                     now()->addMinutes(15),
-                    fn () => View::on('mysql')
+                    fn (): int => View::on('mysql')
                         ->where('viewable_type', self::class)
-                        ->where('viewable_id', $this->getKey())
+                        ->where('viewable_id', $modelkey)
                         ->count(),
                 ),
         );
