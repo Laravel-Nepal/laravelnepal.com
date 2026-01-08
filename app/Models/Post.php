@@ -11,6 +11,7 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -58,7 +59,7 @@ final class Post extends Model implements HasMarkup, Viewable
     use HasReadTime;
     use InteractsWithSEO;
     use InteractsWithViews;
-    use Orbital;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -73,16 +74,6 @@ final class Post extends Model implements HasMarkup, Viewable
     public function getKeyName(): string
     {
         return 'slug';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     /** @return BelongsTo<Author, $this> */

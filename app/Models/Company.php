@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Scopes\SkipExcluded;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -48,7 +49,7 @@ use Orbit\Concerns\Orbital;
 final class Company extends Model implements Viewable
 {
     use InteractsWithViews;
-    use Orbital;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -64,16 +65,6 @@ final class Company extends Model implements Viewable
     public function getKeyName(): string
     {
         return 'slug';
-    }
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
     }
 
     protected function casts(): array
