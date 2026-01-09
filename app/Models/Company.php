@@ -26,7 +26,8 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $avatar
- * @property-read mixed $total_views
+ * @property-read LaravelNewsSubmission|null $submission
+ * @property-read int $total_views
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  *

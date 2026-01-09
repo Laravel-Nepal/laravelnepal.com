@@ -33,7 +33,8 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
- * @property-read mixed $total_views
+ * @property-read LaravelNewsSubmission|null $submission
+ * @property-read int $total_views
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  *

@@ -34,7 +34,8 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read string|null $github_url
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
- * @property-read mixed $total_views
+ * @property-read LaravelNewsSubmission|null $submission
+ * @property-read int $total_views
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  *

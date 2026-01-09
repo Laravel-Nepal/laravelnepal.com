@@ -29,17 +29,17 @@ final class LaravelNewsAction extends Action
 
         $this->color(Color::Red);
 
-        $this->action(function (Model $record): void {
+        $this->action(function (Model $model): void {
             try {
                 $link = new Link(
-                    title: $record->getTitleValue(),
-                    url: $record->getURLValue(),
+                    title: $model->getTitleValue(),
+                    url: $model->getURLValue(),
                     category: $this->getType(),
                 );
 
                 $response = LaravelNews::post($link);
 
-                $record->submission()
+                $model->submission()
                     ->firstOrCreate([
                         'response_id' => $response->id,
                     ]);
@@ -64,7 +64,7 @@ final class LaravelNewsAction extends Action
         });
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): string
     {
         return 'laravel-news';
     }

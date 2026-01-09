@@ -24,6 +24,14 @@ trait IsContent
         return false;
     }
 
+    /**
+     * @return MorphOne<LaravelNewsSubmission>
+     */
+    public function submission(): MorphOne
+    {
+        return $this->morphOne(LaravelNewsSubmission::class, 'submittable');
+    }
+
     /** @return Attribute<int, null> */
     protected function totalViews(): Attribute
     {
@@ -41,13 +49,5 @@ trait IsContent
                         ->count(),
                 ),
         );
-    }
-
-    /**
-     * @return MorphOne<LaravelNewsSubmission>
-     */
-    public function submission(): MorphOne
-    {
-        return $this->morphOne(LaravelNewsSubmission::class, 'submittable');
     }
 }

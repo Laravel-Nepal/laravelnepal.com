@@ -42,10 +42,11 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read int|null $projects_count
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
+ * @property-read LaravelNewsSubmission|null $submission
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
  * @property-read int|null $tips_count
- * @property-read mixed $total_views
- * @property-read \Illuminate\Database\Eloquent\Collection<int, View> $views
+ * @property-read int $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  * @property-read string|null $x_url
  *
