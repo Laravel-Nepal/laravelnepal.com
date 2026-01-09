@@ -15,6 +15,7 @@ return new class extends Migration
             $blueprint->id();
             $blueprint->string('submittable_id');
             $blueprint->string('submittable_type');
+            $blueprint->integer('response_id');
             $blueprint->timestamps();
 
             $blueprint->unique(
