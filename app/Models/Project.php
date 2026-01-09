@@ -10,7 +10,7 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\ProjectSchema;
 use App\Settings\SiteSettings;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -60,7 +60,7 @@ final class Project extends Model implements HasMarkup, Viewable
 {
     use InteractsWithSEO;
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
     use ProjectSchema;
 
     public static function schema(Blueprint $blueprint): void

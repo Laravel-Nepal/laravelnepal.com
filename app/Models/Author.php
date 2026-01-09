@@ -9,7 +9,7 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -74,7 +74,7 @@ final class Author extends Model implements HasMarkup, Viewable
     use AuthorSchema;
     use InteractsWithSEO;
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
 
     public string $titleColumn = 'name';
 

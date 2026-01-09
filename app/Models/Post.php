@@ -11,7 +11,7 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -62,7 +62,7 @@ final class Post extends Model implements HasMarkup, Viewable
     use HasReadTime;
     use InteractsWithSEO;
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
 
     public static function schema(Blueprint $blueprint): void
     {

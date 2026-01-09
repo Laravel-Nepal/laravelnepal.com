@@ -8,7 +8,7 @@ use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Orbit\Concerns\Orbital;
 
-trait IsOrbital
+trait IsContent
 {
     use Orbital;
 

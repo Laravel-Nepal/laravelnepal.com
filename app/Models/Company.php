@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Scopes\SkipExcluded;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -52,7 +52,7 @@ use Illuminate\Database\Schema\Blueprint;
 final class Company extends Model implements Viewable
 {
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
 
     public static function schema(Blueprint $blueprint): void
     {
