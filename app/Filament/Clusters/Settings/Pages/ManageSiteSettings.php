@@ -11,6 +11,7 @@ use Exception;
 use Filament\Forms\Components\CodeEditor;
 use Filament\Forms\Components\CodeEditor\Enums\Language;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -47,6 +48,9 @@ final class ManageSiteSettings extends SettingsPage
                             ->label('Site Description')
                             ->required()
                             ->maxLength(500),
+                        MarkdownEditor::make('footer_text')
+                            ->label('Footer Text')
+                            ->helperText('This text will be displayed in the footer of the site.'),
                     ]),
                 Section::make('Site Images')
                     ->description('Images used for branding and social media sharing.')
