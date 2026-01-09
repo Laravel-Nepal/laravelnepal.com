@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Scopes\SkipExcluded;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -26,7 +26,8 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $avatar
- * @property-read mixed $total_views
+ * @property-read LaravelNewsSubmission|null $submission
+ * @property-read int $total_views
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  *
@@ -52,7 +53,7 @@ use Illuminate\Database\Schema\Blueprint;
 final class Company extends Model implements Viewable
 {
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
 
     public static function schema(Blueprint $blueprint): void
     {

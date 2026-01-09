@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Packages\Pages;
 
+use App\Filament\Components\LaravelNewsAction;
 use App\Filament\Resources\Packages\PackageResource;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -14,7 +15,7 @@ final class ViewPackage extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            //
+            LaravelNewsAction::make(),
         ];
     }
 }

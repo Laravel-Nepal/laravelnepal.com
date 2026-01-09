@@ -11,7 +11,7 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -33,7 +33,8 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
- * @property-read mixed $total_views
+ * @property-read LaravelNewsSubmission|null $submission
+ * @property-read int $total_views
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  *
@@ -60,7 +61,7 @@ final class Tip extends Model implements HasMarkup, Viewable
     use HasReadTime;
     use InteractsWithSEO;
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
 
     public static function schema(Blueprint $blueprint): void
     {

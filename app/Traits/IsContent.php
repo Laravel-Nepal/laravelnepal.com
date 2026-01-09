@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use App\Models\LaravelNewsSubmission;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Orbit\Concerns\Orbital;
 
-trait IsOrbital
+trait IsContent
 {
     use Orbital;
 
@@ -20,6 +22,14 @@ trait IsOrbital
     public function getIncrementing(): bool
     {
         return false;
+    }
+
+    /**
+     * @return MorphOne<LaravelNewsSubmission, $this>
+     */
+    public function submission(): MorphOne
+    {
+        return $this->morphOne(LaravelNewsSubmission::class, 'submittable');
     }
 
     /** @return Attribute<int, null> */

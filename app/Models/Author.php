@@ -9,7 +9,7 @@ use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
-use App\Traits\IsOrbital;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -42,10 +42,11 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read int|null $projects_count
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
+ * @property-read LaravelNewsSubmission|null $submission
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
  * @property-read int|null $tips_count
- * @property-read mixed $total_views
- * @property-read \Illuminate\Database\Eloquent\Collection<int, View> $views
+ * @property-read int $total_views
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
  * @property-read string|null $x_url
  *
@@ -74,7 +75,7 @@ final class Author extends Model implements HasMarkup, Viewable
     use AuthorSchema;
     use InteractsWithSEO;
     use InteractsWithViews;
-    use IsOrbital;
+    use IsContent;
 
     public string $titleColumn = 'name';
 

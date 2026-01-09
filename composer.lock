@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "600a238d9921371a617d16522602aa1e",
+    "content-hash": "355ad2fd316f118c97becb780a3cd422",
     "packages": [
         {
             "name": "achyutn/filament-log-viewer",
@@ -170,6 +170,91 @@
                 }
             ],
             "time": "2025-12-13T13:09:11+00:00"
+        },
+        {
+            "name": "achyutn/laravel-news-sdk",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/achyutkneupane/laravel-news-sdk.git",
+                "reference": "15183cf2b397a957e369d3e4da90a0f7414e1141"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/achyutkneupane/laravel-news-sdk/zipball/15183cf2b397a957e369d3e4da90a0f7414e1141",
+                "reference": "15183cf2b397a957e369d3e4da90a0f7414e1141",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "php": "^8.2|^8.3|^8.4"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.27",
+                "pestphp/pest": "^3.8",
+                "phpstan/phpstan": "^2.1",
+                "rector/rector": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "LaravelNews": "AchyutN\\LaravelNews\\Facades\\LaravelNews"
+                    },
+                    "providers": [
+                        "AchyutN\\LaravelNews\\Providers\\LaravelNewsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AchyutN\\LaravelNews\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "achyutkneupane",
+                    "email": "achyutkneupane@gmail.com",
+                    "homepage": "https://achyut.com.np",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A simple PHP SDK for submitting links to Laravel News.",
+            "keywords": [
+                "api",
+                "laravel",
+                "links",
+                "news",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/achyutkneupane/laravel-news-sdk/issues",
+                "source": "https://github.com/achyutkneupane/laravel-news-sdk/tree/v1.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/achyutn",
+                    "type": "buy_me_a_coffee"
+                },
+                {
+                    "url": "https://buymemomo.com/achyut",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/achyutkneupane",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/Achyut",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2026-01-09T14:36:50+00:00"
         },
         {
             "name": "achyutn/laravel-seo",
