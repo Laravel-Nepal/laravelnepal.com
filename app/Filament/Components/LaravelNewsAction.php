@@ -8,6 +8,7 @@ use AchyutN\LaravelNews\Data\Link;
 use AchyutN\LaravelNews\Enums\LinkCategory;
 use AchyutN\LaravelNews\Facades\LaravelNews;
 use AchyutN\LaravelSEO\Services\SEOService;
+use App\Models\LaravelNewsSubmission;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Support\Colors\Color;
@@ -75,23 +76,23 @@ final class LaravelNewsAction extends Action
 
             $response = LaravelNews::post($link);
 
-            if (method_exists($record, 'submission')) {
-                // @phpstan-ignore-next-line
-                $record->submission()
-                    ->firstOrCreate([
-                        'response_id' => $response->id,
-                    ]);
+            LaravelNewsSubmission::query()
+                ->updateOrCreate([
+                    'model_type' => $record->getMorphClass(),
+                    'model_id' => $record->getKey(),
+                ], [
+                    'response_id' => $response->id,
+                ]);
 
-                cache()->forever(
-                    key: sprintf(
-                        'laravel_news_submitted_%s_%s',
-                        $record->getTable(),
-                        // @phpstan-ignore-next-line
-                        $record->getKey()
-                    ),
-                    value: true,
-                );
-            }
+            cache()->forever(
+                key: sprintf(
+                    'laravel_news_submitted_%s_%s',
+                    $record->getTable(),
+                    // @phpstan-ignore-next-line
+                    $record->getKey()
+                ),
+                value: true,
+            );
 
             Notification::make()
                 ->title('Link submitted to Laravel News successfully.')
