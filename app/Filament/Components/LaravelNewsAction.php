@@ -101,7 +101,6 @@ final class LaravelNewsAction extends Action
             Log::error('Failed to submit link to Laravel News', [
                 'error' => $throwable->getMessage(),
                 'link' => isset($link) ? $link->toPostArray() : null,
-                'trace' => $throwable->getTraceAsString(),
             ]);
 
             Notification::make()
