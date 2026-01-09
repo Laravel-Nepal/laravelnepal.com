@@ -32,6 +32,14 @@ final class LaravelNewsAction extends Action
 
         $this->requiresConfirmation();
 
+        $this->hidden(
+            fn (Record $record): bool => cache()
+                ->rememberForever(
+                    key: sprintf('laravel_news_submitted_%s_%s', $record->getTable(), $record->getKey()),
+                    callback: fn () => method_exists($record, 'submission') && $record->submission()->exists()
+                ),
+        );
+
         $this->action(fn (Record $record) => $this->submitToLaravelNews($record));
 
     }
@@ -68,6 +76,11 @@ final class LaravelNewsAction extends Action
                     ->firstOrCreate([
                         'response_id' => $response->id,
                     ]);
+
+                cache()->forever(
+                    key: sprintf('laravel_news_submitted_%s_%s', $record->getTable(), $record->getKey()),
+                    value: true,
+                );
             }
 
             Notification::make()
