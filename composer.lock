@@ -173,16 +173,16 @@
         },
         {
             "name": "achyutn/laravel-news-sdk",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/achyutkneupane/laravel-news-sdk.git",
-                "reference": "15183cf2b397a957e369d3e4da90a0f7414e1141"
+                "reference": "9cbfec32e89ac695cf28516f91a2e25ac4a567e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/achyutkneupane/laravel-news-sdk/zipball/15183cf2b397a957e369d3e4da90a0f7414e1141",
-                "reference": "15183cf2b397a957e369d3e4da90a0f7414e1141",
+                "url": "https://api.github.com/repos/achyutkneupane/laravel-news-sdk/zipball/9cbfec32e89ac695cf28516f91a2e25ac4a567e0",
+                "reference": "9cbfec32e89ac695cf28516f91a2e25ac4a567e0",
                 "shasum": ""
             },
             "require": {
@@ -234,7 +234,7 @@
             ],
             "support": {
                 "issues": "https://github.com/achyutkneupane/laravel-news-sdk/issues",
-                "source": "https://github.com/achyutkneupane/laravel-news-sdk/tree/v1.0.3"
+                "source": "https://github.com/achyutkneupane/laravel-news-sdk/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -254,7 +254,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-01-09T14:36:50+00:00"
+            "time": "2026-01-09T19:08:01+00:00"
         },
         {
             "name": "achyutn/laravel-seo",
