@@ -35,8 +35,14 @@ final class LaravelNewsAction extends Action
         $this->hidden(
             fn (Record $record): bool => cache()
                 ->rememberForever(
-                    key: sprintf('laravel_news_submitted_%s_%s', $record->getTable(), $record->getKey()),
-                    callback: fn () => method_exists($record, 'submission') && $record->submission()->exists()
+                    key: sprintf(
+                        'laravel_news_submitted_%s_%s',
+                        $record->getTable(),
+                        // @phpstan-ignore-next-line
+                        $record->getKey()
+                    ),
+                    // @phpstan-ignore-next-line
+                    callback: fn (): bool => method_exists($record, 'submission') && $record->submission()->exists()
                 ),
         );
 
@@ -78,7 +84,12 @@ final class LaravelNewsAction extends Action
                     ]);
 
                 cache()->forever(
-                    key: sprintf('laravel_news_submitted_%s_%s', $record->getTable(), $record->getKey()),
+                    key: sprintf(
+                        'laravel_news_submitted_%s_%s',
+                        $record->getTable(),
+                        // @phpstan-ignore-next-line
+                        $record->getKey()
+                    ),
                     value: true,
                 );
             }
