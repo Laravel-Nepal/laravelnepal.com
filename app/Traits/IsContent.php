@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use App\Models\LaravelNewsSubmission;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Orbit\Concerns\Orbital;
 
 trait IsContent
@@ -39,5 +41,13 @@ trait IsContent
                         ->count(),
                 ),
         );
+    }
+
+    /**
+     * @return MorphOne<LaravelNewsSubmission>
+     */
+    public function submission(): MorphOne
+    {
+        return $this->morphOne(LaravelNewsSubmission::class, 'submittable');
     }
 }

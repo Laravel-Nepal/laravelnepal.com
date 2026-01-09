@@ -39,7 +39,7 @@ final class LaravelNewsAction extends Action
 
                 $response = LaravelNews::post($link);
 
-                $record->submissions()
+                $record->submission()
                     ->firstOrCreate([
                         'response_id' => $response->id,
                     ]);
