@@ -42,12 +42,11 @@ final class LaravelNewsAction extends Action
                         $record->getKey()
                     ),
                     // @phpstan-ignore-next-line
-                    callback: fn (): bool => method_exists($record, 'submission') && $record->submission()->exists()
+                    callback: fn (): bool => $record->is_submitted_to_laravel_news,
                 ),
         );
 
         $this->action(fn (Record $record) => $this->submitToLaravelNews($record));
-
     }
 
     public static function getDefaultName(): string

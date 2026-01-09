@@ -6,6 +6,8 @@ namespace App\Traits;
 
 use App\Models\LaravelNewsSubmission;
 use CyrildeWit\EloquentViewable\View;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Orbit\Concerns\Orbital;
@@ -30,6 +32,23 @@ trait IsContent
     public function submission(): MorphOne
     {
         return $this->morphOne(LaravelNewsSubmission::class, 'submittable');
+    }
+
+    /** @return Builder<LaravelNewsSubmission> */
+    #[Scope]
+    protected function submissions(): Builder
+    {
+        return LaravelNewsSubmission::query()
+            ->where('submittable_type', get_class($this))
+            ->where('submittable_id', $this->getKey());
+    }
+
+    /** @return Attribute<bool, null> */
+    protected function isSubmittedToLaravelNews(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): bool => $this->submissions()->exists(),
+        );
     }
 
     /** @return Attribute<int, null> */

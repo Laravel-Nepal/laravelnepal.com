@@ -32,6 +32,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
  * @property-read string|null $github_url
+ * @property-read bool $is_submitted_to_laravel_news
  * @property-read string|null $packagist_url
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
@@ -45,6 +46,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Package submissions()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereAuthorUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package whereCreatedAt($value)
