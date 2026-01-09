@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 final class LaravelNewsSubmission extends Model
 {
+    // @phpstan-ignore-next-line
     public function submittable(): MorphTo
     {
         return $this->morphTo('submittable');

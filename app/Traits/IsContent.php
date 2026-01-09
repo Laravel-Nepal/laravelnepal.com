@@ -25,7 +25,7 @@ trait IsContent
     }
 
     /**
-     * @return MorphOne<LaravelNewsSubmission>
+     * @return MorphOne<LaravelNewsSubmission, $this>
      */
     public function submission(): MorphOne
     {

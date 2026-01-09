@@ -7,11 +7,12 @@ namespace App\Filament\Components;
 use AchyutN\LaravelNews\Data\Link;
 use AchyutN\LaravelNews\Enums\LinkCategory;
 use AchyutN\LaravelNews\Facades\LaravelNews;
+use AchyutN\LaravelSEO\Services\SEOService;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Record;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
@@ -29,39 +30,10 @@ final class LaravelNewsAction extends Action
 
         $this->color(Color::Red);
 
-        $this->action(function (Model $model): void {
-            try {
-                $link = new Link(
-                    title: $model->getTitleValue(),
-                    url: $model->getURLValue(),
-                    category: $this->getType(),
-                );
+        $this->requiresConfirmation();
 
-                $response = LaravelNews::post($link);
+        $this->action(fn (Record $record) => $this->submitToLaravelNews($record));
 
-                $model->submission()
-                    ->firstOrCreate([
-                        'response_id' => $response->id,
-                    ]);
-
-                Notification::make()
-                    ->title('Link submitted to Laravel News successfully.')
-                    ->success()
-                    ->send();
-            } catch (Throwable $throwable) {
-                Log::error('Failed to submit link to Laravel News', [
-                    'error' => $throwable->getMessage(),
-                    'link' => isset($link) ? $link->toPostArray() : null,
-                    'trace' => $throwable->getTraceAsString(),
-                ]);
-
-                Notification::make()
-                    ->title('Failed to submit the link to Laravel News.')
-                    ->body($throwable->getMessage())
-                    ->danger()
-                    ->send();
-            }
-        });
     }
 
     public static function getDefaultName(): string
@@ -74,6 +46,47 @@ final class LaravelNewsAction extends Action
         $this->linkCategory = $linkCategory;
 
         return $this;
+    }
+
+    public function submitToLaravelNews(Record $record): void
+    {
+        $seoService = resolve(SEOService::class);
+
+        ['title' => $title, 'url' => $url] = $seoService->getModelValues($record);
+        try {
+            $link = new Link(
+                title: $title ?? 'Laravel Nepal',
+                url: $url ?? 'https://laravelnepal.com',
+                category: $this->getType(),
+            );
+
+            $response = LaravelNews::post($link);
+
+            if (method_exists($record, 'submission')) {
+                // @phpstan-ignore-next-line
+                $record->submission()
+                    ->firstOrCreate([
+                        'response_id' => $response->id,
+                    ]);
+            }
+
+            Notification::make()
+                ->title('Link submitted to Laravel News successfully.')
+                ->success()
+                ->send();
+        } catch (Throwable $throwable) {
+            Log::error('Failed to submit link to Laravel News', [
+                'error' => $throwable->getMessage(),
+                'link' => isset($link) ? $link->toPostArray() : null,
+                'trace' => $throwable->getTraceAsString(),
+            ]);
+
+            Notification::make()
+                ->title('Failed to submit the link to Laravel News.')
+                ->body($throwable->getMessage())
+                ->danger()
+                ->send();
+        }
     }
 
     protected function getType(): LinkCategory
