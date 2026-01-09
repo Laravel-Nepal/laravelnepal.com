@@ -33,6 +33,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $avatar
  * @property-read string|null $github_url
+ * @property-read bool $is_submitted_to_laravel_news
  * @property-read string|null $linkedin_url
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Package> $packages
  * @property-read int|null $packages_count
@@ -55,6 +56,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Author submissions()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author whereCreatedAt($value)

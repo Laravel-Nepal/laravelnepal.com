@@ -26,6 +26,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $avatar
+ * @property-read bool $is_submitted_to_laravel_news
  * @property-read LaravelNewsSubmission|null $submission
  * @property-read int $total_views
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
@@ -36,6 +37,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company submissions()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereCreatedAt($value)

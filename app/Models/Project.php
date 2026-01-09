@@ -32,6 +32,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
  * @property-read string|null $github_url
+ * @property-read bool $is_submitted_to_laravel_news
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read array $social_links
  * @property-read LaravelNewsSubmission|null $submission
@@ -44,6 +45,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Project submissions()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereAuthorUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Project whereCreatedAt($value)

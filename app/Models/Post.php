@@ -31,6 +31,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read bool $is_submitted_to_laravel_news
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
@@ -44,6 +45,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post submissions()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereAuthorUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereCanonicalUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereContent($value)
