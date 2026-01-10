@@ -65,6 +65,7 @@ trait IsContent
                     fn (): int => View::on('mysql')
                         ->where('viewable_type', self::class)
                         ->where('viewable_id', $modelkey)
+                        ->distinct('visitor')
                         ->count(),
                 ),
         );
