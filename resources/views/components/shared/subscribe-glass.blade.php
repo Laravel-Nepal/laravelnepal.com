@@ -8,7 +8,7 @@
 
     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="relative group">
         @csrf
-        <div class="flex flex-col sm:flex-row gap-3">
+        <div class="flex flex-col md:flex-row gap-3">
             <div class="relative flex-1">
                 <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-zinc-600 group-focus-within:text-laravel-red transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,7 +25,7 @@
                 >
             </div>
 
-            <button type="submit" class="button-outlined py-0! px-6! flex items-center justify-center gap-2">
+            <button type="submit" class="button-outlined py-2! md:py-0! px-6! flex items-center justify-center gap-2">
                 <span>Join</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
