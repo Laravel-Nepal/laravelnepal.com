@@ -2,8 +2,6 @@
     <div class="col-span-1 lg:col-span-3 order-1 lg:order-1">
         <x-layouts.section
             title="Blogs"
-            link-url="#"
-            link-label="View All"
         >
             <x-shared.featured-blog :post="$posts->first()" />
         </x-layouts.section>
@@ -11,8 +9,6 @@
     <div class="col-span-1 lg:col-span-2 order-3 lg:order-2">
         <x-layouts.section
             title="News"
-            link-url="#"
-            link-label="View All"
         >
             <div class="glass rounded-4xl w-full p-6 flex-1 flex flex-col gap-6">
                 @forelse($news as $newsItem)
