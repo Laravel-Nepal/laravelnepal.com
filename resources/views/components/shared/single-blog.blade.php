@@ -2,7 +2,7 @@
     <div class="h-40 bg-zinc-900 rounded-2xl mb-4 overflow-hidden relative">
         <div
             @class([
-                "flex justify-center items-center flex-wrap gap-4 h-full",
+                "flex justify-center items-center flex-wrap gap-x-4 h-full",
                 "bg-linear-to-tr from-laravel-red/20 group-hover/blog:from-laravel-red/30 to-transparent"
             ])
         >
