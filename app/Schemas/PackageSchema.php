@@ -27,7 +27,7 @@ trait PackageSchema
                 /** @phpstan-var string|null $codeRepository */
                 'codeRepository' => $model->getAttribute('github_url'),
                 'author' => $resolvedSEO->authorArray(),
-                'sameAs' => $model->social_links,
+                'sameAs' => array_values($model->social_links),
             ]);
     }
 

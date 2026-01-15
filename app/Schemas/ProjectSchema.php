@@ -26,7 +26,7 @@ trait ProjectSchema
                 'url' => $resolvedSEO->url,
                 'image' => $resolvedSEO->image,
                 'author' => $resolvedSEO->authorArray(),
-                'sameAs' => $model->social_links,
+                'sameAs' => array_values($model->social_links),
             ]);
     }
 

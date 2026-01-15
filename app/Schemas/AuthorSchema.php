@@ -26,7 +26,7 @@ trait AuthorSchema
                 /** @phpstan-var string|null $email */
                 'email' => $model->getAttribute('email'),
                 'image' => $resolvedSEO->image,
-                'sameAs' => $model->social_links,
+                'sameAs' => array_values($model->social_links),
             ]);
     }
 
