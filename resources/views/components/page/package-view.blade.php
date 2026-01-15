@@ -5,21 +5,19 @@
 
             <div class="h-8 w-px bg-white/5"></div>
 
-            <div>
-                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Registry</p>
-                <a href="https://packagist.org/packages/{{ $package->packagist }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white flex items-center gap-1 transition-colors">
-                    {{ $package->packagist }}
-                </a>
-            </div>
+            <x-shared.header-stat
+                label="Registry"
+                :value="$package->packagist"
+                :link="$package->packagist_url"
+            />
 
             <div class="h-8 w-px bg-white/5"></div>
 
-            <div>
-                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Source</p>
-                <a href="https://github.com/{{ $package->github }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white flex items-center gap-1 transition-colors">
-                    {{ $package->github }}
-                </a>
-            </div>
+            <x-shared.header-stat
+                label="Source"
+                :value="$package->github"
+                :link="$package->github_url"
+            />
         </div>
     </x-slot:header>
 

@@ -29,42 +29,38 @@
 
         <div class="flex flex-wrap items-center gap-6">
             @if($author->website)
-                <div>
-                    <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Website</p>
-                    <a href="{{ $author->website }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white flex items-center gap-1 transition-colors">
-                        {{ str_replace(['https://', 'http://'], '', $author->website) }}
-                    </a>
-                </div>
+                <x-shared.header-stat
+                    label="Website"
+                    :link="$author->website"
+                    :value="str_replace(['https://', 'http://'], '', $author->website)"
+                />
                 <div class="h-8 w-px bg-white/5 hidden md:block"></div>
             @endif
 
             @if($author->github)
-                <div>
-                    <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">GitHub</p>
-                    <a href="https://github.com/{{ $author->github }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white flex items-center gap-1 transition-colors">
-                        {{ $author->github }}
-                    </a>
-                </div>
+                <x-shared.header-stat
+                    label="GitHub"
+                    :link="$author->github_url"
+                    :value="$author->github"
+                />
                 <div class="h-8 w-px bg-white/5 hidden md:block"></div>
             @endif
 
             @if($author->x)
-                <div>
-                    <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">X</p>
-                    <a href="https://x.com/{{ $author->x }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white flex items-center gap-1 transition-colors">
-                        {{ $author->x }}
-                    </a>
-                </div>
+                <x-shared.header-stat
+                    label="X"
+                    :link="$author->x_url"
+                    :value="$author->x"
+                />
                 <div class="h-8 w-px bg-white/5 hidden md:block"></div>
             @endif
 
             @if($author->linkedin)
-                <div>
-                    <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">LinkedIn</p>
-                    <a href="https://linkedin.com/in/{{ $author->linkedin }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white transition-colors">
-                        {{$author->linkedin }}
-                    </a>
-                </div>
+                <x-shared.header-stat
+                    label="LinkedIn"
+                    :link="$author->linkedin_url"
+                    :value="$author->linkedin"
+                />
             @endif
         </div>
     </x-slot:header>

@@ -5,21 +5,19 @@
 
             <div class="h-8 w-px bg-white/5"></div>
 
-            <div>
-                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Project URL</p>
-                <a href="{{ $project->website }}" target="_blank" class="text-sm font-bold mt-1 text-laravel-red hover:text-white transition-colors flex items-center gap-1">
-                    {{ str_replace(['https://', 'http://'], '', $project->website) }}
-                </a>
-            </div>
+            <x-shared.header-stat
+                label="Project URL"
+                :link="$project->website"
+                :value="str_replace(['https://', 'http://'], '', $project->website)"
+            />
 
             <div class="h-8 w-px bg-white/5"></div>
 
-            <div>
-                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none">Source Code</p>
-                <a href="https://github.com/{{ $project->github }}" target="_blank" class="text-sm font-bold mt-1 text-zinc-300 hover:text-white transition-colors">
-                    GitHub
-                </a>
-            </div>
+            <x-shared.header-stat
+                label="Source Code"
+                :link="$project->github_url"
+                :value="$project->github"
+            />
         </div>
     </x-slot:header>
 
