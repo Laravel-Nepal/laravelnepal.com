@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(
         ([entry]) => {
             dock.classList.toggle('is-docked', entry.isIntersecting);
+
+            if (entry.isIntersecting && window.Alpine) {
+                const alpineData = Alpine.$data(dock);
+                if(alpineData) alpineData.open = false;
+            }
         },
-        {
-            root: null,
-            threshold: 0,
-        }
+        { threshold: 0 }
     );
 
     observer.observe(footer);
