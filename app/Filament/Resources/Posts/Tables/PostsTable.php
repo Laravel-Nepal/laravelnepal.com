@@ -44,8 +44,8 @@ final class PostsTable
                 Action::make('push-to-news')
                     ->label('Push to News')
                     ->color(Color::Green)
-                    ->action(fn (Post $record) => $record->makeNews())
-                    ->hidden(fn (Post $record): bool => $record->is_news)
+                    ->action(fn (Post $post): bool => $post->makeNews())
+                    ->hidden(fn (Post $post): bool => $post->is_news)
                     ->requiresConfirmation()
                     ->successNotificationTitle('Post pushed to News successfully!')
                     ->icon(Heroicon::ArrowUpTray),

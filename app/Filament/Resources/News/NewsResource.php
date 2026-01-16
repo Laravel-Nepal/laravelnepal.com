@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\News;
 
 use App\Filament\Resources\News\Pages\ManageNews;
@@ -16,7 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class NewsResource extends Resource
+final class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
 
@@ -31,7 +33,7 @@ class NewsResource extends Resource
                 TextEntry::make('post.title'),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn (News $record): bool => $record->trashed()),
+                    ->visible(fn (News $news): bool => $news->trashed()),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),
@@ -46,7 +48,7 @@ class NewsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('post.title')
-                    ->url(fn (News $record): string => PostResource::getUrl('view', ['record' => $record->post]))
+                    ->url(fn (News $news): string => PostResource::getUrl('view', ['record' => $news->post]))
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Published as News')
