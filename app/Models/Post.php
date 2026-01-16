@@ -33,6 +33,7 @@ use Throwable;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read bool $is_news
  * @property-read bool $is_submitted_to_laravel_news
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
@@ -157,6 +158,7 @@ final class Post extends Model implements HasMarkup, Viewable
         ];
     }
 
+    /** @return Attribute<bool, null> */
     protected function isNews(): Attribute
     {
         return Attribute::make(
