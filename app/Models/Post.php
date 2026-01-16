@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Schema\Blueprint;
 use Throwable;
 
@@ -155,6 +156,12 @@ final class Post extends Model implements HasMarkup, Viewable
         }
     }
 
+    /** @return HasOne<News> */
+    public function news(): HasOne
+    {
+        return $this->hasOne(News::class, 'post_slug', 'slug');
+    }
+
     protected function casts(): array
     {
         return [
@@ -170,9 +177,7 @@ final class Post extends Model implements HasMarkup, Viewable
             get: fn (): bool => cache()
                 ->rememberForever(
                     'post:is_news:'.$this->slug,
-                    fn (): bool => News::on('mysql')
-                        ->where('post_slug', $this->slug)
-                        ->exists(),
+                    fn (): bool => $this->news()->exists(),
                 ),
         );
     }

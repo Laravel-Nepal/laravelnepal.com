@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -25,16 +26,14 @@ final class News extends Model
 {
     use SoftDeletes;
 
-    /** @return Attribute<Post, null> */
-    protected function post(): Attribute
+    public function getConnectionName()
     {
-        return Attribute::make(
-            get: fn (): Post => cache()->rememberForever(
-                'news:post_'.$this->post_slug,
-                fn () => Post::query()
-                    ->where('slug', $this->post_slug)
-                    ->firstOrFail()
-            ),
-        );
+        return config('database.default');
+    }
+
+    /** @return BelongsTo<Post> */
+    public function post(): BelongsTo
+    {
+        return $this->belongsTo(Post::class, 'post_slug', 'slug');
     }
 }

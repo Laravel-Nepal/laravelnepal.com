@@ -2,7 +2,7 @@
     href="{{ route('page.post.view', $post) }}"
     @class([
         $class,
-        "group/item border-b border-white/20 last:border-0 last:pb-0",
+        "group/item border-b border-white/20 pb-4 last:border-0 last:pb-0",
     ])
 >
     <p class="text-[10px] text-neutral-300 font-mono block mb-2">
