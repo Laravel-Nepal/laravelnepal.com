@@ -15,9 +15,11 @@ use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
+use Throwable;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -132,11 +134,39 @@ final class Post extends Model implements HasMarkup, Viewable
         ];
     }
 
+    public function makeNews(): bool
+    {
+        try {
+            News::on('mysql')
+                ->create([
+                    'post_slug' => $this->slug,
+                ]);
+            cache()->forget('post:is_news:'.$this->slug);
+
+            return true;
+        } catch (Throwable) {
+            return false;
+        }
+    }
+
     protected function casts(): array
     {
         return [
             'tags' => 'array',
             'date' => 'date',
         ];
+    }
+
+    protected function isNews(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): bool => cache()
+                ->rememberForever(
+                    'post:is_news:'.$this->slug,
+                    fn (): bool => News::on('mysql')
+                        ->where('post_slug', $this->slug)
+                        ->exists(),
+                ),
+        );
     }
 }
