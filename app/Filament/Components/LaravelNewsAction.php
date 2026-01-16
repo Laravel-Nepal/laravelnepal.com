@@ -78,8 +78,8 @@ final class LaravelNewsAction extends Action
 
             LaravelNewsSubmission::query()
                 ->updateOrCreate([
-                    'model_type' => $record->getMorphClass(),
-                    'model_id' => $record->getKey(),
+                    'submittable_type' => $record->getMorphClass(),
+                    'submittable_id' => $record->getKey(),
                 ], [
                     'response_id' => $response->id,
                 ]);
