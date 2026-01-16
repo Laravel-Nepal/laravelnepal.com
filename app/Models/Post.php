@@ -15,9 +15,12 @@ use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Schema\Blueprint;
+use Throwable;
 
 #[ScopedBy(SkipExcluded::class)]
 /**
@@ -31,6 +34,7 @@ use Illuminate\Database\Schema\Blueprint;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read bool $is_news
  * @property-read bool $is_submitted_to_laravel_news
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
@@ -122,6 +126,11 @@ final class Post extends Model implements HasMarkup, Viewable
         return route('page.post.view', $this);
     }
 
+    public function categoryValue(): string
+    {
+        return $this->is_news ? 'News' : 'Blog';
+    }
+
     /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {
@@ -132,11 +141,44 @@ final class Post extends Model implements HasMarkup, Viewable
         ];
     }
 
+    public function makeNews(): bool
+    {
+        try {
+            News::on('mysql')
+                ->create([
+                    'post_slug' => $this->slug,
+                ]);
+            cache()->forget('post:is_news:'.$this->slug);
+
+            return true;
+        } catch (Throwable) {
+            return false;
+        }
+    }
+
+    /** @return HasOne<News, $this> */
+    public function news(): HasOne
+    {
+        return $this->hasOne(News::class, 'post_slug', 'slug');
+    }
+
     protected function casts(): array
     {
         return [
             'tags' => 'array',
             'date' => 'date',
         ];
+    }
+
+    /** @return Attribute<bool, null> */
+    protected function isNews(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): bool => cache()
+                ->rememberForever(
+                    'post:is_news:'.$this->slug,
+                    fn (): bool => $this->news()->exists(),
+                ),
+        );
     }
 }

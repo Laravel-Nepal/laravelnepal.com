@@ -112,6 +112,11 @@ final class Tip extends Model implements HasMarkup, Viewable
         return route('page.tips.view', $this);
     }
 
+    public function categoryValue(): string
+    {
+        return 'Tips';
+    }
+
     public function imageValue(): ?string
     {
         $siteSettings = resolve(SiteSettings::class);

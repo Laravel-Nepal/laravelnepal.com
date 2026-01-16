@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Posts\Tables;
 
+use App\Models\Post;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -38,6 +41,14 @@ final class PostsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                Action::make('push-to-news')
+                    ->label('Push to News')
+                    ->color(Color::Green)
+                    ->action(fn (Post $post): bool => $post->makeNews())
+                    ->hidden(fn (Post $post): bool => $post->is_news)
+                    ->requiresConfirmation()
+                    ->successNotificationTitle('Post pushed to News successfully!')
+                    ->icon(Heroicon::ArrowUpTray),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
