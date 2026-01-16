@@ -12,7 +12,7 @@
         >
             <div class="glass rounded-4xl w-full p-6 flex-1 flex flex-col gap-6">
                 @forelse($news as $newsItem)
-                    <x-shared.simple-blog :post="$newsItem" />
+                    <x-shared.simple-blog :post="$newsItem->post" />
                 @empty
                     <p class="text-center text-neutral-500 col-span-full">No news available.</p>
                 @endforelse

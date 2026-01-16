@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\View\Components\Section\LandingPage;
 
+use App\Models\News;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -15,7 +16,7 @@ final class PostsAndNews extends Component
     /** @var Collection<int, Post> */
     public Collection $posts;
 
-    /** @var Collection<int, Post> */
+    /** @var Collection<int, News> */
     public Collection $news;
 
     /**
@@ -23,16 +24,15 @@ final class PostsAndNews extends Component
      */
     public function __construct()
     {
-        $this->posts = Post::query()
-            ->wherejsonDoesntContain('tags', 'news')
-            ->latest()
-            ->take(4)
-            ->get();
-
-        $this->news = Post::query()
-            ->whereJsonContains('tags', 'news')
+        $this->news = News::query()
             ->latest()
             ->take(5)
+            ->get();
+
+        $this->posts = Post::query()
+            ->whereNotIn('slug', $this->news->pluck('post_slug')->toArray())
+            ->latest()
+            ->take(4)
             ->get();
     }
 
