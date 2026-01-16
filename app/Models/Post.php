@@ -125,6 +125,11 @@ final class Post extends Model implements HasMarkup, Viewable
         return route('page.post.view', $this);
     }
 
+    public function categoryValue(): string
+    {
+        return $this->is_news ? 'News' : 'Blog';
+    }
+
     /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {
