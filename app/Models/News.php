@@ -25,12 +25,13 @@ final class News extends Model
 {
     use SoftDeletes;
 
-    public function getConnectionName()
+    public function getConnectionName(): ?string
     {
+        /** @var string|null */
         return config('database.default');
     }
 
-    /** @return BelongsTo<Post> */
+    /** @return BelongsTo<Post, $this> */
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_slug', 'slug');

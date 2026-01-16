@@ -15,8 +15,6 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 final class NewsResource extends Resource
 {
@@ -66,13 +64,5 @@ final class NewsResource extends Resource
         return [
             'index' => ManageNews::route('/'),
         ];
-    }
-
-    public static function getRecordRouteBindingEloquentQuery(): Builder
-    {
-        return parent::getRecordRouteBindingEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
     }
 }

@@ -156,7 +156,7 @@ final class Post extends Model implements HasMarkup, Viewable
         }
     }
 
-    /** @return HasOne<News> */
+    /** @return HasOne<News, $this> */
     public function news(): HasOne
     {
         return $this->hasOne(News::class, 'post_slug', 'slug');
