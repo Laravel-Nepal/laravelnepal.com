@@ -50,6 +50,64 @@ trait IsContent
         $this->votes()->firstOrCreate(
             ['visitor' => $visitor],
         );
+
+        cache()->forget(
+            sprintf('content:voted:%s:%s:%s', self::class, $this->getKey(), $visitor),
+        );
+
+        cache()->forget(
+            sprintf('votes:%s:%s', self::class, $this->getKey()),
+        );
+    }
+
+    public function contentIsSubmittedToLaravelNews(): bool
+    {
+        return cache()->remember(
+            sprintf('content:laravel-news-submitted:%s:%s', self::class, $this->getKey()),
+            now()->addMinutes(30),
+            fn (): bool => $this->submissions()->exists(),
+        );
+    }
+
+    public function getTotalViews(): int
+    {
+        /** @var string $modelkey */
+        $modelkey = $this->getKey();
+
+        return cache()
+            ->remember(
+                sprintf('views:%s:%s', self::class, $this->getKey()),
+                now()->addMinutes(15),
+                fn (): int => View::on('mysql')
+                    ->where('viewable_type', self::class)
+                    ->where('viewable_id', $modelkey)
+                    ->distinct('visitor')
+                    ->count(),
+            );
+    }
+
+    public function getTotalVotes(): int
+    {
+        return cache()
+            ->remember(
+                sprintf('votes:%s:%s', self::class, $this->getKey()),
+                now()->addMinutes(15),
+                fn (): int => $this->votes()->count(),
+            );
+    }
+
+    public function contentIsVoted(): bool
+    {
+        $visitor = app(Visitor::class)->id();
+
+        return cache()
+            ->remember(
+                sprintf('content:voted:%s:%s:%s', self::class, $this->getKey(), $visitor),
+                now()->addMinutes(15),
+                fn (): bool => $this->votes()
+                    ->where('visitor', $visitor)
+                    ->exists(),
+            );
     }
 
     /** @return Builder<LaravelNewsSubmission> */
@@ -65,7 +123,7 @@ trait IsContent
     protected function isSubmittedToLaravelNews(): Attribute
     {
         return Attribute::make(
-            get: fn (): bool => $this->submissions()->exists(),
+            get: fn (): bool => $this->contentIsSubmittedToLaravelNews(),
         );
     }
 
@@ -76,16 +134,7 @@ trait IsContent
         $modelkey = $this->getKey();
 
         return Attribute::make(
-            get: fn (): int => cache()
-                ->remember(
-                    sprintf('views:%s:%s', self::class, $modelkey),
-                    now()->addMinutes(15),
-                    fn (): int => View::on('mysql')
-                        ->where('viewable_type', self::class)
-                        ->where('viewable_id', $modelkey)
-                        ->distinct('visitor')
-                        ->count(),
-                ),
+            get: fn (): int => $this->getTotalViews(),
         );
     }
 
@@ -93,19 +142,15 @@ trait IsContent
     protected function totalVotes(): Attribute
     {
         return Attribute::make(
-            get: fn (): int => $this->votes()->count(),
+            get: fn (): int => $this->getTotalVotes(),
         );
     }
 
     /** @return Attribute<bool, null> */
     protected function voted(): Attribute
     {
-        $visitor = app(Visitor::class)->id();
-
         return Attribute::make(
-            get: fn (): bool => $this->votes()
-                ->where('visitor', $visitor)
-                ->exists(),
+            get: fn (): bool => $this->contentIsVoted(),
         );
     }
 }

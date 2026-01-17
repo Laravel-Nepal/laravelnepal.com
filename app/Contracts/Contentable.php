@@ -13,11 +13,21 @@ interface Contentable
 {
     public function votes(): MorphMany;
 
+    public function getTotalVotes(): int;
+
     public function vote(): void;
+
+    public function contentIsVoted(): bool;
 
     public function getKeyType(): string;
 
     public function getIncrementing(): bool;
 
     public function submission(): MorphOne;
+
+    public function submissions(): Builder;
+
+    public function contentIsSubmittedToLaravelNews(): bool;
+
+    public function getTotalViews(): int;
 }
