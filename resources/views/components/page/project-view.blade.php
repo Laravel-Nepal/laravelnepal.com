@@ -33,6 +33,7 @@
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">
+                <livewire:shared.vote-glass :content="$project" />
                 <x-shared.tags-glass :tags="$project->tags" />
                 <x-shared.share-glass />
                 <x-shared.subscribe-glass />
