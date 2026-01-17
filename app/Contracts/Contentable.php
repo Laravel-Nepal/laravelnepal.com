@@ -12,10 +12,12 @@ interface Contentable
     public function votes(): MorphMany;
 
     /** @return Attribute<int, null> */
-    public function totalVotes(): Attribute;
+    function totalVotes(): Attribute;
+
+    public function vote(): void;
 
     /** @return Attribute<bool, null> */
-    public function voted(): Attribute;
+    function voted(): Attribute;
 
     public function getKeyType(): string;
 
