@@ -51,13 +51,18 @@ trait IsContent
             ['visitor' => $visitor],
         );
 
-        cache()->forget(
-            sprintf('content:voted:%s:%s:%s', self::class, $this->getKey(), $visitor),
-        );
+        $this->removeVoteCache();
+    }
 
-        cache()->forget(
-            sprintf('votes:%s:%s', self::class, $this->getKey()),
-        );
+    public function removeVote(): void
+    {
+        $visitor = app(Visitor::class)->id();
+
+        $this->votes()
+            ->where('visitor', $visitor)
+            ->delete();
+
+        $this->removeVoteCache();
     }
 
     public function contentIsSubmittedToLaravelNews(): bool
@@ -151,6 +156,19 @@ trait IsContent
     {
         return Attribute::make(
             get: fn (): bool => $this->contentIsVoted(),
+        );
+    }
+
+    private function removeVoteCache(): void
+    {
+        $visitor = app(Visitor::class)->id();
+
+        cache()->forget(
+            sprintf('content:voted:%s:%s:%s', self::class, $this->getKey(), $visitor),
+        );
+
+        cache()->forget(
+            sprintf('votes:%s:%s', self::class, $this->getKey()),
         );
     }
 }

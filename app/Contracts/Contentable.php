@@ -16,6 +16,7 @@ interface Contentable
     public function getTotalVotes(): int;
 
     public function vote(): void;
+    public function removeVote(): void;
 
     public function contentIsVoted(): bool;
 
@@ -24,8 +25,6 @@ interface Contentable
     public function getIncrementing(): bool;
 
     public function submission(): MorphOne;
-
-    public function submissions(): Builder;
 
     public function contentIsSubmittedToLaravelNews(): bool;
 
