@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -52,7 +53,7 @@ use Illuminate\Database\Schema\Blueprint;
  *
  * @mixin \Eloquent
  */
-final class Company extends Model implements Viewable
+final class Company extends Model implements Contentable, Viewable
 {
     use InteractsWithViews;
     use IsContent;

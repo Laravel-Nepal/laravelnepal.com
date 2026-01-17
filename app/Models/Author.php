@@ -7,6 +7,7 @@ namespace App\Models;
 use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
+use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
 use App\Traits\IsContent;
@@ -72,7 +73,7 @@ use Illuminate\Database\Schema\Blueprint;
  *
  * @mixin \Eloquent
  */
-final class Author extends Model implements HasMarkup, Viewable
+final class Author extends Model implements Contentable, HasMarkup, Viewable
 {
     use AuthorSchema;
     use InteractsWithSEO;

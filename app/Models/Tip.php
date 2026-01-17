@@ -8,6 +8,7 @@ use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
 use AchyutN\LaravelSEO\Schemas\BlogSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
+use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
@@ -57,7 +58,7 @@ use Illuminate\Database\Schema\Blueprint;
  *
  * @mixin \Eloquent
  */
-final class Tip extends Model implements HasMarkup, Viewable
+final class Tip extends Model implements Contentable, HasMarkup, Viewable
 {
     use BlogSchema;
     use HasReadTime;

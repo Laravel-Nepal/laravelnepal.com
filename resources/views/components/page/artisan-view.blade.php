@@ -145,6 +145,8 @@
 
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">
+                <livewire:shared.vote-glass :content="$author" />
+
                 <div class="glass p-8 rounded-[2.5rem] border border-white/5">
                     <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-6">Contribution Stats</h4>
                     <div class="space-y-4">

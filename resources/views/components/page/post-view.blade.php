@@ -10,6 +10,14 @@
             <div class="h-8 w-px bg-white/5"></div>
 
             <x-shared.header-stat label="Estimated" :value="$post->minutes_read_text" />
+
+{{--            <div class="h-8 w-px bg-white/5"></div>--}}
+
+{{--            <x-shared.header-stat label="Votes">--}}
+{{--                <x-slot:value>--}}
+{{--                    <livewire:shared.vote-content :count="1" :active="true" />--}}
+{{--                </x-slot:value>--}}
+{{--            </x-shared.header-stat>--}}
         </div>
     </x-slot:header>
 
@@ -25,6 +33,7 @@
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">
+                <livewire:shared.vote-glass :content="$post" />
                 <x-shared.tags-glass :tags="$post->tags" />
                 <x-shared.share-glass />
                 <x-shared.subscribe-glass />
