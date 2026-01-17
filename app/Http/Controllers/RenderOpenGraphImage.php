@@ -14,9 +14,10 @@ class RenderOpenGraphImage extends Controller
     public function __invoke(Request $request, SEO $seo)
     {
         $siteSettings = app(SiteSettings::class);
-        $post = $seo->model;
+//        $post = $seo->model;
+        $tip = $seo->model;
         $logo = '/storage/'.$siteSettings->logo;
 
-        return view('components.open-graph.post-open-graph', compact('post', 'logo'));
+        return view('components.open-graph.tip-open-graph', compact('tip', 'logo'));
     }
 }

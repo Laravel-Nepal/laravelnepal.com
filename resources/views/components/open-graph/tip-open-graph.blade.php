@@ -21,16 +21,16 @@
             overflow: hidden;
         }
 
-        /* Subtle Laravel Red glow to match the Tip/Artisan aesthetic */
+        /* The Tip Card Glow effect in the bottom right */
         .glow {
             position: absolute;
-            bottom: -120px;
-            right: -120px;
-            width: 550px;
-            height: 550px;
-            background: #ef4444;
-            filter: blur(130px);
-            opacity: 0.12;
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: #ef4444; /* Laravel Red */
+            filter: blur(120px);
+            opacity: 0.15;
             pointer-events: none;
         }
 
@@ -40,18 +40,19 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 60px;
-            padding: 65px;
+            padding: 60px;
             display: flex;
             flex-direction: column;
             position: relative;
             z-index: 10;
         }
 
+        /* Top row with Date and Tags */
         .header-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .date {
@@ -71,7 +72,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #ef4444;
-            padding: 10px 22px;
+            padding: 8px 20px;
             border-radius: 99px;
             font-size: 16px;
             font-weight: 700;
@@ -80,17 +81,17 @@
         }
 
         .title {
-            font-size: 76px;
+            font-size: 72px; /* Slightly larger for Tips since there is no image header */
             font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -0.04em;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
             color: #ffffff;
-            flex: 1;
+            flex: 1; /* Pushes footer to bottom */
             display: flex;
             align-items: center;
-            margin-top: 10px;
         }
 
+        /* Footer with separator line */
         .footer {
             margin-top: 40px;
             padding-top: 40px;
@@ -111,10 +112,19 @@
             margin: 0 10px;
         }
 
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #faf9fe;
+            padding: 6px;
+            margin-left: 20px;
+        }
+
         .branding {
             display: flex;
             align-items: center;
-            gap: 20px;
         }
 
         .brand-text {
@@ -124,15 +134,6 @@
             color: #ef4444;
             letter-spacing: 0.1em;
         }
-
-        .logo-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            object-fit: cover;
-            background: #faf9fe;
-            padding: 8px;
-        }
     </style>
 </head>
 <body>
@@ -141,27 +142,27 @@
 <div class="og-card">
     <div class="header-row">
         <div class="date">
-            {{ $post->date->format('M d, Y') }}
+            {{ $tip->date->format('M d, Y') }}
         </div>
         <div class="tags-container">
-            @foreach($post->tags as $tag)
+            @foreach($tip->tags as $tag)
                 <div class="badge">{{ ucwords($tag) }}</div>
             @endforeach
         </div>
     </div>
 
     <h1 class="title">
-        {{ $post->title }}
+        {{ $tip->title }}
     </h1>
 
     <div class="footer">
         <div class="author-info">
-            {{ $post->author->name }} <span>&middot;</span> {{ $post->minutes_read_text }}
+            {{ $tip->author->name }} <span>&middot;</span> {{ $tip->minutes_read_text }}
         </div>
 
         <div class="branding">
-            <span class="brand-text">BLOG</span>
-            <img src="{{ $logo }}" class="logo-img" alt="Logo">
+            <span class="brand-text">TIP</span>
+            <img src="{{ $logo }}" class="logo-img">
         </div>
     </div>
 </div>
