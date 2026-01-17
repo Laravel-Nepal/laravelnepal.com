@@ -45,7 +45,7 @@ trait IsContent
 
     public function vote(): void
     {
-        $visitor = app(Visitor::class)->id();
+        $visitor = resolve(Visitor::class)->id();
 
         $this->votes()->firstOrCreate(
             ['visitor' => $visitor],
@@ -56,7 +56,7 @@ trait IsContent
 
     public function removeVote(): void
     {
-        $visitor = app(Visitor::class)->id();
+        $visitor = resolve(Visitor::class)->id();
 
         $this->votes()
             ->where('visitor', $visitor)
@@ -103,7 +103,7 @@ trait IsContent
 
     public function contentIsVoted(): bool
     {
-        $visitor = app(Visitor::class)->id();
+        $visitor = resolve(Visitor::class)->id();
 
         return cache()
             ->remember(
@@ -135,8 +135,7 @@ trait IsContent
     /** @return Attribute<int, null> */
     protected function totalViews(): Attribute
     {
-        /** @var string $modelkey */
-        $modelkey = $this->getKey();
+        $this->getKey();
 
         return Attribute::make(
             get: fn (): int => $this->getTotalViews(),
@@ -161,7 +160,7 @@ trait IsContent
 
     private function removeVoteCache(): void
     {
-        $visitor = app(Visitor::class)->id();
+        $visitor = resolve(Visitor::class)->id();
 
         cache()->forget(
             sprintf('content:voted:%s:%s:%s', self::class, $this->getKey(), $visitor),
