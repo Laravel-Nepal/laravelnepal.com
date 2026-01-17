@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Orbit\Concerns\Orbital;
+use Override;
 
 trait IsContent
 {
@@ -27,6 +28,15 @@ trait IsContent
     public function getIncrementing(): bool
     {
         return false;
+    }
+
+    #[Override]
+    public function getKey(): string
+    {
+        /** @var string $key */
+        $key = parent::getKey();
+
+        return $key === null ? '' : $key;
     }
 
     /**
@@ -76,12 +86,11 @@ trait IsContent
 
     public function getTotalViews(): int
     {
-        /** @var string $modelkey */
         $modelkey = $this->getKey();
 
         return cache()
             ->remember(
-                sprintf('views:%s:%s', self::class, $this->getKey()),
+                sprintf('views:%s:%s', self::class, $modelkey),
                 now()->addMinutes(15),
                 fn (): int => View::on('mysql')
                     ->where('viewable_type', self::class)

@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-
 interface Contentable
 {
-    public function votes(): MorphMany;
-
     public function getTotalVotes(): int;
 
     public function vote(): void;
@@ -22,8 +17,6 @@ interface Contentable
     public function getKeyType(): string;
 
     public function getIncrementing(): bool;
-
-    public function submission(): MorphOne;
 
     public function contentIsSubmittedToLaravelNews(): bool;
 
