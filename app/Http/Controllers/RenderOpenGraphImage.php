@@ -25,7 +25,7 @@ final class RenderOpenGraphImage extends Controller
     public function __invoke(Request $request, string $model, string $key): ResponseFactory|Response
     {
         $siteSettings = resolve(SiteSettings::class);
-        $logo = '/storage/'.$siteSettings->logo;
+        $logo = config()->string('app.url').'/storage/'.$siteSettings->logo;
 
         /** @var class-string $modelObject */
         $modelObject = match ($model) {
