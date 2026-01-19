@@ -27,6 +27,7 @@ final class RenderOpenGraphImage extends Controller
         $siteSettings = resolve(SiteSettings::class);
         $logo = '/storage/'.$siteSettings->logo;
 
+        /** @var class-string $modelObject */
         $modelObject = match ($model) {
             'page' => Page::class,
             'post' => Post::class,
@@ -56,19 +57,26 @@ final class RenderOpenGraphImage extends Controller
 
         try {
             $html = $view?->render();
+
+            if (!$html) {
+                abort(500, 'Failed to render Open Graph image HTML: View not found.');
+            }
         } catch (Throwable $throwable) {
             abort(500, 'Failed to render Open Graph image HTML: '.$throwable->getMessage());
         }
 
         $browserShot = Browsershot::html($html)
+            ->setDelay(2000)
             ->windowSize(1200, 630)
             ->waitUntilNetworkIdle()
             ->emulateMedia('screen')
             ->format('png')
-            ->quality(100)
-            ->setDelay(2000)
-            ->setNodeBinary(config('services.node.node_path'))
-            ->setNpmBinary(config('services.node.npm_path'))
+            ->setNodeBinary(
+                config()->string('services.node.node_path')
+            )
+            ->setNpmBinary(
+                config()->string('services.node.npm_path')
+            )
             ->fullPage()
             ->noSandbox()
             ->screenshot();
