@@ -5,28 +5,26 @@ declare(strict_types=1);
 namespace App\Schemas;
 
 use AchyutN\LaravelSEO\Data\ResolvedSEO;
-use App\Models\Author;
+use App\Models\Page;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 
-trait ProjectSchema
+trait PageSchema
 {
     public function buildSchema(SchemaCollection $schema, ResolvedSEO $resolvedSEO): SchemaCollection
     {
-        /** @var Author $model */
+        /** @var Page $model */
         $model = $resolvedSEO->getModel();
 
         return $schema
             ->add(fn (): array => [
                 '@context' => 'https://schema.org',
-                '@type' => $this->blogSchemaType(),
-                '@id' => $resolvedSEO->url,
+                '@type' => $resolvedSEO->pageType ?? $this->pageSchemaType(),
                 'name' => $resolvedSEO->title,
-                'applicationCategory' => $resolvedSEO->category,
                 'description' => $resolvedSEO->description,
                 'url' => $resolvedSEO->url,
-                'image' => $resolvedSEO->image,
+                'inLanguage' => 'en',
                 'author' => $resolvedSEO->authorArray(),
-                'sameAs' => array_values($model->social_links),
+                'publisher' => $resolvedSEO->publisherArray(),
             ])
             ->add(fn (): array => [
                 '@context' => 'https://schema.org',
@@ -38,12 +36,7 @@ trait ProjectSchema
                     [
                         '@type' => 'InteractionCounter',
                         'interactionType' => 'http://schema.org/UserPageVisits',
-                        'userInteractionCount' => $model->total_views,
-                    ],
-                    [
-                        '@type' => 'InteractionCounter',
-                        'interactionType' => 'http://schema.org/PlusOnes',
-                        'userInteractionCount' => $model->getTotalVotes(),
+                        'userInteractionCount' => $model->loadCount('views')->views_count,
                     ],
                 ],
                 'image' => $resolvedSEO->image,
@@ -52,7 +45,7 @@ trait ProjectSchema
                 'description' => $resolvedSEO->description,
                 'isAccessibleForFree' => 'http://schema.org/True',
                 'thumbnailUrl' => $resolvedSEO->image,
-                'articleSection' => 'Project',
+                'articleSection' => 'Artisan',
                 'datePublished' => $resolvedSEO->publishedAt,
                 'dateModified' => $resolvedSEO->modifiedAt,
                 'inLanguage' => 'en',
@@ -60,8 +53,8 @@ trait ProjectSchema
             ]);
     }
 
-    protected function blogSchemaType(): string
+    protected function pageSchemaType(): string
     {
-        return 'SoftwareApplication';
+        return 'WebPage';
     }
 }
