@@ -47,9 +47,9 @@
     }"
     class="flex flex-col"
 >
-    <h4 x-ref="time" class="text-3xl font-black mt-1 text-laravel-red leading-none">
+    <p x-ref="time" class="text-3xl font-black mt-1 text-laravel-red leading-none">
         {{ now()->format('h:i A') }}
-    </h4>
+    </p>
 
     <span x-ref="relativeDiff" class="text-[10px] font-mono font-bold text-zinc-500 tracking-widest mt-1 uppercase">
         Local Time
