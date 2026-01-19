@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 use App\Models\Author;
 use App\Models\Package;
 use App\Models\Page;
@@ -20,9 +22,9 @@ final class RenderOpenGraphImage extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, string $model, string $key)
+    public function __invoke(Request $request, string $model, string $key): ResponseFactory|Response
     {
-        $siteSettings = app(SiteSettings::class);
+        $siteSettings = resolve(SiteSettings::class);
         $logo = '/storage/'.$siteSettings->logo;
 
         $modelObject = match ($model) {

@@ -10,7 +10,6 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\ProjectSchema;
-use App\Settings\SiteSettings;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
