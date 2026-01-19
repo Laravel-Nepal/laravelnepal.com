@@ -23,8 +23,8 @@
 
         .glow {
             position: absolute;
-            bottom: -150px;
-            left: -150px;
+            top: -150px;
+            right: -150px;
             width: 600px;
             height: 600px;
             background: #ef4444;
@@ -39,7 +39,7 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 60px;
-            padding: 70px;
+            padding: 65px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -49,13 +49,12 @@
         .header-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 20px;
         }
 
         .tags-container {
             display: flex;
-            flex-wrap: wrap;
             gap: 12px;
         }
 
@@ -72,27 +71,48 @@
         }
 
         .title {
-            font-size: 82px;
+            font-size: 76px;
             font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -0.05em;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
             color: #ffffff;
-            margin-top: 30px;
-            flex: 1;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+
+        .command-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px 35px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            width: fit-content;
+        }
+
+        .command-prefix {
+            color: #ef4444;
+        }
+
+        .command-text {
+            color: #d4d4d8;
         }
 
         .footer {
-            margin-top: 40px;
+            margin-top: auto;
             padding-top: 40px;
             border-top: 2px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
         }
 
-        .project-meta {
+        .package-meta {
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -152,16 +172,21 @@
     </div>
 
     <h1 class="title">
-        {{ $model->title }}
+        {{ $model->name }}
     </h1>
 
+    <div class="command-box">
+        <div class="command-prefix">composer require</div>
+        <div class="command-text">{{ $model->packagist }}</div>
+    </div>
+
     <div class="footer">
-        <div class="project-meta">
+        <div class="package-meta">
             <div class="author-name">by {{ $model->author->name }}</div>
 
-            @if($model->website)
+            @if($model->packagist)
                 <div class="link-item">
-                    {{ str_replace(['https://', 'http://'], '', $model->website) }}
+                    {{ str_replace(['https://', 'http://', 'www.'], '', $model->packagist_url) }}
                 </div>
             @endif
 
@@ -173,7 +198,7 @@
         </div>
 
         <div class="branding">
-            <span class="brand-text">PROJECT</span>
+            <span class="brand-text">PACKAGE</span>
             <img src="{{ $logo }}" class="logo-img" alt="Logo">
         </div>
     </div>
