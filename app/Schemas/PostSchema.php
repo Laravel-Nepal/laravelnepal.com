@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Schemas;
 
 use AchyutN\LaravelSEO\Data\ResolvedSEO;
-use App\Models\Author;
 use App\Models\Post;
 use App\Models\Tip;
 use Illuminate\Support\Collection;
@@ -25,6 +24,7 @@ trait PostSchema
                 '@type' => $resolvedSEO->pageType ?? $this->blogSchemaType(),
                 '@id' => $resolvedSEO->url,
                 'headline' => $resolvedSEO->title,
+                'keywords' => implode(', ', $resolvedSEO->tags),
                 'description' => $resolvedSEO->description,
                 'url' => $resolvedSEO->url,
                 'thumbnailUrl' => $resolvedSEO->image,
@@ -55,6 +55,7 @@ trait PostSchema
                 'image' => $resolvedSEO->image,
                 'headline' => $resolvedSEO->title,
                 'name' => $resolvedSEO->title,
+                'keywords' => implode(', ', $resolvedSEO->tags),
                 'description' => $resolvedSEO->description,
                 'isAccessibleForFree' => 'http://schema.org/True',
                 'thumbnailUrl' => $resolvedSEO->image,
@@ -68,9 +69,11 @@ trait PostSchema
                 ->put('headline', $resolvedSEO->title)
                 ->put('description', $resolvedSEO->description)
                 ->put('url', $resolvedSEO->url)
-                ->put('thumbnailUrl', $resolvedSEO->image)
-                ->put('author', $resolvedSEO->authorAndPublisher())
-                ->put('datePublished', $resolvedSEO->publishedAt)
+                ->put('image', $resolvedSEO->image)
+                ->put('publisher', $resolvedSEO->publisherArray())
+                ->put('author', $resolvedSEO->authorArray())
+                ->put('datePublished', $resolvedSEO->publishedAt?->toIso8601String())
+                ->put('dateModified', $resolvedSEO->modifiedAt?->toIso8601String())
             ));
     }
 
