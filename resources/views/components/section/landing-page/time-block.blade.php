@@ -1,20 +1,23 @@
 <div
     x-data="{
-        time: '',
+        nepalTime: '',
         relativeDiff: '',
         updateTime() {
             const now = new Date();
+            const nowUTC = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
-            this.time = now.toLocaleTimeString('en-US', {
+            const nepalOffset = 345;
+            const nepalDate = new Date(nowUTC.getTime() + nepalOffset * 60000);
+
+            this.nepalTime = nepalDate.toLocaleTimeString('en-US', {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true
             });
+            this.$refs.time.textContent = this.nepalTime;
 
             const localOffset = -now.getTimezoneOffset();
-            const nepalOffset = 345;
-
-            const diffMinutes = localOffset - nepalOffset;
+            const diffMinutes = nepalOffset - localOffset;
 
             if (diffMinutes === 0) {
                 this.relativeDiff = 'Local Time';
@@ -30,6 +33,8 @@
 
                 this.relativeDiff = `${diffStr}`;
             }
+
+            this.$refs.relativeDiff.textContent = this.relativeDiff;
         },
         init() {
             this.updateTime();
@@ -42,17 +47,11 @@
     }"
     class="flex flex-col"
 >
-    <h4
-        x-text="time"
-        class="text-3xl font-black mt-1 text-laravel-red leading-none"
-    >
+    <p x-ref="time" class="text-3xl font-black mt-1 text-laravel-red leading-none">
         {{ now()->format('h:i A') }}
-    </h4>
+    </p>
 
-    <span
-        x-text="relativeDiff"
-        class="text-[10px] font-mono font-bold text-zinc-500 tracking-widest mt-1 uppercase"
-    >
+    <span x-ref="relativeDiff" class="text-[10px] font-mono font-bold text-zinc-500 tracking-widest mt-1 uppercase">
         Local Time
     </span>
 </div>

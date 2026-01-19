@@ -3,9 +3,9 @@
         <div class="flex justify-between mb-8">
             <div>
                 <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Artisans</p>
-                <h4 class="text-3xl font-black mt-1">
+                <p class="text-3xl font-black mt-1">
                     {{ Number::abbreviate($authors) }}@if($authors > 1000)+@endif
-                </h4>
+                </p>
             </div>
             <div class="text-right">
                 <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Current Time</p>

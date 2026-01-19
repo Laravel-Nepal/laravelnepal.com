@@ -25,5 +25,16 @@
 </section>
 
 @push('styles')
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link
+        rel="preload"
+        as="style"
+        href="//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        >
+    </noscript>
 @endpush
