@@ -84,8 +84,6 @@ final class Author extends Model implements Contentable, HasMarkup, Viewable
 
     public string $descriptionColumn = 'bio';
 
-    public string $imageColumn = 'avatar';
-
     public static function schema(Blueprint $blueprint): void
     {
         $blueprint->string('name');

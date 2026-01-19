@@ -10,7 +10,6 @@ use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\ProjectSchema;
-use App\Settings\SiteSettings;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
@@ -118,13 +117,6 @@ final class Project extends Model implements Contentable, HasMarkup, Viewable
     public function urlValue(): string
     {
         return route('page.project.view', $this);
-    }
-
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
     }
 
     /** @return array<Breadcrumb> */

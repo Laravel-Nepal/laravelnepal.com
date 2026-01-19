@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\RenderArtisanIndex;
 use App\Http\Controllers\RenderArtisanView;
+use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageIndex;
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostIndex;
@@ -62,6 +63,8 @@ Route::group([
             Route::get('/', RenderArtisanIndex::class)->name('index');
         });
     });
+
+    Route::get('/open-graph/{model}/{key}', RenderOpenGraphImage::class)->name('openGraphImage');
 });
 
 Route::group([

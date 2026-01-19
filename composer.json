@@ -30,6 +30,7 @@
         "laravel/tinker": "^2.10.1",
         "owenvoke/blade-fontawesome": "^2.9",
         "ryangjchandler/orbit": "^1.4",
+        "spatie/browsershot": "^5.2",
         "spatie/laravel-markdown": "^2.7"
     },
     "require-dev": {

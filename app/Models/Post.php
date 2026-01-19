@@ -10,7 +10,6 @@ use AchyutN\LaravelSEO\Schemas\BlogSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
-use App\Settings\SiteSettings;
 use App\Traits\HasReadTime;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -113,13 +112,6 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
     public function publisherUrlValue(): string
     {
         return route('page.landingPage');
-    }
-
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
     }
 
     public function urlValue(): string

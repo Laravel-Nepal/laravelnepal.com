@@ -11,7 +11,6 @@ use AchyutN\LaravelSEO\Models\SEO;
 use AchyutN\LaravelSEO\Schemas\PageSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Enums\PageType;
-use App\Settings\SiteSettings;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Support\Period;
@@ -79,13 +78,6 @@ final class Page extends Model implements HasMarkup, Viewable
     public function categoryValue(): string
     {
         return $this->type->getLabel();
-    }
-
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
     }
 
     public function authorValue(): ?string
