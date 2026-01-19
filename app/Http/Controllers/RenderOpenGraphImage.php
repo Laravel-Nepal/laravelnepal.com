@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\Response;
 use App\Models\Author;
 use App\Models\Package;
 use App\Models\Page;
@@ -13,7 +11,9 @@ use App\Models\Post;
 use App\Models\Project;
 use App\Models\Tip;
 use App\Settings\SiteSettings;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Spatie\Browsershot\Browsershot;
 use Throwable;
 
@@ -58,7 +58,7 @@ final class RenderOpenGraphImage extends Controller
         try {
             $html = $view?->render();
 
-            if (!$html) {
+            if (! $html) {
                 abort(500, 'Failed to render Open Graph image HTML: View not found.');
             }
         } catch (Throwable $throwable) {
