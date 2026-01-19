@@ -96,13 +96,6 @@ final class Package extends Model implements Contentable, HasMarkup, Viewable
         return 'Package';
     }
 
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
-    }
-
     public function authorValue(): ?string
     {
         /** @phpstan-var string|null */

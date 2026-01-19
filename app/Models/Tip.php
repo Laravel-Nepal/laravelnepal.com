@@ -118,13 +118,6 @@ final class Tip extends Model implements Contentable, HasMarkup, Viewable
         return 'Tips';
     }
 
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
-    }
-
     /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {

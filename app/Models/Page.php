@@ -81,13 +81,6 @@ final class Page extends Model implements HasMarkup, Viewable
         return $this->type->getLabel();
     }
 
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
-    }
-
     public function authorValue(): ?string
     {
         /** @phpstan-var string|null */

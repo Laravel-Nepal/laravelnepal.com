@@ -115,13 +115,6 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
         return route('page.landingPage');
     }
 
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
-    }
-
     public function urlValue(): string
     {
         return route('page.post.view', $this);

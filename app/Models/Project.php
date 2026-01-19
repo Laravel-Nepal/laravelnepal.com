@@ -120,13 +120,6 @@ final class Project extends Model implements Contentable, HasMarkup, Viewable
         return route('page.project.view', $this);
     }
 
-    public function imageValue(): ?string
-    {
-        $siteSettings = resolve(SiteSettings::class);
-
-        return $siteSettings->og_image;
-    }
-
     /** @return array<Breadcrumb> */
     public function breadcrumbs(): array
     {

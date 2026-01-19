@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use AchyutN\LaravelSEO\Models\SEO;
 use App\Models\Author;
 use App\Models\Package;
 use App\Models\Page;
@@ -21,21 +20,35 @@ final class RenderOpenGraphImage extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, SEO $seo)
+    public function __invoke(Request $request, string $model, string $key)
     {
         $siteSettings = app(SiteSettings::class);
         $logo = '/storage/'.$siteSettings->logo;
 
-        $model = $seo->model;
-        $compact = compact('model', 'logo');
+        $modelObject = match ($model) {
+            'page' => Page::class,
+            'post' => Post::class,
+            'tip' => Tip::class,
+            'project' => Project::class,
+            'package' => Package::class,
+            'author' => Author::class,
+            default => null,
+        };
 
-        $view = match (true) {
-            $model instanceof Page => view('components.open-graph.page-open-graph', $compact),
-            $model instanceof Post => view('components.open-graph.post-open-graph', $compact),
-            $model instanceof Tip => view('components.open-graph.tip-open-graph', $compact),
-            $model instanceof Project => view('components.open-graph.project-open-graph', $compact),
-            $model instanceof Package => view('components.open-graph.package-open-graph', $compact),
-            $model instanceof Author => view('components.open-graph.author-open-graph', $compact),
+        $instance = $modelObject::findOrFail($key);
+
+        $compact = [
+            'model' => $instance,
+            'logo' => $logo,
+        ];
+
+        $view = match ($model) {
+            'page' => view('components.open-graph.page-open-graph', $compact),
+            'post' => view('components.open-graph.post-open-graph', $compact),
+            'tip' => view('components.open-graph.tip-open-graph', $compact),
+            'project' => view('components.open-graph.project-open-graph', $compact),
+            'package' => view('components.open-graph.package-open-graph', $compact),
+            'author' => view('components.open-graph.author-open-graph', $compact),
             default => null,
         };
 
@@ -58,7 +71,7 @@ final class RenderOpenGraphImage extends Controller
             ->noSandbox()
             ->screenshot();
 
-        $fileName = $model ? mb_strtolower(class_basename($model)).'-'.$model->getKey().'.png' : 'open-graph-image.png';
+        $fileName = $instance ? $model.'-'.$key.'.png' : 'open-graph-image.png';
 
         return response($browserShot, 200, [
             'Content-Type' => 'image/png',

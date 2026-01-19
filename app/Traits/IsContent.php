@@ -124,6 +124,17 @@ trait IsContent
             );
     }
 
+    public function imageValue(): ?string
+    {
+        return route(
+            'page.openGraphImage',
+            [
+                'model' => mb_strtolower(class_basename($this)),
+                'key' => $this->getKey(),
+            ]
+        );
+    }
+
     /** @return Builder<LaravelNewsSubmission> */
     #[Scope]
     protected function submissions(): Builder
