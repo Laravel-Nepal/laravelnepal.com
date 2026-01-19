@@ -114,7 +114,7 @@ final class Page extends Model implements HasMarkup, Viewable
         return null;
     }
 
-    public function imageValue(): ?string
+    public function imageValue(): string
     {
         return route(
             'page.openGraphImage',
