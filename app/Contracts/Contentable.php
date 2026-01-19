@@ -21,4 +21,6 @@ interface Contentable
     public function contentIsSubmittedToLaravelNews(): bool;
 
     public function getTotalViews(): int;
+
+    public function imageValue(): ?string;
 }
