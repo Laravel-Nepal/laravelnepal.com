@@ -13,6 +13,8 @@ use App\Models\Project;
 use App\Models\Tip;
 use App\Settings\SiteSettings;
 use Illuminate\Http\Request;
+use Spatie\Browsershot\Browsershot;
+use Throwable;
 
 final class RenderOpenGraphImage extends Controller
 {
@@ -25,16 +27,43 @@ final class RenderOpenGraphImage extends Controller
         $logo = '/storage/'.$siteSettings->logo;
 
         $model = $seo->model;
+        $compact = compact('model', 'logo');
+
         $view = match (true) {
-            $model instanceof Page => 'components.open-graph.page-open-graph',
-            $model instanceof Post => 'components.open-graph.post-open-graph',
-            $model instanceof Tip => 'components.open-graph.tip-open-graph',
-            $model instanceof Project => 'components.open-graph.project-open-graph',
-            $model instanceof Package => 'components.open-graph.package-open-graph',
-            $model instanceof Author => 'components.open-graph.author-open-graph',
+            $model instanceof Page => view('components.open-graph.page-open-graph', $compact),
+            $model instanceof Post => view('components.open-graph.post-open-graph', $compact),
+            $model instanceof Tip => view('components.open-graph.tip-open-graph', $compact),
+            $model instanceof Project => view('components.open-graph.project-open-graph', $compact),
+            $model instanceof Package => view('components.open-graph.package-open-graph', $compact),
+            $model instanceof Author => view('components.open-graph.author-open-graph', $compact),
             default => null,
         };
 
-        return view($view, compact('model', 'logo'));
+        try {
+            $html = $view?->render();
+        } catch (Throwable $throwable) {
+            abort(500, 'Failed to render Open Graph image HTML: '.$throwable->getMessage());
+        }
+
+        $browserShot = Browsershot::html($html)
+            ->windowSize(1200, 630)
+            ->waitUntilNetworkIdle()
+            ->emulateMedia('screen')
+            ->format('png')
+            ->quality(100)
+            ->setDelay(2000)
+            ->setNodeBinary(config('services.node.node_path'))
+            ->setNpmBinary(config('services.node.npm_path'))
+            ->fullPage()
+            ->noSandbox()
+            ->screenshot();
+
+        $fileName = $model ? mb_strtolower(class_basename($model)).'-'.$model->getKey().'.png' : 'open-graph-image.png';
+
+        return response($browserShot, 200, [
+            'Content-Type' => 'image/png',
+            'Content-Disposition' => 'inline; filename="'.$fileName.'"',
+            'Cache-Control' => 'public, max-age=604800, immutable',
+        ]);
     }
 }

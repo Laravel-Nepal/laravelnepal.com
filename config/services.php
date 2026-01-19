@@ -37,4 +37,8 @@ return [
         ],
     ],
 
+    'node' => [
+        'node_path' => env('NODE_PATH', '/usr/local/bin/node'),
+        'npm_path' => env('NPM_PATH', '/usr/local/bin/npm'),
+    ],
 ];

@@ -7,6 +7,12 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        html {
+            max-width: 1200px;
+            max-height: 630px;
+            overflow: hidden;
+        }
+
         body {
             width: 1200px;
             height: 630px;
@@ -21,7 +27,6 @@
             overflow: hidden;
         }
 
-        /* Subtle Laravel Red glow to match the Tip/Artisan aesthetic */
         .glow {
             position: absolute;
             bottom: -120px;
