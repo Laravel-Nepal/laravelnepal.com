@@ -64,7 +64,7 @@ Route::group([
         });
     });
 
-    Route::get('/open-graph/{model}/{key}', RenderOpenGraphImage::class)->name('openGraphImage');
+    Route::get('/open-graph/{model}/{key}.png', RenderOpenGraphImage::class)->name('openGraphImage');
 });
 
 Route::group([
