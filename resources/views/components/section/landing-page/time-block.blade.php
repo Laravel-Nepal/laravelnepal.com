@@ -5,11 +5,13 @@
         updateTime() {
             const now = new Date();
 
-            this.time = now.toLocaleTimeString('en-US', {
+            const formatted = now.toLocaleTimeString('en-US', {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true
             });
+
+            this.$refs.time.textContent = formatted;
 
             const localOffset = -now.getTimezoneOffset();
             const nepalOffset = 345;
@@ -30,6 +32,8 @@
 
                 this.relativeDiff = `${diffStr}`;
             }
+
+            this.$refs.relativeDiff.textContent = this.relativeDiff;
         },
         init() {
             this.updateTime();
@@ -43,14 +47,14 @@
     class="flex flex-col"
 >
     <h4
-        x-text="time"
+        x-ref="time"
         class="text-3xl font-black mt-1 text-laravel-red leading-none"
     >
         {{ now()->format('h:i A') }}
     </h4>
 
     <span
-        x-text="relativeDiff"
+        x-ref="relativeDiff"
         class="text-[10px] font-mono font-bold text-zinc-500 tracking-widest mt-1 uppercase"
     >
         Local Time
