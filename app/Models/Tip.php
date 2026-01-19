@@ -6,10 +6,10 @@ namespace App\Models;
 
 use AchyutN\LaravelSEO\Contracts\HasMarkup;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
-use AchyutN\LaravelSEO\Schemas\BlogSchema;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
+use App\Schemas\PostSchema;
 use App\Traits\HasReadTime;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -59,11 +59,11 @@ use Illuminate\Database\Schema\Blueprint;
  */
 final class Tip extends Model implements Contentable, HasMarkup, Viewable
 {
-    use BlogSchema;
     use HasReadTime;
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
+    use PostSchema;
 
     public static function schema(Blueprint $blueprint): void
     {
