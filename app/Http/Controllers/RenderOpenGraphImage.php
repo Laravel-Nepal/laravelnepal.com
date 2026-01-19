@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use AchyutN\LaravelSEO\Models\SEO;
 use App\Models\Author;
 use App\Models\Package;
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Tip;
@@ -25,6 +26,7 @@ final class RenderOpenGraphImage extends Controller
 
         $model = $seo->model;
         $view = match (true) {
+            $model instanceof Page => 'components.open-graph.page-open-graph',
             $model instanceof Post => 'components.open-graph.post-open-graph',
             $model instanceof Tip => 'components.open-graph.tip-open-graph',
             $model instanceof Project => 'components.open-graph.project-open-graph',
