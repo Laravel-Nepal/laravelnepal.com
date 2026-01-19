@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use AchyutN\LaravelSEO\Models\SEO;
+use App\Models\Author;
 use App\Models\Package;
 use App\Models\Post;
 use App\Models\Project;
@@ -28,6 +29,7 @@ final class RenderOpenGraphImage extends Controller
             $model instanceof Tip => 'components.open-graph.tip-open-graph',
             $model instanceof Project => 'components.open-graph.project-open-graph',
             $model instanceof Package => 'components.open-graph.package-open-graph',
+            $model instanceof Author => 'components.open-graph.author-open-graph',
             default => null,
         };
 
