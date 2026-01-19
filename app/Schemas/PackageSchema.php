@@ -28,6 +28,36 @@ trait PackageSchema
                 'codeRepository' => $model->getAttribute('github_url'),
                 'author' => $resolvedSEO->authorArray(),
                 'sameAs' => array_values($model->social_links),
+            ])
+            ->add(fn (): array => [
+                '@context' => 'https://schema.org',
+                '@type' => 'SocialMediaPosting',
+                '@id' => $resolvedSEO->url,
+                'url' => $resolvedSEO->url,
+                'mainEntityOfPage' => $resolvedSEO->url,
+                'interactionStatistic' => [
+                    [
+                        '@type' => 'InteractionCounter',
+                        'interactionType' => 'http://schema.org/UserPageVisits',
+                        'userInteractionCount' => $model->total_views,
+                    ],
+                    [
+                        '@type' => 'InteractionCounter',
+                        'interactionType' => 'http://schema.org/PlusOnes',
+                        'userInteractionCount' => $model->getTotalVotes(),
+                    ],
+                ],
+                'image' => $resolvedSEO->image,
+                'headline' => $resolvedSEO->title,
+                'name' => $resolvedSEO->title,
+                'description' => $resolvedSEO->description,
+                'isAccessibleForFree' => 'http://schema.org/True',
+                'thumbnailUrl' => $resolvedSEO->image,
+                'articleSection' => 'Package',
+                'datePublished' => $resolvedSEO->publishedAt,
+                'dateModified' => $resolvedSEO->modifiedAt,
+                'inLanguage' => 'en',
+                'author' => $resolvedSEO->authorAndPublisher(),
             ]);
     }
 
