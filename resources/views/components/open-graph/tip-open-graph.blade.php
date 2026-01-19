@@ -142,22 +142,22 @@
 <div class="og-card">
     <div class="header-row">
         <div class="date">
-            {{ $tip->date->format('M d, Y') }}
+            {{ $model->date->format('M d, Y') }}
         </div>
         <div class="tags-container">
-            @foreach($tip->tags as $tag)
+            @foreach($model->tags as $tag)
                 <div class="badge">{{ ucwords($tag) }}</div>
             @endforeach
         </div>
     </div>
 
     <h1 class="title">
-        {{ $tip->title }}
+        {{ $model->title }}
     </h1>
 
     <div class="footer">
         <div class="author-info">
-            {{ $tip->author->name }} <span>&middot;</span> {{ $tip->minutes_read_text }}
+            {{ $model->author->name }} <span>&middot;</span> {{ $model->minutes_read_text }}
         </div>
 
         <div class="branding">
