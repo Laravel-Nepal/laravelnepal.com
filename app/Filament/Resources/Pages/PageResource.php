@@ -20,9 +20,9 @@ final class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ClipboardDocumentList;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedClipboardDocumentList;
     protected static string|UnitEnum|null $navigationGroup = 'Content Management';
 
     protected static ?string $recordTitleAttribute = 'title';
