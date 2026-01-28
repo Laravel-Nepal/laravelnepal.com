@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Series\Pages;
 
 use App\Filament\Resources\Series\SeriesResource;
-use App\Models\Post;
 use App\Models\Series;
 use App\Models\Seriesable;
 use Filament\Resources\Pages\CreateRecord;
@@ -27,7 +26,7 @@ final class CreateSeries extends CreateRecord
                 'series_id' => $series->id,
                 'seriesable_type' => $data['seriesable_type'],
                 'seriesable_id' => $postSlug,
-                'order' => $order+1,
+                'order' => $order + 1,
             ]);
         }
 

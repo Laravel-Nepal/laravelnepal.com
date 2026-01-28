@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
-use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use DB;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Collection;
 
 final class Series extends Model implements Viewable
 {
@@ -28,6 +32,22 @@ final class Series extends Model implements Viewable
             ->using(Seriesable::class)
             ->withPivot('order')
             ->orderBy('pivot_order');
+    }
+
+    /** @return Attribute<Collection<int, Post>, null> */
+    public function postList(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): Collection => Post::on('orbit')
+                ->whereIn(
+                    'slug',
+                    Seriesable::where('series_id', $this->id)
+                        ->where('seriesable_type', Post::class)
+                        ->pluck('seriesable_id')
+                )
+                ->orderBy('order')
+                ->get(),
+        );
     }
 
     /** @return BelongsTo<Author, $this> */
