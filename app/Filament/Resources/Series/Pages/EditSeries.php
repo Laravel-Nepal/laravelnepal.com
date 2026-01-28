@@ -1,15 +1,53 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Series\Pages;
 
 use App\Filament\Resources\Series\SeriesResource;
+use App\Models\Post;
+use App\Models\Seriesable;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Database\Eloquent\Model;
 
-class EditSeries extends EditRecord
+final class EditSeries extends EditRecord
 {
     protected static string $resource = SeriesResource::class;
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['seriesable_type'] = Post::class;
+
+        $data['posts'] = $this->record->post_list->map(fn (Post $post) => $post->slug)->toArray();
+
+        return $data;
+    }
+
+    protected function handleRecordUpdate(Model $record, array $data): Model
+    {
+        $record->update([
+            'title' => $data['title'],
+            'author_id' => $data['author_id'],
+            'description' => $data['description'] ?? null,
+        ]);
+
+        Seriesable::query()
+            ->where('series_id', $record->id)
+            ->delete();
+
+        foreach ($data['posts'] as $order => $postSlug) {
+            Seriesable::query()->create([
+                'series_id' => $record->id,
+                'seriesable_type' => $data['seriesable_type'],
+                'seriesable_id' => $postSlug,
+                'order' => $order + 1,
+            ]);
+        }
+
+        return $record;
+    }
 
     protected function getHeaderActions(): array
     {

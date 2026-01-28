@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Series;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('seriesables', function (Blueprint $blueprint): void {
             $blueprint->id();
-            $blueprint->foreignIdFor(App\Models\Series::class)
+            $blueprint->foreignIdFor(Series::class)
                 ->constrained()
                 ->cascadeOnDelete();
             $blueprint->string('seriesable_type');

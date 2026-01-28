@@ -39,11 +39,19 @@ use Throwable;
  * @property-read bool $is_submitted_to_laravel_news
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
+ * @property-read News|null $news
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
+ * @property-read Seriesable|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Series> $series
+ * @property-read int|null $series_count
  * @property-read LaravelNewsSubmission|null $submission
  * @property-read int $total_views
+ * @property-read int $total_votes
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
+ * @property-read bool $voted
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Vote> $votes
+ * @property-read int|null $votes_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()

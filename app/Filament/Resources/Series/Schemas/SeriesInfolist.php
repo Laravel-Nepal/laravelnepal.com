@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Series\Schemas;
 
 use App\Filament\Resources\Posts\PostResource;
@@ -11,7 +13,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 
-class SeriesInfolist
+final class SeriesInfolist
 {
     public static function configure(Schema $schema): Schema
     {
