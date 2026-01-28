@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Author;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ return new class extends Migration
             $blueprint->id();
             $blueprint->string('title');
             $blueprint->string('slug')->unique();
+            $blueprint->string('author_id')->index();
             $blueprint->text('description')->nullable();
             $blueprint->dateTime('published_at')->nullable();
             $blueprint->timestamps();

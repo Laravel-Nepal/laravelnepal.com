@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Schema\Blueprint;
 use Throwable;
 
@@ -153,6 +154,15 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
     public function news(): HasOne
     {
         return $this->hasOne(News::class, 'post_slug', 'slug');
+    }
+
+    /** @return MorphToMany<Series, $this> */
+    public function series(): MorphToMany
+    {
+        return $this->morphToMany(Series::class, 'seriesable')
+            ->using(Seriesable::class)
+            ->withPivot('order')
+            ->orderBy('pivot_order');
     }
 
     protected function casts(): array
