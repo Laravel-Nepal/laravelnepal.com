@@ -16,7 +16,7 @@
   },
   "type": "module",
   "dependencies": {
-    "puppeteer": "^24.35.0",
+    "puppeteer": "^24.36.0",
     "shiki": "^3.20.0"
   }
 }
