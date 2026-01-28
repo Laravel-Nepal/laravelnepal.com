@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 final class PageResource extends Resource
 {
@@ -22,6 +23,7 @@ final class PageResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
 
     protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|UnitEnum|null $navigationGroup = 'Content Management';
 
     protected static ?string $recordTitleAttribute = 'title';
 
