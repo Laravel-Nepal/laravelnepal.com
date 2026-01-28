@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 final class Seriesable extends MorphPivot
 {
+    protected $table = 'seriesables';
+
     public function getConnectionName(): ?string
     {
         /** @var string|null */
