@@ -50,6 +50,17 @@ final class Series extends Model implements Viewable
         );
     }
 
+    /** @return Attribute<int, null> */
+    public function postCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): int => Seriesable::query()
+                ->where('series_id', $this->id)
+                ->where('seriesable_type', Post::class)
+                ->count(),
+        );
+    }
+
     /** @return BelongsTo<Author, $this> */
     public function author(): BelongsTo
     {

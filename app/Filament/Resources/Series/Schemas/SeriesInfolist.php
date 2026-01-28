@@ -46,8 +46,7 @@ class SeriesInfolist
                                             ->icon(Heroicon::Link)
                                             ->url(fn (Post $post): string => PostResource::getUrl('view', ['record' => $post]))
                                             ->openUrlInNewTab(),
-                                    ])
-                                    ->label('Post Title'),
+                                    ]),
                             ]),
                     ]),
             ]);

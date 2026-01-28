@@ -21,17 +21,10 @@ class SeriesTable
                     ->searchable(),
                 TextColumn::make('author.name')
                     ->searchable(),
-                TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('post_count')
+                    ->label('Posts')
+                    ->badge()
+                    ->searchable(),
             ])
             ->filters([
                 //
