@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            @if ($series)
+            @if (isset($series))
                 @php
                     $previous = $series->previous($post);
                     $next = $series->next($post);
