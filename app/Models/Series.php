@@ -14,6 +14,7 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Support\Period;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as Query;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -63,8 +64,8 @@ use Illuminate\Support\Collection;
 final class Series extends Model implements Contentable, Viewable
 {
     use HasTheSlug;
-    use InteractsWithViews;
     use InteractsWithSEO;
+    use InteractsWithViews;
     use IsContent;
 
     public function getConnectionName(): ?string
@@ -139,7 +140,7 @@ final class Series extends Model implements Contentable, Viewable
     protected function postList(): Attribute
     {
         return Attribute::make(
-            get: fn (): Collection => Post::on('orbit')
+            get: fn(): Collection => Post::on('orbit')
                 ->whereIn(
                     'slug',
                     Seriesable::query()->where('series_id', $this->id)
@@ -155,11 +156,47 @@ final class Series extends Model implements Contentable, Viewable
     protected function postCount(): Attribute
     {
         return Attribute::make(
-            get: fn (): int => Seriesable::query()
+            get: fn(): int => Seriesable::query()
                 ->where('series_id', $this->id)
                 ->where('seriesable_type', Post::class)
                 ->count(),
         );
+    }
+
+    public function previous(Post $post): ?Post
+    {
+        return Seriesable::query()
+            ->where('series_id', $this->id)
+            ->where('seriesable_type', Post::class)
+            ->where('order', '<', function (Query $query) use ($post): void {
+                $query->select('order')
+                    ->from('seriesables')
+                    ->where('seriesable_id', $post->getKey())
+                    ->where('seriesable_type', Post::class)
+                    ->where('series_id', $this->id);
+            })
+            ->orderBy('order', 'desc')
+            ->limit(1)
+            ->first()
+            ?->seriesable;
+    }
+
+    public function next(Post $post): ?Post
+    {
+        return Seriesable::query()
+            ->where('series_id', $this->id)
+            ->where('seriesable_type', Post::class)
+            ->where('order', '>', function (Query $query) use ($post): void {
+                $query->select('order')
+                    ->from('seriesables')
+                    ->where('seriesable_id', $post->getKey())
+                    ->where('seriesable_type', Post::class)
+                    ->where('series_id', $this->id);
+            })
+            ->orderBy('order', 'asc')
+            ->limit(1)
+            ->first()
+            ?->seriesable;
     }
 
     protected function casts(): array

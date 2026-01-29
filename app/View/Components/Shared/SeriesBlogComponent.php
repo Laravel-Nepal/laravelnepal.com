@@ -16,9 +16,9 @@ final class SeriesBlogComponent extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public int $index,
         public Series $series,
         public Post $post,
+        public ?int $index = null,
     ) {
         //
     }

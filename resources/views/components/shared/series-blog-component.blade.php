@@ -1,9 +1,11 @@
 <a href="{{ route('page.series.post', [$series, $post]) }}"
    class="relative z-10 flex items-center gap-6 p-4 rounded-3xl border border-white/5 bg-white/2 hover:bg-white/5 hover:border-laravel-red/30 transition-all group">
 
-    <div class="shrink-0 w-11 h-11 rounded-xl bg-black border border-white/10 flex items-center justify-center font-mono text-sm font-black text-zinc-500 group-hover:text-laravel-red group-hover:border-laravel-red/50 transition-colors">
-        {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
-    </div>
+    @if($index)
+        <div class="shrink-0 w-11 h-11 rounded-xl bg-black border border-white/10 flex items-center justify-center font-mono text-sm font-black text-zinc-500 group-hover:text-laravel-red group-hover:border-laravel-red/50 transition-colors">
+            {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+        </div>
+    @endif
 
     <div class="grow">
         <h4 class="text-white font-bold group-hover:text-laravel-red transition-colors">
