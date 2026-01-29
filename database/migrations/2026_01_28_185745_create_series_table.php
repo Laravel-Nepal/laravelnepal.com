@@ -19,6 +19,7 @@ return new class extends Migration
             $blueprint->string('slug')->unique();
             $blueprint->string('author_id')->index();
             $blueprint->text('description')->nullable();
+            $blueprint->json('tags')->nullable();
             $blueprint->dateTime('published_at')->nullable();
             $blueprint->timestamps();
         });

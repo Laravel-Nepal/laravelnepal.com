@@ -6,6 +6,7 @@ namespace App\Filament\Resources\Series\Pages;
 
 use App\Filament\Resources\Series\SeriesResource;
 use App\Models\Post;
+use App\Models\Series;
 use App\Models\Seriesable;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
@@ -25,6 +26,9 @@ final class EditSeries extends EditRecord
         return $data;
     }
 
+    /**
+     * @param  Series  $record
+     */
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
         $record->update([

@@ -106,4 +106,12 @@ final class Series extends Model implements Viewable
                 ->count(),
         );
     }
+
+    protected function casts(): array
+    {
+        return [
+            'tags' => 'array',
+            'published_at' => 'datetime',
+        ];
+    }
 }
