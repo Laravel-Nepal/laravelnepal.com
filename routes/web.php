@@ -12,6 +12,7 @@ use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectIndex;
 use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderSeriesIndex;
+use App\Http\Controllers\RenderSeriesView;
 use App\Http\Controllers\RenderTipIndex;
 use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
@@ -78,6 +79,7 @@ Route::group([
         'as' => 'series.',
     ], function (): void {
         Route::get('/', RenderSeriesIndex::class)->name('index');
+        Route::get('/{series}', RenderSeriesView::class)->name('view');
     });
 
     Route::get('/open-graph/{model}/{key}', RenderOpenGraphImage::class)->name('openGraphImage');
