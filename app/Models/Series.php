@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
+use AchyutN\LaravelSEO\Data\Breadcrumb;
 use App\Contracts\Contentable;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -87,7 +88,49 @@ final class Series extends Model implements Contentable, Viewable
     /** @return BelongsTo<Author, $this> */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(Author::class, 'author_id');
+        return $this->belongsTo(Author::class, 'author_id', 'username');
+    }
+
+    public function authorValue(): ?string
+    {
+        /** @phpstan-var string|null */
+        return $this->author?->getAttribute('name');
+    }
+
+    public function authorUrlValue(): string
+    {
+        return route('page.artisan.view', $this->author);
+    }
+
+    public function publisherValue(): ?string
+    {
+        /** @phpstan-var string|null */
+        return config('app.name');
+    }
+
+    public function publisherUrlValue(): string
+    {
+        return route('page.landingPage');
+    }
+
+    public function urlValue(): string
+    {
+        return route('page.series.view', $this);
+    }
+
+    public function categoryValue(): string
+    {
+        return 'Blog Series';
+    }
+
+    /** @return array<Breadcrumb> */
+    public function breadcrumbs(): array
+    {
+        return [
+            new Breadcrumb('Home', route('page.landingPage')),
+            new Breadcrumb('Series', route('page.series.index')),
+            new Breadcrumb($this->getTitleValue(), $this->getURLValue()),
+        ];
     }
 
     /** @return Attribute<Collection<int, Post>, null> */

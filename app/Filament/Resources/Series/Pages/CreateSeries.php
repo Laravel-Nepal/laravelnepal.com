@@ -15,20 +15,22 @@ final class CreateSeries extends CreateRecord
 
     protected function handleRecordCreation(array $data): Series
     {
-        $series = Series::query()->create([
-            'title' => $data['title'],
-            'author_id' => $data['author_id'],
-            'description' => $data['description'] ?? null,
-            'tags' => $data['tags'] ?? null,
-        ]);
+        $series = Series::query()
+            ->create([
+                'title' => $data['title'],
+                'author_id' => $data['author_id'],
+                'description' => $data['description'] ?? null,
+                'tags' => $data['tags'] ?? null,
+            ]);
 
         foreach ($data['posts'] as $order => $postSlug) {
-            Seriesable::query()->create([
-                'series_id' => $series->id,
-                'seriesable_type' => $data['seriesable_type'],
-                'seriesable_id' => $postSlug,
-                'order' => $order + 1,
-            ]);
+            Seriesable::query()
+                ->create([
+                    'series_id' => $series->id,
+                    'seriesable_type' => $data['seriesable_type'],
+                    'seriesable_id' => $postSlug,
+                    'order' => $order + 1,
+                ]);
         }
 
         return $series;

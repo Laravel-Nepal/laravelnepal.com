@@ -18,27 +18,6 @@ use Override;
 
 trait IsContent
 {
-    use Orbital;
-
-    public function getKeyType(): string
-    {
-        return 'string';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return false;
-    }
-
-    #[Override]
-    public function getKey(): string
-    {
-        /** @var string $key */
-        $key = parent::getKey();
-
-        return $key === null ? '' : $key;
-    }
-
     /**
      * @return MorphOne<LaravelNewsSubmission, $this>
      */

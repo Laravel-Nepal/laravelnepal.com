@@ -11,6 +11,7 @@ use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -83,6 +84,7 @@ final class Author extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
+    use IsOrbital;
 
     public string $titleColumn = 'name';
 

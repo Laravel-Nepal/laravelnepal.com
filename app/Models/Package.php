@@ -11,6 +11,7 @@ use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PackageSchema;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -70,6 +71,7 @@ final class Package extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithViews;
     use IsContent;
     use PackageSchema;
+    use IsOrbital;
 
     public string $titleColumn = 'name';
 

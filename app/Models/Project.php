@@ -11,6 +11,7 @@ use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\ProjectSchema;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -69,6 +70,7 @@ final class Project extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithViews;
     use IsContent;
     use ProjectSchema;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {

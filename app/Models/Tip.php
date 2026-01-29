@@ -12,6 +12,7 @@ use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PostSchema;
 use App\Traits\HasReadTime;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -68,6 +69,7 @@ final class Tip extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithViews;
     use IsContent;
     use PostSchema;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {
