@@ -35,6 +35,7 @@ final class EditSeries extends EditRecord
             'title' => $data['title'],
             'author_id' => $data['author_id'],
             'description' => $data['description'] ?? null,
+            'tags' => $data['tags'] ?? null,
         ]);
 
         Seriesable::query()

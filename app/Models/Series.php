@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use CyrildeWit\EloquentViewable\Support\Period;
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
-use CyrildeWit\EloquentViewable\Support\Period;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -23,7 +23,8 @@ use Illuminate\Support\Collection;
  * @property string $slug
  * @property string $author_id
  * @property string|null $description
- * @property string|null $published_at
+ * @property array<array-key, mixed>|null $tags
+ * @property Carbon|null $published_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Author|null $author
@@ -47,6 +48,7 @@ use Illuminate\Support\Collection;
  * @method static Builder<static>|Series whereId($value)
  * @method static Builder<static>|Series wherePublishedAt($value)
  * @method static Builder<static>|Series whereSlug($value)
+ * @method static Builder<static>|Series whereTags($value)
  * @method static Builder<static>|Series whereTitle($value)
  * @method static Builder<static>|Series whereUpdatedAt($value)
  * @method static Builder<static>|Series withUniqueSlugConstraints(Model $model, string $attribute, array $config, string $slug)

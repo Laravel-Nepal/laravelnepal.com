@@ -7,6 +7,7 @@ namespace App\Filament\Resources\Series\Schemas;
 use App\Models\Post;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -18,7 +19,6 @@ final class SeriesForm
         return $schema
             ->components([
                 TextInput::make('title')
-                    ->columnSpanFull()
                     ->required(),
                 Select::make('author_id')
                     ->relationship('author', 'name')
@@ -30,6 +30,7 @@ final class SeriesForm
                     ])
                     ->default(Post::class)
                     ->required(),
+                TagsInput::make('tags'),
                 Textarea::make('description')
                     ->columnSpanFull(),
                 Repeater::make('posts')

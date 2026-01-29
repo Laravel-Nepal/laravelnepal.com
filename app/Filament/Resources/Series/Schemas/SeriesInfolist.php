@@ -29,6 +29,10 @@ final class SeriesInfolist
                         TextEntry::make('description')
                             ->placeholder('-')
                             ->columnSpanFull(),
+                        TextEntry::make('tags')
+                            ->placeholder('-')
+                            ->badge()
+                            ->columnSpanFull(),
                         RepeatableEntry::make('post_list')
                             ->label('Posts')
                             ->columns()

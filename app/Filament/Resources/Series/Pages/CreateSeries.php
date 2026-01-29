@@ -19,6 +19,7 @@ final class CreateSeries extends CreateRecord
             'title' => $data['title'],
             'author_id' => $data['author_id'],
             'description' => $data['description'] ?? null,
+            'tags' => $data['tags'] ?? null,
         ]);
 
         foreach ($data['posts'] as $order => $postSlug) {
