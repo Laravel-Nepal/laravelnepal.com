@@ -6,6 +6,7 @@ namespace App\Models;
 
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Contracts\Contentable;
 use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -63,6 +64,7 @@ final class Series extends Model implements Contentable, Viewable
 {
     use HasTheSlug;
     use InteractsWithViews;
+    use InteractsWithSEO;
     use IsContent;
 
     public function getConnectionName(): ?string

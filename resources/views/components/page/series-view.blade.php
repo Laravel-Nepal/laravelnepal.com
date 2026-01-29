@@ -18,23 +18,13 @@
                 <div class="absolute -top-24 -left-24 w-64 h-64 bg-laravel-red/5 blur-[100px] pointer-events-none"></div>
 
                 <div class="prose prose-invert max-w-none prose-p:text-zinc-400 prose-headings:text-white mb-12">
-                    <h2 class="text-3xl font-black mb-6">About this Series</h2>
                     @markdown($series->description)
                 </div>
 
                 <hr class="border-white/5 mb-12">
 
                 <div class="space-y-6">
-                    <h3 class="text-xl font-bold flex items-center gap-3 mb-8">
-                        <span class="w-8 h-8 rounded-lg bg-laravel-red/10 border border-laravel-red/20 flex items-center justify-center text-laravel-red">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-                        </span>
-                        Curriculum
-                    </h3>
-
                     <div class="relative space-y-4">
-                        <div class="absolute left-5.25 top-4 bottom-4 w-px bg-linear-to-b from-laravel-red/50 via-white/5 to-transparent"></div>
-
                         @foreach($series->post_list as $index => $post)
                             <a href="{{ route('page.post.view', $post) }}"
                                class="relative z-10 flex items-center gap-6 p-4 rounded-3xl border border-white/5 bg-white/2 hover:bg-white/5 hover:border-laravel-red/30 transition-all group">
