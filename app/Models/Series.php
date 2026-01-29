@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use CyrildeWit\EloquentViewable\Support\Period;
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
+use App\Contracts\Contentable;
+use App\Traits\IsContent;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Support\Period;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -56,15 +58,21 @@ use Illuminate\Support\Collection;
  *
  * @mixin \Eloquent
  */
-final class Series extends Model implements Viewable
+final class Series extends Model implements Contentable, Viewable
 {
     use HasTheSlug;
     use InteractsWithViews;
+    use IsContent;
 
     public function getConnectionName(): ?string
     {
         /** @var string|null */
         return config('database.default');
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 
     /** @return MorphToMany<Post, $this> */
