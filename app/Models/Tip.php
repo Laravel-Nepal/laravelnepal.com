@@ -68,8 +68,8 @@ final class Tip extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
-    use PostSchema;
     use IsOrbital;
+    use PostSchema;
 
     public static function schema(Blueprint $blueprint): void
     {

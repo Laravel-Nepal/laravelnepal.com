@@ -13,11 +13,27 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Orbit\Concerns\Orbital;
 use Override;
 
 trait IsContent
 {
+    #[Override]
+    public function getKey(): string|int
+    {
+        /** @var string|int|null $key */
+        $key = parent::getKey();
+
+        if (is_null($key)) {
+            return '';
+        }
+
+        if (is_numeric($key)) {
+            return (int) $key;
+        }
+
+        return (string) $key;
+    }
+
     /**
      * @return MorphOne<LaravelNewsSubmission, $this>
      */

@@ -13,6 +13,9 @@ final class CreateSeries extends CreateRecord
 {
     protected static string $resource = SeriesResource::class;
 
+    /**
+     * @param  array{'title': string, 'author_id': string, 'description'?: string, 'tags'?: array<int, string>, 'seriesable_type': string, 'posts': array<int, string>}  $data
+     */
     protected function handleRecordCreation(array $data): Series
     {
         $series = Series::query()

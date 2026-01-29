@@ -69,8 +69,8 @@ final class Project extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
-    use ProjectSchema;
     use IsOrbital;
+    use ProjectSchema;
 
     public static function schema(Blueprint $blueprint): void
     {

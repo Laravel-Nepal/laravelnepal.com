@@ -6,6 +6,7 @@ namespace App\Models;
 
 use AchyutN\LaravelHelpers\Traits\HasTheSlug;
 use AchyutN\LaravelSEO\Data\Breadcrumb;
+use AchyutN\LaravelSEO\Models\SEO;
 use AchyutN\LaravelSEO\Traits\InteractsWithSEO;
 use App\Contracts\Contentable;
 use App\Traits\IsContent;
@@ -14,11 +15,11 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Support\Period;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\Builder as Query;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Query\Builder as Query;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -33,13 +34,21 @@ use Illuminate\Support\Collection;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Author|null $author
+ * @property-read bool $is_submitted_to_laravel_news
  * @property-read int $post_count
- * @property-read Collection $post_list
+ * @property-read Collection<int, Post> $post_list
  * @property-read Seriesable|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Post> $posts
  * @property-read int|null $posts_count
+ * @property-read SEO|null $seo
+ * @property-read LaravelNewsSubmission|null $submission
+ * @property-read int $total_views
+ * @property-read int $total_votes
  * @property-read \Illuminate\Database\Eloquent\Collection<int, View> $views
  * @property-read int|null $views_count
+ * @property-read bool $voted
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Vote> $votes
+ * @property-read int|null $votes_count
  *
  * @method static Builder<static>|Series findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static Builder<static>|Series newModelQuery()
@@ -47,6 +56,7 @@ use Illuminate\Support\Collection;
  * @method static Builder<static>|Series orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
  * @method static Builder<static>|Series orderByViews(string $direction = 'desc', ?Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  * @method static Builder<static>|Series query()
+ * @method static Builder<static>|Series submissions()
  * @method static Builder<static>|Series whereAuthorId($value)
  * @method static Builder<static>|Series whereCreatedAt($value)
  * @method static Builder<static>|Series whereDescription($value)
@@ -79,7 +89,7 @@ final class Series extends Model implements Contentable, Viewable
         return 'slug';
     }
 
-    /** @return MorphToMany<Post, $this> */
+    // @phpstan-ignore-next-line
     public function posts(): MorphToMany
     {
         return $this->morphedByMany(Post::class, 'seriesable')
@@ -136,35 +146,9 @@ final class Series extends Model implements Contentable, Viewable
         ];
     }
 
-    /** @return Attribute<Collection<int, Post>, null> */
-    protected function postList(): Attribute
-    {
-        return Attribute::make(
-            get: fn(): Collection => Post::on('orbit')
-                ->whereIn(
-                    'slug',
-                    Seriesable::query()->where('series_id', $this->id)
-                        ->where('seriesable_type', Post::class)
-                        ->pluck('seriesable_id')
-                )
-                ->orderBy('order')
-                ->get(),
-        );
-    }
-
-    /** @return Attribute<int, null> */
-    protected function postCount(): Attribute
-    {
-        return Attribute::make(
-            get: fn(): int => Seriesable::query()
-                ->where('series_id', $this->id)
-                ->where('seriesable_type', Post::class)
-                ->count(),
-        );
-    }
-
     public function previous(Post $post): ?Post
     {
+        // @phpstan-ignore-next-line
         return Seriesable::query()
             ->where('series_id', $this->id)
             ->where('seriesable_type', Post::class)
@@ -183,6 +167,7 @@ final class Series extends Model implements Contentable, Viewable
 
     public function next(Post $post): ?Post
     {
+        // @phpstan-ignore-next-line
         return Seriesable::query()
             ->where('series_id', $this->id)
             ->where('seriesable_type', Post::class)
@@ -197,6 +182,37 @@ final class Series extends Model implements Contentable, Viewable
             ->limit(1)
             ->first()
             ?->seriesable;
+    }
+
+    /** @return Attribute<Collection<int, Post>, null> */
+    protected function postList(): Attribute
+    {
+        /** @var Collection<int, Post> $list */
+        $list = Post::on('orbit')
+            ->whereIn(
+                'slug',
+                Seriesable::query()->where('series_id', $this->id)
+                    ->where('seriesable_type', Post::class)
+                    ->pluck('seriesable_id')
+            )
+            ->orderBy('order')
+            ->get();
+
+        return Attribute::get(
+            /** @return Collection<int, Post> */
+            fn (): Collection => $list
+        );
+    }
+
+    /** @return Attribute<int, null> */
+    protected function postCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): int => Seriesable::query()
+                ->where('series_id', $this->id)
+                ->where('seriesable_type', Post::class)
+                ->count(),
+        );
     }
 
     protected function casts(): array

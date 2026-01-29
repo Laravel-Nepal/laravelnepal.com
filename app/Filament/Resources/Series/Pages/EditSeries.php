@@ -19,15 +19,19 @@ final class EditSeries extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
+        /** @var Series $record */
+        $record = $this->record;
+
         $data['seriesable_type'] = Post::class;
 
-        $data['posts'] = $this->record->post_list->map(fn (Post $post) => $post->slug)->toArray();
+        $data['posts'] = $record->post_list->map(fn (Post $post) => $post->slug)->toArray();
 
         return $data;
     }
 
     /**
      * @param  Series  $record
+     * @param  array{'title': string, 'author_id': string, 'description'?: string, 'tags'?: array<int, string>, 'seriesable_type': string, 'posts': array<int, string>}  $data
      */
     protected function handleRecordUpdate(Model $record, array $data): Model
     {

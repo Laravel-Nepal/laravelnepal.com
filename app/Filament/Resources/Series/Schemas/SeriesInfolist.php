@@ -45,7 +45,7 @@ final class SeriesInfolist
                                         Action::make('preview')
                                             ->label('Preview')
                                             ->icon(Heroicon::ArrowTopRightOnSquare)
-                                            ->url(fn (Post $post): string => $post->getURLValue())
+                                            ->url(fn (Post $post): ?string => $post->getURLValue())
                                             ->openUrlInNewTab(),
                                         Action::make('view')
                                             ->label('View (In Panel)')

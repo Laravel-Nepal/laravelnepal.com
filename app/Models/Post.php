@@ -79,8 +79,8 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
-    use PostSchema;
     use IsOrbital;
+    use PostSchema;
 
     public static function schema(Blueprint $blueprint): void
     {
@@ -166,7 +166,7 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
         return $this->hasOne(News::class, 'post_slug', 'slug');
     }
 
-    /** @return MorphToMany<Series, $this> */
+    // @phpstan-ignore-next-line
     public function series(): MorphToMany
     {
         return $this->morphToMany(Series::class, 'seriesable')
