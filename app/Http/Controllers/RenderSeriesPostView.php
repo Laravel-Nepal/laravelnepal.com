@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Series;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class RenderSeriesPostView extends Controller
+final class RenderSeriesPostView extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, Series $series, Post $post)
+    public function __invoke(Request $request, Series $series, Post $post): View
     {
         $breadCrumb = [
             ['label' => 'Home', 'url' => route('page.landingPage')],
@@ -22,6 +25,6 @@ class RenderSeriesPostView extends Controller
 
         views($post)->record();
 
-        return view('components.page.post-view', compact('post', 'breadCrumb'));
+        return view('components.page.post-view', compact('series', 'post', 'breadCrumb'));
     }
 }
