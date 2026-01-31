@@ -29,6 +29,7 @@
         "laravel/framework": "^12.44",
         "laravel/tinker": "^2.10.1",
         "owenvoke/blade-fontawesome": "^2.9",
+        "pxlrbt/filament-environment-indicator": "^3.4",
         "ryangjchandler/orbit": "^1.4",
         "spatie/browsershot": "^5.2",
         "spatie/laravel-markdown": "^2.7"
@@ -43,8 +44,7 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.2",
-        "pestphp/pest-plugin-laravel": "^4.0",
-        "pxlrbt/filament-environment-indicator": "^3.3"
+        "pestphp/pest-plugin-laravel": "^4.0"
     },
     "autoload": {
         "psr-4": {
