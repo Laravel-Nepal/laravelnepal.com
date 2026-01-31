@@ -8,6 +8,7 @@
         ['route' => 'page.project.index', 'label' => 'Projects', 'active' => 'page.project.*'],
         ['route' => 'page.package.index', 'label' => 'Packages', 'active' => 'page.package.*'],
         ['route' => 'page.artisan.index', 'label' => 'Artisans', 'active' => 'page.artisan.*'],
+        ['route' => 'page.series.index', 'label' => 'Series', 'active' => 'page.series.*'],
     ];
 @endphp
 

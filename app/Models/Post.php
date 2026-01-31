@@ -12,6 +12,7 @@ use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PostSchema;
 use App\Traits\HasReadTime;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Schema\Blueprint;
 use Throwable;
 
@@ -38,11 +40,19 @@ use Throwable;
  * @property-read bool $is_submitted_to_laravel_news
  * @property-read int $minutes_read
  * @property-read string $minutes_read_text
+ * @property-read News|null $news
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
+ * @property-read Seriesable|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Series> $series
+ * @property-read int|null $series_count
  * @property-read LaravelNewsSubmission|null $submission
  * @property-read int $total_views
+ * @property-read int $total_votes
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
+ * @property-read bool $voted
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Vote> $votes
+ * @property-read int|null $votes_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post newQuery()
@@ -69,6 +79,7 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
+    use IsOrbital;
     use PostSchema;
 
     public static function schema(Blueprint $blueprint): void
@@ -153,6 +164,15 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
     public function news(): HasOne
     {
         return $this->hasOne(News::class, 'post_slug', 'slug');
+    }
+
+    // @phpstan-ignore-next-line
+    public function series(): MorphToMany
+    {
+        return $this->morphToMany(Series::class, 'seriesable')
+            ->using(Seriesable::class)
+            ->withPivot('order')
+            ->orderBy('pivot_order');
     }
 
     protected function casts(): array

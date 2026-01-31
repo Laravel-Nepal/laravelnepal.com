@@ -12,6 +12,7 @@ use App\Models\Scopes\SkipExcluded;
 use App\Schemas\PostSchema;
 use App\Traits\HasReadTime;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -36,8 +37,12 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read \AchyutN\LaravelSEO\Models\SEO|null $seo
  * @property-read LaravelNewsSubmission|null $submission
  * @property-read int $total_views
+ * @property-read int $total_votes
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
+ * @property-read bool $voted
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Vote> $votes
+ * @property-read int|null $votes_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tip newQuery()
@@ -63,6 +68,7 @@ final class Tip extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
+    use IsOrbital;
     use PostSchema;
 
     public static function schema(Blueprint $blueprint): void

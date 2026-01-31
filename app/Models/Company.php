@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -30,8 +31,12 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read bool $is_submitted_to_laravel_news
  * @property-read LaravelNewsSubmission|null $submission
  * @property-read int $total_views
+ * @property-read int $total_votes
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
+ * @property-read bool $voted
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Vote> $votes
+ * @property-read int|null $votes_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company newQuery()
@@ -57,6 +62,7 @@ final class Company extends Model implements Contentable, Viewable
 {
     use InteractsWithViews;
     use IsContent;
+    use IsOrbital;
 
     public static function schema(Blueprint $blueprint): void
     {

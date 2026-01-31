@@ -72,5 +72,15 @@ final class PageSeeder extends Seeder
                 'description' => sprintf('Explore all artisans featured in %s', $siteSettings->name),
                 'tags' => ['artisans', 'developers', 'authors'],
             ]);
+
+        Page::query()
+            ->firstOrCreate([
+                'type' => PageType::IndexPage,
+                'name' => 'series',
+            ], [
+                'title' => 'Series',
+                'description' => sprintf('Explore all series published in %s', $siteSettings->name),
+                'tags' => ['series', 'collections', 'posts', 'videos'],
+            ]);
     }
 }

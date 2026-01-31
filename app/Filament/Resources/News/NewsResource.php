@@ -15,14 +15,17 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use UnitEnum;
 
 final class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Newspaper;
 
-    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::OutlinedNewspaper;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Content Management';
 
     public static function infolist(Schema $schema): Schema
     {

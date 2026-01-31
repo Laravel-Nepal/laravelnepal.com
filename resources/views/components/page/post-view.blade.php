@@ -10,14 +10,6 @@
             <div class="h-8 w-px bg-white/5"></div>
 
             <x-shared.header-stat label="Estimated" :value="$post->minutes_read_text" />
-
-{{--            <div class="h-8 w-px bg-white/5"></div>--}}
-
-{{--            <x-shared.header-stat label="Votes">--}}
-{{--                <x-slot:value>--}}
-{{--                    <livewire:shared.vote-content :count="1" :active="true" />--}}
-{{--                </x-slot:value>--}}
-{{--            </x-shared.header-stat>--}}
         </div>
     </x-slot:header>
 
@@ -30,6 +22,35 @@
                     @markdown($post->content)
                 </div>
             </div>
+
+            @if (isset($series))
+                @php
+                    $previous = $series->previous($post);
+                    $next = $series->next($post);
+                @endphp
+                <div class="flex flex-row justify-between items-center gap-4 mt-4">
+                    <div
+                        @class([
+                            "flex flex-col justify-start gap-2 items-start" => $previous,
+                        ])
+                    >
+                        @if ($previous)
+                            <div class="text-zinc-500 text-xs mb-1 ml-3 uppercase font-bold">Previous</div>
+                            <x-shared.series-blog-component :$series :post="$previous" />
+                        @endif
+                    </div>
+                    <div
+                        @class([
+                            "flex flex-col justify-start gap-2 items-end" => $next
+                        ])
+                    >
+                        @if ($next)
+                            <div class="text-zinc-500 text-xs mb-1 mr-3 uppercase font-bold">Next</div>
+                            <x-shared.series-blog-component :$series :post="$next" />
+                        @endif
+                    </div>
+                </div>
+            @endif
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">

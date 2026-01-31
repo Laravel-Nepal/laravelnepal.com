@@ -14,10 +14,6 @@ interface Contentable
 
     public function contentIsVoted(): bool;
 
-    public function getKeyType(): string;
-
-    public function getIncrementing(): bool;
-
     public function contentIsSubmittedToLaravelNews(): bool;
 
     public function getTotalViews(): int;

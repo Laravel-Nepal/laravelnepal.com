@@ -11,6 +11,7 @@ use App\Contracts\Contentable;
 use App\Models\Scopes\SkipExcluded;
 use App\Schemas\AuthorSchema;
 use App\Traits\IsContent;
+use App\Traits\IsOrbital;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -48,8 +49,12 @@ use Illuminate\Database\Schema\Blueprint;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Tip> $tips
  * @property-read int|null $tips_count
  * @property-read int $total_views
+ * @property-read int $total_votes
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
  * @property-read int|null $views_count
+ * @property-read bool $voted
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Vote> $votes
+ * @property-read int|null $votes_count
  * @property-read string|null $x_url
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Author newModelQuery()
@@ -79,6 +84,7 @@ final class Author extends Model implements Contentable, HasMarkup, Viewable
     use InteractsWithSEO;
     use InteractsWithViews;
     use IsContent;
+    use IsOrbital;
 
     public string $titleColumn = 'name';
 

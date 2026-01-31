@@ -11,6 +11,9 @@ use App\Http\Controllers\RenderPostIndex;
 use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectIndex;
 use App\Http\Controllers\RenderProjectView;
+use App\Http\Controllers\RenderSeriesIndex;
+use App\Http\Controllers\RenderSeriesPostView;
+use App\Http\Controllers\RenderSeriesView;
 use App\Http\Controllers\RenderTipIndex;
 use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
@@ -62,6 +65,23 @@ Route::group([
         ], function (): void {
             Route::get('/', RenderArtisanIndex::class)->name('index');
         });
+    });
+
+    Route::group([
+        'prefix' => '/project',
+        'as' => 'project.',
+    ], function (): void {
+        Route::get('/', RenderProjectIndex::class)->name('index');
+        Route::get('/{project}', RenderProjectView::class)->name('view');
+    });
+
+    Route::group([
+        'prefix' => '/series',
+        'as' => 'series.',
+    ], function (): void {
+        Route::get('/', RenderSeriesIndex::class)->name('index');
+        Route::get('/{series}', RenderSeriesView::class)->name('view');
+        Route::get('/{series}/{post}', RenderSeriesPostView::class)->name('post');
     });
 
     Route::get('/open-graph/{model}/{key}', RenderOpenGraphImage::class)->name('openGraphImage');
