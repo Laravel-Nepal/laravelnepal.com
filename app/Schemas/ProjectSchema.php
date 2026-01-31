@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
-use AchyutN\LaravelSEO\Data\ResolvedSEO;
 use App\Models\Author;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 
 trait ProjectSchema
 {
-    public function buildSchema(SchemaCollection $schema, ResolvedSEO $resolvedSEO): SchemaCollection
+    public function buildSchema(SchemaCollection $schema): SchemaCollection
     {
+        $resolvedSEO = $this->resolveSEO();
+
         /** @var Author $model */
         $model = $resolvedSEO->getModel();
 

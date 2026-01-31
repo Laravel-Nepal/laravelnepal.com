@@ -24,8 +24,6 @@ return new class extends Migration
 
     /**
      * Create a new migration instance.
-     *
-     * @return void
      */
     public function __construct()
     {
