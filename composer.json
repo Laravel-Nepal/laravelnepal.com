@@ -27,6 +27,7 @@
         "filament/spatie-laravel-settings-plugin": "^5.0",
         "joaopaulolndev/filament-edit-profile": "^3.0",
         "laravel/framework": "^12.44",
+        "laravel/pulse": "^1.5",
         "laravel/tinker": "^2.10.1",
         "owenvoke/blade-fontawesome": "^2.9",
         "pxlrbt/filament-environment-indicator": "^3.0",
