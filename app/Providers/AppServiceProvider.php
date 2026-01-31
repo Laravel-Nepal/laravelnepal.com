@@ -37,7 +37,7 @@ final class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        Gate::define('viewPulse', function (User $user) {
+        Gate::define('viewPulse', function (User $user): bool {
             return $user->role === UserRole::Admin;
         });
     }

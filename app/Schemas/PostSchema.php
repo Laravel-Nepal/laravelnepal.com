@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
-use AchyutN\LaravelSEO\Data\ResolvedSEO;
 use App\Models\Post;
 use App\Models\Tip;
 use Illuminate\Support\Collection;
@@ -13,8 +12,10 @@ use RalphJSmit\Laravel\SEO\SchemaCollection;
 
 trait PostSchema
 {
-    public function buildSchema(SchemaCollection $schema, ResolvedSEO $resolvedSEO): SchemaCollection
+    public function buildSchema(SchemaCollection $schema): SchemaCollection
     {
+        $resolvedSEO = $this->resolveSEO();
+
         /** @var Post|Tip $model */
         $model = $resolvedSEO->getModel();
 

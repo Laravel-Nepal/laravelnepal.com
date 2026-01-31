@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
-use AchyutN\LaravelSEO\Data\ResolvedSEO;
 use App\Models\Page;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 
 trait PageSchema
 {
-    public function buildSchema(SchemaCollection $schema, ResolvedSEO $resolvedSEO): SchemaCollection
+    public function buildSchema(SchemaCollection $schema): SchemaCollection
     {
+        $resolvedSEO = $this->resolveSEO();
+
         /** @var Page $model */
         $model = $resolvedSEO->getModel();
 
