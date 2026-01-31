@@ -78,6 +78,7 @@ final class RenderOpenGraphImage extends Controller
                 config()->string('services.node.npm_path')
             )
             ->fullPage()
+            ->deviceScaleFactor(3)
             ->noSandbox()
             ->screenshot();
 
