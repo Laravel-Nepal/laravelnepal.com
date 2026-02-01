@@ -16,7 +16,7 @@
         <main class="lg:col-span-9">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @forelse($projects as $project)
-                    <x-shared.project-component :$project />
+                    <x-shared.project-component :$project wire:key="project-{{ $project->getKey() }}" />
                 @empty
                     <x-shared.empty-state icon="layer-group" label="projects" />
                 @endforelse

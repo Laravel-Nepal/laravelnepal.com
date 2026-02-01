@@ -3,7 +3,7 @@
         <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-6">Filter by {{ $label }}</h4>
         <div class="flex flex-col gap-3">
             @foreach($arrayValues as $arrayValue)
-                <label class="flex items-center group cursor-pointer">
+                <label class="flex items-center group cursor-pointer" wire:key="array-value-{{ $arrayValue['value'] }}">
                     <div class="relative flex items-center">
                         <input
                             type="checkbox"

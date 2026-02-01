@@ -16,7 +16,7 @@
         <main class="lg:col-span-9">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @forelse($tips as $tip)
-                    <x-shared.tip-component :$tip />
+                    <x-shared.tip-component :$tip wire:key="tip-{{ $tip->getKey() }}" />
                 @empty
                     <x-shared.empty-state icon="lightbulb" label="tips" />
                 @endforelse

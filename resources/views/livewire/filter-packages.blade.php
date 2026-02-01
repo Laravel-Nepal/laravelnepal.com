@@ -16,7 +16,7 @@
         <main class="lg:col-span-9">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @forelse($packages as $package)
-                    <x-shared.package-component :$package />
+                    <x-shared.package-component :$package wire:key="package-{{ $package->getKey() }}" />
                 @empty
                     <x-shared.empty-state icon="bars-staggered" label="packages" />
                 @endforelse

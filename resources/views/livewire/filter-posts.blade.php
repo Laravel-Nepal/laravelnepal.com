@@ -16,7 +16,7 @@
         <main class="lg:col-span-9">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @forelse($posts as $post)
-                    <x-shared.single-blog :$post />
+                    <x-shared.single-blog :$post wire:key="post-{{ $post->getKey() }}" />
                 @empty
                     <x-shared.empty-state icon="copy" label="posts" />
                 @endforelse
