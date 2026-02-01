@@ -13,7 +13,7 @@
     <div class="glass p-8 rounded-[2.5rem] relative overflow-hidden group border border-white/5 focus-within:border-laravel-red/30 transition-all duration-500">
         <div class="absolute -top-12 -right-12 w-32 h-32 bg-laravel-red/5 blur-[60px] pointer-events-none"></div>
 
-        <form class="relative z-10 space-y-5">
+        <form class="relative z-10 space-y-5" wire:submit.prevent="addComment">
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="grow">
                     <label class="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-2 ml-1">
@@ -22,8 +22,12 @@
                     <input
                         type="text"
                         placeholder="Anonymous Artisan"
+                        wire:model.debounce.500ms="name"
                         class="w-full bg-black/40 border border-white/5 rounded-2xl px-5 py-3 text-sm text-zinc-300 focus:outline-none focus:border-laravel-red/50 focus:ring-1 focus:ring-laravel-red/20 transition-all"
                     >
+                    @error('name')
+                        <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -33,8 +37,12 @@
                 </label>
                 <textarea
                     placeholder="Share your feedback or ask a question..."
+                    wire:model.debounce.500ms="message"
                     class="w-full bg-black/40 border border-white/5 rounded-3xl px-5 py-4 text-sm text-zinc-300 focus:outline-none focus:border-laravel-red/50 focus:ring-1 focus:ring-laravel-red/20 transition-all min-h-30 resize-none"
                 ></textarea>
+                @error('message')
+                    <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="flex items-center justify-between pt-2">
@@ -43,7 +51,12 @@
                     <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-tight">Markdown Enabled</span>
                 </div>
 
-                <button type="submit" class="button-red small px-10 py-3 rounded-xl font-bold text-xs transition-transform active:scale-95">
+                <button
+                    type="submit"
+                    @class([
+                        "button-red small px-10 py-3 rounded-xl font-bold text-xs transition-transform active:scale-95",
+                    ])
+                >
                     Post Comment
                 </button>
             </div>
@@ -51,9 +64,8 @@
     </div>
 
     <div class="space-y-6">
-
         @forelse($content->comments as $comment)
-            <div class="glass p-8 rounded-[2.5rem] flex gap-6 relative group">
+            <div class="glass p-8 rounded-[2.5rem] flex gap-6 relative group" wire:transition>
                 <div class="flex flex-col items-center gap-2">
                     <button class="w-12 h-12 rounded-2xl border border-white/5 bg-white/2 flex flex-col items-center justify-center group/vote hover:border-laravel-red/50 hover:bg-laravel-red/5 transition-all">
                         <svg class="w-4 h-4 text-zinc-500 group-hover/vote:text-laravel-red transition-colors" fill="currentColor" viewBox="0 0 24 24">
