@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use App\Models\Comment;
 use App\Models\LaravelNewsSubmission;
 use App\Models\Vote;
 use CyrildeWit\EloquentViewable\View;
@@ -51,6 +52,12 @@ trait IsContent
     public function votes(): MorphMany
     {
         return $this->morphMany(Vote::class, 'votable');
+    }
+
+    /** @return MorphMany<Comment, $this> */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function vote(): void
