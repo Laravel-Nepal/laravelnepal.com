@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Contracts\Votable;
+use App\Traits\CanBeVoted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-final class Comment extends Model
+final class Comment extends Model implements Votable
 {
+    use CanBeVoted;
+
     public function getConnectionName(): ?string
     {
         /** @var string|null */

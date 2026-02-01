@@ -26,7 +26,6 @@ final class Comments extends Component
         $this->visitor = resolve(Visitor::class)->id();
     }
 
-    #[Transition]
     public function addComment(): void
     {
         $this->validate([

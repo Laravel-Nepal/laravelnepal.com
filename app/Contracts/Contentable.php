@@ -4,16 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
-interface Contentable
+interface Contentable extends Votable
 {
-    public function getTotalVotes(): int;
-
-    public function vote(): void;
-
-    public function removeVote(): void;
-
-    public function contentIsVoted(): bool;
-
     public function getKeyType(): string;
 
     public function getIncrementing(): bool;

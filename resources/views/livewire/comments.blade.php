@@ -81,7 +81,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-black text-white">
-                                Achyut Neupane
+                                Anonymous Artisan
                             </span>
                             <span class="text-[10px] text-zinc-600 font-bold uppercase tracking-tighter">
                                 {{ $comment->created_at->diffForHumans() }}
