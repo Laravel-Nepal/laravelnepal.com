@@ -142,6 +142,16 @@ trait IsContent
         );
     }
 
+    protected function totalComments(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): int => Comment::on('mysql')
+                ->where('commentable_type', self::class)
+                ->where('commentable_id', $this->getKey())
+                ->count(),
+        );
+    }
+
     /** @return Builder<LaravelNewsSubmission> */
     #[Scope]
     protected function submissions(): Builder

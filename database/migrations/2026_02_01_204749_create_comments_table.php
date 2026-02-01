@@ -23,7 +23,7 @@ return new class extends Migration
 
             $blueprint->timestamps();
 
-            $blueprint->index(['votable_type', 'votable_id']);
+            $blueprint->index(['commentable_type', 'commentable_id']);
         });
     }
 
