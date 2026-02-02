@@ -65,16 +65,9 @@
 
     <div class="space-y-6">
         @forelse($content->comments as $comment)
-            <div class="glass p-8 rounded-[2.5rem] flex gap-6 relative group" wire:transition>
+            <div class="glass p-8 rounded-[2.5rem] flex gap-6 relative group">
                 <div class="flex flex-col items-center gap-2">
-                    <button class="w-12 h-12 rounded-2xl border border-white/5 bg-white/2 flex flex-col items-center justify-center group/vote hover:border-laravel-red/50 hover:bg-laravel-red/5 transition-all">
-                        <svg class="w-4 h-4 text-zinc-500 group-hover/vote:text-laravel-red transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10z"/>
-                        </svg>
-                        <span class="text-[10px] font-black text-zinc-400 group-hover/vote:text-white transition-colors">
-                            0
-                        </span>
-                    </button>
+                    <livewire:shared.upvote-content :content="$comment" />
                 </div>
 
                 <div class="grow">

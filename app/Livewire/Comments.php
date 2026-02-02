@@ -40,7 +40,7 @@ final class Comments extends Component
             'visitor' => $this->visitor,
         ]);
 
-        $this->reset('name', 'message');
+        $this->reset(['name', 'message']);
     }
 
     public function render(): View

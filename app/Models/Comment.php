@@ -16,10 +16,4 @@ final class Comment extends Model implements Votable
         /** @var string|null */
         return config('database.default');
     }
-
-    // @phpstan-ignore-next-line
-    public function votable(): MorphTo
-    {
-        return $this->morphTo('votable');
-    }
 }
