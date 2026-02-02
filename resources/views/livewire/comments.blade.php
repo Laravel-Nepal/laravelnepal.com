@@ -12,9 +12,8 @@
 
     <div
         class="glass p-8 rounded-[2.5rem] relative overflow-hidden group border border-white/5 focus-within:border-laravel-red/30 transition-all duration-500"
-        wire:key="comment-form-container"
     >
-        <form wire:submit="addComment" class="relative z-10 space-y-5">
+        <form wire:submit.prevent="addComment" class="relative z-10 space-y-5">
             <div class="grow">
                 <label class="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-2 ml-1">
                     Display Name <span class="text-zinc-700 italic">(Optional)</span>
@@ -34,7 +33,7 @@
                 </label>
                 <textarea
                     placeholder="Share your feedback or ask a question..."
-                    wire:model.live="message"
+                    wire:model="message"
                     class="w-full bg-black/40 border border-white/5 rounded-3xl px-5 py-4 text-sm text-zinc-300 focus:outline-none focus:border-laravel-red/50 focus:ring-1 focus:ring-laravel-red/20 transition-all min-h-32 resize-none"
                 ></textarea>
                 @error('message') <p class="text-[10px] font-bold text-laravel-red mt-2 ml-1 uppercase tracking-tight">{{ $message }}</p> @enderror

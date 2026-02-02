@@ -8,7 +8,6 @@ use App\Contracts\Contentable;
 use App\Models\Comment;
 use CyrildeWit\EloquentViewable\Visitor;
 use Illuminate\View\View;
-use Livewire\Attributes\Transition;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -40,7 +39,7 @@ final class Comments extends Component
             'visitor' => $this->visitor,
         ]);
 
-        $this->name = '';
+        $this->reset('name');
     }
 
     public function render(): View
