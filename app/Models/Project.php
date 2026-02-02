@@ -77,6 +77,7 @@ final class Project extends Model implements Contentable, HasMarkup, Viewable
     {
         $blueprint->string('title');
         $blueprint->string('slug')->nullable();
+        $blueprint->text('description')->nullable();
         $blueprint->string('author_username');
         $blueprint->string('github');
         $blueprint->string('website')->nullable();
