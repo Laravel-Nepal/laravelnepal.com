@@ -69,6 +69,7 @@ final class Company extends Model implements Contentable, Viewable
     {
         $blueprint->string('name');
         $blueprint->string('slug');
+        $blueprint->text('description')->nullable();
         $blueprint->string('email')->nullable();
         $blueprint->string('website')->nullable();
         $blueprint->string('city')->nullable();

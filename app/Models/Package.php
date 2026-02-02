@@ -80,6 +80,7 @@ final class Package extends Model implements Contentable, HasMarkup, Viewable
     {
         $blueprint->string('name');
         $blueprint->string('slug')->nullable();
+        $blueprint->text('description')->nullable();
         $blueprint->string('author_username');
         $blueprint->string('github')->nullable();
         $blueprint->string('packagist')->nullable();

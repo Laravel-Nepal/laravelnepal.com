@@ -83,6 +83,7 @@ final class Post extends Model implements Contentable, HasMarkup, Viewable
     {
         $blueprint->string('title');
         $blueprint->string('slug')->nullable();
+        $blueprint->text('description')->nullable();
         $blueprint->string('author_username');
         $blueprint->date('date');
         $blueprint->string('canonical_url')->nullable();

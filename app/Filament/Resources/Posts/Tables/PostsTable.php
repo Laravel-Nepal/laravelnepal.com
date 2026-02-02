@@ -38,6 +38,7 @@ final class PostsTable
             ->filters([
                 //
             ])
+            ->defaultSort('date', 'desc')
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

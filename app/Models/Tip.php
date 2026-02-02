@@ -76,6 +76,7 @@ final class Tip extends Model implements Contentable, HasMarkup, Viewable
     {
         $blueprint->string('title');
         $blueprint->string('slug');
+        $blueprint->text('description')->nullable();
         $blueprint->string('author_username');
         $blueprint->date('date');
         $blueprint->json('tags');
