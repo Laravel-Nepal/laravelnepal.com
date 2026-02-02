@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
-use App\Models\Author;
 use App\Models\Project;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 
