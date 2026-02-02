@@ -49,8 +49,13 @@ trait PostSchema
                     ],
                     [
                         '@type' => 'InteractionCounter',
-                        'interactionType' => 'http://schema.org/PlusOnes',
+                        'interactionType' => 'http://schema.org/UserPlusOnes',
                         'userInteractionCount' => $model->getTotalVotes(),
+                    ],
+                    [
+                        '@type' => 'InteractionCounter',
+                        'interactionType' => 'http://schema.org/UserComments',
+                        'userInteractionCount' => $model->total_comments,
                     ],
                 ],
                 'image' => $resolvedSEO->image,

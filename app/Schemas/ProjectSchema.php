@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Schemas;
 
 use App\Models\Author;
+use App\Models\Project;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 
 trait ProjectSchema
@@ -13,7 +14,7 @@ trait ProjectSchema
     {
         $resolvedSEO = $this->resolveSEO();
 
-        /** @var Author $model */
+        /** @var Project $model */
         $model = $resolvedSEO->getModel();
 
         return $schema
@@ -43,8 +44,13 @@ trait ProjectSchema
                     ],
                     [
                         '@type' => 'InteractionCounter',
-                        'interactionType' => 'http://schema.org/PlusOnes',
+                        'interactionType' => 'http://schema.org/UserPlusOnes',
                         'userInteractionCount' => $model->getTotalVotes(),
+                    ],
+                    [
+                        '@type' => 'InteractionCounter',
+                        'interactionType' => 'http://schema.org/UserComments',
+                        'userInteractionCount' => $model->total_comments,
                     ],
                 ],
                 'image' => $resolvedSEO->image,
