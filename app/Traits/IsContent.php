@@ -90,6 +90,7 @@ trait IsContent
         );
     }
 
+    /** @return Attribute<int, null> */
     protected function totalComments(): Attribute
     {
         return Attribute::make(

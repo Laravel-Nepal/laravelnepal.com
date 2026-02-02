@@ -6,6 +6,8 @@ namespace App\Contracts;
 
 interface Contentable extends Votable
 {
+    public function getKey(): string|int;
+
     public function getKeyType(): string;
 
     public function getIncrementing(): bool;

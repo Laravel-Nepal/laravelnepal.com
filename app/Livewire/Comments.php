@@ -27,12 +27,13 @@ final class Comments extends Component
 
         $visitor = resolve(Visitor::class);
 
-        Comment::query()->create([
-            'commentable_type' => $this->content->getMorphClass(),
-            'commentable_id' => $this->content->getKey(),
-            'content' => $this->pull('message'),
-            'visitor' => $visitor->id(),
-        ]);
+        Comment::query()
+            ->create([
+                'commentable_type' => get_class($this->content),
+                'commentable_id' => $this->content->getKey(),
+                'content' => $this->pull('message'),
+                'visitor' => $visitor->id(),
+            ]);
 
         if ($this->name !== '') {
             $guest = $visitor->guest();

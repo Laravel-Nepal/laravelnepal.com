@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use CyrildeWit\EloquentViewable\Contracts\Visitor;
 use App\Enums\UserRole;
 use App\Models\User;
+use CyrildeWit\EloquentViewable\Contracts\Visitor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;

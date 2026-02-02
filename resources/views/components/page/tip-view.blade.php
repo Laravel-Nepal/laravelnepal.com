@@ -29,7 +29,7 @@
                     @markdown($tip->content)
                 </div>
             </div>
-            <livewire:comments :content="$post" />
+            <livewire:comments :content="$tip" />
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">
