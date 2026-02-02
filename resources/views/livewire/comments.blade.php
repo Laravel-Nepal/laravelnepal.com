@@ -13,7 +13,7 @@
     <div
         class="glass p-8 rounded-[2.5rem] relative overflow-hidden group border border-white/5 focus-within:border-laravel-red/30 transition-all duration-500"
     >
-        <form wire:submit.prevent="addComment" class="relative z-10 space-y-5">
+        <form wire:submit="addComment" class="relative z-10 space-y-5">
             <div class="grow">
                 <label class="block text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-2 ml-1">
                     Display Name <span class="text-zinc-700 italic">(Optional)</span>
@@ -55,7 +55,7 @@
 
     <div class="space-y-6">
         @forelse($content->comments as $comment)
-            <div wire:key="comment-{{ $comment->id }}" class="glass p-8 rounded-[2.5rem] flex flex-col sm:flex-row gap-6 relative group transition-all duration-500 hover:border-white/10">
+            <div wire:key="comment-{{ $comment->id }}" class="glass p-8 rounded-[2.5rem] flex flex-col sm:flex-row gap-6 relative group transition-all duration-500 hover:border-white/10" wire:transition>
 
                 <div class="flex flex-row sm:flex-col items-center gap-2">
                     <livewire:shared.upvote-content :content="$comment" :key="'vote-'.$comment->id" />
