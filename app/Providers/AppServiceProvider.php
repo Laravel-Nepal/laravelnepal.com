@@ -18,7 +18,10 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            \CyrildeWit\EloquentViewable\Contracts\Visitor::class,
+            \App\Services\Views\Visitor::class
+        );
     }
 
     /**
