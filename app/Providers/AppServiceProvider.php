@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use CyrildeWit\EloquentViewable\Contracts\Visitor;
 use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +20,7 @@ final class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            \CyrildeWit\EloquentViewable\Contracts\Visitor::class,
+            Visitor::class,
             \App\Services\Views\Visitor::class
         );
     }

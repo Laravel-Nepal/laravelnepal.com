@@ -25,9 +25,9 @@ final class Comments extends Component
     {
         $this->validate();
 
-        $visitor = app(Visitor::class);
+        $visitor = resolve(Visitor::class);
 
-        Comment::create([
+        Comment::query()->create([
             'commentable_type' => $this->content->getMorphClass(),
             'commentable_id' => $this->content->getKey(),
             'content' => $this->pull('message'),
