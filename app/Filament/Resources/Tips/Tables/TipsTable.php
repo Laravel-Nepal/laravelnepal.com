@@ -29,6 +29,7 @@ final class TipsTable
                     )
                     ->badge(),
             ])
+            ->defaultSort('date', 'desc')
             ->filters([
                 //
             ])
