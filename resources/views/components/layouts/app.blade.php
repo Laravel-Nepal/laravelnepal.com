@@ -35,6 +35,7 @@
     {!! $siteSettings->header_scripts !!}
 
     @vite(["resources/js/app.js", "resources/css/app.css"])
+    @livewireStyles
     @stack('styles')
 </head>
 <body class="container-xl antialiased bg-[#050505] text-white overflow-x-hidden">
@@ -43,6 +44,7 @@
     {{ $slot }}
     <x-shared.footer />
 
+    @livewireScripts
     @stack('scripts')
     {!! $siteSettings->footer_scripts !!}
 </body>

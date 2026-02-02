@@ -9,6 +9,7 @@ use App\Models\Comment;
 use CyrildeWit\EloquentViewable\Visitor;
 use Illuminate\View\View;
 use Livewire\Attributes\Transition;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 final class Comments extends Component
@@ -17,8 +18,10 @@ final class Comments extends Component
 
     public string $visitor = '';
 
+    #[Validate('nullable|string|max:255')]
     public string $name = '';
 
+    #[Validate('required|string|max:1000')]
     public string $message = '';
 
     public function mount(): void
@@ -28,19 +31,16 @@ final class Comments extends Component
 
     public function addComment(): void
     {
-        $this->validate([
-            'name' => 'nullable|string|max:255',
-            'message' => 'required|string|max:1000',
-        ]);
+        $this->validate();
 
         Comment::create([
             'commentable_type' => $this->content->getMorphClass(),
             'commentable_id' => $this->content->getKey(),
-            'content' => $this->message,
+            'content' => $this->pull('message'),
             'visitor' => $this->visitor,
         ]);
 
-        $this->reset(['name', 'message']);
+        $this->name = '';
     }
 
     public function render(): View
