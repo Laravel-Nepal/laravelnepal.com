@@ -7,7 +7,7 @@
         <main class="lg:col-span-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @forelse($artisans as $author)
-                    <x-shared.artisan-component :$author />
+                    <x-shared.artisan-component :$author wire:key="artisan-{{ $author->getKey() }}" />
                 @empty
                     <x-shared.empty-state icon="bars-staggered" label="artisans" />
                 @endforelse

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
-use App\Models\Author;
+use App\Models\Package;
 use RalphJSmit\Laravel\SEO\SchemaCollection;
 
 trait PackageSchema
@@ -13,7 +13,7 @@ trait PackageSchema
     {
         $resolvedSEO = $this->resolveSEO();
 
-        /** @var Author $model */
+        /** @var Package $model */
         $model = $resolvedSEO->getModel();
 
         return $schema
@@ -44,8 +44,13 @@ trait PackageSchema
                     ],
                     [
                         '@type' => 'InteractionCounter',
-                        'interactionType' => 'http://schema.org/PlusOnes',
+                        'interactionType' => 'http://schema.org/UserPlusOnes',
                         'userInteractionCount' => $model->getTotalVotes(),
+                    ],
+                    [
+                        '@type' => 'InteractionCounter',
+                        'interactionType' => 'http://schema.org/UserComments',
+                        'userInteractionCount' => $model->total_comments,
                     ],
                 ],
                 'image' => $resolvedSEO->image,

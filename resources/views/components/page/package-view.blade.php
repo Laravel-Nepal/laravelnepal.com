@@ -30,6 +30,7 @@
                     @markdown($package->content)
                 </div>
             </div>
+            <livewire:comments :content="$package" />
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">

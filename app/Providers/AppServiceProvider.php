@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Enums\UserRole;
 use App\Models\User;
+use CyrildeWit\EloquentViewable\Contracts\Visitor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
@@ -18,7 +19,10 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            Visitor::class,
+            \App\Services\Views\Visitor::class
+        );
     }
 
     /**
