@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Comments;
 
-use AchyutN\LaravelSEO\Contracts\HasMarkup;
-use App\Contracts\Contentable;
+use AchyutN\LaravelSEO\Contracts\HasColumns;
 use App\Filament\Resources\Comments\Pages\ManageComments;
 use App\Models\Comment;
 use BackedEnum;
@@ -11,11 +12,7 @@ use Filament\Actions\Action;
 use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -23,13 +20,11 @@ use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder as Query;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-class CommentResource extends Resource
+final class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
 
@@ -42,7 +37,12 @@ class CommentResource extends Resource
         return $schema
             ->components([
                 TextEntry::make('commentable')
-                    ->formatStateUsing(fn (Comment $comment) => sprintf('%s (%s)', $comment->commentable->getTitleValue(), class_basename($comment->commentable))),
+                    ->formatStateUsing(function (Comment $comment): string {
+                        /** @var HasColumns $commentable */
+                        $commentable = $comment->commentable;
+
+                        return sprintf('%s (%s)', $commentable->getTitleValue(), class_basename($commentable));
+                    }),
                 TextEntry::make('guest.name')
                     ->label('Guest Name'),
                 TextEntry::make('content')
@@ -56,7 +56,12 @@ class CommentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('commentable')
-                    ->formatStateUsing(fn (Comment $comment) => sprintf('%s (%s)', $comment->commentable->getTitleValue(), class_basename($comment->commentable))),
+                    ->formatStateUsing(function (Comment $comment): string {
+                        /** @var HasColumns $commentable */
+                        $commentable = $comment->commentable;
+
+                        return sprintf('%s (%s)', $commentable->getTitleValue(), class_basename($commentable));
+                    }),
                 TextColumn::make('guest.name'),
                 TextColumn::make('votes_count')
                     ->counts('votes')
@@ -78,10 +83,10 @@ class CommentResource extends Resource
                     ->label('Mark as Viewed')
                     ->icon(Heroicon::EyeSlash)
                     ->color(Color::Green)
-                    ->action(function (Comment $comment) {
+                    ->action(function (Comment $comment): void {
                         $comment->update(['viewed_at' => now()]);
                     })
-                    ->visible(fn (Comment $comment) => $comment->viewed_at === null),
+                    ->visible(fn (Comment $comment): bool => $comment->viewed_at === null),
                 ViewAction::make(),
                 DeleteAction::make(),
             ])
@@ -91,7 +96,8 @@ class CommentResource extends Resource
                         ->label('Mark as Viewed')
                         ->icon(Heroicon::EyeSlash)
                         ->color(Color::Green)
-                        ->action(function (Collection $records) {
+                        ->action(function (Collection $records): void {
+                            // @phpstan-ignore-next-line
                             $records->each(fn (Comment $comment) => $comment->update(['viewed_at' => now()]));
                         }),
                 ]),

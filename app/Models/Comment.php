@@ -48,6 +48,7 @@ final class Comment extends Model implements Votable
     #[Override]
     public function getKey(): int
     {
+        /** @var int */
         return $this->getAttribute('id');
     }
 

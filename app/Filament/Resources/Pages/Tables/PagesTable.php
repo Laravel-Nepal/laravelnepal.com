@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Pages\Tables;
 
 use App\Filament\Components\PreviewAction;
-use App\Models\Page;
-use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 

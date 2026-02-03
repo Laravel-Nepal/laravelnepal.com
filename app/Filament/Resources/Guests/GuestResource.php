@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Guests;
 
 use App\Filament\Resources\Guests\Pages\CreateGuest;
@@ -17,10 +19,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class GuestResource extends Resource
+final class GuestResource extends Resource
 {
     protected static ?string $model = Guest::class;
 
@@ -30,7 +30,7 @@ class GuestResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static SubNavigationPosition|null $subNavigationPosition = SubNavigationPosition::Top;
+    protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function form(Schema $schema): Schema
     {
@@ -62,14 +62,6 @@ class GuestResource extends Resource
             'view' => ViewGuest::route('/{record}'),
             'edit' => EditGuest::route('/{record}/edit'),
         ];
-    }
-
-    public static function getRecordRouteBindingEloquentQuery(): Builder
-    {
-        return parent::getRecordRouteBindingEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
     }
 
     public static function getRecordSubNavigation(Page $page): array

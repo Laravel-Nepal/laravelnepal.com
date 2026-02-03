@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Guests\Pages;
 
 use App\Filament\Resources\Guests\GuestResource;
@@ -9,7 +11,7 @@ use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditGuest extends EditRecord
+final class EditGuest extends EditRecord
 {
     protected static string $resource = GuestResource::class;
 

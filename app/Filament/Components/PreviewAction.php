@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Components;
 
+use AchyutN\LaravelSEO\Contracts\HasColumns;
 use Filament\Actions\Action;
 use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Database\Eloquent\Model as Record;
 
 final class PreviewAction extends Action
 {
@@ -21,9 +21,9 @@ final class PreviewAction extends Action
 
         $this->color(Color::Green);
 
-        $this->visible(fn (Record $record): bool => $record->getURLValue() !== null);
+        $this->visible(fn (HasColumns $hasColumns): bool => $hasColumns->getURLValue() !== null);
 
-        $this->url(fn (Record $record) => $record->getURLValue());
+        $this->url(fn (HasColumns $hasColumns): ?string => $hasColumns->getURLValue());
 
         $this->openUrlInNewTab();
     }
