@@ -2,56 +2,54 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Projects\Tables;
+namespace App\Filament\Resources\Guests\Tables;
 
-use App\Filament\Components\PreviewAction;
-use App\Models\Project;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-final class ProjectsTable
+final class GuestsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('visitor_id')
+                    ->wrap()
+                    ->limit(10)
                     ->searchable(),
-                TextColumn::make('slug')
+                TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('github')
-                    ->url(fn (Project $project): ?string => $project->github_url)
+                TextColumn::make('email')
+                    ->label('Email address')
+                    ->searchable(),
+                TextColumn::make('comments_count')
+                    ->counts('comments')
                     ->badge()
-                    ->openUrlInNewTab()
                     ->searchable(),
-                TextColumn::make('website')
-                    ->url(fn (string $state): string => $state)
+                TextColumn::make('votes_count')
+                    ->counts('votes')
                     ->badge()
-                    ->openUrlInNewTab()
                     ->searchable(),
-                TextColumn::make('total_views')
-                    ->label('Views')
-                    ->color(
-                        fn (int $state): array => $state > 0 ? Color::Green : Color::Neutral
-                    )
-                    ->badge(),
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->recordActions([
-                PreviewAction::make(),
                 ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }

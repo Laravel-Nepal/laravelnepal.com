@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Posts\Tables;
 
+use App\Filament\Components\PreviewAction;
 use App\Models\Post;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
@@ -40,6 +41,7 @@ final class PostsTable
             ])
             ->defaultSort('date', 'desc')
             ->recordActions([
+                PreviewAction::make(),
                 ViewAction::make(),
                 EditAction::make(),
                 Action::make('push-to-news')

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Tips\Tables;
 
+use App\Filament\Components\PreviewAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
 use Filament\Tables\Columns\TextColumn;
@@ -34,6 +35,7 @@ final class TipsTable
                 //
             ])
             ->recordActions([
+                PreviewAction::make(),
                 ViewAction::make(),
             ]);
     }
