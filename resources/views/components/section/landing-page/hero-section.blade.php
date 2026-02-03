@@ -1,4 +1,4 @@
-<section class="relative min-h-screen flex items-center justify-center px-6 pt-10">
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-10 mb-10 lg:mb-0">
     <div class="container grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7 space-y-8 animate__animated animate__fadeInLeft">
             <h1 class="text-4xl md:text-5xl font-black leading-none">
