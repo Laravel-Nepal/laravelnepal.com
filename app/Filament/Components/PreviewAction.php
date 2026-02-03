@@ -8,6 +8,7 @@ use AchyutN\LaravelSEO\Contracts\HasColumns;
 use Filament\Actions\Action;
 use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Database\Eloquent\Model as Record;
 
 final class PreviewAction extends Action
 {
@@ -21,9 +22,19 @@ final class PreviewAction extends Action
 
         $this->color(Color::Green);
 
-        $this->visible(fn (HasColumns $hasColumns): bool => $hasColumns->getURLValue() !== null);
+        $this->visible(
+            function (Record $record): bool {
+                /** @var Record & HasColumns $record */
+                return $record->getURLValue() !== null;
+            }
+        );
 
-        $this->url(fn (HasColumns $hasColumns): ?string => $hasColumns->getURLValue());
+        $this->url(
+            function (Record $record): ?string {
+                /** @var Record & HasColumns $record */
+                return $record->getURLValue();
+            }
+        );
 
         $this->openUrlInNewTab();
     }
