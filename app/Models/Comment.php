@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 use Override;
 
@@ -47,13 +48,19 @@ final class Comment extends Model implements Votable
     #[Override]
     public function getKey(): int
     {
-        return $this->getKey();
+        return $this->getAttribute('id');
     }
 
     public function getConnectionName(): ?string
     {
         /** @var string|null */
         return config('database.default');
+    }
+
+    // @phpstan-ignore-next-line
+    public function commentable(): MorphTo
+    {
+        return $this->morphTo('commentable');
     }
 
     /** @return BelongsTo<Guest, $this> */
