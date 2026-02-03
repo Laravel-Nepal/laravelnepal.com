@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Packages\Tables;
 
+use App\Filament\Components\PreviewAction;
 use App\Models\Package;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
@@ -41,6 +42,7 @@ final class PackagesTable
                 //
             ])
             ->recordActions([
+                PreviewAction::make(),
                 ViewAction::make(),
             ]);
     }

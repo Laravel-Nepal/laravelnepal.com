@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Pages\Tables;
 
+use App\Filament\Components\PreviewAction;
 use App\Models\Page;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
@@ -34,13 +35,7 @@ final class PagesTable
                     ->badge(),
             ])
             ->recordActions([
-                Action::make('preview')
-                    ->label('Preview')
-                    ->color(Color::Green)
-                    ->visible(fn (Page $page): bool => $page->getURLValue() !== null)
-                    ->icon(Heroicon::ArrowTopRightOnSquare)
-                    ->url(fn (Page $page): ?string => $page->getURLValue())
-                    ->openUrlInNewTab(),
+                PreviewAction::make(),
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Authors\Tables;
 
+use App\Filament\Components\PreviewAction;
 use App\Models\Author;
 use Filament\Actions\ViewAction;
 use Filament\Support\Colors\Color;
@@ -41,6 +42,7 @@ final class AuthorsTable
                 //
             ])
             ->recordActions([
+                PreviewAction::make(),
                 ViewAction::make(),
             ]);
     }

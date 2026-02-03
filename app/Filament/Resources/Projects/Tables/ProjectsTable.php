@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Projects\Tables;
 
+use App\Filament\Components\PreviewAction;
 use App\Models\Project;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -44,6 +45,7 @@ final class ProjectsTable
                 //
             ])
             ->recordActions([
+                PreviewAction::make(),
                 ViewAction::make(),
                 EditAction::make(),
             ])
