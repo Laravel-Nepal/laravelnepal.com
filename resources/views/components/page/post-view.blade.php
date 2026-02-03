@@ -23,7 +23,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-4">
         <div class="lg:col-span-8">
-            <div class="glass p-8 md:p-12 rounded-[3rem] relative overflow-hidden">
+            <div class="glass py-8 px-6 md:p-12 rounded-[3rem] relative overflow-hidden">
                 <div class="absolute -top-24 -left-24 w-64 h-64 bg-laravel-red/5 blur-[100px] pointer-events-none"></div>
 
                 <div class="prose prose-invert max-w-none prose-a:text-laravel-red prose-a:font-bold">
