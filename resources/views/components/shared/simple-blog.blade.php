@@ -1,5 +1,6 @@
 <a
     href="{{ route('page.post.view', $post) }}"
+    wire:navigate.hover
     @class([
         $class,
         "group/item border-b border-white/20 pb-4 last:border-0 last:pb-0",

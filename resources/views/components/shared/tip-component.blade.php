@@ -1,6 +1,7 @@
 <a
     class="glass p-6 rounded-4xl flex flex-col justify-between group/tip cursor-pointer hover:border-laravel-red/50 transition-all h-full w-full"
     href="{{ route('page.tips.view', $tip) }}"
+    wire:navigate.hover
 >
     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-laravel-red blur-[80px] opacity-0 group-hover/tip:opacity-30 transition-opacity"></div>
     <div class="flex flex-wrap justify-between items-center mb-6 w-full gap-y-4">

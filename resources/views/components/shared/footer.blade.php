@@ -9,7 +9,7 @@
         />
     @endif
 
-    <a href="{{ route('page.landingPage') }}" class="text-neutral-300 uppercase tracking-[0.4em]">
+    <a href="{{ route('page.landingPage') }}" wire:navigate.hover class="text-neutral-300 uppercase tracking-[0.4em]">
         {{ $settings->name }}
     </a>
     <div
