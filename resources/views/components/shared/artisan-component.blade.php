@@ -7,7 +7,7 @@
         </span>
     </div>
 
-    <a href="{{ route('page.artisan.view', $author) }}" class="absolute inset-0 z-10" aria-label="View {{ $author->name }}'s Profile"></a>
+    <a href="{{ route('page.artisan.view', $author) }}" wire:navigate.hover class="absolute inset-0 z-10" aria-label="View {{ $author->name }}'s Profile"></a>
 
     <div class="relative z-20 pointer-events-none">
         <div class="flex justify-between items-start mb-6">

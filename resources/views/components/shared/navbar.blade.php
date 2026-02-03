@@ -29,6 +29,7 @@
                 @foreach($navLinks as $link)
                     <a
                         href="{{ route($link['route']) }}"
+                        wire:navigate.hover
                         @class([
                             "px-4 py-2 rounded-full text-xs font-bold transition-all border",
                             request()->routeIs($link['active'])
@@ -43,7 +44,7 @@
         </div>
 
         <div class="dock rounded-full px-4 py-3 flex items-center gap-2">
-            <a href="{{ route('page.landingPage') }}" class="block group w-10 h-10 shrink-0">
+            <a href="{{ route('page.landingPage') }}" wire:navigate.hover class="block group w-10 h-10 shrink-0">
                 <span @class([
                     "w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs group-hover:scale-110 transition",
                     $siteSettings->logo ? 'bg-[#faf9fe]' : 'bg-laravel-red'
@@ -66,6 +67,7 @@
                 @foreach($navLinks as $link)
                     <a
                         href="{{ route($link['route']) }}"
+                        wire:navigate.hover
                         @class([
                             "nav-item",
                             "active" => request()->routeIs($link['active'])

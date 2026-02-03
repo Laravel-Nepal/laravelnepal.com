@@ -8,7 +8,7 @@
         </svg>
     </div>
 
-    <a href="{{ route('page.project.view', $project) }}" class="absolute inset-0 z-10" aria-label="View Project"></a>
+    <a href="{{ route('page.project.view', $project) }}" wire:navigate.hover class="absolute inset-0 z-10" aria-label="View Project"></a>
 
     <div class="relative z-20 pointer-events-none">
         <div class="flex justify-between items-start mb-6">
@@ -53,7 +53,9 @@
                     Visit Website
                 </a>
                 <a href="{{ route('page.project.view', $project) }}"
-                   class="button-outlined small z-30 relative">
+                   wire:navigate.hover
+                   class="button-outlined small z-30 relative"
+                >
                     Explore
                 </a>
             </div>

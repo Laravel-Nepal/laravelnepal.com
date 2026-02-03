@@ -18,7 +18,7 @@
         </svg>
     </div>
 
-    <a href="{{ route('page.package.view', $package) }}" class="absolute inset-0 z-10" aria-label="View Package"></a>
+    <a href="{{ route('page.package.view', $package) }}" wire:navigate.hover class="absolute inset-0 z-10" aria-label="View Package"></a>
 
     <div class="relative z-20 pointer-events-none">
         <div class="flex justify-between items-start mb-6">
@@ -87,7 +87,9 @@
                 Packagist
             </a>
             <a href="{{ route('page.package.view', $package) }}"
-               class="button-outlined small z-30 relative">
+               wire:navigate.hover
+               class="button-outlined small z-30 relative"
+            >
                 Explore
             </a>
         </div>

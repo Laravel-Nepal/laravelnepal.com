@@ -1,4 +1,4 @@
-<a href="{{ route('page.artisan.view', $author) }}" class="flex items-center gap-3 group/artisan">
+<a href="{{ route('page.artisan.view', $author) }}" wire:navigate.hover class="flex items-center gap-3 group/artisan">
     <div class="relative">
         <div
             class="absolute inset-0 bg-laravel-red/20 blur-md rounded-full opacity-0 group-hover/artisan:opacity-100 transition-opacity"></div>

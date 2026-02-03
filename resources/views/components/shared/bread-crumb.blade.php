@@ -20,7 +20,7 @@
                         {{ $breadCrumbItem['label'] }}
                     </span>
                 @else
-                    <a href="{{ $breadCrumbItem['url'] }}" class="hover:text-laravel-red transition-colors whitespace-nowrap">
+                    <a href="{{ $breadCrumbItem['url'] }}" wire:navigate.hover class="hover:text-laravel-red transition-colors whitespace-nowrap">
                         {{ $breadCrumbItem['label'] }}
                     </a>
                 @endif
