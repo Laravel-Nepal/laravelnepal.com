@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use League\CommonMark\Extension\Table\TableExtension;
 use Spatie\LaravelMarkdown\MarkdownRenderer;
 
 return [
@@ -74,7 +75,7 @@ return [
      * More info: https://commonmark.thephpleague.com/2.4/extensions/overview/
      */
     'extensions' => [
-        //
+        TableExtension::class,
     ],
 
     /*
