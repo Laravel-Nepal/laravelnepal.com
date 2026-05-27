@@ -111,7 +111,7 @@ final class Author extends Model implements Contentable, HasMarkup, Viewable
     /** @return HasMany<Tip, $this> */
     public function tips(): HasMany
     {
-        return $this->hasMany(Tip::class, 'author_username', 'username');
+        return $this->hasMany(Tip::class, 'author_username', 'username')->latest('date');
     }
 
     /** @return HasMany<Package, $this> */
@@ -129,7 +129,7 @@ final class Author extends Model implements Contentable, HasMarkup, Viewable
     /** @return HasMany<Post, $this> */
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class, 'author_username', 'username');
+        return $this->hasMany(Post::class, 'author_username', 'username')->latest('date');
     }
 
     public function authorValue(): ?string
