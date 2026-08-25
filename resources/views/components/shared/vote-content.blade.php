@@ -1,3 +1,39 @@
+<?php
+
+use App\Livewire\Shared\VoteGlass;
+use Livewire\Component;
+use Livewire\Features\SupportEvents\Event;
+
+new class extends Component
+{
+    public int $count = 0;
+
+    public bool $active = false;
+
+    public function toggleVote(): void
+    {
+        if ($this->active) {
+            $this->count = max(0, $this->count - 1);
+            $this->active = false;
+
+            $this->dispatchEvent('vote-removed');
+        } else {
+            $this->count++;
+            $this->active = true;
+
+            $this->dispatchEvent('vote-added');
+        }
+    }
+
+    private function dispatchEvent(string $eventName): void
+    {
+        /** @phpstan-var Event $event */
+        $event = $this->dispatch($eventName);
+        $event->to(VoteGlass::class);
+    }
+};
+?>
+
 <div class="inline-flex items-center gap-2 group">
     <button
         wire:click="toggleVote"

@@ -15,3 +15,11 @@ it('renders the shared checkbox glass as a single-file component', function (): 
     ])
         ->assertStatus(200);
 });
+
+it('toggles the shared vote content and dispatches events', function (): void {
+    Livewire::test('shared::vote-content', ['count' => 0, 'active' => false])
+        ->assertStatus(200)
+        ->call('toggleVote')
+        ->assertSet('count', 1)
+        ->assertSet('active', true);
+});
