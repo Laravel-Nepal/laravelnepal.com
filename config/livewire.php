@@ -32,8 +32,10 @@ return [
     */
 
     'component_namespaces' => [
-        'layouts' => resource_path('views/layouts'),
-        'pages' => resource_path('views/pages'),
+        'layouts' => resource_path('views/components/layouts'),
+        'pages' => resource_path('views/components/page'),
+        'sections' => resource_path('views/components/section'),
+        'shared' => resource_path('views/components/shared'),
     ],
 
     /*
