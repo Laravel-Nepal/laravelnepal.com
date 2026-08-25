@@ -1,6 +1,5 @@
 <?php
 
-use App\Livewire\Shared\VoteGlass;
 use Livewire\Component;
 use Livewire\Features\SupportEvents\Event;
 
@@ -29,7 +28,7 @@ new class extends Component
     {
         /** @phpstan-var Event $event */
         $event = $this->dispatch($eventName);
-        $event->to(VoteGlass::class);
+        $event->to('shared::vote-glass');
     }
 };
 ?>
