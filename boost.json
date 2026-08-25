@@ -1,0 +1,27 @@
+{
+    "agents": [
+        "opencode",
+        "claude_code",
+        "antigravity",
+        "cursor"
+    ],
+    "cloud": false,
+    "guidelines": true,
+    "mcp": true,
+    "nightwatch": false,
+    "packages": [
+        "filament/filament",
+        "achyutn/filament-log-viewer",
+        "achyutn/laravel-seo"
+    ],
+    "sail": false,
+    "skills": [
+        "infer-conventions",
+        "laravel-best-practices",
+        "pulse-development",
+        "pest-testing",
+        "tailwindcss-development",
+        "filament-log-viewer-development",
+        "laravel-seo"
+    ]
+}
