@@ -1,3 +1,37 @@
+<?php
+
+use App\Contracts\Votable;
+use Livewire\Component;
+
+new class extends Component
+{
+    public Votable $content;
+
+    public bool $contentIsVoted = false;
+
+    public int $totalVotes = 0;
+
+    public function mount(): void
+    {
+        $this->contentIsVoted = $this->content->contentIsVoted();
+        $this->totalVotes = $this->content->getTotalVotes();
+    }
+
+    public function toggleVote(): void
+    {
+        if ($this->contentIsVoted) {
+            $this->content->removeVote();
+            $this->totalVotes--;
+        } else {
+            $this->content->vote();
+            $this->totalVotes++;
+        }
+
+        $this->contentIsVoted = ! $this->contentIsVoted;
+    }
+};
+?>
+
 <div
     wire:loading.class="opacity-50 grayscale pointer-events-none"
     wire:target="toggleVote"
