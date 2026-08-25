@@ -15,7 +15,7 @@
 
 {{--            <x-shared.header-stat label="Votes">--}}
 {{--                <x-slot:value>--}}
-{{--                    <livewire:shared.vote-content :count="1" :active="true" />--}}
+{{--                    <livewire:shared::vote-content :count="1" :active="true" />--}}
 {{--                </x-slot:value>--}}
 {{--            </x-shared.header-stat>--}}
         </div>
@@ -30,11 +30,11 @@
                     @markdown($post->content)
                 </div>
             </div>
-            <livewire:shared.comments :content="$post" />
+            <livewire:shared::comments :content="$post" />
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">
-                <livewire:shared.vote-glass :content="$post" />
+                <livewire:shared::vote-glass :content="$post" />
                 <x-shared.tags-glass :tags="$post->tags" />
                 <x-shared.share-glass />
                 <x-shared.subscribe-glass />

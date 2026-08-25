@@ -30,11 +30,11 @@
                     @markdown($package->content)
                 </div>
             </div>
-            <livewire:shared.comments :content="$package" />
+            <livewire:shared::comments :content="$package" />
         </div>
         <aside class="lg:col-span-4 space-y-8">
             <div class="sticky top-12 flex flex-col gap-4">
-                <livewire:shared.vote-glass :content="$package" />
+                <livewire:shared::vote-glass :content="$package" />
                 <x-shared.tags-glass :tags="$package->tags" />
                 <x-shared.share-glass />
                 <x-shared.subscribe-glass />

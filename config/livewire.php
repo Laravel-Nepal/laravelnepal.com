@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'component_layout' => 'layouts::front-layout',
+    'component_layout' => 'layouts::page',
 
     /*
     |---------------------------------------------------------------------------

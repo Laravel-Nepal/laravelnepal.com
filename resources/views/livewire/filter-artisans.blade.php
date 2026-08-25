@@ -1,6 +1,6 @@
 <div x-data="{ sidebarOpen: false }">
     <div class="flex gap-4 mb-8">
-        <livewire:shared.filter-input wire:model.live.debounce.500ms="query" label="artisan" />
+        <livewire:shared::filter-input wire:model.live.debounce.500ms="query" label="artisan" />
         <x-shared.filter-toggle />
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">

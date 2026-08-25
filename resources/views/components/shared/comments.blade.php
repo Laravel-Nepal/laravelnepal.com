@@ -101,7 +101,7 @@ new class extends Component
             <div wire:key="comment-{{ $comment->id }}" class="glass p-8 rounded-[2.5rem] flex flex-col sm:flex-row gap-6 relative group transition-all duration-500 hover:border-white/10" wire:transition>
 
                 <div class="flex flex-row sm:flex-col items-center gap-2">
-                    <livewire:shared.upvote-content :content="$comment" :key="'vote-'.$comment->id" />
+                    <livewire:shared::upvote-content :content="$comment" :key="'vote-'.$comment->id" />
                 </div>
 
                 <div class="grow">

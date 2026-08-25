@@ -7,7 +7,6 @@ use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageIndex;
 use App\Http\Controllers\RenderPackageView;
-use App\Http\Controllers\RenderPostIndex;
 use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectIndex;
 use App\Http\Controllers\RenderProjectView;
@@ -24,7 +23,7 @@ Route::group([
         'prefix' => '/post',
         'as' => 'post.',
     ], function (): void {
-        Route::get('/', RenderPostIndex::class)->name('index');
+        Route::livewire('/', 'pages::post.index')->name('index');
         Route::get('/{post}', RenderPostView::class)->name('view');
     });
 

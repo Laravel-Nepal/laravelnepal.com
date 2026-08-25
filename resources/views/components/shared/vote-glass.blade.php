@@ -30,7 +30,7 @@ new #[Lazy] class extends Component
 @endplaceholder
 
 <div class="glass p-8 rounded-4xl flex items-center justify-between">
-    <livewire:shared.vote-content
+    <livewire:shared::vote-content
         :count="$content->getTotalVotes()"
         :active="$content->contentIsVoted()"
     />

@@ -1,6 +1,6 @@
 <div x-data="{ sidebarOpen: false }">
     <div class="flex gap-4 mb-8">
-        <livewire:shared.filter-input wire:model.live.debounce.500ms="query" label="project" />
+        <livewire:shared::filter-input wire:model.live.debounce.500ms="query" label="project" />
         <x-shared.filter-toggle />
     </div>
 
@@ -10,7 +10,7 @@
             x-transition
             :class="sidebarOpen ? 'block' : 'hidden lg:block'"
         >
-            <livewire:shared.checkbox-glass :array-values="$tags" wire:model.live="selectedTags" />
+            <livewire:shared::checkbox-glass :array-values="$tags" wire:model.live="selectedTags" />
         </aside>
 
         <main class="lg:col-span-9">
