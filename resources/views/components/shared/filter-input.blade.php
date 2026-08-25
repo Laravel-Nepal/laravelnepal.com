@@ -1,3 +1,22 @@
+<?php
+
+use Livewire\Attributes\Modelable;
+use Livewire\Component;
+
+new class extends Component
+{
+    #[Modelable]
+    public string $value = '';
+
+    public string $label = '';
+
+    public function mount(string $label): void
+    {
+        $this->label = $label;
+    }
+};
+?>
+
 <div class="relative flex-1 group">
     <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-zinc-600 group-focus-within:text-laravel-red transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
