@@ -36,6 +36,7 @@ return [
         'pages' => resource_path('views/components/page'),
         'sections' => resource_path('views/components/section'),
         'shared' => resource_path('views/components/shared'),
+        'skeletons' => resource_path('views/components/skeletons'),
     ],
 
     /*
@@ -48,7 +49,7 @@ return [
     |
     */
 
-    'component_layout' => 'layouts::app',
+    'component_layout' => 'layouts::front-layout',
 
     /*
     |---------------------------------------------------------------------------
@@ -60,7 +61,7 @@ return [
     |
     */
 
-    'component_placeholder' => null, // Example: 'placeholders::skeleton'
+    'component_placeholder' => 'skeletons::skeleton', // Example: 'placeholders::skeleton'
 
     /*
     |---------------------------------------------------------------------------
