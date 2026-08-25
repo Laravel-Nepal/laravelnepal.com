@@ -1,3 +1,30 @@
+<?php
+
+use Livewire\Attributes\Modelable;
+use Livewire\Component;
+
+new class extends Component
+{
+    /** @var array<int, string> */
+    #[Modelable]
+    public array $value = [];
+
+    public ?string $label;
+
+    /** @var array<int, array{value: string, bracketValue: int}> */
+    public array $arrayValues = [];
+
+    /**
+     * @param  array<int, array{value: string, bracketValue: int}>  $arrayValues
+     */
+    public function mount(array $arrayValues, ?string $label = null): void
+    {
+        $this->label = $label ?? 'Tags';
+        $this->arrayValues = $arrayValues;
+    }
+};
+?>
+
 <div class="glass p-8 rounded-4xl space-y-8">
     <div>
         <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-6">Filter by {{ $label }}</h4>
