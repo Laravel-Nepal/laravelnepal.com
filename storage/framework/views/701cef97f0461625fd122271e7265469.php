@@ -84,28 +84,32 @@ unset($__params);
 unset($__componentSlots);
 unset($__split);
 ?>
-    <?php if (isset($component)) { $__componentOriginalb059e53111417ac25e7fa8b31970bd3a = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalb059e53111417ac25e7fa8b31970bd3a = $attributes; } ?>
-<?php $component = App\View\Components\Section\LandingPage\ProjectsAndPackages::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('section.landing-page.projects-and-packages'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\Section\LandingPage\ProjectsAndPackages::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('sections::landing-page.projects-and-packages', []);
 
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalb059e53111417ac25e7fa8b31970bd3a)): ?>
-<?php $attributes = $__attributesOriginalb059e53111417ac25e7fa8b31970bd3a; ?>
-<?php unset($__attributesOriginalb059e53111417ac25e7fa8b31970bd3a); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalb059e53111417ac25e7fa8b31970bd3a)): ?>
-<?php $component = $__componentOriginalb059e53111417ac25e7fa8b31970bd3a; ?>
-<?php unset($__componentOriginalb059e53111417ac25e7fa8b31970bd3a); ?>
-<?php endif; ?>
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1214811403-2', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
     <?php $__env->startPush('seo'); ?>
         <?php
             $page = \App\Models\Page::whereType(\App\Enums\PageType::LandingPage)->first();
