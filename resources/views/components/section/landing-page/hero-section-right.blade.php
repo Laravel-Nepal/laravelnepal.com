@@ -9,7 +9,7 @@
             </div>
             <div class="text-right">
                 <p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Current Time</p>
-                <x-section.landing-page.time-block />
+                <livewire:sections::landing-page.time-block />
             </div>
         </div>
 

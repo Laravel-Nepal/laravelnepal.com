@@ -1,0 +1,103 @@
+<?php
+    use App\Settings\SiteSettings;
+    $siteSettings = app(SiteSettings::class);
+
+    $navLinks = [
+        ['route' => 'page.post.index', 'label' => 'Blogs', 'active' => 'page.post.*'],
+        ['route' => 'page.tips.index', 'label' => 'Tips', 'active' => 'page.tips.*'],
+        ['route' => 'page.project.index', 'label' => 'Projects', 'active' => 'page.project.*'],
+        ['route' => 'page.package.index', 'label' => 'Packages', 'active' => 'page.package.*'],
+        ['route' => 'page.artisan.index', 'label' => 'Artisans', 'active' => 'page.artisan.*'],
+    ];
+?>
+
+<nav class="dock-container" id="dock" x-data="{ mobileOpen: false }">
+    <div class="relative">
+        <div
+            x-show="mobileOpen"
+            x-cloak
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-8 scale-90"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 translate-y-8 scale-90"
+            @click.away="mobileOpen = false"
+            class="absolute bottom-full mb-6 left-1/2 -translate-x-1/2 w-[calc(100vw-3rem)] max-w-xs glass rounded-[2.5rem] p-6 lg:hidden"
+        >
+            <div class="flex flex-wrap justify-center gap-3">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $navLinks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    <a
+                        href="<?php echo e(route($link['route'])); ?>"
+                        wire:navigate.hover
+                        class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                            "px-4 py-2 rounded-full text-xs font-bold transition-all border",
+                            request()->routeIs($link['active'])
+                                ? "bg-laravel-red border-laravel-red text-white shadow-[0_0_15px_rgba(255,45,32,0.3)]"
+                                : "bg-white/5 border-white/5 text-zinc-400"
+                        ]); ?>"
+                    >
+                        <?php echo e($link['label']); ?>
+
+                    </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+            </div>
+        </div>
+
+        <div class="dock rounded-full px-4 py-3 flex items-center gap-2">
+            <a href="<?php echo e(route('page.landingPage')); ?>" wire:navigate.hover class="block group w-10 h-10 shrink-0">
+                <span class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                    "w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs group-hover:scale-110 transition",
+                    $siteSettings->logo ? 'bg-[#faf9fe]' : 'bg-laravel-red'
+                ]); ?>">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($siteSettings->logo): ?>
+                        <img
+                            src="<?php echo e(asset('/storage/'.$siteSettings->logo)); ?>"
+                            alt="Logo"
+                            class="p-1 object-cover rounded-xl w-10 h-10"
+                        />
+                    <?php else: ?>
+                        LN
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </span>
+            </a>
+
+            <div class="h-6 w-px bg-white/10 mx-2"></div>
+
+            <div class="hidden lg:flex gap-2">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $navLinks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    <a
+                        href="<?php echo e(route($link['route'])); ?>"
+                        wire:navigate.hover
+                        class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                            "nav-item",
+                            "active" => request()->routeIs($link['active'])
+                        ]); ?>"
+                    >
+                        <?php echo e($link['label']); ?>
+
+                    </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+            </div>
+
+            <button
+                @click="mobileOpen = !mobileOpen"
+                class="lg:hidden flex items-center gap-3 pl-2 pr-1 group"
+            >
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 group-hover:text-zinc-300 transition-colors">
+                    Menu
+                </span>
+                <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-zinc-500 group-hover:bg-white/10 group-hover:text-white transition-all">
+                    <svg
+                        class="w-4 h-4 transition-transform duration-500"
+                        :class="mobileOpen ? 'rotate-180 text-laravel-red' : ''"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7" />
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </div>
+</nav>
+<?php /**PATH /Users/achyutkneupane/htdocs/laravel12/LaravelNepal/resources/views/components/shared/navbar.blade.php ENDPATH**/ ?>
