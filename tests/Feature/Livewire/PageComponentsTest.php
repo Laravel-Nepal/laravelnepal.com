@@ -2,72 +2,29 @@
 
 declare(strict_types=1);
 
-it('registers the posts index as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.post.index');
+it('registers every page route as a livewire page route backed by a single-file component', function (): void {
+    $pageRoutes = [
+        'page.post.index' => 'post-index',
+        'page.post.view' => 'post-view',
+        'page.tips.index' => 'tip-index',
+        'page.tips.view' => 'tip-view',
+        'page.project.index' => 'project-index',
+        'page.project.view' => 'project-view',
+        'page.package.index' => 'package-index',
+        'page.package.view' => 'package-view',
+        'page.artisan.index' => 'artisan-index',
+        'page.artisan.view' => 'artisan-view',
+    ];
 
-    expect($route)->not->toBeNull();
-});
+    $routes = collect(app('router')->getRoutes()->getRoutes());
 
-it('registers the tips index as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.tips.index');
+    foreach ($pageRoutes as $routeName => $componentFile) {
+        $route = $routes->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === $routeName);
 
-    expect($route)->not->toBeNull();
-});
-
-it('registers the projects index as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.project.index');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the packages index as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.package.index');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the artisans index as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.artisan.index');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the post view as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.post.view');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the tip view as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.tips.view');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the project view as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.project.view');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the package view as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.package.view');
-
-    expect($route)->not->toBeNull();
-});
-
-it('registers the artisan view as a livewire page route', function (): void {
-    $route = collect(app('router')->getRoutes()->getRoutes())
-        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.artisan.view');
-
-    expect($route)->not->toBeNull();
+        expect($route)->not->toBeNull("Route [{$routeName}] should exist")
+            ->and($route->getActionName())->toBeString()
+            ->and($route->getActionName())->toContain('LivewirePageController')
+            ->and(file_exists(resource_path("views/components/page/{$componentFile}.blade.php")))
+            ->toBeTrue("SFC file for [{$routeName}] should exist");
+    }
 });

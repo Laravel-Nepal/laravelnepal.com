@@ -14,43 +14,43 @@ Route::group([
         'prefix' => '/post',
         'as' => 'post.',
     ], function (): void {
-        Route::livewire('/', 'pages::post.index')->name('index');
-        Route::livewire('/{post}', 'pages::post.view')->name('view');
+        Route::livewire('/', 'pages::post-index')->name('index');
+        Route::livewire('/{post}', 'pages::post-view')->name('view');
     });
 
     Route::group([
         'prefix' => '/tip',
         'as' => 'tips.',
     ], function (): void {
-        Route::livewire('/', 'pages::tip.index')->name('index');
-        Route::livewire('/{tip}', 'pages::tip.view')->name('view');
+        Route::livewire('/', 'pages::tip-index')->name('index');
+        Route::livewire('/{tip}', 'pages::tip-view')->name('view');
     });
 
     Route::group([
         'prefix' => '/project',
         'as' => 'project.',
     ], function (): void {
-        Route::livewire('/', 'pages::project.index')->name('index');
-        Route::livewire('/{project}', 'pages::project.view')->name('view');
+        Route::livewire('/', 'pages::project-index')->name('index');
+        Route::livewire('/{project}', 'pages::project-view')->name('view');
     });
 
     Route::group([
         'prefix' => '/package',
         'as' => 'package.',
     ], function (): void {
-        Route::livewire('/', 'pages::package.index')->name('index');
-        Route::livewire('/{package}', 'pages::package.view')->name('view');
+        Route::livewire('/', 'pages::package-index')->name('index');
+        Route::livewire('/{package}', 'pages::package-view')->name('view');
     });
 
     Route::group([
         'as' => 'artisan.',
     ], function (): void {
-        Route::livewire('/@{author}', 'pages::artisan.view')->name('view');
+        Route::livewire('/@{author}', 'pages::artisan-view')->name('view');
 
         Route::group([
             'prefix' => '/artisan',
         ], function (): void {
-            Route::livewire('/', 'pages::artisan.index')->name('index');
+            Route::livewire('/', 'pages::artisan-index')->name('index');
         });
     });
 
