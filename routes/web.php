@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageView;
-use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\SubscribeToNewsletter;
 
 Route::group([
@@ -34,7 +33,7 @@ Route::group([
         'as' => 'project.',
     ], function (): void {
         Route::livewire('/', 'pages::project.index')->name('index');
-        Route::get('/{project}', RenderProjectView::class)->name('view');
+        Route::livewire('/{project}', 'pages::project.view')->name('view');
     });
 
     Route::group([
