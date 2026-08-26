@@ -1,28 +1,39 @@
-<section class="relative min-h-screen flex items-center justify-center px-6 pt-10 mb-10 lg:mb-0">
-    <div class="container grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-8 animate__animated animate__fadeInLeft">
-            <h1 class="text-4xl md:text-5xl font-black leading-none">
-                Join Laravel Nepal.<br/>
-                <span class="text-laravel-red">The Open Community</span> <br />
-                <span>for Laravel Developers</span>
-            </h1>
+<?php
 
-            <p class="text-zinc-400 text-lg max-w-xl leading-relaxed">
-                A collaborative space for Laravel enthusiasts to share knowledge, build projects, and grow together in Nepal's thriving tech community.
-            </p>
+use Livewire\Component;
 
-            <div class="flex flex-wrap gap-4 pt-4">
-                <a class="button-red" href="https://github.com/Laravel-Nepal/contents" target="_blank" rel="noopener">
-                    Join Community
-                </a>
-                <a class="button-outlined" href="#explore">
-                    Explore
-                </a>
+new class extends Component
+{
+};
+?>
+
+<div>
+    <section class="relative min-h-screen flex items-center justify-center px-6 pt-10 mb-10 lg:mb-0">
+        <div class="container grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-8 animate__animated animate__fadeInLeft">
+                <h1 class="text-4xl md:text-5xl font-black leading-none">
+                    Join Laravel Nepal.<br/>
+                    <span class="text-laravel-red">The Open Community</span> <br />
+                    <span>for Laravel Developers</span>
+                </h1>
+
+                <p class="text-zinc-400 text-lg max-w-xl leading-relaxed">
+                    A collaborative space for Laravel enthusiasts to share knowledge, build projects, and grow together in Nepal's thriving tech community.
+                </p>
+
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a class="button-red" href="https://github.com/Laravel-Nepal/contents" target="_blank" rel="noopener">
+                        Join Community
+                    </a>
+                    <a class="button-outlined" href="#explore">
+                        Explore
+                    </a>
+                </div>
             </div>
+            <livewire:sections::landing-page.hero-section-right />
         </div>
-        <livewire:sections::landing-page.hero-section-right />
-    </div>
-</section>
+    </section>
+</div>
 
 @push('styles')
     <link

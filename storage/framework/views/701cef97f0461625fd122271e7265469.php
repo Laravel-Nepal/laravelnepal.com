@@ -10,28 +10,32 @@
 <?php $component->withAttributes([]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-    <?php if (isset($component)) { $__componentOriginalcf1158ea4663255d258b61f737287c16 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalcf1158ea4663255d258b61f737287c16 = $attributes; } ?>
-<?php $component = App\View\Components\Section\LandingPage\HeroSection::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('section.landing-page.hero-section'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\Section\LandingPage\HeroSection::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('sections::landing-page.hero-section', []);
 
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalcf1158ea4663255d258b61f737287c16)): ?>
-<?php $attributes = $__attributesOriginalcf1158ea4663255d258b61f737287c16; ?>
-<?php unset($__attributesOriginalcf1158ea4663255d258b61f737287c16); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalcf1158ea4663255d258b61f737287c16)): ?>
-<?php $component = $__componentOriginalcf1158ea4663255d258b61f737287c16; ?>
-<?php unset($__componentOriginalcf1158ea4663255d258b61f737287c16); ?>
-<?php endif; ?>
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1214811403-0', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
     <?php if (isset($component)) { $__componentOriginal31fc946f6718c9ff1dd5d147ff97c4f1 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal31fc946f6718c9ff1dd5d147ff97c4f1 = $attributes; } ?>
 <?php $component = App\View\Components\Section\LandingPage\PostsAndNews::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
