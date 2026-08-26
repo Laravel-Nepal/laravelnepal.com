@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\RenderArtisanIndex;
 use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageView;
@@ -56,7 +55,7 @@ Route::group([
         Route::group([
             'prefix' => '/artisan',
         ], function (): void {
-            Route::get('/', RenderArtisanIndex::class)->name('index');
+            Route::livewire('/', 'pages::artisan.index')->name('index');
         });
     });
 

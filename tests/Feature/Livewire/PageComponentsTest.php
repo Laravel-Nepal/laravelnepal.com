@@ -29,3 +29,10 @@ it('registers the packages index as a livewire page route', function (): void {
 
     expect($route)->not->toBeNull();
 });
+
+it('registers the artisans index as a livewire page route', function (): void {
+    $route = collect(app('router')->getRoutes()->getRoutes())
+        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.artisan.index');
+
+    expect($route)->not->toBeNull();
+});
