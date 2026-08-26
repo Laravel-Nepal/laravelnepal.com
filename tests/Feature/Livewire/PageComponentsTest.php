@@ -43,3 +43,10 @@ it('registers the post view as a livewire page route', function (): void {
 
     expect($route)->not->toBeNull();
 });
+
+it('registers the tip view as a livewire page route', function (): void {
+    $route = collect(app('router')->getRoutes()->getRoutes())
+        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.tips.view');
+
+    expect($route)->not->toBeNull();
+});

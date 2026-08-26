@@ -6,7 +6,6 @@ use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderProjectView;
-use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
 
 Route::group([
@@ -27,7 +26,7 @@ Route::group([
         'as' => 'tips.',
     ], function (): void {
         Route::livewire('/', 'pages::tip.index')->name('index');
-        Route::get('/{tip}', RenderTipView::class)->name('view');
+        Route::livewire('/{tip}', 'pages::tip.view')->name('view');
     });
 
     Route::group([
