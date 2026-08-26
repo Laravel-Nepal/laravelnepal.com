@@ -20,28 +20,32 @@
                 </a>
             </div>
         </div>
-        <?php if (isset($component)) { $__componentOriginal5d16a18424da207cfd184fdb955ea719 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal5d16a18424da207cfd184fdb955ea719 = $attributes; } ?>
-<?php $component = App\View\Components\Section\LandingPage\HeroSectionRight::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('section.landing-page.hero-section-right'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\Section\LandingPage\HeroSectionRight::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+        <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('sections::landing-page.hero-section-right', []);
 
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal5d16a18424da207cfd184fdb955ea719)): ?>
-<?php $attributes = $__attributesOriginal5d16a18424da207cfd184fdb955ea719; ?>
-<?php unset($__attributesOriginal5d16a18424da207cfd184fdb955ea719); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal5d16a18424da207cfd184fdb955ea719)): ?>
-<?php $component = $__componentOriginal5d16a18424da207cfd184fdb955ea719; ?>
-<?php unset($__componentOriginal5d16a18424da207cfd184fdb955ea719); ?>
-<?php endif; ?>
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-2820124668-0', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
     </div>
 </section>
 

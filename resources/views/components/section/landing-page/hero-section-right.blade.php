@@ -1,3 +1,34 @@
+<?php
+
+use App\Models\Author;
+use App\Models\Post;
+use App\Models\Tip;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+
+new class extends Component
+{
+    public int $authors = 0;
+
+    public ?Post $post = null;
+
+    public ?Tip $tip = null;
+
+    public function mount(): void
+    {
+        $this->authors = Author::query()->count();
+
+        $this->post = Post::query()
+            ->latest()
+            ->first();
+
+        $this->tip = Tip::query()
+            ->latest()
+            ->first();
+    }
+};
+?>
+
 <div class="lg:col-span-5 relative animate__animated animate__fadeInRight">
     <div class="glass p-8 rounded-[2.5rem] relative z-10 overflow-hidden group">
         <div class="flex justify-between mb-8">
@@ -15,14 +46,10 @@
 
         <div class="space-y-4">
             <div class="bg-white/5 rounded-2xl border border-white/5 hover:border-laravel-red/30 transition-all cursor-pointer p-4">
-                <x-shared.simple-blog
-                    :$post
-                />
+                <x-shared.simple-blog :$post />
             </div>
             <div class="bg-white/5 rounded-2xl border border-white/5 hover:border-laravel-red/30 transition-all cursor-pointer p-4">
-                <x-shared.simple-tip
-                    :$tip
-                />
+                <x-shared.simple-tip :$tip />
             </div>
         </div>
         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-laravel-red blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>

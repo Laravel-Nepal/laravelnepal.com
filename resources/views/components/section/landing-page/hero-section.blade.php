@@ -20,7 +20,7 @@
                 </a>
             </div>
         </div>
-        <x-section.landing-page.hero-section-right />
+        <livewire:sections::landing-page.hero-section-right />
     </div>
 </section>
 
