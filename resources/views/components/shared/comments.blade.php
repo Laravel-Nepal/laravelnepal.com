@@ -96,9 +96,20 @@ new class extends Component
         </form>
     </div>
 
-    <div class="space-y-6">
-        @forelse($content->comments as $comment)
-            <div wire:key="comment-{{ $comment->id }}" class="glass p-8 rounded-[2.5rem] flex flex-col sm:flex-row gap-6 relative group transition-all duration-500 hover:border-white/10" wire:transition>
+    @island(defer: true)
+        @placeholder
+            <div class="space-y-6">
+                <div class="glass p-8 rounded-[2.5rem] animate-pulse">
+                    <div class="h-4 bg-white/10 rounded w-1/4 mb-6"></div>
+                    <div class="h-3 bg-white/5 rounded w-full mb-3"></div>
+                    <div class="h-3 bg-white/5 rounded w-2/3"></div>
+                </div>
+            </div>
+        @endplaceholder
+
+        <div class="space-y-6">
+            @forelse($content->comments as $comment)
+                <div wire:key="comment-{{ $comment->id }}" class="glass p-8 rounded-[2.5rem] flex flex-col sm:flex-row gap-6 relative group transition-all duration-500 hover:border-white/10" wire:transition>
 
                 <div class="flex flex-row sm:flex-col items-center gap-2">
                     <livewire:shared::upvote-content :content="$comment" :key="'vote-'.$comment->id" />
@@ -126,5 +137,6 @@ new class extends Component
                 <p class="text-zinc-500 italic text-sm">No comments yet. Be the first to share your thoughts!</p>
             </div>
         @endforelse
-    </div>
+        </div>
+    @endisland
 </section>
