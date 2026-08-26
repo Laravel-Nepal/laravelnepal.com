@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageView;
-use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
@@ -20,7 +19,7 @@ Route::group([
         'as' => 'post.',
     ], function (): void {
         Route::livewire('/', 'pages::post.index')->name('index');
-        Route::get('/{post}', RenderPostView::class)->name('view');
+        Route::livewire('/{post}', 'pages::post.view')->name('view');
     });
 
     Route::group([

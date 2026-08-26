@@ -36,3 +36,10 @@ it('registers the artisans index as a livewire page route', function (): void {
 
     expect($route)->not->toBeNull();
 });
+
+it('registers the post view as a livewire page route', function (): void {
+    $route = collect(app('router')->getRoutes()->getRoutes())
+        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.post.view');
+
+    expect($route)->not->toBeNull();
+});
