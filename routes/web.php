@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\SubscribeToNewsletter;
 
@@ -46,7 +45,7 @@ Route::group([
     Route::group([
         'as' => 'artisan.',
     ], function (): void {
-        Route::get('/@{author}', RenderArtisanView::class)->name('view');
+        Route::livewire('/@{author}', 'pages::artisan.view')->name('view');
 
         Route::group([
             'prefix' => '/artisan',

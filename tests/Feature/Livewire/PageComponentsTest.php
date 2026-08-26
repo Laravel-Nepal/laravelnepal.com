@@ -64,3 +64,10 @@ it('registers the package view as a livewire page route', function (): void {
 
     expect($route)->not->toBeNull();
 });
+
+it('registers the artisan view as a livewire page route', function (): void {
+    $route = collect(app('router')->getRoutes()->getRoutes())
+        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.artisan.view');
+
+    expect($route)->not->toBeNull();
+});
