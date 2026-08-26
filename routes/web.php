@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Http\Controllers\RenderArtisanIndex;
 use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
-use App\Http\Controllers\RenderPackageIndex;
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostView;
 use App\Http\Controllers\RenderProjectView;
@@ -45,7 +44,7 @@ Route::group([
         'prefix' => '/package',
         'as' => 'package.',
     ], function (): void {
-        Route::get('/', RenderPackageIndex::class)->name('index');
+        Route::livewire('/', 'pages::package.index')->name('index');
         Route::get('/{package}', RenderPackageView::class)->name('view');
     });
 
