@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Http\Controllers\RenderArtisanView;
 use App\Http\Controllers\RenderOpenGraphImage;
-use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\SubscribeToNewsletter;
 
 Route::group([
@@ -41,7 +40,7 @@ Route::group([
         'as' => 'package.',
     ], function (): void {
         Route::livewire('/', 'pages::package.index')->name('index');
-        Route::get('/{package}', RenderPackageView::class)->name('view');
+        Route::livewire('/{package}', 'pages::package.view')->name('view');
     });
 
     Route::group([
