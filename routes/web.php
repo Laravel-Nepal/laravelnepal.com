@@ -8,7 +8,6 @@ use App\Http\Controllers\RenderOpenGraphImage;
 use App\Http\Controllers\RenderPackageIndex;
 use App\Http\Controllers\RenderPackageView;
 use App\Http\Controllers\RenderPostView;
-use App\Http\Controllers\RenderProjectIndex;
 use App\Http\Controllers\RenderProjectView;
 use App\Http\Controllers\RenderTipView;
 use App\Http\Controllers\SubscribeToNewsletter;
@@ -38,7 +37,7 @@ Route::group([
         'prefix' => '/project',
         'as' => 'project.',
     ], function (): void {
-        Route::get('/', RenderProjectIndex::class)->name('index');
+        Route::livewire('/', 'pages::project.index')->name('index');
         Route::get('/{project}', RenderProjectView::class)->name('view');
     });
 

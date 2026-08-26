@@ -15,3 +15,10 @@ it('registers the tips index as a livewire page route', function (): void {
 
     expect($route)->not->toBeNull();
 });
+
+it('registers the projects index as a livewire page route', function (): void {
+    $route = collect(app('router')->getRoutes()->getRoutes())
+        ->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === 'page.project.index');
+
+    expect($route)->not->toBeNull();
+});
