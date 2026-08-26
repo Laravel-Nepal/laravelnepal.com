@@ -1,7 +1,7 @@
 <x-layouts.app>
     <livewire:sections::landing-page.hero-section />
     <x-section.landing-page.posts-and-news />
-    <x-section.landing-page.tips-list />
+    <livewire:sections::landing-page.tips-list />
     <x-section.landing-page.projects-and-packages />
     @push('seo')
         @php

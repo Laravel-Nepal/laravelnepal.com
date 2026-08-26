@@ -1,3 +1,24 @@
+<?php
+
+use App\Models\Tip;
+use Illuminate\Support\Collection;
+use Livewire\Component;
+
+new class extends Component
+{
+    /** @var Collection<int, Tip> */
+    public Collection $tips;
+
+    public function mount(): void
+    {
+        $this->tips = Tip::query()
+            ->latest()
+            ->take(6)
+            ->get();
+    }
+};
+?>
+
 <x-layouts.section
     title="Tips"
     class="container mt-18"

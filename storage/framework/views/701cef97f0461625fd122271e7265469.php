@@ -58,28 +58,32 @@ unset($__split);
 <?php $component = $__componentOriginal31fc946f6718c9ff1dd5d147ff97c4f1; ?>
 <?php unset($__componentOriginal31fc946f6718c9ff1dd5d147ff97c4f1); ?>
 <?php endif; ?>
-    <?php if (isset($component)) { $__componentOriginal78297f5d39a4a5342d3e14734a5a3b44 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal78297f5d39a4a5342d3e14734a5a3b44 = $attributes; } ?>
-<?php $component = App\View\Components\Section\LandingPage\TipsList::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('section.landing-page.tips-list'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\App\View\Components\Section\LandingPage\TipsList::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('sections::landing-page.tips-list', []);
 
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal78297f5d39a4a5342d3e14734a5a3b44)): ?>
-<?php $attributes = $__attributesOriginal78297f5d39a4a5342d3e14734a5a3b44; ?>
-<?php unset($__attributesOriginal78297f5d39a4a5342d3e14734a5a3b44); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal78297f5d39a4a5342d3e14734a5a3b44)): ?>
-<?php $component = $__componentOriginal78297f5d39a4a5342d3e14734a5a3b44; ?>
-<?php unset($__componentOriginal78297f5d39a4a5342d3e14734a5a3b44); ?>
-<?php endif; ?>
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1214811403-1', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
     <?php if (isset($component)) { $__componentOriginalb059e53111417ac25e7fa8b31970bd3a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalb059e53111417ac25e7fa8b31970bd3a = $attributes; } ?>
 <?php $component = App\View\Components\Section\LandingPage\ProjectsAndPackages::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
