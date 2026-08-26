@@ -23,3 +23,17 @@ it('toggles the shared vote content and dispatches events', function (): void {
         ->assertSet('count', 1)
         ->assertSet('active', true);
 });
+
+it('supports modelable binding on the filter input', function (): void {
+    Livewire::test('shared::filter-input', ['label' => 'post'])
+        ->set('value', 'laravel')
+        ->assertSet('value', 'laravel');
+});
+
+it('supports modelable binding on the checkbox glass', function (): void {
+    Livewire::test('shared::checkbox-glass', [
+        'arrayValues' => [['value' => 'laravel', 'bracketValue' => 3]],
+    ])
+        ->set('value', ['laravel'])
+        ->assertSet('value', ['laravel']);
+});
