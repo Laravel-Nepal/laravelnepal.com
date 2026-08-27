@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Comment;
 use Livewire\Livewire;
 
 it('renders the shared filter input as a single-file component', function (): void {
@@ -16,12 +17,23 @@ it('renders the shared checkbox glass as a single-file component', function (): 
         ->assertStatus(200);
 });
 
-it('toggles the shared vote content and dispatches events', function (): void {
-    Livewire::test('shared::vote-content', ['count' => 0, 'active' => false])
+it('toggles a vote on the shared vote glass in a single request', function (): void {
+    $comment = Comment::query()->create([
+        'commentable_type' => App\Models\Post::class,
+        'commentable_id' => 1,
+        'content' => 'A test comment',
+        'visitor' => 'test-visitor',
+    ]);
+
+    Livewire::test('shared::vote-glass', ['content' => $comment])
         ->assertStatus(200)
+        ->assertSet('count', 0)
+        ->assertSet('active', false)
         ->call('toggleVote')
         ->assertSet('count', 1)
         ->assertSet('active', true);
+
+    expect($comment->getTotalVotes())->toBe(1);
 });
 
 it('supports modelable binding on the filter input', function (): void {
