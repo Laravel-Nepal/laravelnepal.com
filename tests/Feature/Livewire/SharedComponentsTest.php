@@ -36,6 +36,19 @@ it('toggles a vote on the shared vote glass in a single request', function (): v
     expect($comment->getTotalVotes())->toBe(1);
 });
 
+it('renders the static vote copy in the lazy placeholder', function (): void {
+    $comment = Comment::query()->create([
+        'commentable_type' => App\Models\Post::class,
+        'commentable_id' => 1,
+        'content' => 'A test comment',
+        'visitor' => 'test-visitor',
+    ]);
+
+    Livewire::test('shared::vote-glass', ['content' => $comment])
+        ->assertSee('Appreciate')
+        ->assertSee('Show some support to this');
+});
+
 it('supports modelable binding on the filter input', function (): void {
     Livewire::test('shared::filter-input', ['label' => 'post'])
         ->set('value', 'laravel')
