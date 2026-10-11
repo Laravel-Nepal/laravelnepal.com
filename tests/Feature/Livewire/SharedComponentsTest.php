@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Comment;
+use App\Models\Post;
 use Livewire\Livewire;
 
 it('renders the shared filter input as a single-file component', function (): void {
@@ -19,7 +20,7 @@ it('renders the shared checkbox glass as a single-file component', function (): 
 
 it('toggles a vote on the shared vote glass in a single request', function (): void {
     $comment = Comment::query()->create([
-        'commentable_type' => App\Models\Post::class,
+        'commentable_type' => Post::class,
         'commentable_id' => 1,
         'content' => 'A test comment',
         'visitor' => 'test-visitor',
@@ -38,7 +39,7 @@ it('toggles a vote on the shared vote glass in a single request', function (): v
 
 it('renders the static vote copy in the lazy placeholder', function (): void {
     $comment = Comment::query()->create([
-        'commentable_type' => App\Models\Post::class,
+        'commentable_type' => Post::class,
         'commentable_id' => 1,
         'content' => 'A test comment',
         'visitor' => 'test-visitor',

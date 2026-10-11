@@ -3,7 +3,6 @@
 use App\Models\Author;
 use App\Models\Post;
 use App\Models\Tip;
-use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component

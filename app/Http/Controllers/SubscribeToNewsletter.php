@@ -18,7 +18,7 @@ final class SubscribeToNewsletter extends Controller
         Subscriber::query()
             ->updateOrCreate(
                 [
-                    'email' => $subscribeToNewsletterRequest->get('email'),
+                    'email' => $subscribeToNewsletterRequest->input('email'),
                 ], [
                     'unsubscribed_at' => null,
                     'ip_address' => $subscribeToNewsletterRequest->ip(),

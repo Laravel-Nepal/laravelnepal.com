@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Illuminate\Routing\Route;
+
 it('registers every page route as a livewire page route backed by a single-file component', function (): void {
     $pageRoutes = [
         'page.post.index' => 'post-index',
@@ -16,10 +18,10 @@ it('registers every page route as a livewire page route backed by a single-file 
         'page.artisan.view' => 'artisan-view',
     ];
 
-    $routes = collect(app('router')->getRoutes()->getRoutes());
+    $routes = collect(resolve('router')->getRoutes()->getRoutes());
 
     foreach ($pageRoutes as $routeName => $componentFile) {
-        $route = $routes->first(fn (Illuminate\Routing\Route $route): bool => $route->getName() === $routeName);
+        $route = $routes->first(fn (Route $route): bool => $route->getName() === $routeName);
 
         expect($route)->not->toBeNull("Route [{$routeName}] should exist")
             ->and($route->getActionName())->toBeString()
