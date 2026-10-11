@@ -1,3 +1,34 @@
+<?php
+
+use App\Models\News;
+use App\Models\Post;
+use Illuminate\Support\Collection;
+use Livewire\Component;
+
+new class extends Component
+{
+    /** @var Collection<int, Post> */
+    public Collection $posts;
+
+    /** @var Collection<int, News> */
+    public Collection $news;
+
+    public function mount(): void
+    {
+        $this->news = News::query()
+            ->latest()
+            ->take(5)
+            ->get();
+
+        $this->posts = Post::query()
+            ->whereNotIn('slug', $this->news->pluck('post_slug')->toArray())
+            ->latest()
+            ->take(4)
+            ->get();
+    }
+};
+?>
+
 <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-y-6 lg:gap-x-12 container scroll-mt-24" id="explore">
     <div class="col-span-1 lg:col-span-3 order-1 lg:order-1">
         <x-layouts.section

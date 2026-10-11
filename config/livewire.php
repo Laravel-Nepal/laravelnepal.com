@@ -32,8 +32,11 @@ return [
     */
 
     'component_namespaces' => [
-        'layouts' => resource_path('views/layouts'),
-        'pages' => resource_path('views/pages'),
+        'layouts' => resource_path('views/components/layouts'),
+        'pages' => resource_path('views/components/page'),
+        'sections' => resource_path('views/components/section'),
+        'shared' => resource_path('views/components/shared'),
+        'skeletons' => resource_path('views/components/skeletons'),
     ],
 
     /*
@@ -46,7 +49,7 @@ return [
     |
     */
 
-    'component_layout' => 'layouts::app',
+    'component_layout' => 'layouts::page',
 
     /*
     |---------------------------------------------------------------------------
@@ -58,7 +61,7 @@ return [
     |
     */
 
-    'component_placeholder' => null, // Example: 'placeholders::skeleton'
+    'component_placeholder' => 'skeletons::skeleton', // Example: 'placeholders::skeleton'
 
     /*
     |---------------------------------------------------------------------------
@@ -71,8 +74,8 @@ return [
     */
 
     'make_command' => [
-        'type' => 'class', // Options: 'sfc', 'mfc', 'class'
-        'emoji' => true, // Options: true, false
+        'type' => 'sfc', // Options: 'sfc', 'mfc', 'class'
+        'emoji' => false, // Options: true, false
         'with' => [
             'js' => false,
             'css' => false,

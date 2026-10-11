@@ -45,7 +45,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,
         SetList::NAMING,
-        SetList::STRICT_BOOLEANS,
         SetList::TYPE_DECLARATION,
     ]);
 

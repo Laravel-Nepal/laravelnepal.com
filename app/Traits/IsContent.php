@@ -18,7 +18,20 @@ use Override;
 trait IsContent
 {
     use CanBeVoted;
-    use Orbital;
+    use Orbital {
+        migrate as protected migrateFromOrbital;
+    }
+
+    /**
+     * Orbit runs its migration on a constructor-less model instance, so Eloquent never
+     * initializes the casts() method and array attributes are bound to the database raw.
+     */
+    public function migrate(): void
+    {
+        $this->initializeHasAttributes();
+
+        $this->migrateFromOrbital();
+    }
 
     public function getKeyType(): string
     {

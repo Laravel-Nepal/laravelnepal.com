@@ -1,8 +1,8 @@
 <x-layouts.app>
-    <x-section.landing-page.hero-section />
-    <x-section.landing-page.posts-and-news />
-    <x-section.landing-page.tips-list />
-    <x-section.landing-page.projects-and-packages />
+    <livewire:sections::landing-page.hero-section />
+    <livewire:sections::landing-page.posts-and-news />
+    <livewire:sections::landing-page.tips-list />
+    <livewire:sections::landing-page.projects-and-packages />
     @push('seo')
         @php
             $page = \App\Models\Page::whereType(\App\Enums\PageType::LandingPage)->first();
