@@ -18,10 +18,11 @@
     "skills": [
         "infer-conventions",
         "laravel-best-practices",
+        "testing-best-practices",
         "pulse-development",
-        "pest-testing",
         "tailwindcss-development",
         "filament-log-viewer-development",
-        "laravel-seo"
+        "laravel-seo",
+        "filament-development"
     ]
 }
